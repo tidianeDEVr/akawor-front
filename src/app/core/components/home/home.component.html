@@ -1,0 +1,255 @@
+<!-- hero section  -->
+<!-- <section class="hero-section">
+    <div class="container">
+        <div class="row">
+            <div class="col col-2">
+                <div class="hero-aside container h-100">
+                    <h4 class="text-ellip">Toutes catégories</h4>
+                    <div class="title-divider"></div>
+                    <ul>
+                        <li>
+                            <a class="text-ellip" href="" matTooltip="En promotion">
+                                <i class="fa-solid fa-heart"></i>
+                                <span>Cosmétique, Santé et Bien-être</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-ellip" href="" matTooltip="En promotion">
+                                <i class="fa-solid fa-person-half-dress"></i>
+                                <span>Mode & Accessoires</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-ellip" href="" matTooltip="En promotion">
+                                <i class="fa-solid fa-cookie-bite"></i>
+                                <span>Produits alimentaires</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <h4 class="text-ellip mt-4">Best-sellers</h4>
+                    <div class="title-divider"></div>
+                    <div class="bestsellers">
+                        <div class="single-bestseller" *ngFor="let bestseller of bestsellersProducts">
+                            <div class="">
+                                <div class="row">
+                                    <div class="col col-4">
+                                        <div class="w-100 h-100">
+                                            <img src="{{imagePath}}+{{bestseller.img}}" alt="{{bestseller.libelle}}">
+                                        </div>
+                                    </div>
+                                    <div class="col col-8">
+                                        <div class="">
+                                            <h5 class="text-ellip m-0 fw-bold">{{bestseller.libelle}}</h5>
+                                            <h6 class="text-ellip">{{bestseller.price}}</h6>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-8 hero-banner">
+                <ngb-carousel *ngIf="heroBanners">
+                    <ng-template ngbSlide *ngFor="let banner of heroBanners">
+                        <div class="picsum-img-wrapper">
+                            <img [src]="banner.imgPath" alt="Random first slide" />
+                        </div>
+                        <div class="carousel-caption">
+                            <h3>First slide label</h3>
+                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                        </div>
+                    </ng-template>
+                </ngb-carousel>
+                <mat-card>
+                    <mat-card-content>
+                        <div class="row">
+                            <div class="col">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <img src="../../../../assets/images/delivery.svg" alt="Livraison rapide et securisée">
+                                    <h5>Livraison rapide et sécurisée</h5>
+                                    <p>
+                                        Nous livrons partout au Sénégal et en France.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <img src="../../../../assets/images/support.svg" alt="Un service client à votre écoute ">
+                                    <h5>Un service client à votre écoute</h5>
+                                    <p>
+                                        Assistance 24h/24 pour une expérience inoubliable.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <img src="../../../../assets/images/secure.svg" alt="Paiement sécurisé">
+                                    <h5>Paiement sécurisé</h5>
+                                    <p>
+                                        Des méthodes de paiement populaires et sécurisées.
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="d-flex flex-column justify-content-center">
+                                    <img src="../../../../assets/images/online_shop.svg" alt="Produits made in Senegal">
+                                    <h5>Produits made in Senegal </h5>
+                                    <p>
+                                        Les meilleurs artisans sénégalais pour vous.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <div class="col col-2">
+                <div class="hero-aside container h-100">
+                    <h4 class="text-ellip">Principales catégories</h4>
+                    <div class="title-divider"></div>
+                    <div class="row row-cols-2 g-2">
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-shirt"></i>
+                                <span class="text-ellip mt-2">Fashion</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                <span class="text-ellip mt-2">Beauté</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-shoe-prints"></i>
+                                <span class="text-ellip mt-2">Chaussure</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-house"></i>
+                                <span class="text-ellip mt-2">Maison</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-burger"></i>
+                                <span class="text-ellip mt-2">Nourriture</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-blender-phone"></i>
+                                <span class="text-ellip mt-2">Fourniture</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-baby"></i>
+                                <span class="text-ellip mt-2">Bébé & enfants</span>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="top-category">
+                                <i class="fa-solid fa-shirt"></i>
+                                <span class="text-ellip mt-2">Electroniques</span>
+                            </div>
+                        </div>
+                    </div>
+                    <h4 class="mt-4 text-ellip">Témoignages</h4>
+                    <div class="title-divider"></div>
+                    <ngx-slick-carousel *ngIf="isDealsProductsLoaded" class="carousel" #slickModal="slick-carousel" [config]="slideTestimonialsConfig" >
+                        <div ngxSlickItem *ngFor="let testimonial of testimonials">
+                            <p>
+                                <i class="fa-solid fa-quote-left"></i>
+                                {{testimonial.message}}<br>
+                            </p>
+                            <span class="fw-bold text-ellip">&#126; {{testimonial.author}}</span>
+                        </div>
+                    </ngx-slick-carousel>
+                </div>
+            </div>
+        </div>
+    </div>
+</section> -->
+
+<!-- tabs section  -->
+<mat-divider></mat-divider>
+<section class="tabs-section">
+    <div class="container">
+        <div class="row">
+            <div class="col col-2 bg-danger">1</div>
+            <div class="col col-10">
+                <div class="container">
+                    <ul class="nav" id="myTab" role="tablist">
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link active" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-tab-pane" type="button" role="tab" aria-controls="news-tab-pane" aria-selected="true">NOUVEAUX</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="bestsellers-tab" data-bs-toggle="tab" data-bs-target="#bestsellers-tab-pane" type="button" role="tab" aria-controls="bestsellers-tab-pane" aria-selected="false">BESTSELLERS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="rated-tab" data-bs-toggle="tab" data-bs-target="#rated-tab-pane" type="button" role="tab" aria-controls="rated-tab-pane" aria-selected="false">MIEUX NOTÉS</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                          <button class="nav-link" id="specials-tab" data-bs-toggle="tab" data-bs-target="#specials-tab-pane" type="button" role="tab" aria-controls="specials-tab-pane" aria-selected="false">EN PROMOTION</button>
+                        </li>
+                      </ul>
+                    <div class="tab-content" id="myTabContent">
+                        <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
+                            news
+                        </div>
+                        <div class="tab-pane fade" id="bestsellers-tab-pane" role="tabpanel" aria-labelledby="bestsellers-tab" tabindex="0">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col" *ngFor="let bestseller of bestsellersProducts">
+                                        <div class="product-card">
+                                            <div class="img-holder position-relative">
+                                                <img src="{{imagePath}}{{bestseller.img}}" alt="{{bestseller.libelle}}">
+                                                <div class="position-absolute zoom-icon d-none">
+                                                    <i class="fa-solid fa-2x fa-magnifying-glass-plus"></i>
+                                                </div>
+                                            </div>
+                                            <div class="infos">
+                                                <div class="row top-infos">
+                                                    <div class="col">
+                                                        <span class="text-ellip">{{bestseller.libelle}}</span>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="d-flex align-items-center justify-content-end">
+                                                            <i class="fa-solid fa-store mx-1"></i>
+                                                            <span class="text-ellip">Boutique</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="text-center">
+                                                    <span class="text-ellip category">Categorie du produit</span>
+                                                    <div class="price-actions position-relative">
+                                                        <span class="text-ellip price">{{bestseller.price}}</span>
+                                                        <div class="actions position-absolute">
+                                                            <input type="number" value="1" min="1" max="10">
+                                                            <button matTooltip="Ajouter au panier">
+                                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                            </button>
+                                                            <button matTooltip="Ajouter à la liste de souhaits">
+                                                                <i class="fa-solid fa-heart"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="rated-tab-pane" role="tabpanel" aria-labelledby="rated-tab" tabindex="0">MIEUX NOTÉS</div>
+                        <div class="tab-pane fade" id="specials-tab-pane" role="tabpanel" aria-labelledby="specials-tab" tabindex="0">PROMO</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

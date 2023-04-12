@@ -1,0 +1,53 @@
+<main class="d-flex align-items-center justify-content-center">
+    <mat-card class="bg-white">
+        <mat-card-content class="p-0">
+            <div class="d-flex">
+                <div class="col left-part">
+                    <div class="glass">
+                        <h2>LOGO</h2>
+                    </div>
+                </div>
+                <div class="col right-part">
+                    <div class="login-form">
+                        <h2>Hey, Salut 👋</h2>
+                        <p class="mb-3">
+                            Entrez vos identifiants pour vous authentifier !
+                        </p>
+                        <mat-form-field appearance="outline" class="w-100 mt-3">
+                            <mat-label>Adresse e-mail</mat-label>
+                            <input matInput placeholder="mail@xyz.com" [formControl]="emailControl" />
+                            <mat-icon matSuffix>person</mat-icon>
+                            <mat-hint>Identifiant</mat-hint>
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100 mt-3">
+                            <mat-label>Mot de passe</mat-label>
+                            <input matInput placeholder="password" type="password" [formControl]="passwordControl" />
+                            <mat-icon matSuffix>password</mat-icon>
+                            <mat-hint>Mot de passe</mat-hint>
+                        </mat-form-field>
+                        <button class="login-btn w-100 mt-2" (click)="login()">S'identifier</button>
+                        <div class="d-flex align-items-center justify-content-between mt-2">
+                            <mat-checkbox color="primary" [(ngModel)]="checkedRemember">Gardez-moi connecté</mat-checkbox>
+                            <button (click)="forgetPassword()" class="forget-btn">Mot de passe oublié ?</button>
+                        </div>
+                        <div class="or position-relative my-2">
+                            <span class="position-absolute">OU</span>
+                            <mat-divider></mat-divider>
+                        </div>
+                        <div class="socials-login pt-2">
+                            <button class="w-100 social-btn gg-btn">
+                                <img src="../../../../assets/images/google.svg" width="20" alt="google login">
+                                <span>Utiliser un compte Google</span>
+                            </button>
+                            <button class="w-100 social-btn fb-btn mt-3">
+                                <img src="../../../../assets/images/facebook.svg" width="20" alt="facebook login">
+                                <span>Utiliser un compte Facebook</span>
+                            </button>
+                        </div>
+                        <p class="text-center footer-text mt-5">Vous rencontrez des soucis techniques ? <a href="#" target="_blank">Contactez-nous</a></p>
+                    </div>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+</main>

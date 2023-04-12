@@ -1,1 +1,120 @@
-<p>header works!</p>
+<header>
+    <div class="top-header">
+        <div class="container d-flex align-items-center justify-content-between h-100 w-100 py-1">
+            <div class="th-left">
+                <span class="greeting">Bienvenue chez <span class="fw-bold">AKAWOR</span></span>
+                <span class="contact"> 
+                    <span class="typed-area fw-bold"></span>
+                </span>
+            </div>
+            <div class="th-right">
+                Devise : XOF CFA
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="middle-header">
+        <div class="container align-items-center justify-content-between h-100 w-100">
+            <div class="row pt-2">
+                <div class="logo-holder mt-2 col col-2">
+                    <h4 class="fw-bold">LOGO</h4>
+                </div>
+                <div class="search-holder col col-7">
+                    <form class="form">
+                        <button>
+                            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
+                                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </button>
+                        <input class="input" placeholder="Je recherche..." required="" type="text">
+                        <button class="reset" type="reset">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+                <div class="menu-holder col col-3">
+                    <div class="d-flex align-items-center justify-content-end">
+                        <button mat-button matTooltip="Foire aux questions">
+                            <i class="fa-solid fa-circle-info"></i>
+                            <span class="fw-bold">FAQ</span>
+                        </button>
+                        <button mat-button matTooltip="Blog">
+                            <i class="fa-solid fa-message"></i>
+                            <span class="fw-bold">BLOG</span>
+                        </button>
+                        <button mat-button matTooltip="Contact">
+                            <i class="fa-solid fa-envelope"></i>
+                            <span class="fw-bold">CONTACT</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="bottom-header">
+        <div class="container">
+            <div class="row">
+                <div class="col col-2">
+                    <button class="w-100 text-ellip">
+                        <i class="fa-solid fa-heart" style="margin-right: 5px;"></i>
+                        <span>Liste de souhaits</span>
+                    </button>
+                </div>
+                <div class="col col-8">
+                    <div class="d-flex align-items-center justify-content-between h-100">
+                        <ul>
+                            <li>
+                                <a href="" matTooltip="En promotion">
+                                    <i class="fa-solid fa-percent"></i>
+                                    <span>Spécials</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" matTooltip="Boutiques">
+                                    <i class="fa-solid fa-store"></i>
+                                    <span>Boutiques</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" matTooltip="Livraison">
+                                    <i class="fa-solid fa-truck"></i>
+                                    <span>Livraison</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="" matTooltip="Mes commandes">
+                                    <i class="fa-solid fa-bag-shopping"></i>
+                                    <span>Commandes</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" matTooltip="Ma liste de souhaits">
+                                    <i class="fa-solid fa-heart"></i>
+                                    <span>Souhaits</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="" matTooltip="Mon compte">
+                                    <i class="fa-solid fa-user"></i>
+                                    <span>Compte</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col col-2">
+                    <button class="w-100 text-ellip">
+                        <span>0 article(s) - $0.00</span>
+                        <i class="fa-solid fa-cart-shopping" style="margin-left: 5px;"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+</header>
