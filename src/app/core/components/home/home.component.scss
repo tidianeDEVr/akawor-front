@@ -181,6 +181,8 @@
                 }
                 .category {
                     padding: 5px 0;
+                    text-transform: uppercase;
+                    font-weight: 700;
                 }
                 .price-actions {
                     display: flex;
@@ -200,6 +202,51 @@
                         justify-content: center;
                         opacity: 0;
                         pointer-events: none;
+                        .input-cont {
+                            background-color: var(--gray-500);
+                            i {
+                                padding: 0 5px;
+                                display: flex;
+                                align-items: center;
+                                height: 100%;
+                                width: 15px;
+                                object-fit: contain;
+                                transition: all .3s ease-in-out;
+                            }
+                            i:hover {
+                                color: var(--white);
+                                background-color: var(--gray-600);
+                            }
+                            input {
+                                background-color: transparent;
+                                border: none;
+                                height: 100%;
+                                outline: none;
+                                color: var(--gray-600);
+                                text-align: center;
+                                font-weight: 700;
+                            }
+                            input[type="number"]::-webkit-outer-spin-button,
+                            input[type="number"]::-webkit-inner-spin-button {
+                                display: none;
+                            }
+                        }
+                        button {
+                            height: 100%;
+                            border: none;
+                            opacity: .85;
+                            transition: all ease-in-out .3s;
+                            background-color: var(--blue-600);
+                            padding: 0 10px;
+                        }
+                        button:hover{
+                            opacity: 1;
+                            scale: 1.1;
+                            z-index: 5;
+                        }
+                        .add-to-wishlist {
+                            background-color: var(--blue-500);
+                        }
                     }
                 }
             }
@@ -208,6 +255,45 @@
             .actions {
                 opacity: 1 !important;
                 pointer-events:all !important;
+            }
+        }
+    }
+
+    .promote-section {
+        height: 432px;
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0, .4),
+            rgba(0,0,0, .5)
+        ),url(../../../../assets/images/backgrounds/background-3.webp);
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .container {
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            button {
+                padding: 10px 15px;
+                display: flex;
+                align-items: center;
+                background-color: var(--blue-400);
+                border: none;
+                color: var(--white);
+                font-size: 12px;
+                font-weight: 400;
+                transition: all .3s ease-in-out;
+                i {
+                    margin-left: 10px;
+                }
+            }
+            button:hover {
+                background-color: var(--blue-500);
             }
         }
     }

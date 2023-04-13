@@ -71,7 +71,7 @@ public imagePath:string = "../../../../assets/images/products/";
       img: "product10.jpg",
     },
   ];
-  public isDealsProductsLoaded:boolean = false;
+  public isProductsLoaded:boolean = false;
   public slideDealsConfig = {
     "slidesToShow": 6,
     "slidesToScroll": 3,
@@ -223,13 +223,6 @@ public imagePath:string = "../../../../assets/images/products/";
     }
   ]
   constructor(){
-    
-    // setTimeout(() => {
-    //   this.isDealsProductsLoaded = true;
-    // }, 3000);
-    // setTimeout(() => {
-    //   this.isShopsLoaded = true;
-    // }, 5000);
     document.addEventListener("DOMContentLoaded", function() {
       var cards = document.querySelectorAll('.product-card')
       cards.forEach(card => {
@@ -244,5 +237,6 @@ public imagePath:string = "../../../../assets/images/products/";
         })
       });
     });
+    this.isProductsLoaded = true;
   }
 }
