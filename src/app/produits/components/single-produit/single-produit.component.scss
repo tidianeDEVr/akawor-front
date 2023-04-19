@@ -1,0 +1,195 @@
+:host {
+    .main-product {
+        background-color: var(--gray-400);
+        padding-top: 10px;
+        padding-bottom: 50px;
+        mat-card {
+            border-radius: 0;
+        
+        }
+        .container {
+            padding-top: 20px;
+            h1 {
+                font-family: 'Playfair Display', serif;
+            }
+            .images {
+                .main-image-container {
+                    display: flex;
+                    justify-content: center;
+                    border: var(--gray-500) 1px solid;
+                    border-radius: 10px;
+                    img {
+                        width: 100%;
+                        max-height: 500px;
+                        aspect-ratio: 1;
+                        object-fit: cover;
+                        border-radius: 10px;
+                    }
+                }
+                .others-images {
+                    margin: 10px 0;
+                    display: flex;
+                    cursor: pointer;
+                    overflow-x: scroll;
+                    overflow-y: hidden;
+                    img {
+                        width: 65px;
+                        aspect-ratio: 1;
+                        border-radius: 5px;
+                        margin-right: 10px;
+                        object-fit: cover;
+                    }
+                }
+            }
+            .middle-col {
+                h5 {
+                    font-size: 14px;
+                    font-weight: 700;
+                    margin: 0;
+                }
+                p {
+                    font-weight: 13px;
+                    font-weight: 400;
+                    line-height: 20px;
+                }
+                .nav-tabs {
+                    .nav-link {
+                        background: transparent;
+                        border: none;
+                        padding: 0;
+                        margin-right: 15px;
+                        font-size: 13px;
+                        font-weight: 700;
+                        color: var(--gray-600);
+                    }
+                    .nav-link.active {
+                        border-bottom: var(--blue-400) 2px solid;
+                        color: var(--black);
+                        opacity: .7;
+                    }
+                }
+                .tab-content {
+                    .tab-pane {
+                        padding-top: 10px;
+                    }
+                }
+                .logo-shop {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: 80px;
+                        object-fit: contain;
+                        margin-bottom: 10px;
+                    }
+                }
+                .price {
+                    font-size: 32px;
+                    margin-top: 10px;
+                }
+                .actions {
+                    transition: all .3s ease-in-out;
+                    background-color: var(--blue-400);
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .input-cont {
+                        background-color: var(--gray-500);
+                        height: 57px;
+                        i {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            width: 30px;
+                            height: 57px;
+                            object-fit: contain;
+                            cursor: pointer;
+                            transition: all .3s ease-in-out;
+                            color: var(--gray-600);
+                        }
+                        i:hover {
+                            color: var(--white);
+                            background-color: var(--gray-600);
+                        }
+                        input {
+                            background-color: transparent;
+                            border: none;
+                            outline: none;
+                            height: 20px;
+                            color: var(--gray-600);
+                            text-align: center;
+                            font-weight: 700;
+                        }
+                        input[type="number"]::-webkit-outer-spin-button,
+                        input[type="number"]::-webkit-inner-spin-button {
+                            display: none;
+                        }
+                    }
+                    button {
+                        height: 57px;
+                        border: none;;
+                        transition: all ease-in-out .3s;
+                        background-color: var(--blue-600);
+                        padding: 0 20px;
+                        color: var(--white);
+                    }
+                    button:hover{
+                        scale: 1.1;
+                        z-index: 5;
+                    }
+                    .add-to-wishlist {
+                        background-color: var(--blue-500);
+                    }
+                }
+                .share {
+                    a {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 35px;
+                        height: 35px;
+                        border-radius: 50%;
+                        text-decoration: none;
+                        margin-left: 10px;
+                        background-color: #2222;
+                        transition: all ease-in-out .3s;
+                        i {
+                            color:var(--black);
+                        }
+                    }
+                    a:hover {
+                        margin-top: -5px;
+                        scale: 1.1;
+                        i {
+                            color: var(--white);
+                        }
+                        background-color: var(--blue-600);
+                    }
+                }
+            }
+            .right-col {
+                .advices {
+                    .advice {
+                        // margin-bottom: 10px;
+                        .advice-icon-container {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            color: var(--white);
+                            background-color: var(--blue-400);
+                            width: 45px;
+                            height: 45px;
+                            border-radius: 5px;
+                            margin-top: 10px;
+                        }
+                        p {
+                            font-size: 11px;
+                            line-height: 15px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

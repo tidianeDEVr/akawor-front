@@ -49,6 +49,14 @@ ul {
   margin: 0 !important;
   padding: 0 !important;
 }
+.title-divider {
+  height: 2.5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 25%;
+  max-width: 100px;
+  background-color: var(--blue-400);
+}
 :root {
     --white: #fff;
     --black: #000;

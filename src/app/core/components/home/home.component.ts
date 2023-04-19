@@ -10,13 +10,13 @@ public imagePath:string = "../../../../assets/images/products/";
 
   public heroBanners = [
     {
-      imgPath: '../../../../assets/images/backgrounds/background-1.webp',
+      imgPath: '../../../../assets/images/backgrounds/demo1760x880.jpg',
     },
     {
-      imgPath: '../../../../assets/images/backgrounds/background-2.webp',
+      imgPath: '../../../../assets/images/backgrounds/leap-design-1760x880.jpg',
     },
     {
-      imgPath: '../../../../assets/images/backgrounds/background-3.webp',
+      imgPath: '../../../../assets/images/backgrounds/pepi-stojanovski-610838-unsplash-1760x880w.jpg',
     }
   ]
   public dealsProducts = [
@@ -200,6 +200,68 @@ public imagePath:string = "../../../../assets/images/products/";
     "autoplaySpeed": 3000,
     "speed": 300,
   };
+  public categories:any = [
+    {
+      libelle: "Fashion",
+      childs: ["Accessoires", "Robes", "Pantalons", "T-Shirts"],
+      img: "../../../../assets/images/catalogs/demo09-440x440.jpg"
+    },
+    {
+      libelle: "Sacs",
+      childs: ["Sacs à dos", "Pochettes", "Formal", "Sacs à main"],
+      img: "../../../../assets/images/catalogs/bagcat-440x440.jpg"
+    },
+    {
+      libelle: "Santé & Beauté",
+      childs: ["Accessoires", "Corps", "Rouge à lèvres", "Maquillages"],
+      img: "../../../../assets/images/catalogs/beauty-440x440.jpg"
+    },
+    {
+      libelle: "Chaussures",
+      childs: ["Plates", "Tongs", "Talons", "Sport"],
+      img: "../../../../assets/images/catalogs/f6-440x440.jpg"
+    },
+    {
+      libelle: "Décoration",
+      childs: ["Fauteuils", "Décors", "Lampes", "Canapés"],
+      img: "../../../../assets/images/catalogs/acceso-440x440.jpg",
+    },
+    {
+      libelle: "Électronique",
+      childs: ["Ordinateurs de bureau", "Ordinateurs portables", "Composants", "Téléphones"],
+      img: "../../../../assets/images/catalogs/elec-440x440.jpg"
+    },
+    {
+      libelle: "Nourriture",
+      childs: ["Petit-déjeuner", "Dessert", "Gril", "Pâtes"],
+      img: "../../../../assets/images/catalogs/f-440x440.jpg"
+    },
+    {
+      libelle: "Bébé & enfants",
+      childs: ["Soins bébé", "Bain", "Couches", "Fashion"],
+      img: "../../../../assets/images/catalogs/baby-440x440.jpg"
+    },
+    {
+      libelle: "Fleures",
+      childs: ["Lotus", "Bouquets mixtes", "Orchidées", "Roses"],
+      img: "../../../../assets/images/catalogs/rose-440x440.jpg"
+    },
+    {
+      libelle: "Appareils électroménagers",
+      childs: ["Fers", "Bouilloires", "Micro-ondes", "Réfrigérateurs"],
+      img: "../../../../assets/images/catalogs/app-440x440.jpg"
+    },
+  ]
+  public slideCategoriesConfig = {
+    "slidesToShow": 5,
+    "slidesToScroll": 5,
+    "arrows": false,
+    "dots": true,
+    "infinite": true,
+    "autoplay": true,
+    "autoplaySpeed": 3000,
+    "speed": 300,
+  };
   public bestsellersProducts =  [
     {
       libelle: "Nom du produit 1",
@@ -223,7 +285,7 @@ public imagePath:string = "../../../../assets/images/products/";
     }
   ]
   constructor(){
-    document.addEventListener("DOMContentLoaded", function() {
+    window.addEventListener("load", function() {
       var cards = document.querySelectorAll('.product-card')
       cards.forEach(card => {
         var icon = card.querySelector('.zoom-icon');

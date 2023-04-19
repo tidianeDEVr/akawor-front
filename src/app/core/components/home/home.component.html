@@ -8,19 +8,19 @@
                     <div class="title-divider"></div>
                     <ul>
                         <li>
-                            <a class="text-ellip" href="" matTooltip="En promotion">
+                            <a class="text-ellip" href="" matTooltip="Cosmétique, Santé et Bien-être">
                                 <i class="fa-solid fa-heart"></i>
                                 <span>Cosmétique, Santé et Bien-être</span>
                             </a>
                         </li>
                         <li>
-                            <a class="text-ellip" href="" matTooltip="En promotion">
+                            <a class="text-ellip" href="" matTooltip="Mode & Accessoires">
                                 <i class="fa-solid fa-person-half-dress"></i>
                                 <span>Mode & Accessoires</span>
                             </a>
                         </li>
                         <li>
-                            <a class="text-ellip" href="" matTooltip="En promotion">
+                            <a class="text-ellip" href="" matTooltip="Produits alimentaires">
                                 <i class="fa-solid fa-cookie-bite"></i>
                                 <span>Produits alimentaires</span>
                             </a>
@@ -30,7 +30,7 @@
                     <div class="title-divider"></div>
                     <div class="bestsellers">
                         <div class="single-bestseller" *ngFor="let bestseller of bestsellersProducts">
-                            <div class="">
+                            <div>
                                 <div class="row">
                                     <div class="col col-4">
                                         <div class="w-100 h-100">
@@ -180,9 +180,14 @@
 <section class="tabs-section">
     <div class="container">
         <div class="row">
-            <div class="col col-2 bg-danger">1</div>
+            <div class="col col-2">
+                <div class="tabs-aside h-100">
+                    <h4 class="text-ellip">Tous catégories</h4>
+                    <div class="title-divider"></div>
+                </div>
+            </div>
             <div class="col col-10">
-                <div class="container">
+                <div class="container py-5">
                     <ul class="nav" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
                           <button class="nav-link active" id="news-tab" data-bs-toggle="tab" data-bs-target="#news-tab-pane" type="button" role="tab" aria-controls="news-tab-pane" aria-selected="true">NOUVEAUX</button>
@@ -202,46 +207,7 @@
                             <div class="container">
                                 <div class="row" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
-                                        <div class="product-card">
-                                            <div class="img-holder position-relative">
-                                                <img src="{{imagePath}}{{bestseller.img}}" alt="{{bestseller.libelle}}">
-                                                <div class="position-absolute zoom-icon d-none">
-                                                    <i class="fa-solid fa-2x fa-magnifying-glass-plus"></i>
-                                                </div>
-                                            </div>
-                                            <div class="infos">
-                                                <div class="row top-infos">
-                                                    <div class="col">
-                                                        <span class="text-ellip">{{bestseller.libelle}}</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="d-flex align-items-center justify-content-end">
-                                                            <i class="fa-solid fa-store mx-1"></i>
-                                                            <span class="text-ellip">Boutique</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center">
-                                                    <span class="text-ellip category">chaussure</span>
-                                                    <div class="price-actions position-relative">
-                                                        <span class="text-ellip price">{{bestseller.price}}</span>
-                                                        <div class="actions position-absolute">
-                                                            <div class="input-cont d-flex align-items-center h-100">
-                                                                <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
-                                                                <input type="number" value="1" min="1" max="10">
-                                                                <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
-                                                            </div>
-                                                            <button matTooltip="Ajouter au panier" class="add-to-cart">
-                                                                <i class="fa-solid fa-cart-shopping"></i>
-                                                            </button>
-                                                            <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist">
-                                                                <i class="fa-solid fa-heart"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <app-product-card></app-product-card>
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="!isProductsLoaded">
@@ -264,46 +230,7 @@
                             <div class="container">
                                 <div class="row" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
-                                        <div class="product-card">
-                                            <div class="img-holder position-relative">
-                                                <img src="{{imagePath}}{{bestseller.img}}" alt="{{bestseller.libelle}}">
-                                                <div class="position-absolute zoom-icon d-none">
-                                                    <i class="fa-solid fa-2x fa-magnifying-glass-plus"></i>
-                                                </div>
-                                            </div>
-                                            <div class="infos">
-                                                <div class="row top-infos">
-                                                    <div class="col">
-                                                        <span class="text-ellip">{{bestseller.libelle}}</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="d-flex align-items-center justify-content-end">
-                                                            <i class="fa-solid fa-store mx-1"></i>
-                                                            <span class="text-ellip">Boutique</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center">
-                                                    <span class="text-ellip category">chaussure</span>
-                                                    <div class="price-actions position-relative">
-                                                        <span class="text-ellip price">{{bestseller.price}}</span>
-                                                        <div class="actions position-absolute">
-                                                            <div class="input-cont d-flex align-items-center h-100">
-                                                                <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
-                                                                <input type="number" value="1" min="1" max="10">
-                                                                <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
-                                                            </div>
-                                                            <button matTooltip="Ajouter au panier" class="add-to-cart">
-                                                                <i class="fa-solid fa-cart-shopping"></i>
-                                                            </button>
-                                                            <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist">
-                                                                <i class="fa-solid fa-heart"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <app-product-card></app-product-card>
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="!isProductsLoaded">
@@ -326,46 +253,7 @@
                             <div class="container">
                                 <div class="row" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
-                                        <div class="product-card">
-                                            <div class="img-holder position-relative">
-                                                <img src="{{imagePath}}{{bestseller.img}}" alt="{{bestseller.libelle}}">
-                                                <div class="position-absolute zoom-icon d-none">
-                                                    <i class="fa-solid fa-2x fa-magnifying-glass-plus"></i>
-                                                </div>
-                                            </div>
-                                            <div class="infos">
-                                                <div class="row top-infos">
-                                                    <div class="col">
-                                                        <span class="text-ellip">{{bestseller.libelle}}</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="d-flex align-items-center justify-content-end">
-                                                            <i class="fa-solid fa-store mx-1"></i>
-                                                            <span class="text-ellip">Boutique</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center">
-                                                    <span class="text-ellip category">chaussure</span>
-                                                    <div class="price-actions position-relative">
-                                                        <span class="text-ellip price">{{bestseller.price}}</span>
-                                                        <div class="actions position-absolute">
-                                                            <div class="input-cont d-flex align-items-center h-100">
-                                                                <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
-                                                                <input type="number" value="1" min="1" max="10">
-                                                                <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
-                                                            </div>
-                                                            <button matTooltip="Ajouter au panier" class="add-to-cart">
-                                                                <i class="fa-solid fa-cart-shopping"></i>
-                                                            </button>
-                                                            <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist">
-                                                                <i class="fa-solid fa-heart"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <app-product-card></app-product-card>
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="!isProductsLoaded">
@@ -388,46 +276,7 @@
                             <div class="container">
                                 <div class="row" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
-                                        <div class="product-card">
-                                            <div class="img-holder position-relative">
-                                                <img src="{{imagePath}}{{bestseller.img}}" alt="{{bestseller.libelle}}">
-                                                <div class="position-absolute zoom-icon d-none">
-                                                    <i class="fa-solid fa-2x fa-magnifying-glass-plus"></i>
-                                                </div>
-                                            </div>
-                                            <div class="infos">
-                                                <div class="row top-infos">
-                                                    <div class="col">
-                                                        <span class="text-ellip">{{bestseller.libelle}}</span>
-                                                    </div>
-                                                    <div class="col">
-                                                        <div class="d-flex align-items-center justify-content-end">
-                                                            <i class="fa-solid fa-store mx-1"></i>
-                                                            <span class="text-ellip">Boutique</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="text-center">
-                                                    <span class="text-ellip category">chaussure</span>
-                                                    <div class="price-actions position-relative">
-                                                        <span class="text-ellip price">{{bestseller.price}}</span>
-                                                        <div class="actions position-absolute">
-                                                            <div class="input-cont d-flex align-items-center h-100">
-                                                                <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
-                                                                <input type="number" value="1" min="1" max="10">
-                                                                <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
-                                                            </div>
-                                                            <button matTooltip="Ajouter au panier" class="add-to-cart">
-                                                                <i class="fa-solid fa-cart-shopping"></i>
-                                                            </button>
-                                                            <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist">
-                                                                <i class="fa-solid fa-heart"></i>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <app-product-card></app-product-card>
                                     </div>
                                 </div>
                                 <div class="row" *ngIf="!isProductsLoaded">
@@ -455,15 +304,46 @@
 
 <!-- promote section  -->
 <section class="promote-section">
-    <div class="container bg-danger">
-        <div class="promote-title">unlimited blocks</div>
-        <div class="promote-title">unlimited blocks</div>
-        <p>
-            Don't miss our end of season special deals! Endless blocks and banners combinations with video backgrounds and advanced page builder interface.
+    <div class="container text-center">
+        <h2>Unlimited Blocks</h2>
+        <p class="my-3">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellendus neque dolore recusandae error a distinctio, doloribus explicabo, dolorum similique et veritatis? Vero deserunt illo accusantium aperiam dicta beatae, quia natus?
         </p>
         <button>
             <span>ACHETER MAINTENANT</span>
             <i class="fa-solid fa-arrow-right"></i>
         </button>
+    </div>
+</section>
+
+<!-- catalog section  -->
+<section class="catalog-section">
+    <div class="container">
+        <h2>Parcourez notre catalogue</h2>
+        <div class="title-divider"></div>
+        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideCategoriesConfig" >
+            <div ngxSlickItem *ngFor="let category of categories">
+                <div class="container">
+                    <div class="catalog-single">
+                        <h4 class="fw-bold text-ellip">
+                            {{category.libelle}}
+                        </h4>
+                        <div class="title-divider text-center" style="margin-top: -10px;"></div>
+                        <ul>
+                            <li *ngFor="let sub of category.childs">
+                                <a href="">{{sub}}</a>
+                            </li>
+                        </ul>
+                        <a href="" class="d-flex align-items-center justify-content-center" style="text-decoration: none;">
+                            <i class="fa-solid fa-circle-chevron-right"></i>
+                            <span>Tous les produits</span>
+                        </a>
+                        <a href="">
+                            <img [src]="category.img" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </ngx-slick-carousel>
     </div>
 </section>

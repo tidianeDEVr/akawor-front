@@ -1,0 +1,236 @@
+<section class="main-product">
+    <div class="container">
+        <h1 class="text-ellip fw-bold text-uppercase">{{product.libelle}}</h1>
+        <mat-divider></mat-divider>
+        <mat-card class="p-2">
+            <div class="row">
+                <div class="col col-10">
+                    <div class="row">
+                        <div class="col col-7">
+                            <div class="p-1 images">
+                                <div class="main-image-container">
+                                    <img class="main-image" src="../../../../assets/images/products/{{product.img}}" alt="{{product.libelle}}">
+                                </div>
+                                <div class="others-images">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-1.jpeg" alt="{{product.libelle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-2.jpeg" alt="{{product.libelle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-3.jpeg" alt="{{product.libelle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-4.jpeg" alt="{{product.libelle}}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col col-5">
+                            <div class="p-1 middle-col">
+                                <div class="d-flex">
+                                    <div class="d-flex pt-4 px-2">
+                                        <i class="fa-solid fa-truck-fast fa-2x" style="opacity:.95;"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="text-ellip">THIS PRODUCT QUALIFIES FOR FREE SHIPPING</h5>
+                                        <p class="mt-1">
+                                            This block is set to appear automatically on products above a certain price, which may qualify for free shipping or other perks.
+                                        </p>
+                                    </div>
+                                </div>
+                                <nav class="mt-2">
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">DESCRIPTION</button>
+                                        <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">SPÉCIFICATIONS</button>
+                                        <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">COMMENTAIRES</button>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                        <p>
+                                            {{product.description}}
+                                        </p>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                                        <table class="table table-striped">
+                                            <thead>
+                                              <tr>
+                                                <th scope="col">Attribut</th>
+                                                <th scope="col">Valeur</th>
+                                              </tr>
+                                            </thead>
+                                            <tbody>
+                                              <tr>
+                                                <td>Mark</td>
+                                                <td>Otto</td>
+                                              </tr>
+                                              <tr>
+                                                <td>Jacob</td>
+                                                <td>Thornton</td>
+                                              </tr>
+                                              <tr>
+                                                <th scope="row">3</th>
+                                                <td colspan="2">Larry the Bird</td>
+                                              </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+                                        <div>
+                                            <p class="m-0">Il n'y a aucun avis sur ce produit.</p>
+                                            <h5 class="my-2 fw-bold text-uppercase">DONNER VOTRE AVIS</h5>
+                                            <p>
+                                                Veuillez vous <a href="">connecter</a> ou vous <a href="">inscrire</a> pour évaluer ce produit.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col col-9">
+                                        <div>
+                                            <div class="d-flex align-items-center">
+                                                <i class="fa-solid fa-cubes-stacked" style="color: var(--blue-400);"></i>
+                                                <span class="mx-1">Ce produit a été consulter <span class="fw-bold">101</span> fois.</span>
+                                            </div>
+                                            <ul class="my-2">
+                                                <li class="mb-2">
+                                                    <div>
+                                                        <span class="fw-bold">Stock:</span> En Stock 
+                                                        <i class="fa-solid fa-circle-check" style="color:#52b788;"></i>
+                                                    </div>
+                                                    <!-- <div>
+                                                        <span class="fw-bold">Stock:</span> Rupture de stock 
+                                                        <i class="fa-solid fa-circle-xmark" style="color:#ef233c;"></i>
+                                                    </div> -->
+                                                </li>
+                                                <li class="mb-2">
+                                                    <span class="fw-bold">SKU:</span> Model 199
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col col-3">
+                                        <div class="logo-shop">
+                                            <img src="{{shop.img}}" alt="{{shop.libelle}}" class="img-thumbnail">
+                                            <a class="text-center text-ellip">{{shop.libelle}}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="my-2 d-flex">
+                                    <div class="d-flex align-items-center">
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-solid fa-star"></i>
+                                        <i class="fa-regular fa-star-half-stroke"></i>
+                                        <i class="fa-regular fa-star"></i>
+                                    </div>
+                                    <span class="mx-2">Basée sur <span class="fw-bold">100</span> avis.</span>
+                                </div>
+                                <mat-divider></mat-divider>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <h2 class="price">500$</h2>
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="actions h-100">
+                                            <div class="input-cont d-flex align-items-center">
+                                                <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
+                                                <input type="number" value="1" min="1" max="10">
+                                                <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
+                                            </div>
+                                            <button class="add-to-cart" matTooltip="Ajouter au panier">
+                                                <i class="fa-lg fa-solid fa-cart-shopping"></i>
+                                            </button>
+                                            <button class="add-to-wishlist" matTooltip="Ajouter à la liste de souhaits">
+                                                <i class="fa-lg fa-solid fa-heart"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="share py-2 mt-3 d-flex align-items-center justify-content-between">
+                                    <span>PARTAGER SUR</span>
+                                    <div class="d-flex align-items-center">
+                                        <a href="">
+                                            <i class="fa-brands fa-whatsapp fa-beat"></i>
+                                        </a>
+                                        <a href="">
+                                            <i class="fa-brands fa-facebook-f fa-beat"></i>
+                                        </a>
+                                        <a href="">
+                                            <i class="fa-solid fa-link fa-beat"></i>
+                                        </a>
+                                        <a href="">
+                                            <i class="fa-solid fa-envelope fa-beat"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col col-2 right-col">
+                    <div class="p-1">
+                        <div class="advices">
+                            <div class="d-flex advice">
+                                <div class="advice-icon-container">
+                                    <i class="fa-xl fa-solid fa-truck-fast"></i>
+                                </div>
+                                <div class="p-1">
+                                    <h6 class="m-0 fw-bold">ACHATS SÉCURISÉS</h6>
+                                    <p class="m-0">Optimisées pour la sécurité</p>
+                                </div>
+                            </div>
+                            <div class="d-flex advice">
+                                <div class="advice-icon-container">
+                                    <i class="fa-xl fa-solid fa-share"></i>
+                                </div>
+                                <div class="p-1">
+                                    <h6 class="m-0 fw-bold">ACHATS SÉCURISÉS</h6>
+                                    <p class="m-0">Optimisées pour la sécurité</p>
+                                </div>
+                            </div>
+                            <div class="d-flex advice">
+                                <div class="advice-icon-container">
+                                    <i class="fa-xl fa-solid fa-shield-halved"></i>
+                                </div>
+                                <div class="p-1">
+                                    <h6 class="m-0 fw-bold">ACHATS SÉCURISÉS</h6>
+                                    <p class="m-0">Optimisées pour la sécurité</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h4 class="mt-3 text-ellip fw-bold" matTooltip="Produit de la même catégorie">Produit de la même catégorie</h4>
+                        <div class="title-divider" style="margin-top: -12px;"></div>
+                        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameCategoryProductsConfig" >
+                            <div ngxSlickItem *ngFor="let product of sameCategoryProducts">
+                                <app-product-card></app-product-card>
+                            </div>
+                        </ngx-slick-carousel>
+                    </div>
+                </div>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="my-2">
+                <div class="row">
+                    <div class="col col-6">
+                        <div>
+                            <h4 class="fw-bold text-ellip">Produits de la même boutique</h4>
+                            <div class="title-divider" style="margin-top: -12px;"></div>
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
+                                <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
+                                    <app-product-card></app-product-card>
+                                </div>
+                            </ngx-slick-carousel>
+                        </div>
+                    </div>
+                    <div class="col col-6">
+                        <div>
+                            <h4 class="fw-bold text-ellip">Produits similaires</h4>
+                            <div class="title-divider" style="margin-top: -12px;"></div>
+                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
+                                <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
+                                    <app-product-card></app-product-card>
+                                </div>
+                            </ngx-slick-carousel>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </mat-card>
+    </div>
+</section>

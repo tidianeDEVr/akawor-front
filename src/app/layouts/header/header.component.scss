@@ -105,6 +105,10 @@
         }
         .bottom-header {
             background-color: var(--gray-500);
+            // position: fixed !important;
+            // top: 0 !important;
+            width: 100vw;
+            z-index: 99;
             button {
                 height: 50px;
                 border: none;
