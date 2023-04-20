@@ -27,7 +27,6 @@ import { RouterModule } from '@angular/router';
 import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { NgxSliderModule } from '@angular-slider/ngx-slider';
 import { ProductCardLoaderComponent } from '../produits/components/product-cards/product-card-loader/product-card-loader.component'
 import { ShopCardLoaderComponent } from './components/shop-card-loader/shop-card-loader.component';
 import { ProductCardComponent } from '../produits/components/product-cards/product-card/product-card.component';
@@ -46,7 +45,6 @@ import { ProductCardComponent } from '../produits/components/product-cards/produ
   imports: [
     CommonModule,
     MatBadgeModule,
-    NgxSliderModule,
     MatCardModule,
     MatButtonModule,
     MatTooltipModule,
@@ -73,7 +71,6 @@ import { ProductCardComponent } from '../produits/components/product-cards/produ
   exports: [
     MatCardModule,
     MatButtonModule,
-    NgxSliderModule,
     MatTooltipModule,
     MatMenuModule,
     MatToolbarModule,

@@ -1,19 +1,14 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-all-produits',
-  templateUrl: './all-produits.component.html',
-  styleUrls: ['./all-produits.component.scss']
+  selector: 'app-single-boutique',
+  templateUrl: './single-boutique.component.html',
+  styleUrls: ['./single-boutique.component.scss']
 })
-export class AllProduitsComponent {
-  public loaderCards = ['', '', '', '', '', '', '', ''];
-  public activeProducts = [
-    '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '','', '', '', '', '', '', '', ''
+export class SingleBoutiqueComponent {
+  public shopProducts = [
+    '', '', '', '', '', '', '', '','', '', '', '', '', '', '',
   ];
-  public priceRangeMin = 0;
-  public priceRangeMax = 1000000;
-  public isProductsLoaded: boolean = false;
   constructor(){
     window.addEventListener("load", function() {
       var cards = document.querySelectorAll('.product-card')

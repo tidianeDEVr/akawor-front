@@ -63,7 +63,7 @@
                         color: var(--gray-600);
                     }
                     .nav-link.active {
-                        border-bottom: var(--blue-400) 2px solid;
+                        border-bottom: var(--green-400) 2px solid;
                         color: var(--black);
                         opacity: .7;
                     }
@@ -90,7 +90,7 @@
                 }
                 .actions {
                     transition: all .3s ease-in-out;
-                    background-color: var(--blue-400);
+                    background-color: var(--green-400);
                     display: flex;
                     align-items: center;
                     justify-content: center;
@@ -130,7 +130,7 @@
                         height: 57px;
                         border: none;;
                         transition: all ease-in-out .3s;
-                        background-color: var(--blue-600);
+                        background-color: var(--green-400);
                         padding: 0 20px;
                         color: var(--white);
                     }
@@ -139,7 +139,7 @@
                         z-index: 5;
                     }
                     .add-to-wishlist {
-                        background-color: var(--blue-500);
+                        background-color: var(--green-500);
                     }
                 }
                 .share {
@@ -164,7 +164,7 @@
                         i {
                             color: var(--white);
                         }
-                        background-color: var(--blue-600);
+                        background-color: var(--green-400);
                     }
                 }
             }
@@ -177,7 +177,7 @@
                             justify-content: center;
                             align-items: center;
                             color: var(--white);
-                            background-color: var(--blue-400);
+                            background-color: var(--green-400);
                             width: 45px;
                             height: 45px;
                             border-radius: 5px;
