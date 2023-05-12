@@ -285,20 +285,6 @@ public imagePath:string = "../../../../assets/images/products/";
     }
   ]
   constructor(){
-    window.addEventListener("load", function() {
-      var cards = document.querySelectorAll('.product-card')
-      cards.forEach(card => {
-        var icon = card.querySelector('.zoom-icon');
-        card.addEventListener('mouseover', ()=>{
-          card.classList.add('hovered')
-          if (icon) icon.classList.remove('d-none')
-        })
-        card.addEventListener('mouseout', ()=>{
-          card.classList.remove('hovered')
-          if (icon) icon.classList.add('d-none')
-        })
-      });
-    });
     this.isProductsLoaded = true;
   }
 }

@@ -1,0 +1,35 @@
+:host {
+    .my-account-section {
+        background-color: var(--gray-400);
+        padding: 20px 0; 
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
+        }
+        .title-divider {
+            margin-top: -12px;
+        }
+        .action {
+            height: 100%;
+            background-color: var(--white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: var(--gray-500) 1.5px solid;
+            padding: 10px ;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+            i {
+                margin-bottom: 10px;
+                color: var(--green-400);
+            }
+        }
+        .action:hover {
+            scale: 1.05;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        }
+    }
+}

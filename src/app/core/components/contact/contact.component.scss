@@ -1,0 +1,78 @@
+:host {
+    .contact-section {
+        position: relative;
+        iframe {
+            z-index: 5;
+        }
+        .contact-infos {
+            padding: 20px;
+            position: absolute;
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+            top: 300px;
+            width: 90%;
+            right: 50%;
+            transform: translateX(50%);
+            margin: 0 auto;
+            min-height: 100px;
+            background-color: var(--white);
+            border: 1px solid var(--gray-500);
+            border-radius: 4px;
+            z-index: 9 !important;
+            .left-contact {
+                background-color: var(--black-800);
+                color: var(--white);
+                i {
+                    color: var(--green-500);
+                }
+                border-radius: 4px;
+                height: 100%;
+                padding: 20px 0;
+                ul {
+                    li {
+                        margin-bottom: 20px;
+                        padding: 0 20px;
+                        padding-bottom: 20px;
+                        border-bottom: 1px solid #f8f8f84e;
+                        .contact-libelle {
+                            font-weight: bold;
+                            font-size: 16px;
+                            margin-bottom: 2px;
+                            font-family: 'Playfair Display', serif;
+                        }
+                        .contact-info {
+                            opacity: .85;
+                            font-family: 'Playfair Display', serif;
+                        }
+                    }
+                    p {
+                        margin: 0;
+                        padding: 0;
+                    }
+                }
+                .icon-holder {
+                    width: 50px;
+                    aspect-ratio: 1;
+                }
+                .row {
+                    border-bottom: 1px var(--white) solid;
+                    padding: 10px 0;
+                }
+            }
+            .right-contact {
+                mat-form-field {
+                    margin-bottom: 20px;
+                }
+                button {
+                    background-color: var(--black);
+                    color: var(--white);
+                    padding-left: 20px;
+                    padding-right: 20px;
+                }
+            }
+        }
+        .spacer {
+            min-height: 500px;
+            background-color: #f8f8f8;
+        }
+    }
+}

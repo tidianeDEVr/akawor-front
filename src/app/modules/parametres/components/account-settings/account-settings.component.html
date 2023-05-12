@@ -1,0 +1,96 @@
+<section class="manage-section">
+    <div class="container">
+        <div class="row">
+            <div class="col col-3">
+                <app-manage-aside activePath="profile"></app-manage-aside>
+            </div>
+            <div class="col col-9">
+                <main class="h-100 p-3">
+                    <h1>Compte et profile</h1>
+                    <div class="title-divider"></div>
+                    <div class="tabs">
+                        <nav>
+                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Profile</button>
+                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Compte</button>
+                            </div>
+                        </nav>
+                        <div class="tab-content" id="nav-tabContent">
+                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                    <div class="row row-cols-2">
+                                        <div class="col">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Prénom</mat-label>
+                                                <input matInput placeholder="Tidiane">
+                                                <mat-icon matSuffix>person</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Nom</mat-label>
+                                                <input matInput placeholder="Ndiaye">
+                                                <mat-icon matSuffix>person</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Adresse e-mail</mat-label>
+                                                <input matInput placeholder="mail@xyz.com">
+                                                <mat-icon matSuffix>alternate_email</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Numero de téléphone</mat-label>
+                                                <input matInput placeholder="+221771234567">
+                                                <mat-icon matSuffix>phone_iphone</mat-icon>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Pays de résidence</mat-label>
+                                                <mat-select>
+                                                    <mat-option value="empty" selected>-- Veuillez selectionner --</mat-option>
+                                                    <mat-option *ngFor="let country of countries" [value]="country.libelle">
+                                                      {{country.libelle}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Ville de résidence</mat-label>
+                                                <mat-select>
+                                                    <mat-option *ngFor="let city of cities" [value]="city.libelle">
+                                                      {{city.libelle}}
+                                                    </mat-option>
+                                                </mat-select>
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col col-12">
+                                            <div class="d-flex justify-content-end">
+                                                <button class="btn btn-dark mt-3" style="color: var(--white);">Soumettre</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                                    profile
+                                </div>
+                        </div>
+                    </div>
+                    <!-- <div class="form">
+                        <div class="row">
+                            <div class="col">
+                                test
+                            </div>
+                            <div class="col">
+                                test
+                            </div>
+                        </div>
+                    </div> -->
+                </main>
+            </div>
+        </div>
+    </div>
+</section>

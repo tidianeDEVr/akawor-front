@@ -1,0 +1,23 @@
+:host {
+    main {
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: clamp(1.25rem, 0.4688rem + 2.5vw, 1.875rem);
+        }
+        button {
+            color: var(--black);
+            font-weight: 700;
+            padding: 10px 40px;
+        }
+        button.active {
+            background: var(--green-400);
+            border: none;
+            border-radius: 0;
+            color: var(--white);
+        }
+        .tab-pane {
+            padding: 30px 0;
+        }
+    }
+}

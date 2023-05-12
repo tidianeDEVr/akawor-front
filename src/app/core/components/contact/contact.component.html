@@ -1,0 +1,67 @@
+<section class="contact-section">
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.022959379257!2d-17.47065692536832!3d14.711293724357906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172a4a47b525b%3A0x250389427be60011!2sCit%C3%A9%20Keur%20Gorgui%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1681917891864!5m2!1sfr!2ssn" height="400px" style="border:0;width: 100vw;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <div class="contact-infos">
+        <div class="row">
+            <div class="col-4 col">
+                <div class="left-contact">
+                    <ul>
+                        <li class="d-flex">
+                            <div class="icon-holder d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-location-dot fa-2x"></i>
+                            </div>
+                            <div class="info-holder d-flex flex-column justify-content-center">
+                                <p class="contact-libelle">Notre adresse</p>
+                                <p class="contact-info">Cité Keur Gorgui, Dakar, Sénégal</p>
+                            </div>
+                        </li>
+                        <li class="d-flex">
+                            <div class="icon-holder d-flex align-items-center justify-content-center">
+                                <i class="fa-solid fa-mobile-button fa-2x"></i>
+                            </div>
+                            <div class="info-holder d-flex flex-column justify-content-center">
+                                <p class="contact-libelle">Appelez-nous</p>
+                                <p class="contact-info">Tel: (+221) 77 123 45 67</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-8 col">
+                <div class="right-contact">
+                    <h3 class="fw-bold">HÂTE DE VOUS ENTENDRE</h3>
+                    <div class="title-divider" style="margin-top: -12px; margin-bottom: 20px;"></div>
+                    <div class="form-contact">
+                        <div class="row">
+                            <div class="col">
+                                <mat-form-field hintLabel="Nom & prénom" appearance="outline" class="w-100">
+                                    <mat-label>Votre nom au complet</mat-label>
+                                    <input matInput placeholder="Ex: Cheikh Tidiane Ndiaye">
+                                </mat-form-field>
+                            </div>
+                            <div class="col">
+                                <mat-form-field hintLabel="Adresse e-mail" appearance="outline" class="w-100">
+                                    <mat-label>Votre adresse e-mail</mat-label>
+                                    <input matInput placeholder="Ex: tidiane@xyz.com">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <mat-form-field hintLabel="Sujet" appearance="outline" class="w-100">
+                            <mat-label>Votre sujet</mat-label>
+                            <input matInput maxlength="20" placeholder="Ex: Renseignements">
+                        </mat-form-field>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Message</mat-label>
+                            <textarea matInput style="resize:none;height:100px;"></textarea>
+                        </mat-form-field>
+                        <div class="d-flex justify-content-end">
+                            <button (click)="sendMail()" mat-button color="primary">Envoyer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="spacer"></div>
+</section>

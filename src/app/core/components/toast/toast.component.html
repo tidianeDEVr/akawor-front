@@ -1,0 +1,11 @@
+<ngb-toast *ngIf="show" [autohide]="false" (hidden)="show=false">
+	<ng-template ngbToastHeader>
+		<div class="me-auto">
+			<i class="fa-solid fa-circle-check" style="color: #57d659;"></i>
+			<!-- <strong class="mx-1">Fancy</strong>header here -->
+            <strong class="mx-1"> {{ title }} </strong>
+		</div>
+	</ng-template>
+	<!-- Hello, I am toast. Have you noticed my header has been generated from a Template? -->
+	{{ message }}
+</ngb-toast>

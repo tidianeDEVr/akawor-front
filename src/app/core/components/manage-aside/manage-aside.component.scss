@@ -1,0 +1,38 @@
+:host {
+    aside {
+        border-right: 1px solid var(--gray-500);
+        padding-right: 25px;
+        .form-label {
+            color: var(--gray-600);
+        }
+        ul {
+            margin-bottom: 30px !important;
+        }
+        a {
+            cursor: pointer;
+            border-radius: 4px;
+            text-decoration: none;
+            color: var(--black);
+            border: none;
+            padding: 15px;
+            margin-bottom: 15px;
+            background: var(--gray-500);
+            font-weight: 700;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            i {
+                margin-right: 10px;
+            }
+            transition: all ease-in-out .15s;
+        }
+        a.active, a:hover {
+            background-color: var(--green-400);
+            color: var(--white);
+        }
+        a:hover {
+            background-color: var(--green-300);
+        }
+    }
+}

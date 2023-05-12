@@ -2,20 +2,14 @@
     header {
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
         .top-header {
-            font-size: 12px;
-            background-color: var(--green-400);
-            color: var(--white);
-            .th-left {
-                .greeting {
-                    padding-right: 10px;
-                    border-right: 1px solid var(--white);
-                }
-                .contact {
-                    margin-left: 10px;
-                    a {
-                        color: var(--white);
-                        text-decoration: none;
-                    }
+            // height: 90px;
+            .container {
+                padding-top: 0 !important;
+                padding-bottom: 0 !important;
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                    margin: 0 auto;
                 }
             }
         }
@@ -98,7 +92,7 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                button {
+                a {
                     color: var(--gray-600);
                     .fa-solid {
                         color: var(--green-400);

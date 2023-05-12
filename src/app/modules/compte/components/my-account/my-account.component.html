@@ -1,0 +1,118 @@
+<section class="my-account-section">
+    <div class="container">
+        <h1>Mon compte</h1>
+        <mat-divider></mat-divider>
+        <h4 class="text-ellip fw-bold mt-4">Mes informations</h4>
+        <div class="title-divider"></div>
+        <div class="row row-cols-6 mb-4">
+            <div class="col">
+                <div class="action">
+                    <i class="fa-2x fa-solid fa-pen-to-square"></i>
+                    <span class="text-center">Modifier les informations<br>de votre compte</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="action">
+                    <i class="fa-2x  fa-solid fa-lock"></i>
+                    <span class="text-center">Changez votre mot de passe</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="action">
+                    <i class="fa-2x  fa-solid fa-map-location-dot"></i>
+                    <span class="text-center">Modifier vos adresses de livraison</span>
+                </div>
+            </div>
+            <div class="col">
+                <div class="action">
+                    <i class="fa-2x  fa-solid fa-heart-circle-plus"></i>
+                    <span class="text-center">Modifier votre liste de souhaits</span>
+                </div>
+            </div>
+        </div>
+        <!-- CLIENT -->
+        <div >
+            <!-- *ngIf="isVendor" -->
+            <h4 class="text-ellip fw-bold">Mes commandes</h4>
+            <div class="title-divider"></div>
+            <div class="row row-cols-6 mb-4">
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x fa-solid fa-clock-rotate-left"></i>
+                        <span class="text-center">Voir l'historique de vos commandes</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x fa-solid fa-money-bill-transfer"></i>
+                        <span class="text-center">Voir vos transactions</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x fa-solid fa-file-invoice"></i>
+                        <span class="text-center">Voir vos paiements récurrents</span>
+                    </div>
+                </div>
+            </div>
+            <h4 class="text-ellip fw-bold">Newsletter</h4>
+            <div class="title-divider"></div>
+            <div class="row row-cols-6 mb-4">
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x fa-solid fa-envelope"></i>
+                        <span class="text-center">S'inscrire/Se désinscrire de la newsletter</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- VENDEUR  -->
+        <div >
+            <!-- *ngIf="!isVendor" -->
+            <h4 class="text-ellip fw-bold mt-4">Mes annonces</h4>
+            <div class="title-divider"></div>
+            <div class="row row-cols-6 mb-4">
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x fa-solid fa-upload"></i>
+                        <span class="text-center">Publier une annonce</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x fa-solid fa-list"></i>
+                        <span class="text-center">Gérer mes annonces</span>
+                    </div>
+                </div>
+            </div>
+            <h4 class="text-ellip fw-bold mt-4">Ma(es) boutique(s)</h4>
+            <div class="title-divider"></div>
+            <div class="row row-cols-6 mb-4">
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-solid fa-store fa-2x"></i>
+                        <span class="text-center">Gérer ma(es) boutique(s)</span>
+                    </div>
+                </div>
+                <!-- <div class="col">
+                    <div class="action">
+                        <i class="fa-2x  fa-solid fa-lock"></i>
+                        <span class="text-center">Changez votre mot de passe</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x  fa-solid fa-map-location-dot"></i>
+                        <span class="text-center">Modifier vos adresses de livraison</span>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="action">
+                        <i class="fa-2x  fa-solid fa-heart-circle-plus"></i>
+                        <span class="text-center">Modifier votre liste de souhaits</span>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</section>

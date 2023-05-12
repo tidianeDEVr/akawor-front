@@ -1,0 +1,150 @@
+<section class="all-products-section">
+    <div class="container">
+        <div class="main">
+            <div class="row">
+                <div class="col col-2">
+                    <aside class="container filter h-100">
+                        <div style="position: sticky;top: 0;">
+                            <div class="position-relative">
+                                <h4 class="text-ellip pt-2 fw-bold">Filtre</h4>
+                                <button mat-icon-button class="position-absolute" style="scale:.8;top: 2px;right: 0;" matTooltip="Reinitialiser filtre">
+                                    <i class="fa-solid fa-trash fa-xs" style="color:var(--green-400);"></i>
+                                </button>
+                            </div>
+                            <div class="title-divider" style="margin-top: -12px;"></div>
+                            <div style="margin-right: 10px;" class="price-range">
+                                <h4 class="text-ellip pt-2">Échelle des prix</h4>
+                                <mat-slider min="0" max="1000000" step="10000" class="w-100" color="warn">
+                                    <input value="0" matSliderStartThumb [(ngModel)]="priceRangeMin">
+                                    <input value="5000" matSliderEndThumb [(ngModel)]="priceRangeMax">
+                                </mat-slider>
+                                <div class="d-flex align-items-center justify-content-between">
+                                    <span class="fw-bold">{{priceRangeMin|number}} F CFA</span>
+                                    <span class="fw-bold">{{priceRangeMax|number}} F CFA</span>
+                                </div>
+                            </div>
+                            <h4 class="text-ellip pt-3 fw-bold">Catégories</h4>
+                            <div class="title-divider" style="margin-top: -12px;"></div>
+                            <ul>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Cosmétique, Santé et Bien-être">
+                                        <i class="fa-solid fa-heart"></i>
+                                        <span>Cosmétique, Santé et Bien-être</span>
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a class="text-ellip" href="" matTooltip="Mode & Accessoires">
+                                        <i class="fa-solid fa-person-half-dress"></i>
+                                        <span>Mode & Accessoires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
+                                        <i class="fa-solid fa-cookie-bite"></i>
+                                        <span>Produits alimentaires</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </aside>
+                </div>
+                <div class="col col-10">
+                    <div class="container all-products">
+                        <mat-toolbar class="mb-3">
+                            <div class="d-flex align-items-center justify-content-between w-100">
+                                <div class="display-types d-flex align-items-center">
+                                    <button mat-icon-button class="active"> 
+                                        <i class="fa-solid fa-grip-vertical"></i>
+                                    </button>
+                                    <button mat-icon-button>
+                                        <i class="fa-solid fa-list"></i>
+                                    </button>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <p>Trier par:</p>
+                                    <select class="form-select form-select-sm" aria-label="Default select example">
+                                        <option selected>Sélectionnez</option>
+                                        <option value="1">Ventes, ordre décroissant</option>
+                                        <option value="2">Pertinence</option>
+                                        <option value="3">Nom,  A à Z</option>
+                                        <option value="4">Nom, Z à A</option>
+                                        <option value="5">Prix, croissant</option>
+                                        <option value="6">Prix, décroissant</option>
+                                    </select>
+                                    <select style="max-width: 75px;" class="form-select form-select-sm" aria-label="Default select example">
+                                        <option selected>Nombre à afficher</option>
+                                        <option value="1">12</option>
+                                        <option value="2">25</option>
+                                        <option value="3">50</option>
+                                        <option value="3">75</option>
+                                        <option value="3">100</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </mat-toolbar>
+                        <!-- <div class="row row-cols-4">
+                            <div class="col" *ngFor="let card of loaderCards">
+                                <app-product-card-loader></app-product-card-loader>
+                            </div>
+                        </div> -->
+                        <div class="row row-cols-4 g-3">
+                            <div class="col" *ngFor="let card of activeProducts">
+                                <app-product-card></app-product-card>
+                            </div>
+                        </div>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+        <mat-divider></mat-divider>
+    </div>
+</section>

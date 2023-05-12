@@ -1,0 +1,54 @@
+:host {
+    .create-product {
+        mat-card-content {
+            .main-row {
+                min-height: 300px;
+            }
+        }
+        .list-group-item {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            i {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: var(--green-400);
+                color: var(--white);
+                border-radius: 50%;
+                width: 30px;
+                aspect-ratio: 1;
+                margin-right: 10px;
+            }
+        }
+        .details-part, .images-part {
+            border-right: 1px solid var(--gray-500);
+        }
+        padding: 20px 0;
+        background-color: var(--gray-400);
+        .step-number {
+            color: var(--red);
+            margin-right: 7px;
+        }
+        .filepond--image-preview-wrapper {
+            z-index: 99 !important;
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 600;
+        }
+        .progress-bar {
+            background-color: var(--green-400);
+        }
+        h2 {
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0;
+        }
+        p {
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+    }
+}

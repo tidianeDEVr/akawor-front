@@ -1,0 +1,112 @@
+:host {
+    main {
+        min-height: 100vh;
+        background-color: var(--gray-400);
+        mat-card {
+            width: 65%;
+            border-radius: 7px;
+            overflow: hidden;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+            .col {
+                min-height: 500px;
+            }
+        }
+        .d-flex {
+            .left-part {
+                background: url('../../../../../assets/images/backgrounds/patterns/more-leaves.png') no-repeat;
+                background-position: center;
+                background-size: cover;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                .glass {
+                    width: 70%;
+                    aspect-ratio: 1;
+                    background-color: rgba(255, 255, 255, 0.5);
+                    backdrop-filter: blur(2px);
+                    border-radius: 7px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    img {
+                        width: clamp(150px, 5vw, 300px);
+                    }
+                }
+            }
+            .right-part {
+                padding: 30px;
+                h2 {
+                    font-size: 35px;
+                    font-family: 'Playfair Display', serif;
+                    font-weight: 700;
+                }
+                .login-btn {
+                    background-color: var(--green-400);
+                    color: var(--white);
+                    height: 40px;
+                    font-size: 16px;
+                    border-radius: 7px;
+                    border: none;
+                    transition: all .3s ease-in-out;
+                }
+                .login-btn:hover {
+                    background: var(--green-500);
+                }
+                .forget-btn {
+                    color: var(--green-400);
+                    border: none;
+                    background-color: transparent;
+                    transition: all .3s ease-in-out;
+                }
+                .forget-btn:hover {
+                    color: var(--gray-700);
+                }
+                .or {
+                    span {
+                        background-color: var(--white);
+                        padding: 3px 10px;
+                        left: 50%;
+                        top: 50%;
+                        transform: translateX(-50%) translateY(-50%);
+                    }
+                }
+                .socials-login {
+                    display: flex;
+                    justify-content: center;
+                    .social-btn {
+                        background-color: transparent;
+                        margin: 0 10px;
+                        border: none;
+                        width: 50px;
+                        height: 50px;
+                        display: flex;
+                        border-radius: 50%;
+                        justify-content: center;
+                        align-items: center;
+                        border: 1px solid var(--gray-500);
+                        transition: all ease-in-out .2s;
+                    }
+                    .social-btn:hover {
+                        background-color: var(--gray-400);
+                    }
+                    .fb-btn {
+                        img {
+                            scale: 1.3;
+                        }
+                    }
+                }
+                .footer-text {
+                    color: var(--gray-700);
+                    a {
+                        text-decoration: none;
+                        color: var(--green-400);
+                        transition: color .3s ease-in-out;
+                    }
+                    a:hover {
+                        color: var(--black);
+                    }
+                }
+            }
+        }
+    }
+}

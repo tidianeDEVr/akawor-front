@@ -1,15 +1,7 @@
 <header>
     <div class="top-header">
         <div class="container d-flex align-items-center justify-content-between h-100 w-100 py-1">
-            <div class="th-left">
-                <span class="greeting">Bienvenue chez <span class="fw-bold">AKAWOR</span></span>
-                <span class="contact"> 
-                    <span class="typed-area fw-bold"></span>
-                </span>
-            </div>
-            <div class="th-right">
-                Devise : XOF CFA
-            </div>
+            <img src="http://placehold.it/970x90" alt="">
         </div>
     </div>
     <mat-divider></mat-divider>
@@ -41,18 +33,18 @@
                 <div class="col col-3">
                     <div class="menu-holder h-100">
                         <div class="d-flex align-items-center justify-content-end">
-                            <button mat-button matTooltip="Foire aux questions">
+                            <a mat-button matTooltip="Foire aux questions" routerLink="/foire-aux-questions">
                                 <i class="fa-solid fa-circle-info"></i>
                                 <span class="fw-bold">FAQ</span>
-                            </button>
-                            <button mat-button matTooltip="Blog">
+                            </a>
+                            <a mat-button routerLink="/blog">
                                 <i class="fa-solid fa-message"></i>
                                 <span class="fw-bold">BLOG</span>
-                            </button>
-                            <button mat-button matTooltip="Contact">
+                            </a>
+                            <a mat-button routerLink="/contact">
                                 <i class="fa-solid fa-envelope"></i>
                                 <span class="fw-bold">CONTACT</span>
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -73,19 +65,19 @@
                     <div class="d-flex align-items-center justify-content-between pt-1 h-100">
                         <ul>
                             <li>
-                                <a href="" matTooltip="En promotion">
+                                <a routerLink="/produits" [queryParams]="{filtre: 'specials'}">
                                     <i class="fa-solid fa-percent"></i>
                                     <span>Spécials</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" matTooltip="Boutiques">
+                                <a routerLink="/boutiques">
                                     <i class="fa-solid fa-store"></i>
                                     <span>Boutiques</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" matTooltip="Livraison">
+                                <a routerLink="/livraisons">
                                     <i class="fa-solid fa-truck"></i>
                                     <span>Livraison</span>
                                 </a>
@@ -93,19 +85,19 @@
                         </ul>
                         <ul>
                             <li>
-                                <a href="" matTooltip="Mes commandes">
+                                <a routerLink="/commandes">
                                     <i class="fa-solid fa-bag-shopping"></i>
                                     <span>Commandes</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" matTooltip="Ma liste de souhaits">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span>Souhaits</span>
+                                <a routerLink="/produits">
+                                    <i class="fa-solid fa-bullhorn"></i>
+                                    <span>Annonces</span>
                                 </a>
                             </li>
                             <li>
-                                <a href="" matTooltip="Mon compte">
+                                <a routerLink="/parametres/compte-et-profile">
                                     <i class="fa-solid fa-user"></i>
                                     <span>Compte</span>
                                 </a>

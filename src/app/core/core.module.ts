@@ -20,16 +20,36 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { HomeComponent } from './components/home/home.component';
 import { RouterModule } from '@angular/router';
-import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCarouselModule, NgbToastModule } from '@ng-bootstrap/ng-bootstrap';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
-import { ProductCardLoaderComponent } from '../produits/components/product-cards/product-card-loader/product-card-loader.component'
-import { ShopCardLoaderComponent } from './components/shop-card-loader/shop-card-loader.component';
-import { ProductCardComponent } from '../produits/components/product-cards/product-card/product-card.component';
+import { ProductCardLoaderComponent } from '../modules/produits/components/product-cards/product-card-loader/product-card-loader.component'
+import { ProductCardComponent } from '../modules/produits/components/product-cards/product-card/product-card.component';
+import { ToastComponent } from './components/toast/toast.component';
+
+import { FilePondModule, registerPlugin } from 'ngx-filepond';
+import  * as FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
+import  * as FilepondPluginImageEdit from 'filepond-plugin-image-edit';
+import  * as FilepondPluginImagePreview from 'filepond-plugin-image-preview';
+import { ShopCardComponent } from '../modules/boutiques/components/shop-cards/shop-card/shop-card.component';
+import { ShopCardLoaderComponent } from '../modules/boutiques/components/shop-cards/shop-card-loader/shop-card-loader.component';
+import { WishlistComponent } from './components/wishlist/wishlist.component';
+import { CartComponent } from './components/cart/cart.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { ManageAsideComponent } from './components/manage-aside/manage-aside.component';
+import { FaqComponent } from './components/faq/faq.component';
+registerPlugin(
+  FilePondPluginFileValidateType,
+  FilepondPluginImageEdit,
+  FilepondPluginImagePreview
+  );
+
+
 
 @NgModule({
   declarations: [
@@ -40,7 +60,14 @@ import { ProductCardComponent } from '../produits/components/product-cards/produ
     HomeComponent,
     ProductCardLoaderComponent,
     ProductCardComponent,
-    ShopCardLoaderComponent
+    ShopCardComponent,
+    ShopCardLoaderComponent,
+    ToastComponent,
+    WishlistComponent,
+    CartComponent,
+    ContactComponent,
+    ManageAsideComponent,
+    FaqComponent
   ],
   imports: [
     CommonModule,
@@ -66,7 +93,10 @@ import { ProductCardComponent } from '../produits/components/product-cards/produ
     RouterModule,
     NgbCarouselModule,
     SlickCarouselModule,
-    NgxSkeletonLoaderModule
+    NgxSkeletonLoaderModule,
+    NgbToastModule,
+    MatAutocompleteModule,
+    FilePondModule
   ],
   exports: [
     MatCardModule,
@@ -82,15 +112,21 @@ import { ProductCardComponent } from '../produits/components/product-cards/produ
     MatInputModule,
     MatIconModule,
     MatSliderModule,
+    SlickCarouselModule,
+    MatAutocompleteModule,
+    FilePondModule,
     MatDialogModule,
     MatTableModule,
     MatSelectModule,
     MatPaginatorModule,
     MatCheckboxModule,
-    SlickCarouselModule,
     NgxSkeletonLoaderModule,
     ProductCardLoaderComponent,
     ProductCardComponent,
+    ShopCardComponent,
+    ShopCardLoaderComponent,
+    ManageAsideComponent,
+    FaqComponent,
   ]
 })
 export class CoreModule { }
