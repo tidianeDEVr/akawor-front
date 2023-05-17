@@ -1,1 +1,39 @@
-<p>blog-list-all works!</p>
+<section class="manage-section">
+    <div class="container">
+        <div class="row">
+            <div class="col col-9 main-col">
+                <h1>Nos articles de blog</h1>
+                <div class="title-divider"></div>
+                <main class="mt-3">
+                    <article *ngFor="let article of articles">
+                        <div class="row">
+                            <div class="col col-4">
+                                <div>
+                                    <img src="../../../../../assets/images/backgrounds/leap-design-1760x880.jpg" alt="article de blog">
+                                </div>
+                            </div>
+                            <div class="col col-8">
+                                <div>
+                                    <a href="" class="title">Journal Blog is Here</a>
+                                    <p>
+                                        The Journal 3 blog has been greatly improved and it now comes with the most advanced set of typography tools, including custom drop-cap support as well as optional newspaper-like fluid columns. You can break up the page in up to 4 columns and change ..
+                                    </p>
+                                    <a class="btn btn-dark read-btn" href="">Lire la suite</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-4">
+                            <mat-divider></mat-divider>
+                        </div>
+                    </article>
+                </main>
+            </div>
+            <div class="col col-3">
+                <aside>
+                    <h2>Catégories</h2>
+                    <div class="title-divider"></div>
+                </aside>
+            </div>
+        </div>
+    </div>
+</section>

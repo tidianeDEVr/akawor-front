@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'akawor-front';
+  title = 'Votre plateforme de vente en ligne';
 }

@@ -6,10 +6,26 @@ import { ManageDeliveryAddressesComponent } from './components/manage-delivery-a
 import { ManagePasswordComponent } from './components/manage-password/manage-password.component';
 
 const routes: Routes = [
-  { path: '', component: MyAccountComponent },
-  { path: 'profile', component: ManageProfileComponent },
-  { path: 'changer-mot-de-passe', component: ManagePasswordComponent },
-  { path: 'adresses-de-livraison', component: ManageDeliveryAddressesComponent },
+  { 
+    path: '', 
+    component: MyAccountComponent,
+    title: 'Mon compte'
+  },
+  { 
+    path: 'profile', 
+    component: ManageProfileComponent,
+    title: 'Mon profile' 
+  },
+  { 
+    path: 'changer-mot-de-passe', 
+    component: ManagePasswordComponent,
+    title: 'Changer mon mot de passe'
+  },
+  { 
+    path: 'adresses-de-livraison', 
+    component: ManageDeliveryAddressesComponent,
+    title: 'Mes adresses de livraison'
+  },
 ];
 
 @NgModule({

@@ -5,8 +5,30 @@
                 <app-manage-aside activePath="manage-notifs"></app-manage-aside>
             </div>
             <div class="col col-9">
-                <main class="bg-danger h-100 p-3">
-                    Gérer mes alertes
+                <main class="h-100 p-3">
+                    <h1>Gérer mes notifications</h1>
+                    <div class="title-divider"></div>
+                    <mat-card>
+                        <mat-card-content>
+                            <h4>Sélectionnez les notifications que vous souhaitez recevoir</h4>
+                            <label class="form-label">Ma boutique</label>
+                            <div class="mb-3">
+                                <mat-slide-toggle color="warn" [(ngModel)]="checked">Slide me!</mat-slide-toggle>
+                            </div>
+                            <div class="mb-3">
+                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
+                            </div>
+                            <div class="mb-3">
+                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
+                            </div>
+                            <div class="mb-3">
+                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
+                            </div>
+                            <div class="mb-3">
+                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
                 </main>
             </div>
         </div>

@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-account.component.scss']
 })
 export class MyAccountComponent {
-  public isVendor: boolean = false;
+  public isSeller: boolean = false;
 }

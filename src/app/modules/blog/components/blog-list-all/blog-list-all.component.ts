@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./blog-list-all.component.scss']
 })
 export class BlogListAllComponent {
-
+  public articles: any[] = ['', '', '', '']
 }

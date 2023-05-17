@@ -8,19 +8,23 @@ import { MyProductsComponent } from './components/my-products/my-products.compon
 const routes: Routes = [
   { 
     path: '', 
-    component: AllProduitsComponent 
+    component: AllProduitsComponent,
+    title: 'Nos annonces - Akawor'
   },
   { 
     path: 'dynamic', 
-    component: SingleProduitComponent 
+    component: SingleProduitComponent, 
+    title: 'Nom du produit',
   },
   { 
     path: 'nouvelle-annonce',
-    component: CreateProductComponent 
+    component: CreateProductComponent, 
+    title: 'Nouvelle annonce',
   },
   { 
     path: 'mes-annonces',
     component: MyProductsComponent,
+    title: 'Gérer mes annonces',
   }
 ];
 

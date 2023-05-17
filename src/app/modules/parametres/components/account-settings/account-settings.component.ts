@@ -29,4 +29,11 @@ export class AccountSettingsComponent {
       libelle: "Matam"
     }
   ]
+
+  public linkAccountToFacebook(){
+    alert('Bientot disponible')
+  }
+  public linkAccountToGoogle(){
+    alert('Bientot disponible')
+  }
 }

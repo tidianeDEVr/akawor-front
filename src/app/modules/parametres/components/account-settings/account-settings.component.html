@@ -8,87 +8,121 @@
                 <main class="h-100 p-3">
                     <h1>Compte et profile</h1>
                     <div class="title-divider"></div>
-                    <div class="tabs">
-                        <nav>
-                            <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Profile</button>
-                                <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Compte</button>
-                            </div>
-                        </nav>
-                        <div class="tab-content" id="nav-tabContent">
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                                    <div class="row row-cols-2">
-                                        <div class="col">
-                                            <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Prénom</mat-label>
-                                                <input matInput placeholder="Tidiane">
-                                                <mat-icon matSuffix>person</mat-icon>
-                                            </mat-form-field>
+                    <mat-card>
+                        <mat-card-content>
+                            <div class="tabs">
+                                <nav>
+                                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                                        <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="false">Profile</button>
+                                        <button class="nav-link active" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="true">Compte</button>
+                                    </div>
+                                </nav>
+                                <div class="tab-content" id="nav-tabContent">
+                                    <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                        <div class="row row-cols-3">
+                                            <div class="col">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>Prénom</mat-label>
+                                                    <input matInput placeholder="Tidiane">
+                                                    <mat-icon matSuffix>person</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>Nom</mat-label>
+                                                    <input matInput placeholder="Ndiaye">
+                                                    <mat-icon matSuffix>person</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>Adresse e-mail</mat-label>
+                                                    <input matInput placeholder="mail@xyz.com">
+                                                    <mat-icon matSuffix>alternate_email</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>Numero de téléphone</mat-label>
+                                                    <input matInput placeholder="+221771234567">
+                                                    <mat-icon matSuffix>phone_iphone</mat-icon>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>Pays de résidence</mat-label>
+                                                    <mat-select>
+                                                        <mat-option value="empty" selected>-- Veuillez selectionner --</mat-option>
+                                                        <mat-option *ngFor="let country of countries" [value]="country.libelle">
+                                                            {{country.libelle}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>Ville de résidence</mat-label>
+                                                    <mat-select>
+                                                        <mat-option *ngFor="let city of cities" [value]="city.libelle">
+                                                            {{city.libelle}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                            <div class="col col-12">
+                                                <div class="d-flex justify-content-end">
+                                                    <button class="btn btn-dark mt-3" style="color: var(--white);">Soumettre</button>
+                                                </div>
+                                            </div>
                                         </div>
-                                        <div class="col">
-                                            <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Nom</mat-label>
-                                                <input matInput placeholder="Ndiaye">
-                                                <mat-icon matSuffix>person</mat-icon>
-                                            </mat-form-field>
-                                        </div>
-                                        <div class="col">
-                                            <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Adresse e-mail</mat-label>
-                                                <input matInput placeholder="mail@xyz.com">
-                                                <mat-icon matSuffix>alternate_email</mat-icon>
-                                            </mat-form-field>
-                                        </div>
-                                        <div class="col">
-                                            <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Numero de téléphone</mat-label>
-                                                <input matInput placeholder="+221771234567">
-                                                <mat-icon matSuffix>phone_iphone</mat-icon>
-                                            </mat-form-field>
-                                        </div>
-                                        <div class="col">
-                                            <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Pays de résidence</mat-label>
-                                                <mat-select>
-                                                    <mat-option value="empty" selected>-- Veuillez selectionner --</mat-option>
-                                                    <mat-option *ngFor="let country of countries" [value]="country.libelle">
-                                                      {{country.libelle}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                        <div class="col">
-                                            <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Ville de résidence</mat-label>
-                                                <mat-select>
-                                                    <mat-option *ngFor="let city of cities" [value]="city.libelle">
-                                                      {{city.libelle}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                        <div class="col col-12">
-                                            <div class="d-flex justify-content-end">
-                                                <button class="btn btn-dark mt-3" style="color: var(--white);">Soumettre</button>
+                                    </div>
+                                    <div class="tab-pane fade show active" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                                        <div class="d-flex align-items-center">
+                                            <div class="container-fluid" style="max-width: 550px;">
+                                                <button class="w-100 mb-3 social-btn fb-btn" (click)="linkAccountToFacebook()">
+                                                    <img width="20" src="../../../../../assets/images/facebook.svg" alt="facebook logo - akawor">
+                                                    <span>Lier votre compte à facebook</span> 
+                                                </button>
+                                                <button class="w-100 social-btn" (click)="linkAccountToGoogle()">
+                                                    <img width="20" src="../../../../../assets/images/google.svg" alt="google logo - akawor">
+                                                    <span>Lier votre compte à google</span> 
+                                                </button>
+                                                <div class="my-3">
+                                                    <mat-divider></mat-divider>
+                                                </div>
+                                                <div class="d-flex align-items-center">
+                                                    <span class="fw-bold">Numéro de téléphone</span>
+                                                    <span class="badge bg-success mx-1">Verifié</span>
+                                                </div>
+                                                <p class="mt-2">
+                                                    <mat-form-field appearance="outline" class="w-100">
+                                                        <mat-label>Votre numéro de téléphone</mat-label>
+                                                        <input matInput placeholder="Placeholder">
+                                                        <mat-icon matSuffix>phone</mat-icon>
+                                                    </mat-form-field>
+                                                    <mat-slide-toggle color="warn">Me contacter via Whatsapp</mat-slide-toggle>
+                                                </p>
+                                                <div class="mt-4 mb-2 d-flex align-items-center">
+                                                    <span class="fw-bold">Adresse e-mail</span>
+                                                    <span class="badge bg-danger mx-1">Non vérifié</span>
+                                                </div>
+                                                <p>
+                                                    <mat-form-field appearance="outline" class="w-100">
+                                                        <mat-label>Votre adresse e-mail</mat-label>
+                                                        <input matInput placeholder="Placeholder">
+                                                        <mat-icon matSuffix>alternate_email</mat-icon>
+                                                    </mat-form-field>
+                                                </p>
+                                                <div class="d-flex justify-content-end">
+                                                    <button class="btn mt-3 btn-dark" style="color:var(--white);">Mettre à jour</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-                                    profile
-                                </div>
-                        </div>
-                    </div>
-                    <!-- <div class="form">
-                        <div class="row">
-                            <div class="col">
-                                test
                             </div>
-                            <div class="col">
-                                test
-                            </div>
-                        </div>
-                    </div> -->
+                        </mat-card-content>
+                    </mat-card>
                 </main>
             </div>
         </div>

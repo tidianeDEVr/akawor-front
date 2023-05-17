@@ -17,6 +17,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
@@ -31,6 +32,7 @@ import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { ProductCardLoaderComponent } from '../modules/produits/components/product-cards/product-card-loader/product-card-loader.component'
 import { ProductCardComponent } from '../modules/produits/components/product-cards/product-card/product-card.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { MatExpansionModule } from '@angular/material/expansion'; 
 
 import { FilePondModule, registerPlugin } from 'ngx-filepond';
 import  * as FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
@@ -83,6 +85,7 @@ registerPlugin(
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSlideToggleModule,
     MatIconModule,
     MatSliderModule,
     MatDialogModule,
@@ -96,7 +99,8 @@ registerPlugin(
     NgxSkeletonLoaderModule,
     NgbToastModule,
     MatAutocompleteModule,
-    FilePondModule
+    FilePondModule,
+    MatExpansionModule
   ],
   exports: [
     MatCardModule,
@@ -119,6 +123,7 @@ registerPlugin(
     MatTableModule,
     MatSelectModule,
     MatPaginatorModule,
+    MatSlideToggleModule,
     MatCheckboxModule,
     NgxSkeletonLoaderModule,
     ProductCardLoaderComponent,

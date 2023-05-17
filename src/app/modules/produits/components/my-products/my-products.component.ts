@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./my-products.component.scss']
 })
 export class MyProductsComponent {
-
+  public myProducts: any[] = ['', '', '', '', '', '', '', '','', '',]
 }

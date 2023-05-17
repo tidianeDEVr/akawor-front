@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./faq.component.scss']
 })
 export class FaqComponent {
-
+  // title:string = "Foire aux questions" 
 }

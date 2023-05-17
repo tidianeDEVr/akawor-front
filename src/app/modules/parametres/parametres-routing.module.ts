@@ -6,9 +6,21 @@ import { ManageShopComponent } from './components/manage-shop/manage-shop.compon
 
 
 const routes: Routes = [
-  { path: 'compte-et-profile', component: AccountSettingsComponent },
-  { path: 'notifications', component: NotificationsComponent },
-  { path: 'ma-boutique', component: ManageShopComponent }
+  { 
+    path: 'compte-et-profile', 
+    component: AccountSettingsComponent,
+    title: 'Compte et profile'
+  },
+  { 
+    path: 'notifications', 
+    component: NotificationsComponent,
+    title: 'Mes notifications'
+  },
+  { 
+    path: 'ma-boutique', 
+    component: ManageShopComponent, 
+    title: 'Ma boutique - Nom de la boutique'
+  }
 ];
 
 @NgModule({

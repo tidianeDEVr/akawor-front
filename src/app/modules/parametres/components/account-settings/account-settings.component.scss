@@ -1,10 +1,5 @@
 :host {
     main {
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 700;
-            font-size: clamp(1.25rem, 0.4688rem + 2.5vw, 1.875rem);
-        }
         button {
             color: var(--black);
             font-weight: 700;
@@ -16,8 +11,38 @@
             border-radius: 0;
             color: var(--white);
         }
+        .nav-tabs {
+            button.active {
+                border-top-left-radius: 7px;
+                border-top-right-radius: 7px;
+            }
+        }
         .tab-pane {
             padding: 30px 0;
+            .social-btn {
+                background-color: transparent;
+                margin: 0 10px;
+                border: none;
+                width: 50px;
+                height: 50px;
+                display: flex;
+                border-radius: 7px;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid var(--gray-500);
+                transition: all ease-in-out .2s;
+                img {
+                    margin-right: 10px;
+                }
+            }
+            .social-btn:hover {
+                background-color: var(--gray-400);
+            }
+            .fb-btn {
+                img {
+                    scale: 1.3;
+                }
+            }
         }
     }
 }

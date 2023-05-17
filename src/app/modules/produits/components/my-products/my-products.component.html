@@ -5,8 +5,55 @@
                 <app-manage-aside activePath="manage-announces"></app-manage-aside>
             </div>
             <div class="col col-9">
-                <main class="bg-danger h-100 p-3">
-                    Gérer mes annonces 
+                <main class="h-100 p-3">
+                    <div class="d-flex align-items-center justify-content-between">
+                        <h1>Gérer mes annonces</h1>
+                        <span class="count-label">0 annonce(s) trouvée(s)</span>
+                    </div>
+                    <div class="title-divider"></div>
+                    <mat-card>
+                        <mat-card-content>
+                            <div *ngIf="myProducts.length===0">
+                                <mat-card>
+                                    <mat-card-content class="pt-5">
+                                        <div class="d-flex flex-column align-items-center justify-content-center">
+                                            <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits">
+                                            <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="my-products row row-cols-4 g-3" *ngIf="myProducts.length>0">
+                                <div class="col single-prod" *ngFor="let product of myProducts">
+                                    <mat-card>
+                                        <mat-card-content>
+                                            <div class="position-absolute" style="z-index: 3;top: 6px;left: 0;opacity: .95;">
+                                                <span class="bg-success p-2 text-white fw-bold">En ligne</span>
+                                                <!-- <span class="bg-warning p-2 text-white fw-bold">En attente de validation</span> -->
+                                                <!-- <span class="bg-danger p-2 text-white fw-bold">Annonce révoquée</span> -->
+                                            </div>
+                                            <img src="../../../../../assets/images/products/product1.jpg" alt="produit">
+                                            <div class="infos">
+                                                <p class="text-ellip label-prod">
+                                                    Titre de l'annonce
+                                                </p>
+                                                <div class="position-absolute menu">
+                                                    <button mat-mini-fab color="warn" class="mt-4" [matMenuTriggerFor]="menu">
+                                                        <mat-icon>edit</mat-icon>
+                                                    </button>
+                                                    <mat-menu #menu="matMenu">
+                                                        <button mat-menu-item>Modifier l'annonce</button>
+                                                        <button mat-menu-item>Aperçu de l'annonce</button>
+                                                        <button mat-menu-item>Supprimer l'annonce</button>
+                                                    </mat-menu>
+                                                </div>
+                                            </div>
+                                        </mat-card-content>
+                                    </mat-card>
+                                </div>
+                            </div>
+                        </mat-card-content>
+                    </mat-card>
                 </main>
             </div>
         </div>

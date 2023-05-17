@@ -8,70 +8,12 @@
                             <h4 class="text-ellip pt-3 fw-bold">Catégories</h4>
                             <div class="title-divider" style="margin-top: -12px;"></div>
                             <ul>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Multimédia">
-                                        <i class="fa-solid fa-desktop"></i>
-                                        <span>Multimédia</span>
-                                    </a>
-                                </li>
-                                <li class="active">
-                                    <a class="text-ellip" href="" matTooltip="Mobilier & éléctroménager">
-                                        <i class="fa-solid fa-couch"></i>
-                                        <span>Mobilier & éléctroménager</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Mode & beauté">
-                                        <i class="fa-solid fa-shirt"></i>
-                                        <span>Mode & beauté</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Sociétés de services">
-                                        <i class="fa-solid fa-person-digging"></i>
-                                        <span>Sociétés de services</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Produits alimentaires">
-                                        <i class="fa-solid fa-cookie-bite"></i>
-                                        <span>Produits alimentaires</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Concessionnaires">
-                                        <i class="fa-solid fa-car"></i>
-                                        <span>Concessionnaires</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Matériaux & bricolage">
-                                        <i class="fa-solid fa-toolbox"></i>
-                                        <span>Matériaux & bricolage</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Agences immobilières">
-                                        <i class="fa-solid fa-building"></i>
-                                        <span>Agences immobilières</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Accessoires auto moto">
-                                        <i class="fa-solid fa-car-battery"></i>
-                                        <span>Accessoires auto moto</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Agricoles et alimentaires">
-                                        <i class="fa-solid fa-wheat-awn"></i>
-                                        <span>Agricoles et alimentaires</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="text-ellip" href="" matTooltip="Sports, loisirs & voyages">
-                                        <i class="fa-solid fa-person-swimming"></i>
-                                        <span>Sports, loisirs & voyages</span>
+                                <li *ngFor="let category of shopCategories" 
+                                [ngClass]="{'active':activeCategory === category.libelle}"
+                                (click)="changeCategory(category)" style="cursor: pointer;">
+                                    <a class="text-ellip" matTooltip="{{category.libelle}}">
+                                        <i class="{{category.icon}}"></i>
+                                        <span>{{category.libelle}}</span>
                                     </a>
                                 </li>
                             </ul>

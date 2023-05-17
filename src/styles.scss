@@ -60,6 +60,11 @@ ul {
 .manage-section {
   background-color: var(--gray-400);
   padding: 20px 0;
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: clamp(1.25rem, 0.4688rem + 2.5vw, 1.875rem);
+  }
 }
 :root {
     --white: #fff;

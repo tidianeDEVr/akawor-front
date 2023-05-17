@@ -38,6 +38,16 @@
             </a>
         </li>
     </ul>
+    <label class="form-label">Mes livraisons</label>
+    <ul>
+        <li>
+            <a [ngClass]="{'active': activePath === 'manage-deliveries'}" class="w-100 text-ellip text-start"
+            routerLink="/livraisons">
+                <i class="fa-solid fa-truck"></i>
+                <span class="text-ellip">Voir mes livraisons</span>
+            </a>
+        </li>
+    </ul>
     <label class="form-label">Ma boutique</label>
     <ul>
         <li>

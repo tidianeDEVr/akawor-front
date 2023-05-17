@@ -1,10 +1,12 @@
 <article class="product-card">
-    <div class="img-holder position-relative">
-        <img [src]="choosedImg" alt="">
-        <div class="position-absolute zoom-icon">
-            <i class="fa-solid fa-magnifying-glass-plus"></i>
+    <a routerLink="/produits/dynamic" style="text-decoration: none;">
+        <div class="img-holder position-relative">
+            <img [src]="choosedImg" alt="">
+            <div class="position-absolute zoom-icon">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
         </div>
-    </div>
+    </a>
     <div class="infos">
         <div class="top-infos">
             <span class="text-ellip text-center">Nom du produit</span>

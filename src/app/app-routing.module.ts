@@ -14,23 +14,27 @@ const routes: Routes = [
     children: [
       {
          path: '',
-         component: HomeComponent
+         component: HomeComponent,
       },
       {
          path: 'ma-liste-de-souhaits',
          component: WishlistComponent,
+         title: 'Ma liste de souhaits',
       },
       {
          path: 'mon-panier',
          component: CartComponent,
+         title: 'Mon panier',
       },
       {
          path: 'contact',
          component: ContactComponent,
+         title: 'Contactez Akawor',
       },
       {
          path: 'foire-aux-questions',
          component: FaqComponent,
+         title: 'Foire aux questions',
       },
       { 
         path: 'boutiques', 
