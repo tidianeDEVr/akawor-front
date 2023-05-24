@@ -7,6 +7,7 @@ import { CoreModule } from '../../core/core.module';
 import { AllProduitsComponent } from './components/all-produits/all-produits.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
+import { ProduitsService } from './services/produits.service';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { MyProductsComponent } from './components/my-products/my-products.compon
     CommonModule,
     CoreModule,
     ProduitsRoutingModule
-  ]
+  ], 
+  providers: [ProduitsService]
 })
 export class ProduitsModule { }

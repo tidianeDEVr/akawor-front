@@ -29,13 +29,11 @@ export class SecurityService {
         next: (res: any) => {
           if (res.message === 'success') {
             this.toastService.show({header:'Message d\'alerte', body:'Connexion reussi ! Heureux de vous retrouver 😊', isSuccess:true})
-            Emitters.authEmitter.emit(true);
             this.router.navigate(['/']);
           }
         },
         error: (err) => {
           this.toastService.show({header:'Message d\'erreur', body:'L\'identifiant ou le mot de passe est incorrect ! Veuillez réessayer.'})
-          Emitters.authEmitter.emit(false);
         },
       });
   }
@@ -43,7 +41,6 @@ export class SecurityService {
     this.http.post(`${environment.BACKEND_BASE_URL}/security/logout`, {}, {withCredentials:true}).subscribe(
       {
         next:()=>{
-          Emitters.authEmitter.emit(false);
           this.toastService.show({header:'Message d\'alerte', body: 'Votre compte a été déconnecté avec succès.', isSuccess:true})
         },
       }

@@ -1,11 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { BoutiquesService } from '../../services/boutiques.service';
+import { CATEGORY } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-all-boutiques',
   templateUrl: './all-boutiques.component.html',
   styleUrls: ['./all-boutiques.component.scss']
 })
-export class AllBoutiquesComponent {
+export class AllBoutiquesComponent implements OnInit {
   public loaderShops = [
     '', '', '', '', '', '', '', '','', '', '', '', '', '', '',
   ];
@@ -13,63 +15,23 @@ export class AllBoutiquesComponent {
     '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '',
     '', '', '', '', '', '', '', '','', '', '', '', '', '', '', ''
   ];
-  public shopCategories:any[] = [
-    {
-      libelle: 'Multimédia',
-      icon: 'fa-solid fa-desktop'
-    },
-    {
-      libelle: 'Mobilier & éléctroménager',
-      icon: 'fa-solid fa-couch'
-    },
-    {
-      libelle: 'Mode & beauté',
-      icon: 'fa-solid fa-shirt'
-    },
-    {
-      libelle: 'Sociétés de services',
-      icon: 'fa-solid fa-person-digging'
-    },
-    {
-      libelle: 'Produits alimentaires',
-      icon: 'fa-solid fa-cookie-bite'
-    },
-    {
-      libelle: 'Concessionnaires',
-      icon: 'fa-solid fa-car'
-    },
-    {
-      libelle: 'Matériaux & bricolage',
-      icon: 'fa-solid fa-toolbox'
-    },
-    {
-      libelle: 'Agences immobilières',
-      icon: 'fa-solid fa-building'
-    },
-    {
-      libelle: 'Accessoires auto moto',
-      icon: 'fa-solid fa-car-battery'
-    },
-    {
-      libelle: 'Agricoles et alimentaires',
-      icon: 'fa-solid fa-wheat-awn'
-    },
-    {
-      libelle: 'Sports, loisirs & voyages',
-      icon: 'fa-solid fa-person-swimming'
-    },
-  ]
-  public activeCategory: string = ''
+  public shopCategories:any[] = []
+  public activeCategory!: CATEGORY;
   public isShopLoading: boolean = true; 
-  constructor(){
+  constructor(private boutiquesService: BoutiquesService){
     setTimeout(() => {
       this.isShopLoading = !this.isShopLoading;
     }, 3000);
   }
-  public changeCategory(category:any){
+  ngOnInit(): void {
+    this.boutiquesService.getCategoriesShops().then((res)=>{
+      this.shopCategories = res
+    })
+  }
+  public changeCategory(category:CATEGORY){
     if (this.isShopLoading) return;
     this.fakeLoad();
-    this.activeCategory = category.libelle
+    this.activeCategory = category
   }
   public fakeLoad(){
     this.isShopLoading = true;

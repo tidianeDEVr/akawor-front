@@ -1,72 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CATEGORY } from 'src/app/data/interfaces';
+import { ProduitsService } from '../../services/produits.service';
 
 @Component({
   selector: 'app-all-produits',
   templateUrl: './all-produits.component.html',
   styleUrls: ['./all-produits.component.scss']
 })
-export class AllProduitsComponent {
+export class AllProduitsComponent implements OnInit {
   public loaderCards = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
   public activeProducts = [
     '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '',
     '', '', '', '', '', '', '', '','', '', '', '', '', '', '', ''
   ];
-  public productCategories: any[] = [
-    {
-      libelle: 'Agroalimentaire',
-      icon: 'fa-solid fa-plate-wheat'
-    },
-    {
-      libelle: 'Animaux',
-      icon: 'fa-solid fa-paw'
-    },
-    {
-      libelle: 'Cosmétique, Santé et Bien-être',
-      icon: 'fa-solid fa-heart'
-    },
-    {
-      libelle: 'Articles de maison',
-      icon: 'fa-solid fa-house-user'
-    },
-    {
-      libelle: 'Matériaux, outils & équipements',
-      icon: 'fa-solid fa-screwdriver-wrench'
-    },
-    {
-      libelle: 'Mode & beauté',
-      icon: 'fa-solid fa-heart'
-    },
-    {
-      libelle: 'Multimédia',
-      icon: 'fa-solid fa-laptop'
-    },
-    {
-      libelle: 'Produis alimentaires',
-      icon: 'fa-solid fa-drumstick-bite'
-    },
-    {
-      libelle: 'Sports & loisirs',
-      icon: 'fa-solid fa-person-running'
-    },
-    {
-      libelle: 'Equipement de véhicules',
-      icon: 'fa-solid fa-car'
-    },
-  ]
+  public productCategories: CATEGORY[] = []
   public priceRangeMin = 0;
   public priceRangeMax = 1000000;
   public isProductsLoaded: boolean = false;
-  public activeCategory: string = '';
-  constructor(){
+  public activeCategory: CATEGORY | undefined;
+  constructor(private produitsService: ProduitsService){
     this.fakeLoad();
+  }
+  ngOnInit(): void {
+    // this.productCategories = 
+    this.produitsService.getCategoriesProducts().then((res)=>{
+      this.productCategories = res
+    })
   }
 
   public filterProducts(){
     this.fakeLoad();
   }
 
-  public changeCategory(category:any){
-    this.activeCategory = category.libelle
+  public changeCategory(category:CATEGORY){
+    this.activeCategory = category
     this.fakeLoad()
   }
 
@@ -78,7 +45,7 @@ export class AllProduitsComponent {
   }
 
   public resetFilter(){
-    this.activeCategory = ''
+    this.activeCategory = undefined
     this.priceRangeMax = 1000000
     this.priceRangeMin = 0
     this.fakeLoad()

@@ -48,9 +48,10 @@ export interface SUBSCRIPTION {
 
 export interface CATEGORY {
     id?: string;
-    libelle?: string;
-    type?: string;
-    category_parent?: CATEGORY;
+    categoryLibelle?: string;
+    categoryType?: string;
+    categoryParent?: CATEGORY;
+    categoryIconClass?: string;
 }
 
 export interface SHOP {

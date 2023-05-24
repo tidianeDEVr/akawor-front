@@ -6,26 +6,22 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   public isAuthenticated: boolean = true;
   public user: USER = {};
-  constructor(private securityService: SecurityService){
-    
-  }
+  constructor(private securityService: SecurityService) {}
   ngOnInit(): void {
-    this.securityService.getAuthenticatedUser()
-    .then((res) => {
-      this.user = res
-    })
-    Emitters.authEmitter.subscribe((auth:boolean)=>{
-      this.isAuthenticated = auth
-    })
+    this.securityService.getAuthenticatedUser().then((res) => {
+      this.user = res;
+    });
+    // Emitters.authEmitter.subscribe((auth: boolean) => {
+    //   this.isAuthenticated = auth;
+    // });
   }
-  logout(){
-    this.user = {}
-    this.securityService.logout()
+  logout() {
+    this.user = {};
+    this.securityService.logout();
   }
 }
-

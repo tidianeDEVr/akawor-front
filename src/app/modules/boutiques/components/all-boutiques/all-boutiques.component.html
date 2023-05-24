@@ -9,11 +9,12 @@
                             <div class="title-divider" style="margin-top: -12px;"></div>
                             <ul>
                                 <li *ngFor="let category of shopCategories" 
-                                [ngClass]="{'active':activeCategory === category.libelle}"
-                                (click)="changeCategory(category)" style="cursor: pointer;">
+                                [ngClass]="{'active':activeCategory === category}"
+                                (click)="changeCategory(category)" style="cursor: pointer;"
+                                matTooltip="{{category.categoryLibelle}}">
                                     <a class="text-ellip" matTooltip="{{category.libelle}}">
-                                        <i class="{{category.icon}}"></i>
-                                        <span>{{category.libelle}}</span>
+                                        <i class="{{category.categoryIconClass}}"></i>
+                                        <span>{{category.categoryLibelle}}</span>
                                     </a>
                                 </li>
                             </ul>
