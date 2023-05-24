@@ -7,6 +7,10 @@
             font-size: 26px;
             font-weight: 600;
         }
+        a {
+            text-decoration: none;
+            color: var(--black);
+        }
         .title-divider {
             margin-top: -12px;
         }
@@ -18,7 +22,7 @@
             justify-content: center;
             align-items: center;
             border: var(--gray-500) 1.5px solid;
-            padding: 10px ;
+            padding: 20px 10px;
             border-radius: 5px;
             cursor: pointer;
             transition: all .3s ease-in-out;

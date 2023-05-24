@@ -108,5 +108,9 @@
                 }
             }
         }
+        .desactived {
+            opacity: .7 !important;
+            pointer-events: none;
+        }
     }
 }

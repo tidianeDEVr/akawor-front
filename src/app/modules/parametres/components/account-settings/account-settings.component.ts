@@ -29,7 +29,8 @@ export class AccountSettingsComponent {
       libelle: "Matam"
     }
   ]
-
+  public isChecked: boolean = true;
+  
   public linkAccountToFacebook(){
     alert('Bientot disponible')
   }

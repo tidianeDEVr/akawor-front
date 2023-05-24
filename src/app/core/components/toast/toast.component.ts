@@ -1,4 +1,5 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
+import { ToastService } from '../../services/toast.service';
 
 @Component({
   selector: 'app-toast',
@@ -6,8 +7,8 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./toast.component.scss']
 })
 export class ToastComponent {
-  @Input() title:string = 'toast title'
-  @Input() message:string = 'toast message'
-  @Input() isSuccess:boolean = true
-  show = false;
+  show: boolean = true;
+  autohide = true;
+  constructor(public toastService: ToastService){ }
 }
+

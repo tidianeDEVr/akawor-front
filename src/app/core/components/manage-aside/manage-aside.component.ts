@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { ROLE } from 'src/app/data/interfaces';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
 
 @Component({
@@ -8,6 +9,9 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 })
 export class ManageAsideComponent {
   @Input() activePath?: string;
+  public role?: ROLE = {
+    libelle: "ROLE_VENDEUR",
+  };
 
   constructor(private securityService: SecurityService){ }
 

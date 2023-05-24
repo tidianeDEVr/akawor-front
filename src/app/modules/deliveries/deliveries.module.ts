@@ -3,14 +3,14 @@ import { CommonModule } from '@angular/common';
 
 import { DeliveriesRoutingModule } from './deliveries-routing.module';
 import { DeliveriesListAllComponent } from './components/deliveries-list-all/deliveries-list-all.component';
-import { DeliveriesSingleComponent } from './components/deliveries-single/deliveries-single.component';
 import { CoreModule } from 'src/app/core/core.module';
+import { MyDeliveryAddressesComponent } from './components/my-delivery-addresses/my-delivery-addresses.component';
 
 
 @NgModule({
   declarations: [
     DeliveriesListAllComponent,
-    DeliveriesSingleComponent
+    MyDeliveryAddressesComponent,
   ],
   imports: [
     CommonModule,

@@ -45,6 +45,7 @@ import { CartComponent } from './components/cart/cart.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { ManageAsideComponent } from './components/manage-aside/manage-aside.component';
 import { FaqComponent } from './components/faq/faq.component';
+import { HttpClientModule } from '@angular/common/http';
 registerPlugin(
   FilePondPluginFileValidateType,
   FilepondPluginImageEdit,
@@ -72,6 +73,7 @@ registerPlugin(
     FaqComponent
   ],
   imports: [
+    HttpClientModule,
     CommonModule,
     MatBadgeModule,
     MatCardModule,
@@ -103,6 +105,7 @@ registerPlugin(
     MatExpansionModule
   ],
   exports: [
+    HttpClientModule,
     MatCardModule,
     MatButtonModule,
     MatTooltipModule,
@@ -127,6 +130,7 @@ registerPlugin(
     MatCheckboxModule,
     NgxSkeletonLoaderModule,
     ProductCardLoaderComponent,
+    ToastComponent,
     ProductCardComponent,
     ShopCardComponent,
     ShopCardLoaderComponent,

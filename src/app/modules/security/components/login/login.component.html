@@ -23,11 +23,13 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100 mt-3">
                             <mat-label>Mot de passe</mat-label>
-                            <input matInput placeholder="password" type="password" [formControl]="passwordControl" />
-                            <mat-icon matSuffix>password</mat-icon>
+                            <input matInput placeholder="password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl" />
+                            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-pressed]="hidePassword">
+                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
                             <mat-hint>Mot de passe</mat-hint>
                         </mat-form-field>
-                        <button class="login-btn w-100 mt-4" (click)="login()">S'identifier</button>
+                        <button [ngClass]="{'desactived': passwordControl.invalid || emailControl.invalid}" class="login-btn w-100 mt-4" (click)="login()">S'identifier</button>
                         <div class="d-flex align-items-center justify-content-between mt-2">
                             <mat-checkbox color="primary" [(ngModel)]="checkedRemember">Gardez-moi connecté</mat-checkbox>
                             <button (click)="forgetPassword()" class="forget-btn">Mot de passe oublié ?</button>
@@ -44,8 +46,8 @@
                                 <img src="../../../../assets/images/facebook.svg" width="20" alt="facebook login">
                             </button>
                         </div>
-                        <p class="footer-text mt-5">Vous avez pas de compte ? <a routerLink="/security/inscription" class="fw-bold">Inscrivrez-vous</a></p>
-                        <p class="footer-text">Vous rencontrez des soucis techniques ? <a href="#" class="fw-bold" target="_blank">Contactez-nous</a></p>
+                        <p class="footer-text text-center mt-2">Vous avez pas de compte ? <a routerLink="/security/inscription" class="fw-bold">Inscrivrez-vous</a></p>
+                        <p class="footer-text text-center">Vous rencontrez des soucis techniques ? <a href="#" class="fw-bold" target="_blank">Contactez-nous</a></p>
                     </div>
                 </div>
             </div>

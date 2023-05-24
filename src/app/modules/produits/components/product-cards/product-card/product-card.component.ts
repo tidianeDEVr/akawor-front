@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastService } from 'src/app/core/services/toast.service';
 
 @Component({
   selector: 'app-product-card',
@@ -16,7 +17,13 @@ export class ProductCardComponent {
   ]
   public choosedImg: string = ''
   
-  constructor(){
+  constructor(private toastService: ToastService){
     this.choosedImg = '../../../../../../assets/images/products/'+this.imagesProducts[Math.floor(Math.random() * 10) + 1];
+  }
+  addToCart(){
+    this.toastService.show({header:'Messa d\'alerte', body:'Le produit a été ajouter a votre panier.', isSuccess:true})
+  }
+  addToWishlist(){
+    this.toastService.show({header:'Messa d\'alerte', body:'Le produit a été ajouter a votre liste de souhaits.', isSuccess:true})
   }
 }

@@ -1,4 +1,4 @@
-<main class="d-flex align-items-center justify-content-center">
+<main class="d-flex align-items-center justify-content-center py-5">
     <mat-card class="bg-white">
         <mat-card-content class="p-0">
             <div class="d-flex">
@@ -41,17 +41,25 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100 mt-3">
                             <mat-label>Mot de passe</mat-label>
-                            <input matInput placeholder="password" type="password" [formControl]="passwordControl" />
-                            <mat-icon matSuffix>password</mat-icon>
+                            <input matInput placeholder="password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl" />
+                            <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-pressed]="hidePassword">
+                                <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
                             <mat-hint>Mot de passe</mat-hint>
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100 mt-3">
                             <mat-label>Confirmation du mot de passe</mat-label>
-                            <input matInput placeholder="password" type="password" [formControl]="confirmpasswordControl" />
+                            <input matInput placeholder="password" [type]="hidePassword ? 'password' : 'text'" [formControl]="confirmpasswordControl" />
                             <mat-icon matSuffix>password</mat-icon>
                             <mat-hint>Confirmation du mot de passe</mat-hint>
                         </mat-form-field>
-                        <button class="login-btn w-100 mt-4" (click)="register()">S'inscire</button>
+                        <div class="form-check form-switch mt-3">
+                            <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+                            <label class="form-check-label" for="flexSwitchCheckChecked">Je souhaites vendre des produits</label>
+                        </div>
+                        <button class="login-btn w-100 mt-4" (click)="register()"
+                        [ngClass]="{'desactived': firstnameControl.invalid || lastnameControl.invalid || emailControl.invalid || (passwordControl.value !== confirmpasswordControl.value)}"
+                        >S'inscire</button>
                         <div class="or position-relative my-3">
                             <span class="position-absolute">OU</span>
                             <mat-divider></mat-divider>
@@ -64,8 +72,8 @@
                                 <img src="../../../../assets/images/facebook.svg" width="20" alt="facebook login">
                             </button>
                         </div>
-                        <p class="footer-text mt-5">Vous avez déja un compte ? <a routerLink="/security/connexion" class="fw-bold">Connectez-vous</a></p>
-                        <p class="footer-text">Vous rencontrez des soucis techniques ? <a routerLink="/contact" class="fw-bold" target="_blank">Contactez-nous</a></p>
+                        <p class="footer-text text-center mt-2">Vous avez déja un compte ? <a routerLink="/security/connexion" class="fw-bold">Connectez-vous</a></p>
+                        <p class="footer-text text-center">Vous rencontrez des soucis techniques ? <a routerLink="/contact" class="fw-bold" target="_blank">Contactez-nous</a></p>
                     </div>
                 </div>
             </div>

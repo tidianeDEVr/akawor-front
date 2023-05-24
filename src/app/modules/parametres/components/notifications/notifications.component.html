@@ -11,21 +11,61 @@
                     <mat-card>
                         <mat-card-content>
                             <h4>Sélectionnez les notifications que vous souhaitez recevoir</h4>
-                            <label class="form-label">Ma boutique</label>
-                            <div class="mb-3">
-                                <mat-slide-toggle color="warn" [(ngModel)]="checked">Slide me!</mat-slide-toggle>
+                            <div class="row mt-5">
+                                <div class="col col-4">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="fw-bold">Offres et promos</span>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-4">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="fw-bold">Mes commandes</span>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-4">
+                                    <div class="d-flex flex-column align-items-center">
+                                        <span class="fw-bold">Ma boutique</span>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                        <div class="form-check form-switch mt-3">
+                                            <input class="form-check-input" [(ngModel)]="checked" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked>
+                                            <label class="form-check-label" for="flexSwitchCheckChecked">Via mail</label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
-                            </div>
-                            <div class="mb-3">
-                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
-                            </div>
-                            <div class="mb-3">
-                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
-                            </div>
-                            <div class="mb-3">
-                                <mat-slide-toggle color="warn">Slide me!</mat-slide-toggle>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn mt-3 btn-dark" style="color:var(--white);">Mettre à jour</button>
                             </div>
                         </mat-card-content>
                     </mat-card>

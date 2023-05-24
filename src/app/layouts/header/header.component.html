@@ -10,7 +10,7 @@
             <div class="row h-100">
                 <div class="col col-2">
                     <div class="logo-holder h-100">
-                        <a href="">
+                        <a routerLink="/">
                             <img src="../../../assets/images/identities/akawor-nobg.png" alt="logo akawor">
                         </a>
                     </div>
@@ -56,10 +56,10 @@
         <div class="container">
             <div class="row">
                 <div class="col col-2">
-                    <button class="w-100 text-ellip" matBadge="0" matBadgeColor="warn" matBadgePosition="after">
+                    <a routerLink="/ma-liste-de-souhaits" class="header-side-btn w-100 text-ellip" matBadge="0" matBadgeColor="warn" matBadgePosition="after">
                         <i class="fa-solid fa-heart" style="margin-right: 5px;"></i>
                         <span>Liste de souhaits</span>
-                    </button>
+                    </a>
                 </div>
                 <div class="col col-8">
                     <div class="d-flex align-items-center justify-content-between pt-1 h-100">
@@ -97,19 +97,49 @@
                                 </a>
                             </li>
                             <li>
-                                <a routerLink="/compte">
+                                <a [matMenuTriggerFor]="menuCompte">
                                     <i class="fa-solid fa-user"></i>
                                     <span>Compte</span>
                                 </a>
+                                <mat-menu #menuCompte="matMenu">
+                                    <div [hidden]="(user|json) != '{}'">
+                                        <a routerLink="/security/connexion" class="btn" 
+                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
+                                            <i style="margin-right: 10px;" class="fa-solid fa-right-to-bracket"></i>
+                                            <span>Se connecter</span>
+                                        </a><br>
+                                    </div>
+                                    <div [hidden]="(user|json) != '{}'">
+                                        <a routerLink="/security/inscription" class="btn" 
+                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
+                                            <i style="margin-right: 10px;" class="fa-solid fa-pen-to-square"></i>
+                                            <span>S'inscire</span>
+                                        </a><br>
+                                    </div>
+                                    <div [hidden]="(user|json) === '{}'">
+                                        <a routerLink="/compte" class="btn" 
+                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
+                                            <i style="margin-right: 10px;" class="fa-solid fa-qrcode"></i>
+                                            <span>Tableau de bord</span>
+                                        </a><br>
+                                    </div>
+                                    <div [hidden]="(user|json) === '{}'">
+                                        <a (click)="logout()" class="btn" 
+                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
+                                            <i style="margin-right: 10px;" class="fa-solid fa-right-from-bracket"></i>
+                                            <span>Se déconnecter</span>
+                                        </a>
+                                    </div>
+                                </mat-menu>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col col-2">
-                    <button class="w-100 text-ellip" matBadge="0" matBadgeColor="warn" matBadgePosition="before">
+                    <a routerLink="/mon-panier" class="header-side-btn w-100 text-ellip" matBadge="0" matBadgeColor="warn" matBadgePosition="before">
                         <i class="fa-solid fa-cart-shopping" style="margin-right: 5px;z-index: 99999;"></i>
                         <span class="">Panier - $0.00</span>
-                    </button>
+                    </a>
                 </div>
             </div>
         </div>

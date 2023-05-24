@@ -22,10 +22,10 @@
                         <input type="number" value="1" min="1" max="10">
                         <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
                     </div>
-                    <button matTooltip="Ajouter au panier" class="add-to-cart">
+                    <button matTooltip="Ajouter au panier" class="add-to-cart" (click)="addToCart()">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
-                    <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist">
+                    <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist" (click)="addToWishlist()">
                         <i class="fa-solid fa-heart"></i>
                     </button>
                 </div>

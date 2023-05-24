@@ -1,9 +1,13 @@
-<ngb-toast *ngIf="show" [autohide]="false" (hidden)="show=false">
+<ngb-toast
+  *ngFor="let toast of toastService.toasts"
+  [header]="toast.header" [autohide]="true" [delay]="toast.delay || 5000"
+  (hiddden)="toastService.remove(toast)">
 	<ng-template ngbToastHeader>
 		<div class="me-auto">
-			<i class="fa-solid fa-circle-check" style="color: #57d659;"></i>
-            <strong class="mx-1"> {{ title }} </strong>
+			<i class="fa-solid fa-circle-check fa-beat" *ngIf="toast.isSuccess" style="color: #57d659;"></i>
+			<i class="fa-sharp fa-solid fa-circle-xmark fa-beat" *ngIf="!toast.isSuccess" style="color: #fb0404;"></i>
+			<strong class="mx-1"> {{ toast.header }} </strong>
 		</div>
 	</ng-template>
-	{{ message }}
+	{{toast.body}}
 </ngb-toast>

@@ -1,14 +1,21 @@
+export interface ToastInfo {
+    header: string;
+    body: string;
+    delay?: number;
+    isSuccess?: boolean,
+}
+
 export interface USER {
     id?: string;
-    first_name?: string;
-    last_name?: string;
-    birthday?: string;
+    userFirstName?: string;
+    userLastName?: string;
+    userBirthday?: string;
     joined_at?: string;
-    email?: string;
-    password?: string;
-    phone_number?: string;
-    is_deleted?: boolean;
-    role: ROLE;
+    userEmail?: string;
+    userPassword?: string;
+    userPhonenumber?: string;
+    userIsdeleted?: boolean;
+    userRole?: ROLE;
     shop?: SHOP;
     orders?: ORDER[];
 }
