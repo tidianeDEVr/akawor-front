@@ -38,6 +38,8 @@ import { FilePondModule, registerPlugin } from 'ngx-filepond';
 import  * as FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 import  * as FilepondPluginImageEdit from 'filepond-plugin-image-edit';
 import  * as FilepondPluginImagePreview from 'filepond-plugin-image-preview';
+import  * as FilepondPluginImageResize from 'filepond-plugin-image-resize';
+import  * as FilepondPluginImageCrop from 'filepond-plugin-image-crop';
 import { ShopCardComponent } from '../modules/boutiques/components/shop-cards/shop-card/shop-card.component';
 import { ShopCardLoaderComponent } from '../modules/boutiques/components/shop-cards/shop-card-loader/shop-card-loader.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
@@ -49,7 +51,9 @@ import { HttpClientModule } from '@angular/common/http';
 registerPlugin(
   FilePondPluginFileValidateType,
   FilepondPluginImageEdit,
-  FilepondPluginImagePreview
+  FilepondPluginImagePreview,
+  FilepondPluginImageResize,
+  FilepondPluginImageCrop
   );
 
 

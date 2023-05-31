@@ -5,8 +5,182 @@
                 <app-manage-aside activePath="manage-shop"></app-manage-aside>
             </div>
             <div class="col col-9">
-                <main class="bg-danger h-100 p-3">
-                    Gérer ma boutique
+                <main class="h-100 p-3">
+                    <h1>Gérer ma boutique</h1>
+                        <div class="row mt-3 g-3">
+                            <div class="col col-12">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <mat-card-title>
+                                            <i class="fa-solid fa-1 step-number"></i>
+                                            <span>Informations de base</span> 
+                                        </mat-card-title>
+                                        <div class="mb-4">
+                                            <!-- photo profil<br>
+                                            titre <br>
+                                            description<br>
+                                            categorie<br>
+                                            banniere (localisation ou photo)<br> -->
+                                            <div class="row">
+                                                <div class="col-5 col">
+                                                    <div>
+                                                        <h3 class="text-center form-label-0 p-0">Logo de votre entreprise</h3>
+                                                        <div class="mx-auto" style="max-width: 220px;">
+                                                            <file-pond #myPond
+                                                                [options]="pondOptions" 
+                                                                [files]="pondFiles"
+                                                                (onInit)="pondHandleInit()"
+                                                                (onAddfile)="pondHandleAddFile($event)"
+                                                                (onActivatefile)="pondHandleActivateFile($event)"
+                                                                (onRemovefile)="pondHandleRemoveFile($event)">
+                                                            </file-pond>
+                                                        </div>
+                                                        <p class="advise text-center">
+                                                            - Taille d'image conseillée: 200x200px.<br>
+                                                            - Taille maximale: 10mb.
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-7 col">
+                                                    <div>
+                                                        <h3 class="form-label">Détails de l'entreprise</h3>
+                                                        <mat-form-field class="w-100 mb-3" appearance="outline">
+                                                            <mat-label>Nom de l'entreprise</mat-label>
+                                                            <input matInput [formControl]="corpNameControl">
+                                                            <mat-hint align="end">URL: https://akawor.com/boutiques/{{corpNameUrl}}</mat-hint>
+                                                        </mat-form-field>
+                                                        <mat-form-field class="w-100 mb-3" appearance="outline">
+                                                            <mat-label>Catégorie de l'entreprise</mat-label>
+                                                            <mat-select>
+                                                              <mat-option value="select" selected>-- Sélectionnez une catégorie --</mat-option>
+                                                              <mat-option value="{{category}}" *ngFor="let category of shopCatgories">{{category.categoryLibelle}}</mat-option>
+                                                            </mat-select>
+                                                            <mat-hint align="end">Catégorie</mat-hint>
+                                                          </mat-form-field>
+                                                        <mat-form-field class="w-100" appearance="outline">
+                                                            <mat-label>Description du produit</mat-label>
+                                                            <textarea matInput rows="4" [formControl]="descriptionControl"></textarea>
+                                                            <mat-hint align="end">Ceci est juste un exemple ! Vous êtes libre de le changer.</mat-hint>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col col-6">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <mat-card-title>
+                                            <i class="fa-solid fa-2 step-number"></i>
+                                            <span>Contacts</span>
+                                        </mat-card-title>
+                                        <h3 class="form-label">Vos clients pourrons vous contacter.</h3>
+                                        <div class="mb-4">
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Adresse e-mail</mat-label>
+                                                <input matInput value="vendeur@gmail.com">
+                                                <mat-icon matSuffix>alternate_email</mat-icon>
+                                                <mat-hint>E-mail</mat-hint>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Numéro de téléphone</mat-label>
+                                                <input matInput value="+221781234567">
+                                                <mat-icon matSuffix>phone</mat-icon>
+                                                <mat-hint>Téléphone</mat-hint>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Adresse de l'entreprise</mat-label>
+                                                <input matInput>
+                                                <mat-icon matSuffix>location_on</mat-icon>
+                                                <mat-hint>Adresse</mat-hint>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Site internet de l'entreprise</mat-label>
+                                                <input matInput placeholder="https://mon-entreprise.com">
+                                                <mat-icon matSuffix>language</mat-icon>
+                                                <mat-hint>Site web</mat-hint>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Horaires d'ouvertures</mat-label>
+                                                <input matInput value="Lundi au vendredi : 8H15 - 16H45.">
+                                                <mat-icon matSuffix>calendar_month</mat-icon>
+                                                <mat-hint>Horaires</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col col-6">
+                                <mat-card>
+                                    <mat-card-content>
+                                        <mat-card-title>
+                                            <i class="fa-solid fa-3 step-number"></i>
+                                            <span>Réseaux sociaux</span>
+                                        </mat-card-title>
+                                        <h3 class="form-label">Mettez les liens qui rédirigent vers vos réseaux sociaux.</h3>
+                                        <div class="mb-4">
+                                            <!-- ig<br>
+                                            tiktok<br> 
+                                            fb<br> -->
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Lien vers Instagram</mat-label>
+                                                <input matInput placeholder="Placeholder">
+                                                <i class="fa-brands fa-instagram fa-lg" style="margin-right: 10px;" matSuffix></i>
+                                                <mat-hint>Instagram</mat-hint>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" class="w-100 mb-3">
+                                                <mat-label>Lien vers Facebook</mat-label>
+                                                <input matInput placeholder="Placeholder">
+                                                <i class="fa-brands fa-facebook-f fa-lg" style="margin-right: 15px;" matSuffix></i>
+                                                <mat-hint>Facebook</mat-hint>
+                                            </mat-form-field>
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Lien vers Tiktok</mat-label>
+                                                <input matInput placeholder="Placeholder">
+                                                <i class="fa-brands fa-tiktok fa-lg" style="margin-right: 10px;" matSuffix></i>
+                                                <mat-hint>Tiktok</mat-hint>
+                                            </mat-form-field>
+                                        </div>
+                                        <p class="text-end advise m-0 p-0">- Laissez les champs vides pour les désactiver.</p>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                            <div class="col col-12">
+                                <mat-card class="mt-3">
+                                    <mat-card-content>
+                                        <mat-card-title>
+                                            <i class="fa-solid fa-5 step-number"></i>
+                                            <span>Détails de l'adresse</span>
+                                        </mat-card-title>
+                                        <div class="d-flex align-items-center">
+                                            <h3 class="form-label">Dites-nous ou se trouve votre entreprise.</h3>
+                                            <button (click)="getUserPosition()" class="mx-3 btn get-location-btn mb-3"
+                                            [ngClass]="{'disabled': isGettingPosition }" [hidden]="userPosition.lat!==0 && userPosition.long!==0">
+                                                <i class="fa-solid fa-map-location"></i>
+                                                <span>J'utilise ma position</span>
+                                            </button>
+                                            <div class="spinner-border text-success" role="status" style="margin-top: -15px;" *ngIf="isGettingPosition">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
+                                        <div class="shop-form">
+                                            <input type="text" value="Dakar">
+                                        </div>
+                                        <div *ngIf="userPosition.lat !== 0 && userPosition.long !== 0">
+                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.022959379257!2d-17.47065692536832!3d14.711293724357906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172a4a47b525b%3A0x250389427be60011!2sCit%C3%A9%20Keur%20Gorgui%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1681917891864!5m2!1sfr!2ssn" height="100%" style="border:0;width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        </div>
+                                        <div>
+                                            <button class="btn btn-dark btn-lg w-100 mt-3" 
+                                                (click)="saveShopChanges()">
+                                                Enregister les modifications
+                                            </button>
+                                        </div>
+                                    </mat-card-content>
+                                </mat-card>
+                            </div>
+                        </div>
                 </main>
             </div>
         </div>

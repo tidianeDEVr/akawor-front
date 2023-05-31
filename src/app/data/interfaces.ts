@@ -10,40 +10,39 @@ export interface USER {
     userFirstName?: string;
     userLastName?: string;
     userBirthday?: string;
-    joined_at?: string;
+    userJoinedAt?: string;
     userEmail?: string;
     userPassword?: string;
     userPhonenumber?: string;
     userIsdeleted?: boolean;
     userRole?: ROLE;
-    shop?: SHOP;
-    orders?: ORDER[];
+    userShop?: SHOP;
+    userOrders?: ORDER[];
 }
 
 export interface ROLE {
     id?: string;
-    libelle?: string;
-    users?: USER[];
-    products?: PRODUCT[];
+    roleLibelle?: string;
+    roleUsers?: USER[];
 }
 
 export interface PACK {
     id?: string;
-    libelle?: string;
-    price?: string;
-    added_at?: string;
-    is_available?: boolean;
-    description?: string;
-    is_deleted?: boolean;
-    subscriptions?: SUBSCRIPTION[];
+    packLibelle?: string;
+    packPrice?: string;
+    packAddedAt?: string;
+    packIsAvailable?: boolean;
+    packDescription?: string;
+    packIsDeleted?: boolean;
+    packSubscriptions?: SUBSCRIPTION[];
 }
 
 export interface SUBSCRIPTION {
     id?: string;
-    added_at?: string;
-    finish_at?: string;
-    pack: PACK;
-    transactions?: TRANSACTION;
+    subscriptionAddedAt?: string;
+    subscriptionFinishAt?: string;
+    subscriptionPack: PACK;
+    subscriptionTransactions?: TRANSACTION;
 }
 
 export interface CATEGORY {
@@ -56,72 +55,71 @@ export interface CATEGORY {
 
 export interface SHOP {
     id?: string;
-    title?: string;
-    added_at?: string;
-    profile_image?: IMAGE;
-    cover_image?: IMAGE;
-    address?: string;
-    is_deleted?: boolean;
-    owner: USER;
-    subscriptions?: SUBSCRIPTION[];
-    products?: PRODUCT[];
-    category?: CATEGORY;
+    shopTitle?: string;
+    shopAddedAt?: string;
+    shopProfileImage?: IMAGE;
+    shopCoverImage?: IMAGE;
+    shopAddress?: string;
+    shopIsDeleted?: boolean;
+    shopOwner: USER;
+    shopSubscriptions?: SUBSCRIPTION[];
+    shopProducts?: PRODUCT[];
+    shopCategory?: CATEGORY;
 }
 
 export interface ORDER {
     id?: string;
-    added_at?: string;
-    status?: string;
-    owner?: USER;
-    line?: ORDER_LINE;
+    orderAddedAt?: string;
+    orderStatus?: string;
+    orderOwner?: USER;
+    orderLine?: ORDER_LINE;
 }
 
 export interface ORDER_LINE {
     id?: string;
-    products?: PRODUCT[];
-    price?: string;
+    orderLineProducts?: PRODUCT[];
+    orderLinePrice?: string;
 }
 
 export interface TRANSACTION {
     id?: string;
-    added_at?: string;
-    status?: string;
-    subscriptions?: SUBSCRIPTION[];
-    order?: ORDER;
+    transactionAddedAt?: string;
+    transactionStatus?: string;
+    transactionSubscriptions?: SUBSCRIPTION[];
+    transactionOrder?: ORDER;
 }
 
 export interface PRODUCT {
     id?: string;
-    title?: string;
-    price?: string;
-    added_at?: string;
-    description?: string;
-    is_out_of_stock?: boolean;
-    is_deleted?: boolean;
-    shop?: SHOP;
-    category?: CATEGORY;
-    images?: IMAGE[];
-    boosts?: BOOST[];
+    productTitle: string;
+    productPrice: number;
+    productAddedAt?: string;
+    productDescription: string;
+    productIsOutOfStock: boolean;
+    productIsDeleted?: boolean;
+    productShop?: SHOP;
+    productCategory?: CATEGORY;
+    productImages?: IMAGE[];
+    productBoosts?: BOOST[];
 }
 
 export interface DELIVERY {
     id?: string;
-    added_at?: string;
-    status?: string;
+    deliveryAddedAt?: string;
+    deliveryStatus?: string;
 }
 
 export interface BOOST {
     id?: string;
-    added_at?: string;
-    status?: string;
-    finish_at?: string;
-    is_deleted?: boolean;
-    product?: PRODUCT;
+    boostAddedAt?: string;
+    boostStatus?: string;
+    boostFinishAt?: string;
+    boostIsDeleted?: boolean;
+    boostProduct?: PRODUCT;
 }
 
 export interface IMAGE {
     id?: string;
-    title?: string;
-    path?: string;
-    is_deleted?: boolean;
+    imageTitle?: string;
+    imagePath?: string;
 }

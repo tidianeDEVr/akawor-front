@@ -10,7 +10,7 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 export class ManageAsideComponent {
   @Input() activePath?: string;
   public role?: ROLE = {
-    libelle: "ROLE_VENDEUR",
+    roleLibelle: "ROLE_VENDEUR",
   };
 
   constructor(private securityService: SecurityService){ }

@@ -6,6 +6,7 @@ import { WishlistComponent } from './core/components/wishlist/wishlist.component
 import { CartComponent } from './core/components/cart/cart.component';
 import { ContactComponent } from './core/components/contact/contact.component';
 import { FaqComponent } from './core/components/faq/faq.component';
+import { IsConnectedGuard } from './modules/security/guards/is-connected.guard';
 
 const routes: Routes = [
   {
@@ -15,6 +16,7 @@ const routes: Routes = [
       {
          path: '',
          component: HomeComponent,
+         title: 'Le made in Africa livré chez vous - Akawor'
       },
       {
          path: 'ma-liste-de-souhaits',
@@ -46,7 +48,8 @@ const routes: Routes = [
       },
       { 
         path: 'compte', 
-        loadChildren: () => import('./modules/compte/compte.module').then(m => m.CompteModule) 
+        loadChildren: () => import('./modules/compte/compte.module').then(m => m.CompteModule),
+        // canActivate: [IsConnectedGuard],
       },
       { 
         path: 'commandes', 
@@ -54,7 +57,8 @@ const routes: Routes = [
       },
       { 
         path: 'parametres', 
-        loadChildren: () => import('./modules/parametres/parametres.module').then(m => m.ParametresModule) 
+        loadChildren: () => import('./modules/parametres/parametres.module').then(m => m.ParametresModule),
+        // canActivate: [IsConnectedGuard], 
       },
       { 
         path: 'blog', 
@@ -62,7 +66,8 @@ const routes: Routes = [
       },
       { 
         path: 'livraisons', 
-        loadChildren: () => import('./modules/deliveries/deliveries.module').then(m => m.DeliveriesModule) 
+        loadChildren: () => import('./modules/deliveries/deliveries.module').then(m => m.DeliveriesModule),
+        // canActivate: [IsConnectedGuard], 
       },
    ],
   },

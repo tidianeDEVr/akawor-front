@@ -21,9 +21,6 @@
                 margin-right: 10px;
             }
         }
-        .details-part, .images-part {
-            border-right: 1px solid var(--gray-500);
-        }
         padding: 20px 0;
         background-color: var(--gray-400);
         .step-number {
@@ -32,6 +29,14 @@
         }
         .filepond--image-preview-wrapper {
             z-index: 99 !important;
+        }
+        .step-down-btn {
+            background-color: var(--red);
+            color: var(--white);
+        }
+        .disabled {
+            opacity: .75;
+            pointer-events: none;
         }
         h1 {
             font-family: 'Playfair Display', serif;

@@ -1,0 +1,32 @@
+:host {
+    mat-card {
+        mat-card-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            i {
+                color: var(--red);
+                margin-right: 7px;
+            }
+        }
+        .advise {
+            font-weight: 700;
+            color: var(--gray-600);
+            font-size: 12.5px;
+        }
+        iframe {
+            border-radius: 7px;
+        }
+        .get-location-btn {
+            background-color: var(--green-400);
+            color: var(--white);
+            i {
+                margin-right: 10px;
+            }
+        }
+        .get-location-btn.disabled {
+            background-color: var(--gray-600);
+            pointer-events: none;
+        }
+    } 
+}

@@ -1,100 +1,115 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FilePond, FilePondOptions } from 'filepond';
-import { Observable, map, startWith } from 'rxjs';
+import { ProduitsService } from '../../services/produits.service';
+import { CATEGORY, PRODUCT } from 'src/app/data/interfaces';
+import { environment } from 'src/environments/environment.development';
+import { ToastService } from 'src/app/core/services/toast.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.scss']
 })
-export class CreateProductComponent implements OnInit {
+export class CreateProductComponent implements OnInit, OnDestroy {
   public stepPercent: number = 25;
-  public mainCategoryControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
-  public subCategoryControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
-  public filteredMainCatOptions: Observable<string[]> | undefined;
-  public filteredSubCatOptions: Observable<string[]> | undefined;
-  public mainCategories:string[] = [
-    "Fashion", "Sacs", "Santé & beauté", "Chaussures", "Décoration", "Électronique", 
-    "Nourriture", "Bébé & enfants","Fleures", "Appareils électromenagers"
-  ]
-  subCategories:string[] = [
-    "Sub Fashion", "Sub Sacs", "Sub Santé & beauté", "Sub Chaussures", "Sub Décoration", "Sub Électronique", 
-  ]
+  public titleControl = new FormControl('', [Validators.required, Validators.minLength(8)])
+  public priceControl = new FormControl('', [Validators.required, Validators.min(2)])
+  public descriptionControl = new FormControl('', [Validators.required])
+  public mainCategoryControl = new FormControl('', [Validators.required]);
+  public subCategoryControl = new FormControl('');
+  public subCategories:CATEGORY[] = []
+  public mainProductsCategories: CATEGORY[] = []
+  public productObject: PRODUCT = {
+    productTitle: 'my title',
+    productPrice: 120000,
+    productDescription: 'my description',
+    productIsOutOfStock: false
+  };
 
   @ViewChild('myPond')
   public myPond!: FilePond;
+  constructor(
+    private produitService: ProduitsService,
+    private toastService: ToastService,
+    private router: Router
+    ){
+    this.produitService.getCategoriesProducts().then((cats)=>{
+      this.mainProductsCategories = cats;
+    })
+    // hydrate sub categories
+    this.mainCategoryControl.valueChanges.subscribe((value:any) => { 
+      // alert(value.id)
+      this.produitService.getSubCategoriesProducts(value.id).then((res)=>{
+        this.subCategories = res
+      })
+     })
+  } 
+  ngOnDestroy(): void {
+    // save draft
+    // this.saveProduct();
+  }
 
-  ngOnInit() {
-    this.filteredMainCatOptions = this.mainCategoryControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterMain(value || '')),
-    );
-    this.filteredSubCatOptions = this.subCategoryControl.valueChanges.pipe(
-      startWith(''),
-      map(value => this._filterSub(value || '')),
-    );
+  ngOnInit() { 
+    
   }
-  private _filterMain(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.mainCategories.filter(option => option.toLowerCase().includes(filterValue));
-  }
-  private _filterSub(value: string): string[] {
-    const filterValue = value.toLowerCase();
-    return this.subCategories.filter(option => option.toLowerCase().includes(filterValue));
-  }
-
+  updateProductObject(){
+    if(this.stepPercent ===25 ){
+      if(this.titleControl.valid && this.titleControl.value) this.productObject.productTitle = this.titleControl.value;
+      if(this.priceControl.valid && this.priceControl.value) this.productObject.productTitle = this.priceControl.value;
+      if(this.descriptionControl.value && this.descriptionControl.value) this.productObject.productDescription = this.descriptionControl.value;
+    }
+  } 
   stepUp(){
+    this.updateProductObject();
     if (this.stepPercent < 100) {
       this.stepPercent+= 25 
-      this.changeProgressbarWidth(this.stepPercent);
+      this.changeProgressbarWidth();
     }
   }
   stepDown(){
     if (this.stepPercent > 25) {
       this.stepPercent-= 25
-      this.changeProgressbarWidth(this.stepPercent);
+      this.changeProgressbarWidth();
     }
   }
-  changeProgressbarWidth(number:number){
+  changeProgressbarWidth(){
     let bar:HTMLElement | null = document.querySelector('.progress-bar');
     if (bar) bar.style.width = `${this.stepPercent}%`;
   }
   pondOptions: FilePondOptions = {
     allowMultiple: true,
+    // labels
+    labelInvalidField: 'Le champ contient des fichiers invalides',
     labelIdle: 'Cliquez ou déposez vos images...',
+    labelFileWaitingForSize: 'En attente de la taille',
+    labelFileSizeNotAvailable: 'Taille non disponible',
+    labelFileLoading: 'Chargement',
+    labelFileLoadError: 'Erreur lors du chargement', 
+    labelFileProcessing: 'Téléchargement',
+    labelFileProcessingComplete: 'Téléchargement complet',
+    labelFileProcessingAborted: 'Téléchargement annulé',
+    labelTapToRetry: 'Cliquer pour réessayer',
+    labelTapToCancel: 'Cliquer pour annuler',
+    labelTapToUndo: 'Cliquer pour annuler',
+    labelButtonRemoveItem: 'Supprimer',
     acceptedFileTypes: ['image/*'],
     imagePreviewMaxFileSize: '10MB',
-    allowReorder:true,
-    maxFiles:6,
+    allowReorder: true,
+    maxFiles: 10,
+    name: 'images',
     credits: false,
-    // FILE EDITS PARAMS
-    allowImageEdit: true,
-    styleImageEditButtonEditItemPosition: "center",
-    imageEditInstantEdit: false,
-    // configure Doka
-    // imageEditEditor: Doka.create({
-    //   // Doka.js options here ...
-
-    //   cropAspectRatioOptions: [
-    //       {
-    //           label: 'Free',
-    //           value: null,
-    //       },
-    //       {
-    //           label: 'Portrait',
-    //           value: 1.25,
-    //       },
-    //       {
-    //           label: 'Square',
-    //           value: 1,
-    //       },
-    //       {
-    //           label: 'Landscape',
-    //           value: 0.75,
-    //       },
-    //   ],
-    // }),
+    server: {
+      url: environment.BACKEND_BASE_URL,
+      process: {
+          url: '/image/upload',
+          method: 'POST',
+          withCredentials: true,
+          headers: {},
+          timeout: 7000,
+      },
+    }
   }
 
   pondFiles: FilePondOptions["files"] = [ ]
@@ -119,4 +134,18 @@ export class CreateProductComponent implements OnInit {
     console.log(this.myPond.getFiles());
   }
 
+  saveProduct(){
+    this.produitService.createProduct(this.productObject)
+    .then(()=>{
+      this.toastService.show({
+        header: 'Message d\'alerte', body:"OK", isSuccess:true,
+      })
+      this.router.navigate(['/produits/mes-annonces']);
+    })
+    .catch((err)=>{
+      this.toastService.show({
+        header: 'Message d\'erreur', body:"Error"
+      })
+    })
+  }
 }
