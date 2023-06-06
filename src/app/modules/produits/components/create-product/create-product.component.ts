@@ -6,6 +6,7 @@ import { CATEGORY, PRODUCT } from 'src/app/data/interfaces';
 import { environment } from 'src/environments/environment.development';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { Router } from '@angular/router';
+import { SecurityService } from 'src/app/modules/security/services/security.service';
 
 @Component({
   selector: 'app-create-product',
@@ -14,37 +15,40 @@ import { Router } from '@angular/router';
 })
 export class CreateProductComponent implements OnInit, OnDestroy {
   public stepPercent: number = 25;
-  public titleControl = new FormControl('', [Validators.required, Validators.minLength(8)])
+  public titleControl = new FormControl('', [Validators.required, Validators.minLength(5)])
   public priceControl = new FormControl('', [Validators.required, Validators.min(2)])
-  public descriptionControl = new FormControl('', [Validators.required])
-  public mainCategoryControl = new FormControl('', [Validators.required]);
-  public subCategoryControl = new FormControl('');
+  public descriptionControl = new FormControl('', [Validators.required, Validators.minLength(10)])
+  public mainCategoryControl = new FormControl<CATEGORY|null>(null, [Validators.required]);
+  public subCategoryControl = new FormControl<CATEGORY|null>(null);
   public subCategories:CATEGORY[] = []
   public mainProductsCategories: CATEGORY[] = []
   public productObject: PRODUCT = {
-    productTitle: 'my title',
-    productPrice: 120000,
-    productDescription: 'my description',
+    productTitle: '',
+    productPrice: 0,
+    productDescription: '',
     productIsOutOfStock: false
   };
+  public productOwnerId!: string;
 
   @ViewChild('myPond')
   public myPond!: FilePond;
   constructor(
     private produitService: ProduitsService,
     private toastService: ToastService,
+    private securityService: SecurityService,
     private router: Router
     ){
     this.produitService.getCategoriesProducts().then((cats)=>{
       this.mainProductsCategories = cats;
     })
-    // hydrate sub categories
     this.mainCategoryControl.valueChanges.subscribe((value:any) => { 
-      // alert(value.id)
       this.produitService.getSubCategoriesProducts(value.id).then((res)=>{
         this.subCategories = res
       })
-     })
+    })
+    this.securityService.getAuthenticatedUser().then((user)=>{
+      if (user.id) this.productOwnerId = user.id;
+    })
   } 
   ngOnDestroy(): void {
     // save draft
@@ -80,7 +84,6 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   }
   pondOptions: FilePondOptions = {
     allowMultiple: true,
-    // labels
     labelInvalidField: 'Le champ contient des fichiers invalides',
     labelIdle: 'Cliquez ou déposez vos images...',
     labelFileWaitingForSize: 'En attente de la taille',
@@ -96,7 +99,7 @@ export class CreateProductComponent implements OnInit, OnDestroy {
     labelButtonRemoveItem: 'Supprimer',
     acceptedFileTypes: ['image/*'],
     imagePreviewMaxFileSize: '10MB',
-    allowReorder: true,
+    allowReorder: false,
     maxFiles: 10,
     name: 'images',
     credits: false,
@@ -106,9 +109,19 @@ export class CreateProductComponent implements OnInit, OnDestroy {
           url: '/image/upload',
           method: 'POST',
           withCredentials: true,
-          headers: {},
+          headers: {
+            productId: 1
+          },
           timeout: 7000,
       },
+    //   remove: (
+    //     /** Local file source */
+    //     source: any,
+    //     /** Call when done */
+    //     load: () => void,
+    //     /** Call if something goes wrong, will exit after. */
+    //     error: (errorText: string) => void
+    // ) => void
     }
   }
 
@@ -135,7 +148,13 @@ export class CreateProductComponent implements OnInit, OnDestroy {
   }
 
   saveProduct(){
-    this.produitService.createProduct(this.productObject)
+    if(this.titleControl.value) this.productObject.productTitle = this.titleControl.value;
+    if(this.descriptionControl.value) this.productObject.productDescription = this.descriptionControl.value;
+    if(this.priceControl.value) this.productObject.productPrice = parseInt(this.priceControl.value);
+    if(this.mainCategoryControl.value) this.productObject.productCategory = this.mainCategoryControl.value
+    if(this.subCategoryControl.value) this.productObject.productCategory = this.subCategoryControl.value
+    
+    this.produitService.createProduct(this.productObject, this.productOwnerId)
     .then(()=>{
       this.toastService.show({
         header: 'Message d\'alerte', body:"OK", isSuccess:true,

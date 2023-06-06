@@ -61,8 +61,8 @@
                             </div>
                         </div>
                         <div class="row row-cols-5 g-3 pt-4" [hidden]="isShopLoading">
-                            <div class="col" *ngFor="let card of activeShops">
-                                <app-shop-card></app-shop-card>
+                            <div class="col" *ngFor="let shop of shops">
+                                <app-shop-card [shop]="shop"></app-shop-card>
                             </div>
                         </div>
                     </div>

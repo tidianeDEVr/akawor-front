@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ROLE } from 'src/app/data/interfaces';
+import { USER } from 'src/app/data/interfaces';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
 
 @Component({
@@ -9,11 +9,13 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 })
 export class ManageAsideComponent {
   @Input() activePath?: string;
-  public role?: ROLE = {
-    roleLibelle: "ROLE_VENDEUR",
-  };
+  public role?: string;
 
-  constructor(private securityService: SecurityService){ }
+  constructor(private securityService: SecurityService){
+    this.securityService.getAuthenticatedUser().then((res)=>{
+      this.role = res.userRole
+    })
+   }
 
   public logout(){
     this.securityService.logout()

@@ -1,5 +1,11 @@
 :host {
     .single-shop {
+        .empty-result {
+            img {
+                max-width: 400px;
+                width: 90%;
+            }
+        }
         .identities {
             .cover {
                 overflow: hidden;
@@ -62,11 +68,18 @@
                 }
                 .socials {
                     i {
-                        color: var(--green-400);
-                        transition: color ease-in-out .3s;
+                        color: var(--white);
+                        width: 40px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border-radius: 50%;
+                        aspect-ratio: 1;
+                        background-color: var(--green-400);
+                        transition: all ease-in-out .3s;
                     }
                     i:hover {
-                        color: var(--red);
+                        background-color: var(--red);
                     }
                 }
             }

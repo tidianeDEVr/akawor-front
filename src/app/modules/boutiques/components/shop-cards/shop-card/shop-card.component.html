@@ -1,7 +1,9 @@
-<a routerLink="/boutiques/dynamic">
-    <article class="shop-card">
-        <div class="img-holder">
-            <img [src]="choosedImage" alt="...">
-        </div>
-    </article>
-</a>
+<div *ngIf="shop">
+    <a routerLink="/boutiques/{{shop.shopSlug}}" matTooltip="{{shop.shopLibelle}}">
+        <article class="shop-card">
+            <div class="img-holder">
+                <img [src]="choosedImage" alt="{{shop.shopLibelle}}">
+            </div>
+        </article>
+    </a>
+</div>

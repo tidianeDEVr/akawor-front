@@ -1,5 +1,5 @@
-<article class="product-card">
-    <a routerLink="/produits/dynamic" style="text-decoration: none;">
+<article class="product-card" *ngIf="product">
+    <a routerLink="/produits/{{product.productSlug}}" style="text-decoration: none;">
         <div class="img-holder position-relative">
             <img [src]="choosedImg" alt="">
             <div class="position-absolute zoom-icon">
@@ -9,13 +9,13 @@
     </a>
     <div class="infos">
         <div class="top-infos">
-            <span class="text-ellip text-center">Nom du produit</span>
+            <span class="text-ellip text-center">{{product.productTitle|uppercase}}</span>
         </div>
         <mat-divider></mat-divider>
         <div class="text-center">
             <span class="text-ellip category w-100">chaussure</span>
             <div class="price-actions position-relative">
-                <span class="text-ellip price">5.000 F CFA</span>
+                <span class="text-ellip price">{{product.productPrice|currency: 'EUR'}}</span>
                 <div class="actions position-absolute">
                     <div class="input-cont d-flex align-items-center h-100">
                         <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>

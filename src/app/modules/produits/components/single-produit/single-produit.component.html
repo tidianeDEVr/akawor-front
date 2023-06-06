@@ -1,6 +1,6 @@
-<section class="main-product">
+<section class="main-product" *ngIf="product">
     <div class="container">
-        <h1 class="text-ellip fw-bold text-uppercase">{{product.libelle}}</h1>
+        <h1 class="text-ellip fw-bold text-uppercase">{{product.productTitle}}</h1>
         <mat-divider></mat-divider>
         <mat-card class="p-2">
             <div class="row">
@@ -9,13 +9,14 @@
                         <div class="col col-7">
                             <div class="p-1 images">
                                 <div class="main-image-container">
-                                    <img class="main-image" src="../../../../assets/images/products/{{product.img}}" alt="{{product.libelle}}">
+                                    <!-- <img class="main-image" src="../../../../assets/images/products/{{product.img}}" alt="{{product.productTitle}}"> -->
+                                    <img class="main-image" src="../../../../assets/images/products/sac-ely-1.jpeg" alt="{{product.productTitle}}">
                                 </div>
                                 <div class="others-images">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-1.jpeg" alt="{{product.libelle}}">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-2.jpeg" alt="{{product.libelle}}">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-3.jpeg" alt="{{product.libelle}}">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-4.jpeg" alt="{{product.libelle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-1.jpeg" alt="{{product.productTitle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-2.jpeg" alt="{{product.productTitle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-3.jpeg" alt="{{product.productTitle}}">
+                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-4.jpeg" alt="{{product.productTitle}}">
                                 </div>
                             </div>
                         </div>
@@ -41,9 +42,12 @@
                                 </nav>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
-                                        <p>
-                                            {{product.description}}
-                                        </p>
+                                        <div class="position-relative">
+                                            <div class="description">
+                                                <p>{{product.productDescription}}</p>
+                                                <div class="bottom-gradient"></div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
                                         <table class="table table-striped">
@@ -88,14 +92,14 @@
                                             </div>
                                             <ul class="my-2">
                                                 <li class="mb-2">
-                                                    <div>
+                                                    <div *ngIf="!product.productIsOutOfStock">
                                                         <span class="fw-bold">Stock:</span> En Stock 
                                                         <i class="fa-solid fa-circle-check" style="color:#52b788;"></i>
                                                     </div>
-                                                    <!-- <div>
+                                                    <div *ngIf="product.productIsOutOfStock">
                                                         <span class="fw-bold">Stock:</span> Rupture de stock 
                                                         <i class="fa-solid fa-circle-xmark" style="color:#ef233c;"></i>
-                                                    </div> -->
+                                                    </div>
                                                 </li>
                                                 <li class="mb-2">
                                                     <span class="fw-bold">SKU:</span> Model 199
@@ -104,9 +108,9 @@
                                         </div>
                                     </div>
                                     <div class="col col-3">
-                                        <div class="logo-shop">
-                                            <img src="{{shop.img}}" alt="{{shop.libelle}}" class="img-thumbnail">
-                                            <a class="text-center text-ellip">{{shop.libelle}}</a>
+                                        <div class="logo-shop" *ngIf="shop">
+                                            <!-- <img src="{{shop.img}}" alt="{{shop.libelle}}" class="img-thumbnail"> -->
+                                            <a class="text-center text-ellip" routerLink="/boutiques/{{shop.shopSlug}}">{{shop.shopLibelle}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -123,7 +127,7 @@
                                 </div>
                                 <mat-divider></mat-divider>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h2 class="price">500$</h2>
+                                    <h2 class="price">{{product.productPrice|currency: 'EUR'}}</h2>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="actions h-100">
                                             <div class="input-cont d-flex align-items-center">
@@ -197,7 +201,7 @@
                         <div class="title-divider" style="margin-top: -12px;"></div>
                         <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameCategoryProductsConfig" >
                             <div ngxSlickItem *ngFor="let product of sameCategoryProducts">
-                                <app-product-card></app-product-card>
+                                <app-product-card [product]="product"></app-product-card>
                             </div>
                         </ngx-slick-carousel>
                     </div>
@@ -212,7 +216,7 @@
                             <div class="title-divider" style="margin-top: -12px;"></div>
                             <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
                                 <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
-                                    <app-product-card></app-product-card>
+                                    <app-product-card [product]="product"></app-product-card>
                                 </div>
                             </ngx-slick-carousel>
                         </div>
@@ -223,7 +227,7 @@
                             <div class="title-divider" style="margin-top: -12px;"></div>
                             <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
                                 <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
-                                    <app-product-card></app-product-card>
+                                    <app-product-card [product]="product"></app-product-card>
                                 </div>
                             </ngx-slick-carousel>
                         </div>

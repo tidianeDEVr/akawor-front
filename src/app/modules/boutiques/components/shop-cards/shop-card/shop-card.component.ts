@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { SHOP } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-shop-card',
@@ -6,6 +7,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./shop-card.component.scss']
 })
 export class ShopCardComponent {
+  @Input() shop!: SHOP;
+
   public imagesShops = [
     '',
     'adaa-ada.png','baawaan.png','malado.png',

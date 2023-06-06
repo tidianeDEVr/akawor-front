@@ -9,13 +9,13 @@ const routes: Routes = [
     path: '', 
     component: AllBoutiquesComponent 
   },
-  { 
-    path: 'dynamic', 
-    component: SingleBoutiqueComponent
-  },
   {
     path: 'ma-boutique',
     component: ManageShopComponent,
+  },
+  { 
+    path: '**', 
+    component: SingleBoutiqueComponent
   }
 ];
 

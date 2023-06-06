@@ -157,7 +157,8 @@
                             <button [ngClass]="{'disabled': stepPercent === 25}" class="btn step-down-btn" (click)="stepDown()" style="margin-right: 10px;">Précédent</button>
                             <button [hidden]="stepPercent===100" class="btn btn-dark" (click)="stepUp()"
                             [ngClass]="{'disabled':
-                                titleControl.invalid || priceControl.invalid || descriptionControl.invalid || subCategoryControl.invalid
+                                titleControl.invalid || priceControl.invalid || 
+                                descriptionControl.invalid || mainCategoryControl.invalid 
                             }"
                             >Suivant</button>
                             <button [hidden]="stepPercent!==100" class="btn btn-dark" (click)="saveProduct()">Publier l'annonce</button>

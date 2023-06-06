@@ -14,14 +14,14 @@
                 <span class="text-ellip">Gérer mes notifications</span>
             </a>
         </li>
-        <li *ngIf="role && role.roleLibelle === 'ROLE_CLIENT'">
+        <li *ngIf="role && role === 'ROLE_CLIENT'">
             <a [ngClass]="{'active': activePath === 'manage-panier'}" 
             class="w-100 text-ellip text-start" routerLink="/mon-panier">
                 <i class="fa-solid fa-cart-shopping"></i>
                 <span class="text-ellip">Gérer mon panier</span>
             </a>
         </li>
-        <li *ngIf="role && role.roleLibelle === 'ROLE_CLIENT'">
+        <li *ngIf="role && role === 'ROLE_CLIENT'">
             <a [ngClass]="{'active': activePath === 'manage-list-de-souhaits'}" 
             class="w-100 text-ellip text-start" routerLink="/ma-liste-de-souhaits">
                 <i class="fa-solid fa-heart"></i>
@@ -44,8 +44,8 @@
             </a>
         </li>
     </ul>
-    <label class="form-label" *ngIf="role && role.roleLibelle === 'ROLE_VENDEUR'">Mes annonces</label>
-    <ul *ngIf="role && role.roleLibelle === 'ROLE_VENDEUR'">
+    <label class="form-label" *ngIf="role && role === 'ROLE_VENDEUR'">Mes annonces</label>
+    <ul *ngIf="role && role === 'ROLE_VENDEUR'">
         <li>
             <a [ngClass]="{'active': activePath === 'publish-announce'}" class="w-100 text-ellip text-start" 
             routerLink="/produits/nouvelle-annonce">
@@ -70,7 +70,7 @@
                 <span class="text-ellip">Gérer mes livraisons</span>
             </a>
         </li>
-        <li *ngIf="role && role.roleLibelle === 'ROLE_CLIENT'">
+        <li *ngIf="role && role === 'ROLE_CLIENT'">
             <a [ngClass]="{'active': activePath === 'manage-deliveries-address'}" class="w-100 text-ellip text-start"
             routerLink="/livraisons/mes-adresses">
                 <i class="fa-solid fa-map-location-dot"></i>
@@ -78,8 +78,8 @@
             </a>
         </li>
     </ul>
-    <label class="form-label" *ngIf="role && role.roleLibelle === 'ROLE_VENDEUR'">Ma boutique</label>
-    <ul *ngIf="role && role.roleLibelle === 'ROLE_VENDEUR'">
+    <label class="form-label" *ngIf="role && role === 'ROLE_VENDEUR'">Ma boutique</label>
+    <ul *ngIf="role && role === 'ROLE_VENDEUR'">
         <li>
             <a class="w-100 text-ellip text-start" routerLink="/boutiques/dynamic">
                 <i class="fa-solid fa-eye"></i>

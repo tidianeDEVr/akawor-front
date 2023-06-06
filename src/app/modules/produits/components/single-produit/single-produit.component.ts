@@ -1,42 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PRODUCT, SHOP } from 'src/app/data/interfaces';
+import { ProduitsService } from '../../services/produits.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
 
 @Component({
   selector: 'app-single-produit',
   templateUrl: './single-produit.component.html',
   styleUrls: ['./single-produit.component.scss']
 })
-export class SingleProduitComponent {
+export class SingleProduitComponent implements OnInit{
   choosedImg:string = ''
-  public product: any = {
-    libelle: "Sac à main Ely",
-    price: "117.000 F CFA",
-    img: "sac-ely-1.jpeg",
-    description: "Product description, along with any other tab can be displayed as tabs, accordion or all-visible blocks in grid format or one under the other.  You can mix and match tabs and blocks in any order and any position. Each tab can also be set up as a link and point to other pages or open popup modules. Optional \"Show More\" collapsible block content is also available as an option for large and tall descriptions or custom content."
-  }
-  public shop: any = {
-    libelle: "Baawaan",
-    img: "../../../../assets/images/shops/baawaan.png"
-  }
-  public sameCategoryProducts =  [
+  public product!: PRODUCT;
+  public shop!: SHOP;
+  public sameCategoryProducts: PRODUCT[] =  [
     {
-      libelle: "Nom du produit 1",
-      price: "5.000 F CFA",
-      img: "product1.jpg",
+      productTitle: "Nom du produit 1",
+      productPrice: 2000,
+      productDescription: 'Description du produit',
+      productIsOutOfStock: false,
     },
     {
-      libelle: "Nom du produit 2",
-      price: "5.000 F CFA",
-      img: "product2.jpg",
+      productTitle: "Nom du produit 2",
+      productPrice: 2000,
+      productDescription: 'Description du produit',
+      productIsOutOfStock: false,
     },
     {
-      libelle: "Nom du produit 3",
-      price: "5.000 F CFA",
-      img: "product3.jpg",
+      productTitle: "Nom du produit 3",
+      productPrice: 2000,
+      productDescription: 'Description du produit',
+      productIsOutOfStock: false,
     },
     {
-      libelle: "Nom du produit 4",
-      price: "5.000 F CFA",
-      img: "product4.jpg",
+      productTitle: "Nom du produit 4",
+      productPrice: 2000,
+      productDescription: 'Description du produit',
+      productIsOutOfStock: false,
     }
   ]
   public sameCategoryProductsConfig = {
@@ -59,18 +59,44 @@ export class SingleProduitComponent {
     "autoplaySpeed": 3000,
     "speed": 300,
   };
-  constructor(){
+  constructor(
+    private produitService: ProduitsService,
+    private boutiqueService: BoutiquesService,
+    private router: Router
+    ){
     this.choosedImg = this.choosedImg[Math.random() * (10 + 1) + 0]
-    window.addEventListener("load", function() {
-      // SINGLE IMAGE CLICK
-      var otherImages = document.querySelectorAll(".other-image");
-      var mainImage:HTMLImageElement | null = document.querySelector('.main-image')
-      otherImages.forEach(image => {
-        let path = image.getAttribute('src')
-        image.addEventListener('click', ()=>{
-          if(mainImage && path) mainImage.setAttribute('src', path) 
-        })
-      });
-    });
+    // window.addEventListener("load", function() {
+    //   // SINGLE IMAGE CLICK
+    //   var otherImages = document.querySelectorAll(".other-image");
+    //   var mainImage:HTMLImageElement | null = document.querySelector('.main-image')
+    //   otherImages.forEach(image => {
+    //     let path = image.getAttribute('src')
+    //     image.addEventListener('click', ()=>{
+    //       if(mainImage && path) mainImage.setAttribute('src', path) 
+    //     })
+    //   });
+    // });
+  }
+  async ngOnInit() {
+    const url = window.location.href;
+    const slug =  url.split('/')[4];
+    if(!slug) this.router.navigate(['/produits']);
+    await this.produitService.getProductBySlug(slug)
+    .then((res:any)=>{
+      if(res.message == "product not found") this.router.navigate(['/produits']);
+      this.product = res;
+      if(this.product.productTitle) document.title = this.product.productTitle;
+    })
+    .catch((err)=>{
+      console.log(err);
+      this.router.navigate(['/produits']);
+    })
+    if(this.product.shopId) {
+      this.boutiqueService.getShopById(this.product.shopId)
+      .then((res)=>{
+        this.shop = res
+        console.log(res);
+      })
+    }
   }
 }

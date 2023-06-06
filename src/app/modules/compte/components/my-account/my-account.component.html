@@ -69,22 +69,23 @@
                     </a>
                 </div>
             </div>
-            <h4 class="text-ellip fw-bold">Newsletter</h4>
-            <div class="title-divider"></div>
-            <div class="row row-cols-6 mb-4">
-                <div class="col">
-                    <a routerLink="">
-                        <div class="action">
-                            <i class="fa-2x fa-solid fa-envelope"></i>
-                            <span class="text-center">S'inscrire/Se désinscrire de la newsletter</span>
-                        </div>
-                    </a>
+            <div *ngIf="role==='ROLE_CLIENT'">
+                <h4 class="text-ellip fw-bold">Newsletter</h4>
+                <div class="title-divider"></div>
+                <div class="row row-cols-6 mb-4">
+                    <div class="col">
+                        <a routerLink="">
+                            <div class="action">
+                                <i class="fa-2x fa-solid fa-envelope"></i>
+                                <span class="text-center">S'inscrire/Se désinscrire de la newsletter</span>
+                            </div>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
         <!-- VENDEUR  -->
-        <div >
-            <!-- *ngIf="!isSeller" -->
+        <div *ngIf="role==='ROLE_VENDEUR'">
             <h4 class="text-ellip fw-bold mt-4">Mes annonces</h4>
             <div class="title-divider"></div>
             <div class="row row-cols-6 mb-4">
@@ -96,7 +97,7 @@
                         </div>
                     </a>
                 </div>
-                <div class="col">
+                <div class="col" *ngIf="role==='ROLE_VENDEUR'">
                     <a routerLink="/produits/mes-annonces">
                         <div class="action">
                             <i class="fa-2x fa-solid fa-list"></i>
@@ -105,35 +106,37 @@
                     </a>
                 </div>
             </div>
-            <h4 class="text-ellip fw-bold mt-4">Ma boutique</h4>
-            <div class="title-divider"></div>
-            <div class="row row-cols-6 mb-4">
-                <div class="col">
-                    <a routerLink="/parametres/ma-boutique">
+            <div *ngIf="role==='ROLE_VENDEUR'">
+                <h4 class="text-ellip fw-bold mt-4">Ma boutique</h4>
+                <div class="title-divider"></div>
+                <div class="row row-cols-6 mb-4">
+                    <div class="col">
+                        <a routerLink="/parametres/ma-boutique">
+                            <div class="action">
+                                <i class="fa-solid fa-store fa-2x"></i>
+                                <span class="text-center">Gérer ma boutique</span>
+                            </div>
+                        </a>
+                    </div>
+                    <!-- <div class="col">
                         <div class="action">
-                            <i class="fa-solid fa-store fa-2x"></i>
-                            <span class="text-center">Gérer ma boutique</span>
+                            <i class="fa-2x  fa-solid fa-lock"></i>
+                            <span class="text-center">Changez votre mot de passe</span>
                         </div>
-                    </a>
-                </div>
-                <!-- <div class="col">
-                    <div class="action">
-                        <i class="fa-2x  fa-solid fa-lock"></i>
-                        <span class="text-center">Changez votre mot de passe</span>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="action">
-                        <i class="fa-2x  fa-solid fa-map-location-dot"></i>
-                        <span class="text-center">Modifier vos adresses de livraison</span>
+                    <div class="col">
+                        <div class="action">
+                            <i class="fa-2x  fa-solid fa-map-location-dot"></i>
+                            <span class="text-center">Modifier vos adresses de livraison</span>
+                        </div>
                     </div>
+                    <div class="col">
+                        <div class="action">
+                            <i class="fa-2x  fa-solid fa-heart-circle-plus"></i>
+                            <span class="text-center">Modifier votre liste de souhaits</span>
+                        </div>
+                    </div> -->
                 </div>
-                <div class="col">
-                    <div class="action">
-                        <i class="fa-2x  fa-solid fa-heart-circle-plus"></i>
-                        <span class="text-center">Modifier votre liste de souhaits</span>
-                    </div>
-                </div> -->
             </div>
         </div>
     </div>

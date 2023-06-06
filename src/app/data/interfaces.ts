@@ -15,15 +15,9 @@ export interface USER {
     userPassword?: string;
     userPhonenumber?: string;
     userIsdeleted?: boolean;
-    userRole?: ROLE;
+    userRole?: string;
     userShop?: SHOP;
     userOrders?: ORDER[];
-}
-
-export interface ROLE {
-    id?: string;
-    roleLibelle?: string;
-    roleUsers?: USER[];
 }
 
 export interface PACK {
@@ -48,6 +42,7 @@ export interface SUBSCRIPTION {
 export interface CATEGORY {
     id?: string;
     categoryLibelle?: string;
+    categorySlug?: string;
     categoryType?: string;
     categoryParent?: CATEGORY;
     categoryIconClass?: string;
@@ -55,7 +50,9 @@ export interface CATEGORY {
 
 export interface SHOP {
     id?: string;
-    shopTitle?: string;
+    shopLibelle?: string;
+    shopSlug?: string;
+    shopDescription?: string;
     shopAddedAt?: string;
     shopProfileImage?: IMAGE;
     shopCoverImage?: IMAGE;
@@ -92,6 +89,7 @@ export interface TRANSACTION {
 export interface PRODUCT {
     id?: string;
     productTitle: string;
+    productSlug?: string;
     productPrice: number;
     productAddedAt?: string;
     productDescription: string;
@@ -101,6 +99,7 @@ export interface PRODUCT {
     productCategory?: CATEGORY;
     productImages?: IMAGE[];
     productBoosts?: BOOST[];
+    shopId?: string;
 }
 
 export interface DELIVERY {

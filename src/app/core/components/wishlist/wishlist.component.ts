@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PRODUCT } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-wishlist',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./wishlist.component.scss']
 })
 export class WishlistComponent {
-
+  public products!: PRODUCT[];
 }

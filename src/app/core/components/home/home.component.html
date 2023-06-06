@@ -4,52 +4,17 @@
         <div class="row">
             <div class="col col-2">
                 <div class="hero-aside container h-100">
-                    <h4 class="text-ellip">Toutes catégories</h4>
+                    <h4 class="text-ellip">Nos produits</h4>
                     <div class="title-divider"></div>
                     <ul>
-                        <li>
-                            <a class="text-ellip" href="" matTooltip="Cosmétique, Santé et Bien-être">
-                                <i class="fa-solid fa-heart"></i>
-                                <span>Cosmétique, Santé et Bien-être</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-ellip" href="" matTooltip="Mode & Accessoires">
-                                <i class="fa-solid fa-person-half-dress"></i>
-                                <span>Mode & Accessoires</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="text-ellip" href="" matTooltip="Produits alimentaires">
-                                <i class="fa-solid fa-cookie-bite"></i>
-                                <span>Produits alimentaires</span>
+                        <li *ngFor="let category of productCategories">
+                            <a class="text-ellip" routerLink="/produits" [queryParams]="{categorie: category.categorySlug}"
+                            matTooltip="{{category.categoryLibelle}}">
+                                <i class="{{category.categoryIconClass}}"></i>
+                                <span>{{category.categoryLibelle}}</span>
                             </a>
                         </li>
                     </ul>
-                    <!-- <h4 class="text-ellip mt-4">Best-sellers</h4>
-                    <div class="title-divider"></div>
-                    <div class="bestsellers">
-                        <div class="single-bestseller" *ngFor="let bestseller of bestsellersProducts">
-                            <div>
-                                <div class="row">
-                                    <div class="col col-4">
-                                        <div class="w-100 h-100">
-                                            <img src="{{imagePath}}{{bestseller.img}}" alt="{{bestseller.libelle}}">
-                                        </div>
-                                    </div>
-                                    <div class="col col-8">
-                                        <div class="">
-                                            <h5 class="text-ellip m-0 fw-bold">{{bestseller.libelle}}</h5>
-                                            <h6 class="text-ellip">{{bestseller.price}}</h6>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <div class="banner">
-                        <img src="http://placehold.it/200x375" alt="banniere pour faire passer une publicité">
-                    </div>
                 </div>
             </div>
             <div class="col col-10 hero-banner">
@@ -117,9 +82,21 @@
     <div class="container">
         <div class="row">
             <div class="col col-2">
-                <div class="tabs-aside h-100">
-                    <h4 class="text-ellip">Tous catégories</h4>
-                    <div class="title-divider"></div>
+                <div class="position-relative">
+                    <div class="tabs-aside h-100">
+                        <h4 class="text-ellip">Nos boutiques</h4>
+                        <div class="title-divider"></div>
+                        <ul>
+                            <li *ngFor="let category of shopCategories">
+                                <a class="text-ellip" routerLink="/boutiques" [queryParams]="{categorie: category.categorySlug}"
+                                matTooltip="{{category.categoryLibelle}}">
+                                    <i class="{{category.categoryIconClass}}"></i>
+                                    <span>{{category.categoryLibelle}}</span>
+                                </a>
+                            </li>
+                        </ul>
+                        <div class="bottom-gradient"></div>
+                    </div>
                 </div>
             </div>
             <div class="col col-10 tabs-main">

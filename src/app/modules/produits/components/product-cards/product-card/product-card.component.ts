@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { PRODUCT } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-product-card',
@@ -8,6 +9,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
 })
 export class ProductCardComponent {
   
+  @Input() product!: PRODUCT;
   public imagesProducts = [
     '',
     'product1.jpg','product2.jpg','product3.jpg',

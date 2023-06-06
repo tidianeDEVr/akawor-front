@@ -10,6 +10,45 @@ export class ProduitsService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getProducts():Promise<PRODUCT[]>{
+    return new Promise<PRODUCT[]>(resolve => {
+      this.httpClient.get(`${environment.BACKEND_BASE_URL}/product/find-all`)
+      .subscribe({
+        next: (produits:any)=>{
+          resolve(produits);
+        },
+        error: (err)=>{
+          resolve(err)
+        },
+      })
+    })
+  }
+  getProductBySlug(slug:string):Promise<PRODUCT>{
+    return new Promise<PRODUCT>(resolve=>{
+      this.httpClient.get(`${environment.BACKEND_BASE_URL}/product/find-by-slug/${slug}`)
+      .subscribe({
+        next: (produit:any)=>{
+          resolve(produit);
+        },
+        error: (err)=>{
+          resolve(err)
+        },
+      })
+    })
+  }
+  getProductsByShop(id:string): Promise<PRODUCT[]>{
+    return new Promise<PRODUCT[]>(resolve=>{
+      this.httpClient.get(`${environment.BACKEND_BASE_URL}/product/find-by-shop/${id}`)
+      .subscribe({
+        next:(produits:any)=>{
+          resolve(produits)
+        },
+        error: (err)=>{
+          resolve(err)
+        }
+      })
+    })
+  }
   getCategoriesProducts():Promise<CATEGORY[]>{
     let categories:CATEGORY[] = [] 
     return new Promise<CATEGORY[]>(resolve =>{
@@ -20,7 +59,7 @@ export class ProduitsService {
           resolve(categories)
         },
         error: (err)=>{
-          resolve(categories)
+          resolve(err)
         }, 
       })
     })
@@ -40,15 +79,28 @@ export class ProduitsService {
       })
     })
   }
-  createProduct(product: PRODUCT): Promise<Boolean>{
+  createProduct(product: PRODUCT, productOwnerId: string): Promise<Boolean>{
     return new Promise<Boolean>(resolve => {
-      this.httpClient.post(`${environment.BACKEND_BASE_URL}/product/insert`, {product})
+      this.httpClient.post(`${environment.BACKEND_BASE_URL}/product/insert`, {product, productOwnerId})
       .subscribe({
         next: (res:any)=>{
           resolve(true);
         },
         error:(err)=>{
           resolve(false);
+        }
+      })
+    })
+  }
+  getSellerProducts(sellerId: string): Promise<PRODUCT[]>{
+    return new Promise<PRODUCT[]>(resolve => {
+      this.httpClient.get(`${environment.BACKEND_BASE_URL}/product/seller/${sellerId}`)
+      .subscribe({
+        next: (res:any)=>{
+          resolve(res);
+        },
+        error: (err)=>{
+          resolve(err);
         }
       })
     })

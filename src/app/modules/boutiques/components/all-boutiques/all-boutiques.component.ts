@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BoutiquesService } from '../../services/boutiques.service';
-import { CATEGORY } from 'src/app/data/interfaces';
+import { CATEGORY, SHOP } from 'src/app/data/interfaces';
 
 @Component({
   selector: 'app-all-boutiques',
@@ -11,10 +11,7 @@ export class AllBoutiquesComponent implements OnInit {
   public loaderShops = [
     '', '', '', '', '', '', '', '','', '', '', '', '', '', '',
   ];
-  public activeShops = [
-    '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '',
-    '', '', '', '', '', '', '', '','', '', '', '', '', '', '', ''
-  ];
+  public shops!: SHOP[];
   public shopCategories:any[] = []
   public activeCategory!: CATEGORY;
   public isShopLoading: boolean = true; 
@@ -27,16 +24,14 @@ export class AllBoutiquesComponent implements OnInit {
     this.boutiquesService.getCategoriesShops().then((res)=>{
       this.shopCategories = res
     })
+    this.boutiquesService.getActiveShop()
+    .then((res:any)=>{
+      this.shops = res
+    })
   }
   public changeCategory(category:CATEGORY){
     if (this.isShopLoading) return;
-    this.fakeLoad();
+    // this.fakeLoad();
     this.activeCategory = category
-  }
-  public fakeLoad(){
-    this.isShopLoading = true;
-    setTimeout(() => {
-      this.isShopLoading = false
-    }, 3000);
   }
 }

@@ -15,9 +15,10 @@ export class RegisterComponent {
   passwordControl = new FormControl('', [Validators.required]);
   confirmpasswordControl = new FormControl('', [Validators.required]);
   checkedRemember: boolean = false;
+  isSeller: boolean = false;
   hidePassword: boolean = true;
-
-  constructor(private service:SecurityService){}
+  constructor(private service:SecurityService){
+  }
 
   public register(){
     if (
@@ -32,6 +33,7 @@ export class RegisterComponent {
         userEmail: this.emailControl.value,
         userPassword: this.passwordControl.value,
       }
+      if (this.isSeller) newUser.userRole = 'ROLE_VENDEUR';
       this.service.register(newUser)
     }
   }

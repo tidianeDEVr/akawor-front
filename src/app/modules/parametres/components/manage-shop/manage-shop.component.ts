@@ -42,7 +42,7 @@ export class ManageShopComponent implements OnInit {
   constructor(
     private boutiquesServices: BoutiquesService,
     private toastService: ToastService,
-    private sanitizer:DomSanitizer){}
+    ){}
   ngOnInit(): void {
     this.boutiquesServices.getCategoriesShops().then((res)=>{
       this.shopCatgories = res

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Emitters } from 'src/app/emitters/emitters';
+import { CATEGORY } from 'src/app/data/interfaces';
+import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
+import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
 
 @Component({
   selector: 'app-home',
@@ -293,7 +295,20 @@ export class HomeComponent {
       img: 'product4.jpg',
     },
   ];
-  constructor() {
+  public shopCategories: CATEGORY[] = []
+  public productCategories: CATEGORY[] = []
+  constructor(
+    private produitsService: ProduitsService,
+    private boutiquesService: BoutiquesService,
+  ) {
     this.isProductsLoaded = true;
+    this.produitsService.getCategoriesProducts()
+    .then((categories)=>{
+      this.productCategories = categories;
+    })
+    this.boutiquesService.getCategoriesShops()
+    .then((categories)=>{
+      this.shopCategories = categories
+    })
   }
 }

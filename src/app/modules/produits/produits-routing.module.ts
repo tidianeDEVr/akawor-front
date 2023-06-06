@@ -12,11 +12,6 @@ const routes: Routes = [
     title: 'Nos annonces - Akawor'
   },
   { 
-    path: 'dynamic', 
-    component: SingleProduitComponent, 
-    title: 'Nom du produit',
-  },
-  { 
     path: 'nouvelle-annonce',
     component: CreateProductComponent, 
     title: 'Nouvelle annonce',
@@ -25,6 +20,11 @@ const routes: Routes = [
     path: 'mes-annonces',
     component: MyProductsComponent,
     title: 'Gérer mes annonces',
+  },
+  { 
+    path: '**', 
+    component: SingleProduitComponent, 
+    title: 'Nom du produit',
   }
 ];
 

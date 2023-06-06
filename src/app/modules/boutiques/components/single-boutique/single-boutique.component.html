@@ -1,11 +1,11 @@
-<section class="single-shop">
+<section class="single-shop" *ngIf="shop">
     <div class="identities">
-        <div class="cover">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.022959379257!2d-17.47065692536832!3d14.711293724357906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172a4a47b525b%3A0x250389427be60011!2sCit%C3%A9%20Keur%20Gorgui%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1681917891864!5m2!1sfr!2ssn" height="100%" style="border:0;width: 100vw;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
         <!-- <div class="cover">
-            <img src="../../../../assets/images/backgrounds/background-1.webp" alt="pattern">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.022959379257!2d-17.47065692536832!3d14.711293724357906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172a4a47b525b%3A0x250389427be60011!2sCit%C3%A9%20Keur%20Gorgui%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1681917891864!5m2!1sfr!2ssn" height="100%" style="border:0;width: 100vw;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div> -->
+        <div class="cover">
+            <img src="../../../../assets/images/backgrounds/patterns/more-leaves.png" alt="pattern">
+        </div>
         <div class="container py-4">
             <div class="row">
                 <div class="col-2">
@@ -13,12 +13,10 @@
                         <img src="../../../../assets/images/shops/adaa-ada.png" alt="shop" class="img-thumbnail">
                     </div>
                 </div>
-                <div class="col-5">
+                <div class="col-5" *ngIf="shop">
                     <div class="shop-description">
-                        <h1 class="text-ellip">Adaa Ada</h1>
-                        <p>
-                            Adaa Ada, le retour à la tradition, est une marque sénégalaise de produits capillaires 100% naturels faits à base de fruits et de légumes tels que l’hibiscus, le gombo, les feuilles de baobab, le beurre de karité, le beurre de mangue, les feuilles de citronnelles, …
-                        </p>
+                        <h1 class="text-ellip text-capitalize">{{shop.shopLibelle}}</h1>
+                        <p>{{shop.shopDescription}}</p>
                     </div>
                 </div>
                 <div class="col-5">
@@ -52,22 +50,22 @@
                                 <div class="row row-cols-4">
                                     <div class="col">
                                         <div>
-                                            <a href="">
-                                                <i class="fa-2x fa-brands fa-facebook-f"></i>
+                                            <a href="" matTooltip="Facebook">
+                                                <i class="fa-brands fa-facebook-f"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div>
-                                            <a href="">
-                                                <i class="fa-2x fa-brands fa-instagram"></i>
+                                            <a href="" matTooltip="Instagram">
+                                                <i class="fa-brands fa-instagram"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div>
-                                            <a href="">
-                                                <i class="fa-2x fa-brands fa-tiktok"></i>
+                                            <a href="" matTooltip="Tiktok">
+                                                <i class="fa-brands fa-tiktok"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -142,9 +140,13 @@
                                 <app-product-card-loader></app-product-card-loader>
                             </div>
                         </div>
+                        <div class="empty-result d-flex flex-column align-items-center" *ngIf="!products || products.length === 0">
+                            <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5">
+                            <span class="w-100 text-center fw-bold alert alert-danger">Pas d'annonces trouvées !</span>
+                        </div>
                         <div class="row row-cols-4 g-3 mb-4" *ngIf="isProductsLoaded">
-                            <div class="col" *ngFor="let card of shopProducts">
-                                <app-product-card></app-product-card>
+                            <div class="col" *ngFor="let product of products">
+                                <app-product-card [product]="product"></app-product-card>
                             </div>
                         </div>
                     </div>

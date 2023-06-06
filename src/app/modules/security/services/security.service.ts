@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { USER } from 'src/app/data/interfaces';
-import { Emitters } from 'src/app/emitters/emitters';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -54,16 +53,13 @@ export class SecurityService {
         .post(`${environment.BACKEND_BASE_URL}/security/register`, user)
         .subscribe({
           next: (res: any) => {
-            if (res.status === 'success') {
-              this.toastService.show({header:'Message d\'alerte', body:'Inscription reussi ! Utilisez votre identifiant et mot de passe pour vous authentifier.', isSuccess:true})
-              this.router.navigate(['/security/connexion'], {
-                queryParams: { email: user.userEmail },
-              });
-            } else {
-              alert('Try again');
-            }
+            this.toastService.show({header:'Message d\'alerte', body:'Inscription reussi ! Utilisez votre identifiant et mot de passe pour vous authentifier.', isSuccess:true})
+            this.router.navigate(['/security/connexion'], {
+              queryParams: { email: user.userEmail },
+            });
           },
           error: (err) => {
+            this.toastService.show({header:'Message d\'erreur', body:'Une erreur s\'est produite! Réessayez plus tard.'})
             console.log(err);
         },
       });
