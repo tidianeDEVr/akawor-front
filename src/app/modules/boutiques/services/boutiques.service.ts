@@ -43,7 +43,7 @@ export class BoutiquesService {
       this.httpClient.post(`${environment.BACKEND_BASE_URL}/shop/find-by-seller`,{email})
       .subscribe({
         next:(shop:any)=>{
-          resolve(shop)
+          resolve(shop);
         },
         error:(err)=>{
           console.log(err);

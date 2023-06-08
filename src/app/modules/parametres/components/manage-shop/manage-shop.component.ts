@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { FilePond, FilePondOptions } from 'filepond';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { CATEGORY, SHOP, USER } from 'src/app/data/interfaces';
+import { CATEGORY, SHOP, SOCIAL, USER } from 'src/app/data/interfaces';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
 
@@ -13,6 +13,7 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
   styleUrls: ['./manage-shop.component.scss']
 })
 export class ManageShopComponent implements OnInit {
+  public urlRegex: string = '/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/'
   @ViewChild('myPond')
   public myPond!: FilePond;
   public pondFiles: FilePondOptions["files"] = [ ]
@@ -31,11 +32,16 @@ export class ManageShopComponent implements OnInit {
     
   }
   public shop!:SHOP;
+  public social!: SOCIAL;
   public shopCatgories!: CATEGORY[];
   public descriptionControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
   public corpNameControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
   public userEmailControl = new FormControl('', [Validators.required]);
   public workingHoursControl = new FormControl('', [Validators.required]);
+  public facebookControl = new FormControl('', [Validators.pattern(this.urlRegex)]);
+  public instagramControl = new FormControl('', [Validators.pattern(this.urlRegex)]);
+  public tiktokControl = new FormControl('', [Validators.pattern(this.urlRegex)]);
+  public websiteControl = new FormControl('', [Validators.pattern(this.urlRegex)]);
   public corpNameUrl:string = '';
   public user !: USER;
   public userPosition = {
@@ -57,10 +63,19 @@ export class ManageShopComponent implements OnInit {
         this.boutiquesServices.getShopBySeller(res.userEmail)
         .then((rs)=>{
           this.shop = rs;
+          if(rs.Social) {
+            this.social = rs.Social
+            if(this.social.facebookLink) this.facebookControl.setValue(this.social.facebookLink)
+            if(this.social.instagramLink) this.instagramControl.setValue(this.social.instagramLink)
+            if(this.social.tiktokLink) this.tiktokControl.setValue(this.social.tiktokLink)
+            if(this.social.websiteLink) this.websiteControl.setValue(this.social.websiteLink)
+            
+          };
           // HYDRATE CHAMPS
           if(this.shop.shopLibelle) this.corpNameControl.setValue(this.shop.shopLibelle)
           if(this.shop.shopDescription) this.descriptionControl.setValue(this.shop.shopDescription)
           if(this.shop.shopWorkingHours) this.workingHoursControl.setValue(this.shop.shopWorkingHours)
+          // if(this.shop.website) this.workingHoursControl.setValue(this.shop.shopWorkingHours)
           if(this.user.userEmail) this.userEmailControl.setValue(this.user.userEmail); 
         }).catch((err)=>{
           console.log(err);

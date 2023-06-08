@@ -1,5 +1,9 @@
 <section class="manage-section">
-    {{shop|json}}
+    <div class="container p-5 bg-danger">
+        {{shop|json}}
+        <mat-divider></mat-divider>
+        {{social|json}}
+    </div>
     <div class="container">
         <div class="row">
             <div class="col col-3">
@@ -78,25 +82,25 @@
                                                 <mat-label>Adresse e-mail</mat-label>
                                                 <input matInput type="email" [formControl]="userEmailControl">
                                                 <mat-icon matSuffix>alternate_email</mat-icon>
-                                                <mat-hint>E-mail</mat-hint>
+                                                <mat-hint align="end">E-mail</mat-hint>
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
                                                 <mat-label>Numéro de téléphone</mat-label>
                                                 <input matInput value="+221781234567">
                                                 <mat-icon matSuffix>phone</mat-icon>
-                                                <mat-hint>Téléphone</mat-hint>
+                                                <mat-hint align="end">Téléphone</mat-hint>
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
                                                 <mat-label>Site internet de l'entreprise</mat-label>
-                                                <input matInput placeholder="https://mon-entreprise.com">
+                                                <input matInput placeholder="https://mon-entreprise.com" [formControl]="websiteControl">
                                                 <mat-icon matSuffix>language</mat-icon>
-                                                <mat-hint>Site web</mat-hint>
+                                                <mat-hint align="end">{{websiteControl.valid ? 'Lien valide' : 'Lien invalide'}}</mat-hint>
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
                                                 <mat-label>Horaires d'ouvertures</mat-label>
                                                 <input matInput [formControl]="workingHoursControl">
                                                 <mat-icon matSuffix>calendar_month</mat-icon>
-                                                <mat-hint>Horaires</mat-hint>
+                                                <mat-hint align="end">Horaires</mat-hint>
                                             </mat-form-field>
                                         </div>
                                     </mat-card-content>
@@ -115,22 +119,22 @@
                                             tiktok<br> 
                                             fb<br> -->
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
-                                                <mat-label>Lien vers Instagram</mat-label>
-                                                <input matInput placeholder="Placeholder">
+                                                <mat-label>Lien vers votre compte Instagram</mat-label>
+                                                <input matInput placeholder="Placeholder" [formControl]="instagramControl">
                                                 <i class="fa-brands fa-instagram fa-lg" style="margin-right: 10px;" matSuffix></i>
-                                                <mat-hint>Instagram</mat-hint>
+                                                <mat-hint align="end">{{instagramControl.valid ? 'Lien valide' : 'Lien invalide'}}</mat-hint>
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
-                                                <mat-label>Lien vers Facebook</mat-label>
-                                                <input matInput placeholder="Placeholder">
+                                                <mat-label>Lien vers votre compte Facebook</mat-label>
+                                                <input matInput placeholder="Placeholder" [formControl]="facebookControl">
                                                 <i class="fa-brands fa-facebook-f fa-lg" style="margin-right: 15px;" matSuffix></i>
-                                                <mat-hint>Facebook</mat-hint>
+                                                <mat-hint align="end">{{facebookControl.valid ? 'Lien valide' : 'Lien invalide'}}</mat-hint>
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100">
-                                                <mat-label>Lien vers Tiktok</mat-label>
-                                                <input matInput placeholder="Placeholder">
+                                                <mat-label>Lien vers votre compte Tiktok</mat-label>
+                                                <input matInput placeholder="Placeholder" [formControl]="tiktokControl">
                                                 <i class="fa-brands fa-tiktok fa-lg" style="margin-right: 10px;" matSuffix></i>
-                                                <mat-hint>Tiktok</mat-hint>
+                                                <mat-hint align="end">{{tiktokControl.valid ? 'Lien valide' : 'Lien invalide'}}</mat-hint>
                                             </mat-form-field>
                                         </div>
                                         <p class="text-end advise m-0 p-0">- Laissez les champs vides pour les désactiver.</p>

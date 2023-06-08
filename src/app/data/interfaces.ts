@@ -53,6 +53,8 @@ export interface SHOP {
     shopLibelle?: string;
     shopSlug?: string;
     shopDescription?: string;
+    shopLatitude?: string;
+    shopLongitude?: string;
     shopWorkingHours?: string;
     shopAddedAt?: string;
     shopAddress?: string;
@@ -63,8 +65,15 @@ export interface SHOP {
     shopCategory?: CATEGORY;
     shopSubscriptions?: SUBSCRIPTION[];
     shopProducts?: PRODUCT[];
+    Social?: SOCIAL;
 }
-
+export interface SOCIAL {
+    id?: string;
+    facebookLink?: string;
+    instagramLink?: string;
+    websiteLink?: string;
+    tiktokLink?: string;
+}
 export interface ORDER {
     id?: string;
     orderAddedAt?: string;

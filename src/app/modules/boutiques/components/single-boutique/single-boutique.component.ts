@@ -52,7 +52,7 @@ export class SingleBoutiqueComponent implements OnInit {
           this.router.navigate(['/boutiques']);
         this.shop = res;
         if (this.shop.shopLibelle)
-          document.title = this.shop.shopLibelle.toUpperCase();
+          document.title = `${this.shop.shopLibelle} - Akawor`;
         if (this.shop.id) {
           this.produitService.getProductsByShop(this.shop.id).then((res) => {
             this.products = res;
