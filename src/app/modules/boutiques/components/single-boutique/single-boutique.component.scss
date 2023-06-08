@@ -37,6 +37,18 @@
                 p {
                     margin: 0;
                     color: var(--gray-600);
+                    max-height: 100px;
+                    padding-bottom: 30px;
+                    overflow-y: scroll;
+                }
+                .bottom-gradient {
+                    position: absolute;
+                    width: 100%;
+                    left: 0;
+                    bottom: 0;
+                    height: 30px;
+                    background: rgb(0,0,0);
+                    background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
                 }
 
             }

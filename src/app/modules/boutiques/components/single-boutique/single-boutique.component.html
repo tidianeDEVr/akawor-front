@@ -1,22 +1,23 @@
 <section class="single-shop" *ngIf="shop">
     <div class="identities">
-        <!-- <div class="cover">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.022959379257!2d-17.47065692536832!3d14.711293724357906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172a4a47b525b%3A0x250389427be60011!2sCit%C3%A9%20Keur%20Gorgui%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1681917891864!5m2!1sfr!2ssn" height="100%" style="border:0;width: 100vw;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div> -->
         <div class="cover">
-            <img src="../../../../assets/images/backgrounds/patterns/more-leaves.png" alt="pattern">
+            <iframe [src]="url" height="100%" style="border:0;width: 100vw;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <!-- <img src="../../../../assets/images/backgrounds/patterns/more-leaves.png" alt="pattern" loading="lazy"> -->
         </div>
         <div class="container py-4">
             <div class="row">
                 <div class="col-2">
                     <div class="profile">
-                        <img src="../../../../assets/images/shops/adaa-ada.png" alt="shop" class="img-thumbnail">
+                        <img src="../../../../assets/images/shops/logo-placeholder.jpeg" alt="shop" class="img-thumbnail" loading="lazy">
                     </div>
                 </div>
                 <div class="col-5" *ngIf="shop">
                     <div class="shop-description">
                         <h1 class="text-ellip text-capitalize">{{shop.shopLibelle}}</h1>
-                        <p>{{shop.shopDescription}}</p>
+                        <div class="position-relative">
+                            <p>{{shop.shopDescription}}</p>
+                            <div class="bottom-gradient"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-5">
@@ -51,21 +52,21 @@
                                     <div class="col">
                                         <div>
                                             <a href="" matTooltip="Facebook">
-                                                <i class="fa-brands fa-facebook-f"></i>
+                                                <i class="fa-xl fa-brands fa-facebook-f"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div>
                                             <a href="" matTooltip="Instagram">
-                                                <i class="fa-brands fa-instagram"></i>
+                                                <i class="fa-xl fa-brands fa-instagram"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col">
                                         <div>
                                             <a href="" matTooltip="Tiktok">
-                                                <i class="fa-brands fa-tiktok"></i>
+                                                <i class="fa-xl fa-brands fa-tiktok"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -82,7 +83,7 @@
             <div class="row">
                 <div class="col col-2">
                     <aside class="container h-100">
-                        <img src="../../../../assets/images/banners/banner-420x420.jpeg" alt="banner">
+                        <img src="../../../../assets/images/banners/banner-420x420.jpeg" alt="banner" loading="lazy">
                         <h4 class="text-ellip pt-3 fw-bold">Catégories</h4>
                         <div class="title-divider" style="margin-top: -12px;"></div>
                         <ul>
@@ -141,7 +142,7 @@
                             </div>
                         </div>
                         <div class="empty-result d-flex flex-column align-items-center" *ngIf="!products || products.length === 0">
-                            <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5">
+                            <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5" loading="lazy">
                             <span class="w-100 text-center fw-bold alert alert-danger">Pas d'annonces trouvées !</span>
                         </div>
                         <div class="row row-cols-4 g-3 mb-4" *ngIf="isProductsLoaded">

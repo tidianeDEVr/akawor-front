@@ -15,23 +15,20 @@ export class AllBoutiquesComponent implements OnInit {
   public shopCategories:any[] = []
   public activeCategory!: CATEGORY;
   public isShopLoading: boolean = true; 
-  constructor(private boutiquesService: BoutiquesService){
-    setTimeout(() => {
-      this.isShopLoading = !this.isShopLoading;
-    }, 3000);
-  }
+  constructor(private boutiquesService: BoutiquesService){ }
   ngOnInit(): void {
     this.boutiquesService.getCategoriesShops().then((res)=>{
       this.shopCategories = res
     })
     this.boutiquesService.getActiveShop()
     .then((res:any)=>{
-      this.shops = res
+      this.shops = res;
+      this.isShopLoading = false;
     })
   }
   public changeCategory(category:CATEGORY){
     if (this.isShopLoading) return;
-    // this.fakeLoad();
+    // this.isShopLoading = true;
     this.activeCategory = category
   }
 }

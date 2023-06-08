@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CATEGORY, PRODUCT } from 'src/app/data/interfaces';
+import { CATEGORY, IMAGE, PRODUCT } from 'src/app/data/interfaces';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -79,15 +79,15 @@ export class ProduitsService {
       })
     })
   }
-  createProduct(product: PRODUCT, productOwnerId: string): Promise<Boolean>{
-    return new Promise<Boolean>(resolve => {
+  createProduct(product: PRODUCT, productOwnerId: string): Promise<PRODUCT>{
+    return new Promise<PRODUCT>(resolve => {
       this.httpClient.post(`${environment.BACKEND_BASE_URL}/product/insert`, {product, productOwnerId})
       .subscribe({
         next: (res:any)=>{
-          resolve(true);
+          resolve(res);
         },
         error:(err)=>{
-          resolve(false);
+          resolve(err);
         }
       })
     })
@@ -102,6 +102,19 @@ export class ProduitsService {
         error: (err)=>{
           resolve(err);
         }
+      })
+    })
+  }
+  getImagesByProducts(id:string):Promise<IMAGE[]>{
+    return new Promise<IMAGE[]>(resolve=>{
+      this.httpClient.get(`${environment.BACKEND_BASE_URL}/image/find-by-product/${id}`)
+      .subscribe({
+        next: (res:any)=>{
+          resolve(res)
+        },
+        error: (err)=>{
+          resolve(err)
+        },
       })
     })
   }

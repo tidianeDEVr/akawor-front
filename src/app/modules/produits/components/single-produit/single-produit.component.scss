@@ -29,10 +29,10 @@
                 .others-images {
                     margin: 10px 0;
                     display: flex;
-                    cursor: pointer;
                     overflow-x: scroll;
                     overflow-y: hidden;
                     img {
+                        cursor: pointer;
                         width: 65px;
                         aspect-ratio: 1;
                         border-radius: 5px;
@@ -157,7 +157,8 @@
                     }
                 }
                 .share {
-                    a {
+                    button {
+                        border: none;
                         display: flex;
                         align-items: center;
                         justify-content: center;
@@ -172,7 +173,7 @@
                             color:var(--black);
                         }
                     }
-                    a:hover {
+                    button:hover {
                         margin-top: -5px;
                         scale: 1.1;
                         i {

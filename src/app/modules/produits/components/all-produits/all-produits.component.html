@@ -13,15 +13,15 @@
                                 </button>
                             </div>
                             <div class="title-divider" style="margin-top: -12px;"></div>
-                            <div style="margin-right: 10px;" class="price-range">
+                            <div style="margin-right: 10px;" class="price-range" *ngIf="priceRangeMax">
                                 <h4 class="text-ellip pt-2">Échelle des prix</h4>
-                                <mat-slider min="0" max="1000000" step="10000" class="w-100" color="warn" (change)="filterProducts()">
+                                <mat-slider min="0" max="{{priceRangeMax}}" step="500" class="w-100" color="warn" (change)="filterProducts()">
                                     <input value="0" matSliderStartThumb [(ngModel)]="priceRangeMin">
                                     <input value="5000" matSliderEndThumb [(ngModel)]="priceRangeMax">
                                 </mat-slider>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <span class="fw-bold">{{priceRangeMin|number}} F CFA</span>
-                                    <span class="fw-bold">{{priceRangeMax|number}} F CFA</span>
+                                    <span class="fw-bold">{{priceRangeMin|number}} €</span>
+                                    <span class="fw-bold">{{priceRangeMax|number}} €</span>
                                 </div>
                             </div>
                             <h4 class="text-ellip pt-3 fw-bold">Catégories</h4>

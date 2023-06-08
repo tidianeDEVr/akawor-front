@@ -21,7 +21,7 @@
                 <ngb-carousel *ngIf="heroBanners">
                     <ng-template ngbSlide *ngFor="let banner of heroBanners">
                         <div class="picsum-img-wrapper">
-                            <img [src]="banner.imgPath" alt="Random first slide" />
+                            <img [src]="banner.imgPath" alt="Random first slide" loading="lazy"/>
                         </div>
                         <div class="carousel-caption">
                             <h3>First slide label</h3>
@@ -34,7 +34,7 @@
                         <div class="row">
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <img src="../../../../assets/images/delivery.svg" alt="Livraison rapide et securisée">
+                                    <img src="../../../../assets/images/delivery.svg" alt="Livraison rapide et securisée" loading="lazy">
                                     <h5>Livraison rapide et sécurisée</h5>
                                     <p>
                                         Nous livrons partout au Sénégal et en France.
@@ -43,7 +43,7 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <img src="../../../../assets/images/support.svg" alt="Un service client à votre écoute ">
+                                    <img src="../../../../assets/images/support.svg" alt="Un service client à votre écoute" loading="lazy">
                                     <h5>Un service client à votre écoute</h5>
                                     <p>
                                         Assistance 24h/24 pour une expérience inoubliable.
@@ -52,7 +52,7 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <img src="../../../../assets/images/secure.svg" alt="Paiement sécurisé">
+                                    <img src="../../../../assets/images/secure.svg" alt="Paiement sécurisé" loading="lazy">
                                     <h5>Paiement sécurisé</h5>
                                     <p>
                                         Des méthodes de paiement populaires et sécurisées.
@@ -61,7 +61,7 @@
                             </div>
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
-                                    <img src="../../../../assets/images/online_shop.svg" alt="Produits made in Senegal">
+                                    <img src="../../../../assets/images/online_shop.svg" alt="Produits made in Senegal" loading="lazy">
                                     <h5>Produits made in Senegal </h5>
                                     <p>
                                         Les meilleurs artisans sénégalais pour vous.

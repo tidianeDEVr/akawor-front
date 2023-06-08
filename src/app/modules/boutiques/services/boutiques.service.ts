@@ -38,6 +38,19 @@ export class BoutiquesService {
       })
     })
   }
+  getShopBySeller(email:string):Promise<SHOP>{
+    return new Promise<SHOP>(resolve => {
+      this.httpClient.post(`${environment.BACKEND_BASE_URL}/shop/find-by-seller`,{email})
+      .subscribe({
+        next:(shop:any)=>{
+          resolve(shop)
+        },
+        error:(err)=>{
+          console.log(err);
+        }
+      })
+    })
+  }
   getShopBySlug(slug:string):Promise<SHOP>{
     return new Promise<SHOP>(resolve=>{
       this.httpClient.get(`${environment.BACKEND_BASE_URL}/shop/find-by-slug/${slug}`)

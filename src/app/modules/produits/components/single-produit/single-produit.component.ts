@@ -1,44 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { PRODUCT, SHOP } from 'src/app/data/interfaces';
+import { IMAGE, PRODUCT, SHOP } from 'src/app/data/interfaces';
 import { ProduitsService } from '../../services/produits.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-single-produit',
   templateUrl: './single-produit.component.html',
   styleUrls: ['./single-produit.component.scss']
 })
-export class SingleProduitComponent implements OnInit{
+export class SingleProduitComponent implements OnInit {
   choosedImg:string = ''
   public product!: PRODUCT;
   public shop!: SHOP;
-  public sameCategoryProducts: PRODUCT[] =  [
-    {
-      productTitle: "Nom du produit 1",
-      productPrice: 2000,
-      productDescription: 'Description du produit',
-      productIsOutOfStock: false,
-    },
-    {
-      productTitle: "Nom du produit 2",
-      productPrice: 2000,
-      productDescription: 'Description du produit',
-      productIsOutOfStock: false,
-    },
-    {
-      productTitle: "Nom du produit 3",
-      productPrice: 2000,
-      productDescription: 'Description du produit',
-      productIsOutOfStock: false,
-    },
-    {
-      productTitle: "Nom du produit 4",
-      productPrice: 2000,
-      productDescription: 'Description du produit',
-      productIsOutOfStock: false,
-    }
-  ]
+  public sameCategoryProducts!: PRODUCT[];
   public sameCategoryProductsConfig = {
     "slidesToShow": 1,
     "slidesToScroll": 1,
@@ -59,24 +35,16 @@ export class SingleProduitComponent implements OnInit{
     "autoplaySpeed": 3000,
     "speed": 300,
   };
+  public images!: IMAGE[];
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
   constructor(
     private produitService: ProduitsService,
     private boutiqueService: BoutiquesService,
     private router: Router
     ){
     this.choosedImg = this.choosedImg[Math.random() * (10 + 1) + 0]
-    // window.addEventListener("load", function() {
-    //   // SINGLE IMAGE CLICK
-    //   var otherImages = document.querySelectorAll(".other-image");
-    //   var mainImage:HTMLImageElement | null = document.querySelector('.main-image')
-    //   otherImages.forEach(image => {
-    //     let path = image.getAttribute('src')
-    //     image.addEventListener('click', ()=>{
-    //       if(mainImage && path) mainImage.setAttribute('src', path) 
-    //     })
-    //   });
-    // });
   }
+  
   async ngOnInit() {
     const url = window.location.href;
     const slug =  url.split('/')[4];
@@ -85,7 +53,12 @@ export class SingleProduitComponent implements OnInit{
     .then((res:any)=>{
       if(res.message == "product not found") this.router.navigate(['/produits']);
       this.product = res;
-      if(this.product.productTitle) document.title = this.product.productTitle;
+      if(this.product.productTitle) document.title = `${this.product.productTitle} - Akawor`;
+      if(this.product.id) {
+        this.produitService.getImagesByProducts(this.product.id).then((res)=>{
+          this.images = res;
+        })
+      }
     })
     .catch((err)=>{
       console.log(err);
@@ -95,8 +68,19 @@ export class SingleProduitComponent implements OnInit{
       this.boutiqueService.getShopById(this.product.shopId)
       .then((res)=>{
         this.shop = res
-        console.log(res);
       })
+    }
+  }
+  changeImage(imageTitle:string|undefined){
+    if(!imageTitle) return;
+    var mainImage:HTMLImageElement | null = document.querySelector('.main-image')
+    const path = `${this.imageBaseUrl+imageTitle}`
+    if (mainImage) mainImage.setAttribute('src', path) 
+  }
+  shareLink(){
+    if (!navigator.canShare) {
+      alert(`Your browser doesn't support the Web Share API.`)
+      return;
     }
   }
 }

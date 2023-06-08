@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { SHOP } from 'src/app/data/interfaces';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-shop-card',
@@ -8,15 +9,6 @@ import { SHOP } from 'src/app/data/interfaces';
 })
 export class ShopCardComponent {
   @Input() shop!: SHOP;
-
-  public imagesShops = [
-    '',
-    'adaa-ada.png','baawaan.png','malado.png',
-    'nefertitis.jpeg', 'nilaja.jpeg', 'outalma.png',
-    'senteursdexq.png', 'zimlam.png',
-  ]
-  public choosedImage: string = ''
-  constructor(){
-    this.choosedImage = '../../../../../../assets/images/shops/'+this.imagesShops[Math.floor(Math.random() * 8) + 1];
-  }
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  constructor(){ }
 }

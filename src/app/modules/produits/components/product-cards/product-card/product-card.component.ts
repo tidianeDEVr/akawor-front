@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { PRODUCT } from 'src/app/data/interfaces';
+import { IMAGE, PRODUCT } from 'src/app/data/interfaces';
+import { ProduitsService } from '../../../services/produits.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-product-card',
@@ -10,18 +12,9 @@ import { PRODUCT } from 'src/app/data/interfaces';
 export class ProductCardComponent {
   
   @Input() product!: PRODUCT;
-  public imagesProducts = [
-    '',
-    'product1.jpg','product2.jpg','product3.jpg',
-    'product4.jpg', 'product5.jpg', 'product6.jpg',
-    'product7.jpg', 'product8.jpg', 'product9.jpg',
-    'product10.jpg', 'sac-ely-1.jpeg'
-  ]
-  public choosedImg: string = ''
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
   
-  constructor(private toastService: ToastService){
-    this.choosedImg = '../../../../../../assets/images/products/'+this.imagesProducts[Math.floor(Math.random() * 10) + 1];
-  }
+  constructor(private toastService: ToastService){ }
   addToCart(){
     this.toastService.show({header:'Messa d\'alerte', body:'Le produit a été ajouter a votre panier.', isSuccess:true})
   }

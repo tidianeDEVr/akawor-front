@@ -1,7 +1,12 @@
 <article class="product-card" *ngIf="product">
     <a routerLink="/produits/{{product.productSlug}}" style="text-decoration: none;">
         <div class="img-holder position-relative">
-            <img [src]="choosedImg" alt="">
+            <img src="{{imageBaseUrl+product.productMainImage}}" 
+            alt="{{product.productTitle}}" *ngIf="product.productMainImage"
+            loading="lazy" crossorigin="anonymous">
+            <img src="../../../../../../assets/images/products/product-placeholder.png" 
+            alt="product placeholder" *ngIf="!product.productMainImage"
+            loading="lazy">
             <div class="position-absolute zoom-icon">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
             </div>
@@ -9,7 +14,7 @@
     </a>
     <div class="infos">
         <div class="top-infos">
-            <span class="text-ellip text-center">{{product.productTitle|uppercase}}</span>
+            <span class="text-ellip text-center">{{product.productTitle}}</span>
         </div>
         <mat-divider></mat-divider>
         <div class="text-center">

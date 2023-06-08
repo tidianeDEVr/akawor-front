@@ -1,4 +1,5 @@
 <section class="manage-section">
+    {{shop|json}}
     <div class="container">
         <div class="row">
             <div class="col col-3">
@@ -16,11 +17,6 @@
                                             <span>Informations de base</span> 
                                         </mat-card-title>
                                         <div class="mb-4">
-                                            <!-- photo profil<br>
-                                            titre <br>
-                                            description<br>
-                                            categorie<br>
-                                            banniere (localisation ou photo)<br> -->
                                             <div class="row">
                                                 <div class="col-5 col">
                                                     <div>
@@ -37,7 +33,7 @@
                                                         </div>
                                                         <p class="advise text-center">
                                                             - Taille d'image conseillée: 200x200px.<br>
-                                                            - Taille maximale: 10mb.
+                                                            - Taille maximale: 5mb.
                                                         </p>
                                                     </div>
                                                 </div>
@@ -58,9 +54,9 @@
                                                             <mat-hint align="end">Catégorie</mat-hint>
                                                           </mat-form-field>
                                                         <mat-form-field class="w-100" appearance="outline">
-                                                            <mat-label>Description du produit</mat-label>
+                                                            <mat-label>Description de la boutique</mat-label>
                                                             <textarea matInput rows="4" [formControl]="descriptionControl"></textarea>
-                                                            <mat-hint align="end">Ceci est juste un exemple ! Vous êtes libre de le changer.</mat-hint>
+                                                            <mat-hint align="end">Ceci est juste un modèle ! Vous êtes libre de le modifier.</mat-hint>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>
@@ -80,7 +76,7 @@
                                         <div class="mb-4">
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
                                                 <mat-label>Adresse e-mail</mat-label>
-                                                <input matInput value="vendeur@gmail.com">
+                                                <input matInput type="email" [formControl]="userEmailControl">
                                                 <mat-icon matSuffix>alternate_email</mat-icon>
                                                 <mat-hint>E-mail</mat-hint>
                                             </mat-form-field>
@@ -91,12 +87,6 @@
                                                 <mat-hint>Téléphone</mat-hint>
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
-                                                <mat-label>Adresse de l'entreprise</mat-label>
-                                                <input matInput>
-                                                <mat-icon matSuffix>location_on</mat-icon>
-                                                <mat-hint>Adresse</mat-hint>
-                                            </mat-form-field>
-                                            <mat-form-field appearance="outline" class="w-100 mb-3">
                                                 <mat-label>Site internet de l'entreprise</mat-label>
                                                 <input matInput placeholder="https://mon-entreprise.com">
                                                 <mat-icon matSuffix>language</mat-icon>
@@ -104,7 +94,7 @@
                                             </mat-form-field>
                                             <mat-form-field appearance="outline" class="w-100 mb-3">
                                                 <mat-label>Horaires d'ouvertures</mat-label>
-                                                <input matInput value="Lundi au vendredi : 8H15 - 16H45.">
+                                                <input matInput [formControl]="workingHoursControl">
                                                 <mat-icon matSuffix>calendar_month</mat-icon>
                                                 <mat-hint>Horaires</mat-hint>
                                             </mat-form-field>
@@ -165,11 +155,14 @@
                                                 <span class="visually-hidden">Loading...</span>
                                             </div>
                                         </div>
-                                        <div class="shop-form">
-                                            <input type="text" value="Dakar">
-                                        </div>
+                                        <mat-form-field appearance="outline" class="w-100 mb-3">
+                                            <mat-label>Adresse de l'entreprise</mat-label>
+                                            <input matInput>
+                                            <mat-icon matSuffix>location_on</mat-icon>
+                                            <mat-hint>Adresse</mat-hint>
+                                        </mat-form-field>
                                         <div *ngIf="userPosition.lat !== 0 && userPosition.long !== 0">
-                                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3859.022959379257!2d-17.47065692536832!3d14.711293724357906!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xec172a4a47b525b%3A0x250389427be60011!2sCit%C3%A9%20Keur%20Gorgui%2C%20Dakar!5e0!3m2!1sfr!2ssn!4v1681917891864!5m2!1sfr!2ssn" height="100%" style="border:0;width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                            <iframe [src]="url" height="100%" style="border:0;width: 100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                                         </div>
                                         <div>
                                             <button class="btn btn-dark btn-lg w-100 mt-3" 

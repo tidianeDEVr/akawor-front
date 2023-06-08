@@ -4,6 +4,23 @@
             .main-row {
                 min-height: 300px;
             }
+            .attr-group {
+                position: relative;
+                margin-bottom: 15px;
+                input {
+                    height: 54px;
+                }
+                input:focus {
+                    box-shadow: none;
+                    border: 1px solid var(--black);
+                }
+                .remove-btn {
+                    right: 4px;
+                    top: 4px;
+                    scale: .9;
+                    border-radius: 0;
+                }
+            }
         }
         .list-group-item {
             display: flex;

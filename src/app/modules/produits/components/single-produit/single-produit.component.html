@@ -7,16 +7,16 @@
                 <div class="col col-10">
                     <div class="row">
                         <div class="col col-7">
-                            <div class="p-1 images">
+                            <div class="p-1 images" *ngIf="images">
                                 <div class="main-image-container">
-                                    <!-- <img class="main-image" src="../../../../assets/images/products/{{product.img}}" alt="{{product.productTitle}}"> -->
-                                    <img class="main-image" src="../../../../assets/images/products/sac-ely-1.jpeg" alt="{{product.productTitle}}">
+                                    <img class="main-image" crossorigin="anonymous"
+                                    src="{{imageBaseUrl+images[0].imageTitle}}" alt="{{product.productTitle}}">
                                 </div>
                                 <div class="others-images">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-1.jpeg" alt="{{product.productTitle}}">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-2.jpeg" alt="{{product.productTitle}}">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-3.jpeg" alt="{{product.productTitle}}">
-                                    <img class="img-thumbnail other-image" src="../../../../assets/images/products/sac-ely-4.jpeg" alt="{{product.productTitle}}">
+                                    <img class="img-thumbnail other-image" crossorigin="anonymous"
+                                    src="{{imageBaseUrl+image.imageTitle}}" 
+                                    alt="{{product.productTitle}}" *ngFor="let image of images" 
+                                    (click)="changeImage(image.imageTitle)">
                                 </div>
                             </div>
                         </div>
@@ -109,7 +109,7 @@
                                     </div>
                                     <div class="col col-3">
                                         <div class="logo-shop" *ngIf="shop">
-                                            <!-- <img src="{{shop.img}}" alt="{{shop.libelle}}" class="img-thumbnail"> -->
+                                            <img src="../../../../../assets/images/shops/logo-placeholder.jpeg" alt="{{shop.shopLibelle}}" class="img-thumbnail">
                                             <a class="text-center text-ellip" routerLink="/boutiques/{{shop.shopSlug}}">{{shop.shopLibelle}}</a>
                                         </div>
                                     </div>
@@ -147,18 +147,18 @@
                                 <div class="share py-2 mt-3 d-flex align-items-center justify-content-between">
                                     <span>PARTAGER SUR</span>
                                     <div class="d-flex align-items-center">
-                                        <a href="">
+                                        <button>
                                             <i class="fa-brands fa-whatsapp fa-beat"></i>
-                                        </a>
-                                        <a href="">
+                                        </button>
+                                        <button>
                                             <i class="fa-brands fa-facebook-f fa-beat"></i>
-                                        </a>
-                                        <a href="">
+                                        </button>
+                                        <button (click)="shareLink()">
                                             <i class="fa-solid fa-link fa-beat"></i>
-                                        </a>
-                                        <a href="">
+                                        </button>
+                                        <button>
                                             <i class="fa-solid fa-envelope fa-beat"></i>
-                                        </a>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -214,7 +214,7 @@
                         <div>
                             <h4 class="fw-bold text-ellip">Produits de la même boutique</h4>
                             <div class="title-divider" style="margin-top: -12px;"></div>
-                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
+                            <ngx-slick-carousel *ngIf="sameCategoryProducts" class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
                                 <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
                                     <app-product-card [product]="product"></app-product-card>
                                 </div>

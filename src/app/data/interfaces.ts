@@ -53,15 +53,16 @@ export interface SHOP {
     shopLibelle?: string;
     shopSlug?: string;
     shopDescription?: string;
+    shopWorkingHours?: string;
     shopAddedAt?: string;
+    shopAddress?: string;
     shopProfileImage?: IMAGE;
     shopCoverImage?: IMAGE;
-    shopAddress?: string;
     shopIsDeleted?: boolean;
     shopOwner: USER;
+    shopCategory?: CATEGORY;
     shopSubscriptions?: SUBSCRIPTION[];
     shopProducts?: PRODUCT[];
-    shopCategory?: CATEGORY;
 }
 
 export interface ORDER {
@@ -90,8 +91,9 @@ export interface PRODUCT {
     id?: string;
     productTitle: string;
     productSlug?: string;
-    productPrice: number;
+    productMainImage?: string;
     productAddedAt?: string;
+    productPrice: number;
     productDescription: string;
     productIsOutOfStock: boolean;
     productIsDeleted?: boolean;
@@ -120,5 +122,4 @@ export interface BOOST {
 export interface IMAGE {
     id?: string;
     imageTitle?: string;
-    imagePath?: string;
 }

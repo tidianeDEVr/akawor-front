@@ -9,19 +9,13 @@ import { ProduitsService } from '../../services/produits.service';
 })
 export class AllProduitsComponent implements OnInit {
   public loaderCards = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', ''];
-  // public activeProducts = [
-  //   '', '', '', '', '', '', '', '','', '', '', '', '', '', '', '',
-  //   '', '', '', '', '', '', '', '','', '', '', '', '', '', '', ''
-  // ];
   public products!: PRODUCT[];
   public productCategories: CATEGORY[] = []
   public priceRangeMin = 0;
-  public priceRangeMax = 1000000;
+  public priceRangeMax = 10000;
   public isProductsLoaded: boolean = false;
   public activeCategory: CATEGORY | undefined;
-  constructor(private produitsService: ProduitsService){
-
-  }
+  constructor(private produitsService: ProduitsService){ }
 
   ngOnInit(): void {
     this.produitsService.getProducts().then((res)=>{

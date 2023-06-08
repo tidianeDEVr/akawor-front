@@ -40,6 +40,7 @@ import  * as FilepondPluginImageEdit from 'filepond-plugin-image-edit';
 import  * as FilepondPluginImagePreview from 'filepond-plugin-image-preview';
 import  * as FilepondPluginImageResize from 'filepond-plugin-image-resize';
 import  * as FilepondPluginImageCrop from 'filepond-plugin-image-crop';
+import * as FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
 import { ShopCardComponent } from '../modules/boutiques/components/shop-cards/shop-card/shop-card.component';
 import { ShopCardLoaderComponent } from '../modules/boutiques/components/shop-cards/shop-card-loader/shop-card-loader.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
@@ -48,12 +49,14 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ManageAsideComponent } from './components/manage-aside/manage-aside.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { HttpClientModule } from '@angular/common/http';
+
 registerPlugin(
   FilePondPluginFileValidateType,
   FilepondPluginImageEdit,
   FilepondPluginImagePreview,
   FilepondPluginImageResize,
-  FilepondPluginImageCrop
+  FilepondPluginImageCrop,
+  FilePondPluginFileMetadata
   );
 
 

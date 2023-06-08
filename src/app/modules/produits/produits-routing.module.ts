@@ -14,7 +14,7 @@ const routes: Routes = [
   { 
     path: 'nouvelle-annonce',
     component: CreateProductComponent, 
-    title: 'Nouvelle annonce',
+    title: 'Ajout d\'un nouveau produit',
   },
   { 
     path: 'mes-annonces',
@@ -24,7 +24,6 @@ const routes: Routes = [
   { 
     path: '**', 
     component: SingleProduitComponent, 
-    title: 'Nom du produit',
   }
 ];
 

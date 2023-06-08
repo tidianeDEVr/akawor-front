@@ -17,7 +17,7 @@
                                 <div *ngIf="myProducts && myProducts.length===0">
                                     <div class="container pt-5">
                                         <div class="d-flex flex-column align-items-center justify-content-center">
-                                            <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits">
+                                            <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
                                             <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
                                         </div>
                                     </div>
@@ -27,11 +27,11 @@
                                         <mat-card>
                                             <mat-card-content>
                                                 <div class="position-absolute" style="z-index: 3;top: 6px;left: 0;opacity: .95;">
-                                                    <!-- <span class="bg-success p-2 text-white fw-bold">En ligne</span> -->
-                                                    <span class="bg-warning p-2 text-white fw-bold">En attente de validation</span>
+                                                    <span class="bg-success p-2 text-white fw-bold">En ligne</span>
+                                                    <!-- <span class="bg-warning p-2 text-white fw-bold">En attente de validation</span> -->
                                                     <!-- <span class="bg-danger p-2 text-white fw-bold">Annonce révoquée</span> -->
                                                 </div>
-                                                <img src="../../../../../assets/images/products/product1.jpg" alt="produit">
+                                                <img src="../../../../../assets/images/products/product1.jpg" alt="produit" loading="lazy">
                                                 <div class="infos">
                                                     <p class="text-ellip label-prod">{{product.productTitle}}</p>
                                                     <div class="position-absolute menu">

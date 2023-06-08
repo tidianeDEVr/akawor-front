@@ -2,7 +2,10 @@
     <a routerLink="/boutiques/{{shop.shopSlug}}" matTooltip="{{shop.shopLibelle}}">
         <article class="shop-card">
             <div class="img-holder">
-                <img [src]="choosedImage" alt="{{shop.shopLibelle}}">
+                <img *ngIf="!shop.shopProfileImage" alt="{{shop.shopLibelle}}" loading="lazy"
+                src="../../../../../../assets/images/shops/logo-placeholder.jpeg">
+                <img src="{{imageBaseUrl+shop.shopProfileImage}}" crossorigin="anonymous"
+                alt="{{shop.shopLibelle}}" loading="lazy" *ngIf="shop.shopProfileImage">
             </div>
         </article>
     </a>
