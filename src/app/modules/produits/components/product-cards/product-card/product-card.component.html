@@ -23,9 +23,9 @@
                 <span class="text-ellip price">{{product.productPrice|currency: 'EUR'}}</span>
                 <div class="actions position-absolute">
                     <div class="input-cont d-flex align-items-center h-100">
-                        <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
-                        <input type="number" value="1" min="1" max="10">
-                        <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
+                        <i class="fa-solid fa-chevron-left" (click)="decrement()"></i><br>
+                        <input type="number" min="1" max="10" style="pointer-events: none;" [formControl]="valueControl">
+                        <i class="fa-solid fa-chevron-right" (click)="increment()"></i>
                     </div>
                     <button matTooltip="Ajouter au panier" class="add-to-cart" (click)="addToCart()">
                         <i class="fa-solid fa-cart-shopping"></i>

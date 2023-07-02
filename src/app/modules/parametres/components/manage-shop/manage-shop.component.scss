@@ -10,7 +10,6 @@
             }
         }
         .advise {
-            font-weight: 700;
             color: var(--gray-600);
             font-size: 12.5px;
         }
@@ -27,6 +26,11 @@
         .get-location-btn.disabled {
             background-color: var(--gray-600);
             pointer-events: none;
+        }
+        .rm-location-btn {
+            i {
+                margin-right: 10px;
+            }
         }
     } 
 }

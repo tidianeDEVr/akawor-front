@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CATEGORY, SHOP } from 'src/app/data/interfaces';
+import { CATEGORY, SHOP, SOCIAL } from 'src/app/data/interfaces';
 import { environment } from 'src/environments/environment.development';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class BoutiquesService {
   getCategoriesShops():Promise<CATEGORY[]>{
     let categories:CATEGORY[] = [] 
     return new Promise<CATEGORY[]>(resolve =>{
-      this.httpClient.get(`${environment.BACKEND_BASE_URL}/category/find-all/shop`)
+      this.httpClient.get(`${environment.BACKEND_API_URL}/category/find-all/shop`)
       .subscribe({
         next: (res:any)=>{
           categories = res
@@ -27,7 +27,7 @@ export class BoutiquesService {
   }
   getShopById(id:string):Promise<SHOP>{
     return new Promise<SHOP>(resolve => {
-      this.httpClient.get(`${environment.BACKEND_BASE_URL}/shop/find-by-id?id=${id}`,)
+      this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-by-id?id=${id}`,)
       .subscribe({
         next:(shop:any)=>{
           resolve(shop)
@@ -40,7 +40,7 @@ export class BoutiquesService {
   }
   getShopBySeller(email:string):Promise<SHOP>{
     return new Promise<SHOP>(resolve => {
-      this.httpClient.post(`${environment.BACKEND_BASE_URL}/shop/find-by-seller`,{email})
+      this.httpClient.post(`${environment.BACKEND_API_URL}/shop/find-by-seller`,{email})
       .subscribe({
         next:(shop:any)=>{
           resolve(shop);
@@ -53,7 +53,7 @@ export class BoutiquesService {
   }
   getShopBySlug(slug:string):Promise<SHOP>{
     return new Promise<SHOP>(resolve=>{
-      this.httpClient.get(`${environment.BACKEND_BASE_URL}/shop/find-by-slug/${slug}`)
+      this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-by-slug/${slug}`)
       .subscribe({
         next: (shop:any)=>{
           resolve(shop);
@@ -66,13 +66,26 @@ export class BoutiquesService {
   }
   getActiveShop():Promise<SHOP[]>{
     return new Promise<SHOP[]>(resolve=>{
-      this.httpClient.get(`${environment.BACKEND_BASE_URL}/shop/find-actives`)
+      this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-actives`)
       .subscribe({
         next: (shops:any)=>{
           resolve(shops)
         },
         error: (err)=>{
           resolve(err)
+        }
+      })
+    })
+  }
+  updateShop(shop: SHOP, social: SOCIAL, categoryLibelle: string):Promise<boolean>{
+    return new Promise<boolean>(resolve=>{
+      this.httpClient.put(`${environment.BACKEND_API_URL}/shop/update`, {shop, social, categoryLibelle})
+      .subscribe({
+        next: (res:any)=>{
+          resolve(res)
+        },
+        error: (err)=>{
+          resolve(false)
         }
       })
     })

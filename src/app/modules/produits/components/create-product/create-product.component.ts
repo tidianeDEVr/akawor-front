@@ -53,8 +53,11 @@ export class CreateProductComponent {
 
   public pondOptions: FilePondOptions = {
     allowMultiple: true,
+    allowRevert: false,
+    allowReorder: true,
     allowFileMetadata: true,
     fileMetadataObject: null,
+    maxParallelUploads: 10,
     labelInvalidField: 'Le champ contient des fichiers invalides',
     labelIdle: 'Cliquez ou déposez vos images...',
     labelFileWaitingForSize: 'En attente de la taille',
@@ -71,12 +74,11 @@ export class CreateProductComponent {
     labelButtonRemoveItem: 'Supprimer',
     acceptedFileTypes: ['image/*'],
     imagePreviewMaxFileSize: '10MB',
-    allowReorder: false,
     maxFiles: 10,
     name: 'images',
     credits: false,
     server: {
-      url: environment.BACKEND_BASE_URL,
+      url: environment.BACKEND_API_URL,
       process: {
         url: '/image/upload',
         method: 'POST',
@@ -85,9 +87,6 @@ export class CreateProductComponent {
       },
       headers: {
         product : this.productObject.id ? this.productObject.id : '0',
-      },
-      revert: {
-        url: '/image/delete',
       },
     },
   };
@@ -144,6 +143,11 @@ export class CreateProductComponent {
       this.productObject.productCategory = this.mainCategoryControl.value;
     if (this.subCategoryControl.value)
       this.productObject.productCategory = this.subCategoryControl.value;
+    if(this.attributsProduct.length>0){
+      if(this.attributsProduct[0].key!=='' && this.attributsProduct[0].value!==''){
+        this.productObject.productFeatures =  JSON.stringify(this.attributsProduct);
+      }
+    }
 
     this.produitService
       .createProduct(this.productObject, this.productOwnerId)
@@ -156,7 +160,7 @@ export class CreateProductComponent {
         if (prod) {
           this.productObject = prod;
           this.pondOptions['server'] = {
-            url: environment.BACKEND_BASE_URL,
+            url: environment.BACKEND_API_URL,
             process: {
               url: '/image/upload',
               method: 'POST',
@@ -165,9 +169,6 @@ export class CreateProductComponent {
             },
             headers: {
               product : this.productObject.id ? this.productObject.id : '0',
-            },
-            revert: {
-              url: '/image/delete',
             },
           }
           this.isFileInputVisible = true;
@@ -187,5 +188,8 @@ export class CreateProductComponent {
   removeAttribut(id:number){
     alert(id)
     // if(this.attributsProduct[id]) this.attributsProduct = this.attributsProduct.splice(id, 1);
+  }
+  fileReordered(){
+    alert('reordered');
   }
 }

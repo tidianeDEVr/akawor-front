@@ -39,6 +39,9 @@
                         margin-right: 10px;
                         object-fit: cover;
                     }
+                    img:hover {
+                        border-color: var(--black);
+                    }
                 }
             }
             .middle-col {

@@ -9,7 +9,7 @@ const routes: Routes = [
   { 
     path: '', 
     component: AllProduitsComponent,
-    title: 'Nos annonces - Akawor'
+    title: 'Nos annonces | Akawor'
   },
   { 
     path: 'nouvelle-annonce',
@@ -20,6 +20,10 @@ const routes: Routes = [
     path: 'mes-annonces',
     component: MyProductsComponent,
     title: 'Gérer mes annonces',
+  },
+  {
+    path: 'categorie/:slug',
+    component: AllProduitsComponent
   },
   { 
     path: '**', 

@@ -1,147 +1,280 @@
 <header>
-    <div class="top-header">
-        <div class="container d-flex align-items-center justify-content-between h-100 w-100 py-1">
-            <img src="http://placehold.it/970x90" alt="">
-        </div>
+  <div class="top-header container">
+    <div class="slide">
+      <img src="../../../assets/images/banners/banner-test.png" alt="banner" />
     </div>
-    <mat-divider></mat-divider>
-    <div class="middle-header">
-        <div class="container align-items-center justify-content-between h-100 w-100">
-            <div class="row h-100">
-                <div class="col col-2">
-                    <div class="logo-holder h-100">
-                        <a routerLink="/">
-                            <img src="../../../assets/images/identities/akawor-nobg.png" alt="logo akawor">
-                        </a>
-                    </div>
-                </div>
-                <div class="search-holder py-2 col col-7">
-                    <form class="form">
-                        <button>
-                            <svg width="17" height="16" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="search">
-                                <path d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9" stroke="currentColor" stroke-width="1.333" stroke-linecap="round" stroke-linejoin="round"></path>
-                            </svg>
-                        </button>
-                        <input class="input" placeholder="Je recherche..." required="" type="text">
-                        <button class="reset" type="reset">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path>
-                            </svg>
-                        </button>
-                    </form>
-                </div>
-                <div class="col col-3">
-                    <div class="menu-holder h-100">
-                        <div class="d-flex align-items-center justify-content-end">
-                            <a mat-button matTooltip="Foire aux questions" routerLink="/foire-aux-questions">
-                                <i class="fa-solid fa-circle-info"></i>
-                                <span class="fw-bold">FAQ</span>
-                            </a>
-                            <a mat-button routerLink="/blog">
-                                <i class="fa-solid fa-message"></i>
-                                <span class="fw-bold">BLOG</span>
-                            </a>
-                            <a mat-button routerLink="/contact">
-                                <i class="fa-solid fa-envelope"></i>
-                                <span class="fw-bold">CONTACT</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="middle-header">
+    <div
+      class="container align-items-center justify-content-between h-100 w-100"
+    >
+      <div class="row h-100">
+        <div class="col col-xl-2 col-6 order-1 py-2 py-xl-auto">
+          <div class="logo-holder h-100">
+            <a routerLink="/">
+              <img
+                src="../../../assets/images/identities/akawor-nobg.png"
+                alt="logo akawor"
+              />
+            </a>
+          </div>
+        </div>
+        <div class="search-holder py-2 col col-xl-7 col-12 order-3 order-xl-2">
+          <form class="form">
+            <button>
+              <svg
+                width="17"
+                height="16"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                role="img"
+                aria-labelledby="search"
+              >
+                <path
+                  d="M7.667 12.667A5.333 5.333 0 107.667 2a5.333 5.333 0 000 10.667zM14.334 14l-2.9-2.9"
+                  stroke="currentColor"
+                  stroke-width="1.333"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                ></path>
+              </svg>
+            </button>
+            <input
+              class="input"
+              placeholder="Je recherche..."
+              required=""
+              type="text"
+            />
+            <button class="reset" type="reset">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12"
+                ></path>
+              </svg>
+            </button>
+          </form>
+        </div>
+        <div class="col col-xl-3 col-6 order-2 order-xl-3 py-2 py-xl-auto">
+          <div class="menu-holder h-100 d-none d-xl-block">
+            <div class="d-flex align-items-center justify-content-end">
+              <a
+                mat-button
+                matTooltip="Foire aux questions"
+                routerLink="/foire-aux-questions"
+              >
+                <i class="fa-solid fa-circle-info"></i>
+                <span class="fw-bold">FAQ</span>
+              </a>
+              <a mat-button routerLink="/blog">
+                <i class="fa-solid fa-message"></i>
+                <span class="fw-bold">BLOG</span>
+              </a>
+              <a mat-button routerLink="/contact">
+                <i class="fa-solid fa-envelope"></i>
+                <span class="fw-bold">CONTACT</span>
+              </a>
             </div>
-        </div>
-    </div>
-    <mat-divider></mat-divider>
-    <div class="bottom-header">
-        <div class="container">
-            <div class="row">
-                <div class="col col-2">
-                    <a routerLink="/ma-liste-de-souhaits" class="header-side-btn w-100 text-ellip" matBadge="0" matBadgeColor="warn" matBadgePosition="after">
-                        <i class="fa-solid fa-heart" style="margin-right: 5px;"></i>
-                        <span>Liste de souhaits</span>
-                    </a>
-                </div>
-                <div class="col col-8">
-                    <div class="d-flex align-items-center justify-content-between pt-1 h-100">
-                        <ul>
-                            <li>
-                                <a routerLink="/produits" [queryParams]="{filtre: 'specials'}">
-                                    <i class="fa-solid fa-percent"></i>
-                                    <span>Spécials</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/boutiques">
-                                    <i class="fa-solid fa-store"></i>
-                                    <span>Boutiques</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/livraisons">
-                                    <i class="fa-solid fa-truck"></i>
-                                    <span>Livraison</span>
-                                </a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a routerLink="/commandes">
-                                    <i class="fa-solid fa-bag-shopping"></i>
-                                    <span>Commandes</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a routerLink="/produits">
-                                    <i class="fa-solid fa-bullhorn"></i>
-                                    <span>Produits</span>
-                                </a>
-                            </li>
-                            <li>
-                                <a [matMenuTriggerFor]="menuCompte">
-                                    <i class="fa-solid fa-user"></i>
-                                    <span>Compte</span>
-                                </a>
-                                <mat-menu #menuCompte="matMenu">
-                                    <div [hidden]="(user|json) != '{}'">
-                                        <a routerLink="/security/connexion" class="btn" 
-                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
-                                            <i style="margin-right: 10px;" class="fa-solid fa-right-to-bracket"></i>
-                                            <span>Se connecter</span>
-                                        </a><br>
-                                    </div>
-                                    <div [hidden]="(user|json) != '{}'">
-                                        <a routerLink="/security/inscription" class="btn" 
-                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
-                                            <i style="margin-right: 10px;" class="fa-solid fa-pen-to-square"></i>
-                                            <span>S'inscire</span>
-                                        </a><br>
-                                    </div>
-                                    <div [hidden]="(user|json) === '{}'">
-                                        <a routerLink="/compte" class="btn" 
-                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
-                                            <i style="margin-right: 10px;" class="fa-solid fa-qrcode"></i>
-                                            <span>Tableau de bord</span>
-                                        </a><br>
-                                    </div>
-                                    <div [hidden]="(user|json) === '{}'">
-                                        <a (click)="logout()" class="btn" 
-                                        style="font-size: 15px;font-weight: bold;color: var(--gray-600);">
-                                            <i style="margin-right: 10px;" class="fa-solid fa-right-from-bracket"></i>
-                                            <span>Se déconnecter</span>
-                                        </a>
-                                    </div>
-                                </mat-menu>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col col-2">
-                    <a routerLink="/mon-panier" class="header-side-btn w-100 text-ellip" matBadge="0" matBadgeColor="warn" matBadgePosition="before">
-                        <i class="fa-solid fa-cart-shopping" style="margin-right: 5px;z-index: 99999;"></i>
-                        <span class="">Panier - $0.00</span>
-                    </a>
-                </div>
+          </div>
+          <div class="mobile-menu d-xl-none">
+            <div class="d-flex justify-content-end">
+              <a
+                class="btn btn-dark"
+                data-bs-toggle="offcanvas"
+                href="#offcanvasExample"
+                role="button"
+                aria-controls="offcanvasExample"
+              >
+                <i class="fa-solid fa-ellipsis"></i>
+              </a>
             </div>
+            <div
+              class="offcanvas offcanvas-start"
+              tabindex="-1"
+              id="offcanvasExample"
+              aria-labelledby="offcanvasExampleLabel"
+            >
+              <div class="offcanvas-header">
+                <!-- <h5 class="offcanvas-title" id="offcanvasExampleLabel">
+                    Menu
+                  </h5> -->
+                <h2>Menu</h2>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="offcanvas-body">
+                <div>
+                  Some text as placeholder. In real life you can have the
+                  elements you have chosen. Like, text, images, lists, etc.
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="bottom-header d-none d-xl-block">
+    <div class="container">
+      <div class="row">
+        <div class="col col-2">
+          <a
+            routerLink="/ma-liste-de-souhaits"
+            class="header-side-btn w-100 text-ellip"
+          >
+            <span class="badge-wishlist">{{wishlistLength}}</span>
+            <i class="fa-solid fa-heart" style="margin-right: 5px"></i>
+            <span>Liste de souhaits</span>
+          </a>
+        </div>
+        <div class="col col-8">
+          <div
+            class="d-flex align-items-center justify-content-between pt-1 h-100"
+          >
+            <ul>
+              <li>
+                <a
+                  routerLink="/produits"
+                  [queryParams]="{ filtre: 'specials' }"
+                >
+                  <i class="fa-solid fa-percent"></i>
+                  <span>Spécials</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/boutiques">
+                  <i class="fa-solid fa-store"></i>
+                  <span>Boutiques</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/livraisons">
+                  <i class="fa-solid fa-truck"></i>
+                  <span>Livraison</span>
+                </a>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <a routerLink="/commandes">
+                  <i class="fa-solid fa-bag-shopping"></i>
+                  <span>Commandes</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/produits">
+                  <i class="fa-solid fa-bullhorn"></i>
+                  <span>Produits</span>
+                </a>
+              </li>
+              <li>
+                <a [matMenuTriggerFor]="menuCompte">
+                  <i class="fa-solid fa-user"></i>
+                  <span>Compte</span>
+                </a>
+                <mat-menu #menuCompte="matMenu">
+                  <div [hidden]="(user | json) != '{}'">
+                    <a
+                      routerLink="/security/connexion"
+                      class="btn"
+                      style="
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: var(--gray-600);
+                      "
+                    >
+                      <i
+                        style="margin-right: 10px"
+                        class="fa-solid fa-right-to-bracket"
+                      ></i>
+                      <span>Se connecter</span> </a
+                    ><br />
+                  </div>
+                  <div [hidden]="(user | json) != '{}'">
+                    <a
+                      routerLink="/security/inscription"
+                      class="btn"
+                      style="
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: var(--gray-600);
+                      "
+                    >
+                      <i
+                        style="margin-right: 10px"
+                        class="fa-solid fa-pen-to-square"
+                      ></i>
+                      <span>S'inscire</span> </a
+                    ><br />
+                  </div>
+                  <div [hidden]="(user | json) === '{}'">
+                    <a
+                      routerLink="/compte"
+                      class="btn"
+                      style="
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: var(--gray-600);
+                      "
+                    >
+                      <i
+                        style="margin-right: 10px"
+                        class="fa-solid fa-qrcode"
+                      ></i>
+                      <span>Tableau de bord</span> </a
+                    ><br />
+                  </div>
+                  <div [hidden]="(user | json) === '{}'">
+                    <a
+                      (click)="logout()"
+                      class="btn"
+                      style="
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: var(--gray-600);
+                      "
+                    >
+                      <i
+                        style="margin-right: 10px"
+                        class="fa-solid fa-right-from-bracket"
+                      ></i>
+                      <span>Se déconnecter</span>
+                    </a>
+                  </div>
+                </mat-menu>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="col col-2">
+          <a
+            routerLink="/mon-panier"
+            class="header-side-btn w-100 text-ellip"
+            id="cart-btn"
+          >
+            <span class="badge-cart">{{ cartLength }}</span>
+            <i
+              class="fa-solid fa-cart-shopping"
+              style="margin-right: 5px; z-index: 99999"
+            ></i>
+            <span class="amount-cart">Panier - {{ totalPrice }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </header>

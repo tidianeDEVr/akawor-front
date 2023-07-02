@@ -16,27 +16,27 @@ const routes: Routes = [
       {
          path: '',
          component: HomeComponent,
-         title: 'Le made in Africa livré chez vous - Akawor'
+         title: 'Le made in Africa livré chez vous | Akawor'
       },
       {
          path: 'ma-liste-de-souhaits',
          component: WishlistComponent,
-         title: 'Ma liste de souhaits',
+         title: 'Ma liste de souhaits | Akawor',
       },
       {
          path: 'mon-panier',
          component: CartComponent,
-         title: 'Mon panier',
+         title: 'Mon panier | Akawor',
       },
       {
          path: 'contact',
          component: ContactComponent,
-         title: 'Contactez Akawor',
+         title: 'Contacts | Akawor',
       },
       {
          path: 'foire-aux-questions',
          component: FaqComponent,
-         title: 'Foire aux questions',
+         title: 'Foire aux questions | Akawor',
       },
       { 
         path: 'boutiques', 
@@ -74,6 +74,10 @@ const routes: Routes = [
   { 
     path: 'security', 
     loadChildren: () => import('./modules/security/security.module').then(m => m.SecurityModule) 
+  },
+  { 
+    path: 'dashboard',
+    loadChildren: () => import('./modules/backoffice/backoffice.module').then(m => m.BackofficeModule) 
   },
 ];
 

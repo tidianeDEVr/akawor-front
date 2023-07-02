@@ -25,13 +25,17 @@
                                 <div class="my-products row row-cols-4 g-4" *ngIf="myProducts && myProducts.length>0">
                                     <div class="col single-prod" *ngFor="let product of myProducts">
                                         <mat-card>
-                                            <mat-card-content>
-                                                <div class="position-absolute" style="z-index: 3;top: 6px;left: 0;opacity: .95;">
-                                                    <span class="bg-success p-2 text-white fw-bold">En ligne</span>
-                                                    <!-- <span class="bg-warning p-2 text-white fw-bold">En attente de validation</span> -->
-                                                    <!-- <span class="bg-danger p-2 text-white fw-bold">Annonce révoquée</span> -->
+                                            <mat-card-content class="position-relative">
+                                                <div class="position-absolute">
+                                                    <span class="badge text-bg-success m-1" *ngIf="product.productState==='ONLINE'">En ligne</span>
+                                                    <span class="badge text-bg-info m-1" *ngIf="product.productState==='DRAFT'">Brouillon</span>
+                                                    <span class="badge text-bg-warning m-1" *ngIf="product.productState==='AWAITING'">En attente de validation</span>
+                                                    <span class="badge text-bg-danger m-1" *ngIf="product.productState==='REVOKED'">Annonce révoquée</span>
                                                 </div>
-                                                <img src="../../../../../assets/images/products/product1.jpg" alt="produit" loading="lazy">
+                                                <img src="{{imageBaseUrl+product.productMainImage}}" alt="produit" loading="lazy" *ngIf="product.productMainImage" crossorigin="anonymous">
+                                                <img src="../../../../../../assets/images/products/product-placeholder.png" 
+                                                alt="produit" loading="lazy" 
+                                                *ngIf="!product.productMainImage" crossorigin="anonymous">
                                                 <div class="infos">
                                                     <p class="text-ellip label-prod">{{product.productTitle}}</p>
                                                     <div class="position-absolute menu">
@@ -39,9 +43,9 @@
                                                             <mat-icon>edit</mat-icon>
                                                         </button>
                                                         <mat-menu #menu="matMenu">
-                                                            <button mat-menu-item>Modifier l'annonce</button>
-                                                            <button mat-menu-item>Aperçu de l'annonce</button>
-                                                            <button mat-menu-item>Supprimer l'annonce</button>
+                                                            <button mat-menu-item (click)="editProduct(product)">Modifier l'annonce</button>
+                                                            <button mat-menu-item (click)="displayProduct(product)">Aperçu de l'annonce</button>
+                                                            <button mat-menu-item (click)="deleteProduct(product)">Supprimer l'annonce</button>
                                                         </mat-menu>
                                                     </div>
                                                 </div>

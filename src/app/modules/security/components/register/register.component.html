@@ -58,7 +58,8 @@
                             <label class="form-check-label" for="flexSwitchCheckChecked">Je souhaites vendre des produits</label>
                         </div>
                         <button class="login-btn w-100 mt-4" (click)="register()"
-                        [ngClass]="{'desactived': firstnameControl.invalid || lastnameControl.invalid || emailControl.invalid || (passwordControl.value !== confirmpasswordControl.value)}"
+                        [ngClass]="{'desactived': firstnameControl.invalid || lastnameControl.invalid || emailControl.invalid || 
+                        (passwordControl.value !== confirmpasswordControl.value) || passwordControl.invalid || confirmpasswordControl.invalid}"
                         >S'inscire</button>
                         <div class="or position-relative my-3">
                             <span class="position-absolute">OU</span>

@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { ProduitsService } from '../../services/produits.service';
 import { PRODUCT, USER } from 'src/app/data/interfaces';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
+import { environment } from 'src/environments/environment.development';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-my-products',
@@ -11,9 +13,11 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 export class MyProductsComponent {
   public seller!: USER;
   public myProducts!: PRODUCT[];
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
   constructor(
     private produitsService: ProduitsService, 
-    private securityService: SecurityService
+    private securityService: SecurityService,
+    private router: Router
     ){
       this.securityService.getAuthenticatedUser()
       .then((user)=>{
@@ -25,5 +29,14 @@ export class MyProductsComponent {
           })
         }
       })
+  }
+  editProduct(product:PRODUCT){
+    alert(product.productTitle)
+  }
+  displayProduct(product:PRODUCT){
+    this.router.navigate([`/produits/${product.productSlug}`]);
+  }
+  deleteProduct(product:PRODUCT){
+    alert(product.productTitle)
   }
 }

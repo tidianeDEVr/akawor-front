@@ -44,14 +44,6 @@
                                         <option value="5">Prix, croissant</option>
                                         <option value="6">Prix, décroissant</option>
                                     </select>
-                                    <select style="max-width: 75px;" class="form-select form-select-sm" aria-label="Default select example">
-                                        <option selected>Nombre à afficher</option>
-                                        <option value="1">12</option>
-                                        <option value="2">25</option>
-                                        <option value="3">50</option>
-                                        <option value="3">75</option>
-                                        <option value="3">100</option>
-                                    </select>
                                 </div>
                             </div>
                         </mat-toolbar> -->
@@ -62,7 +54,7 @@
                         </div>
                         <div class="empty-result d-flex flex-column align-items-center" *ngIf="!shops || shops.length === 0">
                             <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5">
-                            <span class="w-100 text-center fw-bold alert alert-danger">Pas de boutiques en ligne !</span>
+                            <span class="text-center fw-bold alert alert-danger">Pas de boutiques en ligne !</span>
                         </div>
                         <div class="row row-cols-5 g-3 pt-4" [hidden]="isShopLoading">
                             <div class="col" *ngFor="let shop of shops">

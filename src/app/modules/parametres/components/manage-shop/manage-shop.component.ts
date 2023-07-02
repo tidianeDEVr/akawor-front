@@ -6,6 +6,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
 import { CATEGORY, SHOP, SOCIAL, USER } from 'src/app/data/interfaces';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-manage-shop',
@@ -13,12 +14,21 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
   styleUrls: ['./manage-shop.component.scss']
 })
 export class ManageShopComponent implements OnInit {
-  public urlRegex: string = '/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/'
+  public urlRegex: RegExp = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$/
+  public shop:SHOP = {};
+  public social!: SOCIAL;
+  public category!: CATEGORY;
+  public shopCatgories!: CATEGORY[];
   @ViewChild('myPond')
   public myPond!: FilePond;
-  public pondFiles: FilePondOptions["files"] = [ ]
+  public isPondActive: boolean = false;
+  public isUpdating: boolean = false;
+  public excludedNames: string[] = ['ma boutique'];
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  public pondFiles: FilePondOptions["files"] = []
   public pondOptions: FilePondOptions = {
     allowMultiple: false,
+    allowRevert: false,
     labelIdle: 'Cliquez ou déposez votre logo...',
     acceptedFileTypes: ['image/*'],
     imagePreviewMaxFileSize: '5MB',
@@ -28,15 +38,26 @@ export class ManageShopComponent implements OnInit {
     imageResizeTargetWidth: 200,
     imageResizeTargetHeight: 200,
     stylePanelLayout: 'compact circle',
-    styleButtonRemoveItemPosition: 'center bottom',
-    
+    styleLoadIndicatorPosition:'center',
+    styleButtonRemoveItemPosition: 'bottom center',
+    name: 'images',
+    server: {
+      url: environment.BACKEND_BASE_URL,
+      process: {
+        url: '/api/image/upload',
+        method: 'POST',
+        withCredentials: true,
+        timeout: 7000,
+      },
+    },
   }
-  public shop!:SHOP;
-  public social!: SOCIAL;
-  public shopCatgories!: CATEGORY[];
-  public descriptionControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
+  
+  public categoryControl = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(600)]);
+  public descriptionControl = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(600)]);
   public corpNameControl = new FormControl('', [Validators.required, Validators.minLength(4)]);
-  public userEmailControl = new FormControl('', [Validators.required]);
+  public shopEmailControl = new FormControl('', [Validators.required]);
+  public phoneControl = new FormControl('', [Validators.required]);
+  public addressControl = new FormControl('', [Validators.required]);
   public workingHoursControl = new FormControl('', [Validators.required]);
   public facebookControl = new FormControl('', [Validators.pattern(this.urlRegex)]);
   public instagramControl = new FormControl('', [Validators.pattern(this.urlRegex)]);
@@ -45,8 +66,8 @@ export class ManageShopComponent implements OnInit {
   public corpNameUrl:string = '';
   public user !: USER;
   public userPosition = {
-    long: 0,
-    lat: 0
+    long: '0',
+    lat: '0'
   }
   public url: any;
   public isGettingPosition: boolean = false;
@@ -63,20 +84,61 @@ export class ManageShopComponent implements OnInit {
         this.boutiquesServices.getShopBySeller(res.userEmail)
         .then((rs)=>{
           this.shop = rs;
+          document.title = `Ma boutique - ${this.shop.shopLibelle}`;
+          this.pondOptions['server'] = {
+            url: environment.BACKEND_BASE_URL,
+            process: {
+              url: '/api/image/upload',
+              method: 'POST',
+              withCredentials: true,
+              timeout: 7000,
+            },
+            load: (source, load, error, progress, abort, headers) => {
+              const myRequest = new Request(this.imageBaseUrl + "/" + this.shop.shopLogoImage);
+              fetch(myRequest).then(function(response) {
+                  response.blob().then(function(myBlob) {
+                      load(myBlob)
+                  });
+              });
+            },
+            headers: {
+              shop : this.shop.id ? this.shop.id : '0',
+            },
+          }
+          if(rs.shopLogoImage) this.pondFiles?.push({
+            source: `${this.imageBaseUrl}${rs.shopLogoImage}`,
+            options: {
+                type: 'local',
+            },
+          })
+          if(rs.id) this.isPondActive = true;
+          // HYDRATE CHAMPS CATEGORY
+          if (rs.Category && rs.Category.categoryLibelle) {
+            this.category = rs.Category
+            this.categoryControl.setValue(rs.Category.categoryLibelle);
+          }
+          // HYDRATE CHAMPS SOCIALS
           if(rs.Social) {
-            this.social = rs.Social
-            if(this.social.facebookLink) this.facebookControl.setValue(this.social.facebookLink)
-            if(this.social.instagramLink) this.instagramControl.setValue(this.social.instagramLink)
-            if(this.social.tiktokLink) this.tiktokControl.setValue(this.social.tiktokLink)
-            if(this.social.websiteLink) this.websiteControl.setValue(this.social.websiteLink)
-            
+            this.social = rs.Social;
+            if(this.social.facebookLink) this.facebookControl.setValue(this.social.facebookLink);
+            if(this.social.instagramLink) this.instagramControl.setValue(this.social.instagramLink);
+            if(this.social.tiktokLink) this.tiktokControl.setValue(this.social.tiktokLink);
+            if(this.social.websiteLink) this.websiteControl.setValue(this.social.websiteLink);
+            if(this.social.shopEmailAddress) this.shopEmailControl.setValue(this.social.shopEmailAddress); 
+            if(this.social.shopPhoneNumber) this.phoneControl.setValue(this.social.shopPhoneNumber);
           };
-          // HYDRATE CHAMPS
-          if(this.shop.shopLibelle) this.corpNameControl.setValue(this.shop.shopLibelle)
-          if(this.shop.shopDescription) this.descriptionControl.setValue(this.shop.shopDescription)
-          if(this.shop.shopWorkingHours) this.workingHoursControl.setValue(this.shop.shopWorkingHours)
-          // if(this.shop.website) this.workingHoursControl.setValue(this.shop.shopWorkingHours)
-          if(this.user.userEmail) this.userEmailControl.setValue(this.user.userEmail); 
+          // HYDRATE CHAMPS BOUTIQUE
+          if(this.shop.shopLibelle) this.corpNameControl.setValue(this.shop.shopLibelle);
+          if(this.shop.shopAddress) this.addressControl.setValue(this.shop.shopAddress);
+          if(this.shop.shopDescription) this.descriptionControl.setValue(this.shop.shopDescription);
+          if(this.shop.shopWorkingHours) this.workingHoursControl.setValue(this.shop.shopWorkingHours);
+          // HYDRATE LOCATION
+          if(this.shop.shopLatitude && this.shop.shopLongitude) {
+            this.userPosition.lat =  this.shop.shopLatitude
+            this.userPosition.long =  this.shop.shopLongitude;
+            this.url = this.getIframeUrl();
+          }
+
         }).catch((err)=>{
           console.log(err);
         })
@@ -96,24 +158,58 @@ export class ManageShopComponent implements OnInit {
       }
     });
   }
-  saveShopChanges(){}
-  pondHandleInit() {
-    console.log('FilePond has initialised', this.myPond);
+  saveShopChanges(){
+    this.isUpdating = true;
+    // UPDATE SHOP OBJECT
+    if(this.corpNameControl.value) {
+      if(this.excludedNames.includes(this.corpNameControl.value.toLowerCase())) {
+        this.isUpdating = false;
+        return this.toastService.show({header:'Message d\'alerte', body: 'Veuillez revoir le nom de votre boutique !'})
+      }
+      this.shop.shopLibelle = this.corpNameControl.value
+      this.shop.shopSlug = this.corpNameControl.value.replaceAll(' ','-').normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
+    }
+    if(this.addressControl.value) this.shop.shopAddress = this.addressControl.value;
+    if(this.descriptionControl.value) this.shop.shopDescription = this.descriptionControl.value;
+    if(this.userPosition.lat !=='0' ) this.shop.shopLatitude = this.userPosition.lat.toString();
+    if(this.userPosition.long !=='0' ) this.shop.shopLongitude = this.userPosition.long.toString();
+    if(this.workingHoursControl.value) this.shop.shopWorkingHours = this.workingHoursControl.value;
+    // UPDATE SOCIAL OBJECT
+    if(this.facebookControl.value) this.social.facebookLink = this.facebookControl.value;
+    if(this.instagramControl.value) this.social.instagramLink = this.instagramControl.value;
+    if(this.tiktokControl.value) this.social.tiktokLink = this.tiktokControl.value;
+    if(this.websiteControl.value) this.social.websiteLink = this.websiteControl.value;
+    if(this.phoneControl.value) this.social.shopPhoneNumber = this.phoneControl.value;
+    if(this.shopEmailControl.value) this.social.shopEmailAddress = this.shopEmailControl.value;
+    // REQUEST
+    this.boutiquesServices.updateShop(this.shop, this.social, this.categoryControl.value ? this.categoryControl.value : '')
+    .then((res)=>{
+      this.isUpdating = false;
+      if(res) {
+        this.toastService.show({header: 'Message d\'alerte', body:'Vos modifications ont été enregistrés !', isSuccess:true})
+      } else {
+        this.toastService.show({header: 'Message d\'erreur', body:'Une erreur s\'est produite. Réessayez plus tard !', isSuccess: false})
+      }
+    }).catch((err)=>{
+      console.log(err);
+      this.isUpdating = false;
+      this.toastService.show({header: 'Message d\'erreur', body:'Une erreur s\'est produite. Réessayez plus tard !', isSuccess: false,})
+    })
+  }
+  removeLogo(){
+    
   }
   getIframeUrl(): SafeUrl {
     const urlToSend = `//maps.google.com/maps?q=${this.userPosition.lat},${this.userPosition.long}&z=15&output=embed`;
     return this.sanitizer.bypassSecurityTrustResourceUrl(urlToSend);
   }
-  pondHandleAddFile(event: any) {
-    console.log('A file was added', event);
-  }
-
-  pondHandleRemoveFile(event: any) {
-    console.log('A file was removed', event);
-  }
-
-  pondHandleActivateFile(event: any) {
-    console.log('A file was activated', event)
+  removeUserPosition(){
+    this.shop.shopLatitude = '';
+    this.shop.shopLongitude = '';
+    this.userPosition = {
+      lat: '0',
+      long: '0',
+    }
   }
   getUserPosition(){
     this.isGettingPosition = true;
@@ -123,14 +219,14 @@ export class ManageShopComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(
         // Success callback function
         (position) => {
+          console.log(position);
           // Get the user's latitude and longitude coordinates
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
-          this.userPosition.lat = lat;
-          this.userPosition.long = lng;
+          this.userPosition.lat = lat.toString();
+          this.userPosition.long = lng.toString();
           this.url = this.getIframeUrl();
           // Do something with the location data, e.g. display on a map
-          console.log(`Latitude: ${lat}, longitude: ${lng}`);
           this.toastService.clear();
           this.toastService.show({header:'Message d\'alerte', body:'Hooray 🎉 Votre position a été récupérer.', isSuccess:true})
           this.isGettingPosition = false;
@@ -138,11 +234,13 @@ export class ManageShopComponent implements OnInit {
         // Error callback function
         (error) => {
           // Handle errors, e.g. user denied location sharing permissions
-          this.toastService.show({header: 'Message d\'erreur', body: 'Impossible de retrouver votre position ! Réessayez plus tard.'})
+          this.toastService.show({header: 'Message d\'erreur', body: 'Impossible de retrouver votre position ! Veuillez autoriser la demande.'})
+          this.isGettingPosition = false;
         }
       );
     } else {
       this.toastService.show({header: 'Message d\'erreur', body: 'Impossible de retrouver votre position ! Votre navigateur ne dispose pas de cette fonctionnalité.'})
+      this.isGettingPosition = false;
     }
   }
   generatePositionUrl():string {

@@ -17,7 +17,7 @@ export class SecurityService {
   public login(identifiant: string, password: string) {
     this.http
       .post(
-        `${environment.BACKEND_BASE_URL}/security/login`,
+        `${environment.BACKEND_API_URL}/security/login`,
         {
           userEmail: identifiant,
           userPassword: password,
@@ -37,7 +37,7 @@ export class SecurityService {
       });
   }
   public logout() {
-    this.http.post(`${environment.BACKEND_BASE_URL}/security/logout`, {}, {withCredentials:true}).subscribe(
+    this.http.post(`${environment.BACKEND_API_URL}/security/logout`, {}, {withCredentials:true}).subscribe(
       {
         next:()=>{
           this.toastService.show({header:'Message d\'alerte', body: 'Votre compte a été déconnecté avec succès.', isSuccess:true})
@@ -50,7 +50,7 @@ export class SecurityService {
   public register(user: USER): Promise<any>{
     return new Promise<any>((res)=>{
       this.http
-        .post(`${environment.BACKEND_BASE_URL}/security/register`, user)
+        .post(`${environment.BACKEND_API_URL}/security/register`, user)
         .subscribe({
           next: (res: any) => {
             this.toastService.show({header:'Message d\'alerte', body:'Inscription reussi ! Utilisez votre identifiant et mot de passe pour vous authentifier.', isSuccess:true})
@@ -70,7 +70,7 @@ export class SecurityService {
     let authenticatedUser: USER = {}
     return new Promise<USER>(resolve => {
       this.http
-        .get(`${environment.BACKEND_BASE_URL}/security/user`, {
+        .get(`${environment.BACKEND_API_URL}/security/user`, {
           withCredentials: true,
         })
         .subscribe({

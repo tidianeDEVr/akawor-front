@@ -108,7 +108,8 @@
                                                 <div *ngIf="isFileInputVisible">
                                                     <file-pond #myPond
                                                         [options]="pondOptions" 
-                                                        [files]="pondFiles">
+                                                        [files]="pondFiles"
+                                                        (onreorderfiles)="fileReordered()">
                                                     </file-pond>
                                                 </div>
                                             </div>

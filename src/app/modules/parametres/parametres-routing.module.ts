@@ -9,17 +9,16 @@ const routes: Routes = [
   { 
     path: 'compte-et-profile', 
     component: AccountSettingsComponent,
-    title: 'Compte et profile'
+    title: 'Compte et profile | Akawor'
   },
   { 
     path: 'notifications', 
     component: NotificationsComponent,
-    title: 'Mes notifications'
+    title: 'Mes notifications | Akawor'
   },
   { 
     path: 'ma-boutique', 
-    component: ManageShopComponent, 
-    title: 'Ma boutique - Nom de la boutique'
+    component: ManageShopComponent,
   }
 ];
 

@@ -11,7 +11,8 @@
             <div class="row">
                 <div class="col-2">
                     <div class="profile">
-                        <img src="../../../../assets/images/shops/logo-placeholder.jpeg" alt="shop" class="img-thumbnail" loading="lazy">
+                        <img src="../../../../assets/images/shops/logo-placeholder.jpeg" alt="shop" class="img-thumbnail" loading="lazy" *ngIf="!shop.shopLogoImage">
+                        <img src="{{imageBaseUrl+'/'+shop.shopLogoImage}}" alt="{{shop.shopLibelle}}" class="img-thumbnail" loading="lazy" *ngIf="shop.shopLogoImage" crossorigin="anonymous">
                     </div>
                 </div>
                 <div class="col-5" *ngIf="shop">
@@ -27,25 +28,25 @@
                     <div class="shop-infos d-flex justify-content-between">
                         <div class="contacts">
                             <h2 class="m-0">Informations :</h2>
-                            <a href="">
+                            <a *ngIf="social.shopEmailAddress" href="mailto:{{social.shopEmailAddress}}">
                                 <i class="fa-solid fa-at"></i>
-                                <span>adaa@gmail.com</span><br>
+                                <span>{{social.shopEmailAddress|lowercase}}</span><br>
                             </a>
-                            <a href="">
+                            <a *ngIf="social.shopPhoneNumber" href="tel:{{social.shopPhoneNumber}}">
                                 <i class="fa-solid fa-address-book"></i>
-                                <span>(+221) 77 123 45 67</span><br>
+                                <span>{{social.shopPhoneNumber}}</span><br>
                             </a>
-                            <a href="" class="text-ellip">
+                            <span class="text-ellip" *ngIf="shop.shopAddress">
                                 <i class="fa-solid fa-location-dot"></i>
-                                <span>Dakar, Sénégal, Cité Keur Gui ...</span><br>
-                            </a>
-                            <a href="">
+                                <span>{{shop.shopAddress}}</span><br>
+                            </span>
+                            <a href="{{social.websiteLink}}" *ngIf="social.websiteLink" target="_blank">
                                 <i class="fa-solid fa-globe"></i>
-                                <span>https://adaa-ada.com</span><br>
+                                <span>{{social.websiteLink}}</span><br>
                             </a>
-                            <span>
+                            <span *ngIf="shop.shopWorkingHours">
                                 <i class="fa-solid fa-calendar-days"></i>
-                                <span>Lundi au vendredi : 8H15 - 16H45.</span><br>
+                                <span>{{shop.shopWorkingHours}}</span><br>
                             </span>
                         </div>
                         <div class="socials">
@@ -53,22 +54,22 @@
                             <div class="d-flex align-items-center">
                                 <div class="row row-cols-4">
                                     <div class="col">
-                                        <div>
-                                            <a href="" matTooltip="Facebook">
+                                        <div *ngIf="social.facebookLink">
+                                            <a target="_blank" href="{{social.facebookLink}}" matTooltip="Facebook">
                                                 <i class="fa-xl fa-brands fa-facebook-f"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div>
-                                            <a href="" matTooltip="Instagram">
+                                        <div *ngIf="social.instagramLink">
+                                            <a target="_blank" href="{{social.instagramLink}}" matTooltip="Instagram">
                                                 <i class="fa-xl fa-brands fa-instagram"></i>
                                             </a>
                                         </div>
                                     </div>
                                     <div class="col">
-                                        <div>
-                                            <a href="" matTooltip="Tiktok">
+                                        <div *ngIf="social.tiktokLink">
+                                            <a target="_blank" href="{{social.tiktokLink}}" matTooltip="Tiktok">
                                                 <i class="fa-xl fa-brands fa-tiktok"></i>
                                             </a>
                                         </div>
@@ -128,14 +129,7 @@
                                         <option value="5">Prix, croissant</option>
                                         <option value="6">Prix, décroissant</option>
                                     </select>
-                                    <select style="max-width: 75px;" class="form-select form-select-sm" aria-label="Default select example">
-                                        <option selected>Nombre à afficher</option>
-                                        <option value="1">12</option>
-                                        <option value="2">25</option>
-                                        <option value="3">50</option>
-                                        <option value="3">75</option>
-                                        <option value="3">100</option>
-                                    </select>
+                                    
                                 </div>
                             </div>
                         </mat-toolbar>
@@ -146,7 +140,7 @@
                         </div>
                         <div class="empty-result d-flex flex-column align-items-center" *ngIf="!products || products.length === 0">
                             <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5" loading="lazy">
-                            <span class="w-100 text-center fw-bold alert alert-danger">Pas d'annonces en ligne !</span>
+                            <span class="text-center fw-bold alert alert-danger">Pas d'annonces en ligne !</span>
                         </div>
                         <div class="row row-cols-4 g-3 mb-4" *ngIf="isProductsLoaded">
                             <div class="col" *ngFor="let product of products">

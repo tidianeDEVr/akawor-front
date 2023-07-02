@@ -1,3 +1,3 @@
 export const environment = {
-    BACKEND_BASE_URL: ""
+    BACKEND_API_URL: ""
 };

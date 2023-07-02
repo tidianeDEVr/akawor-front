@@ -7,17 +7,17 @@
                 <div class="col col-10">
                     <div class="row">
                         <div class="col col-7">
-                            <div class="p-1 images" *ngIf="images">
+                            <div class="p-1 images" *ngIf="images && images.length>0">
                                 <div class="main-image-container">
                                     <img class="main-image" crossorigin="anonymous"
-                                    src="{{imageBaseUrl+images[0].imageTitle}}" alt="{{product.productTitle}}">
+                                    src="{{imageBaseUrl+product.productMainImage}}" alt="{{product.productTitle}}">
                                 </div>
                                 <div class="others-images">
                                     <img class="img-thumbnail other-image" crossorigin="anonymous"
-                                    src="{{imageBaseUrl+image.imageTitle}}" 
+                                    src="{{imageBaseUrl+image.imageTitle}}"
                                     alt="{{product.productTitle}}" *ngFor="let image of images" 
                                     (click)="changeImage(image.imageTitle)">
-                                </div>
+                                </div> 
                             </div>
                         </div>
                         <div class="col col-5">
@@ -58,17 +58,9 @@
                                               </tr>
                                             </thead>
                                             <tbody>
-                                              <tr>
-                                                <td>Mark</td>
-                                                <td>Otto</td>
-                                              </tr>
-                                              <tr>
-                                                <td>Jacob</td>
-                                                <td>Thornton</td>
-                                              </tr>
-                                              <tr>
-                                                <th scope="row">3</th>
-                                                <td colspan="2">Larry the Bird</td>
+                                              <tr *ngFor="let feature of productFeatures">
+                                                <td>{{feature['key']}}</td>
+                                                <td>{{feature['value']}}</td>
                                               </tr>
                                             </tbody>
                                         </table>
@@ -131,11 +123,11 @@
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="actions h-100">
                                             <div class="input-cont d-flex align-items-center">
-                                                <i class="fa-solid fa-chevron-left" onclick="this.parentNode.querySelector('input[type=number]').stepDown()"></i><br>
-                                                <input type="number" value="1" min="1" max="10">
-                                                <i class="fa-solid fa-chevron-right" onclick="this.parentNode.querySelector('input[type=number]').stepUp()"></i>
+                                                <i class="fa-solid fa-chevron-left" (click)="decrement()"></i><br>
+                                                <input type="number" [formControl]="valueControl" min="1" max="10">
+                                                <i class="fa-solid fa-chevron-right" (click)="increment()"></i>
                                             </div>
-                                            <button class="add-to-cart" matTooltip="Ajouter au panier">
+                                            <button class="add-to-cart" matTooltip="Ajouter au panier" (click)="addToCart()">
                                                 <i class="fa-lg fa-solid fa-cart-shopping"></i>
                                             </button>
                                             <button class="add-to-wishlist" matTooltip="Ajouter à la liste de souhaits">

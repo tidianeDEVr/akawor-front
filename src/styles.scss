@@ -82,8 +82,14 @@ ul {
     --green-400: #37a369;
     --green-500: #397250;
     --red: #B8361B;
+    --red-warn: #F44336;
     --pink: #AD7E7B;
     --brown: #3A001E;
+  }
+  app-manage-aside {
+    position: sticky;
+    top: 10px;
+    padding-bottom: 50px;
   }
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';

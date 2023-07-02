@@ -49,6 +49,9 @@ import { ContactComponent } from './components/contact/contact.component';
 import { ManageAsideComponent } from './components/manage-aside/manage-aside.component';
 import { FaqComponent } from './components/faq/faq.component';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardLayoutComponent } from '../layouts/dashboard-layout/dashboard-layout.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MycurrencyPipe } from './pipes/mycurrency.pipe';
 
 registerPlugin(
   FilePondPluginFileValidateType,
@@ -63,8 +66,10 @@ registerPlugin(
 
 @NgModule({
   declarations: [
+    MycurrencyPipe,
     FullComponent,
     NavigationComponent,
+    DashboardLayoutComponent,
     HeaderComponent,
     FooterComponent,
     HomeComponent,
@@ -98,6 +103,7 @@ registerPlugin(
     MatIconModule,
     MatSliderModule,
     MatDialogModule,
+    MatGridListModule,
     MatTableModule,
     MatSelectModule,
     MatPaginatorModule,
@@ -143,6 +149,9 @@ registerPlugin(
     ShopCardLoaderComponent,
     ManageAsideComponent,
     FaqComponent,
+  ], 
+  providers: [
+    MycurrencyPipe
   ]
 })
 export class CoreModule { }

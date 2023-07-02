@@ -1,0 +1,128 @@
+<section class="dashboard-layout">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col col-2 p-0">
+        <aside class="min-vh-100 container">
+          <div class="logo-container">
+            <img src="../../../assets/images/identities/akawor-nobg.png" alt="akawor">
+          </div>
+          <div class="mb-3">
+            <mat-divider></mat-divider>
+          </div>
+          <ul>
+            <li>
+              <a routerLink="/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                <i class="fa-solid fa-gauge-high"></i>
+                <span>Tableau de bord</span>
+              </a>
+            </li>
+          </ul>
+          <div class="mb-3">
+            <mat-divider></mat-divider>
+          </div>
+          <ul>
+            <li> 
+              <a routerLink="/dashboard/vendors" routerLinkActive="active">
+                <i class="fa-solid fa-users-gear"></i>
+                <span>Vendeurs</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/dashboard/customers" routerLinkActive="active">
+                <i class="fa-solid fa-users"></i>
+                <span>Clients</span>
+              </a>
+            </li>
+          </ul>
+          <div class="mb-3">
+            <mat-divider></mat-divider>
+          </div>
+          <ul>
+            <li>
+              <a routerLink="/dashboard/categories" routerLinkActive="active">
+                <i class="fa-solid fa-server"></i>
+                <span>Catégories</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/dashboard/announces" routerLinkActive="active">
+                <i class="fa-solid fa-bullhorn"></i>
+                <span>Annonces</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/dashboard/shops" routerLinkActive="active">
+                <i class="fa-solid fa-house"></i>
+                <span>Boutiques</span>
+              </a>
+            </li>
+          </ul>
+          <div class="my-3">
+            <mat-divider></mat-divider>
+          </div>
+          <ul>
+            <li>
+              <a routerLink="/dashboard/commands" routerLinkActive="active">
+                <i class="fa-solid fa-cart-shopping"></i>
+                <span>Commandes</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/dashboard/reviews" routerLinkActive="active">
+                <i class="fa-regular fa-star-half-stroke"></i>
+                <span>Commentaires</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/dashboard/messaging" routerLinkActive="active">
+                <i class="fa fa-inbox"></i>
+                <span>Messagerie</span>
+              </a>
+            </li>
+          </ul>
+        </aside>
+      </div>
+      <div class="col col-10 p-0">
+        <mat-toolbar class="bg-white">
+          <div class="row w-100">
+            <div class="col-4 position-relative">
+              <input type="text" class="form-control" placeholder="Recherche...">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+            <div class="col">
+              <div class="d-flex justify-content-end align-items-center">
+                <button class="btn" [matMenuTriggerFor]="notificationsMenu" style="color: var(--red);">
+                  <i class="fa fa-bell"></i>
+                </button>
+                <mat-menu #notificationsMenu="matMenu">
+                  <div class="p-4">
+                    <span class="alert alert-danger">Pas de notifications !</span>
+                  </div>
+                </mat-menu>
+                <button class="btn" [matMenuTriggerFor]="userMenu" style="color: var(--red);">
+                  <i class="fa fa-user"></i>
+                </button>
+                <mat-menu #userMenu="matMenu">
+                  <button mat-menu-item>
+                    <i class="fa-solid "></i>
+                    <i class="fa-solid fa-child-reaching" style="margin-right: 10px;"></i>
+                    <span>Mon profile</span>
+                  </button>
+                  <button mat-menu-item>
+                    <i class="fa-solid fa-gears" style="margin-right: 10px;"></i>
+                    <span>Paramétres</span>
+                  </button>
+                  <button mat-menu-item>
+                    <i class="fa-solid fa-right-from-bracket" style="margin-right: 10px;"></i>
+                    <span>Déconnexion</span>
+                  </button>
+                </mat-menu>
+              </div>
+            </div>
+          </div>
+        </mat-toolbar>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</section> 
