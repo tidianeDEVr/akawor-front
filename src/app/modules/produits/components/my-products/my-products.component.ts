@@ -31,10 +31,10 @@ export class MyProductsComponent {
       })
   }
   editProduct(product:PRODUCT){
-    alert(product.productTitle)
+    this.router.navigateByUrl(`/produits/nouvelle-annonce?edit_product=${product.productSlug}`);
   }
   displayProduct(product:PRODUCT){
-    this.router.navigate([`/produits/${product.productSlug}`]);
+    this.router.navigate([`/produits/${product.productSlug}?edit_product=${product.productSlug}`]);
   }
   deleteProduct(product:PRODUCT){
     alert(product.productTitle)

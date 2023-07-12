@@ -34,13 +34,6 @@ import { ProductCardComponent } from '../modules/produits/components/product-car
 import { ToastComponent } from './components/toast/toast.component';
 import { MatExpansionModule } from '@angular/material/expansion'; 
 
-import { FilePondModule, registerPlugin } from 'ngx-filepond';
-import  * as FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
-import  * as FilepondPluginImageEdit from 'filepond-plugin-image-edit';
-import  * as FilepondPluginImagePreview from 'filepond-plugin-image-preview';
-import  * as FilepondPluginImageResize from 'filepond-plugin-image-resize';
-import  * as FilepondPluginImageCrop from 'filepond-plugin-image-crop';
-import * as FilePondPluginFileMetadata from 'filepond-plugin-file-metadata';
 import { ShopCardComponent } from '../modules/boutiques/components/shop-cards/shop-card/shop-card.component';
 import { ShopCardLoaderComponent } from '../modules/boutiques/components/shop-cards/shop-card-loader/shop-card-loader.component';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
@@ -52,17 +45,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { DashboardLayoutComponent } from '../layouts/dashboard-layout/dashboard-layout.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MycurrencyPipe } from './pipes/mycurrency.pipe';
-
-registerPlugin(
-  FilePondPluginFileValidateType,
-  FilepondPluginImageEdit,
-  FilepondPluginImagePreview,
-  FilepondPluginImageResize,
-  FilepondPluginImageCrop,
-  FilePondPluginFileMetadata
-  );
-
-
 
 @NgModule({
   declarations: [
@@ -114,7 +96,6 @@ registerPlugin(
     NgxSkeletonLoaderModule,
     NgbToastModule,
     MatAutocompleteModule,
-    FilePondModule,
     MatExpansionModule
   ],
   exports: [
@@ -134,7 +115,6 @@ registerPlugin(
     MatSliderModule,
     SlickCarouselModule,
     MatAutocompleteModule,
-    FilePondModule,
     MatDialogModule,
     MatTableModule,
     MatSelectModule,

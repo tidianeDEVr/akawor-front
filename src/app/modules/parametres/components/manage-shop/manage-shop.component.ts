@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { FilePond, FilePondOptions } from 'filepond';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { CATEGORY, SHOP, SOCIAL, USER } from 'src/app/data/interfaces';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
@@ -19,38 +18,9 @@ export class ManageShopComponent implements OnInit {
   public social!: SOCIAL;
   public category!: CATEGORY;
   public shopCatgories!: CATEGORY[];
-  @ViewChild('myPond')
-  public myPond!: FilePond;
-  public isPondActive: boolean = false;
   public isUpdating: boolean = false;
   public excludedNames: string[] = ['ma boutique'];
   public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
-  public pondFiles: FilePondOptions["files"] = []
-  public pondOptions: FilePondOptions = {
-    allowMultiple: false,
-    allowRevert: false,
-    labelIdle: 'Cliquez ou déposez votre logo...',
-    acceptedFileTypes: ['image/*'],
-    imagePreviewMaxFileSize: '5MB',
-    credits: false,
-    imagePreviewHeight: 170,
-    imageCropAspectRatio: '1:1',
-    imageResizeTargetWidth: 200,
-    imageResizeTargetHeight: 200,
-    stylePanelLayout: 'compact circle',
-    styleLoadIndicatorPosition:'center',
-    styleButtonRemoveItemPosition: 'bottom center',
-    name: 'images',
-    server: {
-      url: environment.BACKEND_BASE_URL,
-      process: {
-        url: '/api/image/upload',
-        method: 'POST',
-        withCredentials: true,
-        timeout: 7000,
-      },
-    },
-  }
   
   public categoryControl = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(600)]);
   public descriptionControl = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(600)]);
@@ -84,34 +54,8 @@ export class ManageShopComponent implements OnInit {
         this.boutiquesServices.getShopBySeller(res.userEmail)
         .then((rs)=>{
           this.shop = rs;
+          if(this.shop.shopLogoImage) this.displayLogo(`${environment.BACKEND_IMAGES_FOLDER}/${this.shop.shopLogoImage}`);
           document.title = `Ma boutique - ${this.shop.shopLibelle}`;
-          this.pondOptions['server'] = {
-            url: environment.BACKEND_BASE_URL,
-            process: {
-              url: '/api/image/upload',
-              method: 'POST',
-              withCredentials: true,
-              timeout: 7000,
-            },
-            load: (source, load, error, progress, abort, headers) => {
-              const myRequest = new Request(this.imageBaseUrl + "/" + this.shop.shopLogoImage);
-              fetch(myRequest).then(function(response) {
-                  response.blob().then(function(myBlob) {
-                      load(myBlob)
-                  });
-              });
-            },
-            headers: {
-              shop : this.shop.id ? this.shop.id : '0',
-            },
-          }
-          if(rs.shopLogoImage) this.pondFiles?.push({
-            source: `${this.imageBaseUrl}${rs.shopLogoImage}`,
-            options: {
-                type: 'local',
-            },
-          })
-          if(rs.id) this.isPondActive = true;
           // HYDRATE CHAMPS CATEGORY
           if (rs.Category && rs.Category.categoryLibelle) {
             this.category = rs.Category
@@ -245,5 +189,34 @@ export class ManageShopComponent implements OnInit {
   }
   generatePositionUrl():string {
     return `https://maps.google.com/maps?q=' + ${this.userPosition.lat} + ',' + ${this.userPosition.long} + '&t=&z=15&ie=UTF8&iwloc=&output=embed`
+  }
+  displayAndUploadLogoFile(e: any) {
+    if (e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event: any) => {
+        // if (display) display.src = event.target.result;
+        this.displayLogo(event.target.result);
+      };
+      // UPLOAD SINGLE FILE
+      this.uploadFile(e.target.files[0]);
+    }
+  }
+  displayLogo(path:string){
+    let display: any = document.querySelector(`#displayLogo`);
+    if(display) display.src = path
+  }
+  uploadFile(file:any) {
+      const API_ENDPOINT = `${environment.BACKEND_API_URL}/image/upload?shop=${this.shop.id}`;
+      const request = new XMLHttpRequest();
+      const formData = new FormData();
+      request.open("POST", API_ENDPOINT, true);
+      request.onreadystatechange = () => {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log(request.responseText);
+        }
+      };
+      formData.append("images", file);
+      request.send(formData);
   }
 }

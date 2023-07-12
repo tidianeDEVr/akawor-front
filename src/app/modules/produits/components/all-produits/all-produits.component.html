@@ -28,7 +28,8 @@
                             <div class="title-divider" style="margin-top: -12px;"></div>
                             <ul>
                                 <li [ngClass]="{'active': activeCategory === category}" class="active" *ngFor="let category of productCategories">
-                                    <a class="text-ellip" (click)="changeCategory(category)" matTooltip="{{category.categoryLibelle}}">
+                                    <a class="text-ellip" routerLink="{{'/produits/categorie/'+category.categorySlug}}" 
+                                    matTooltip="{{category.categoryLibelle}}" (click)="changeCategory(category)">
                                         <i class="{{category.categoryIconClass}}"></i>
                                         <span>{{category.categoryLibelle}}</span>
                                     </a>

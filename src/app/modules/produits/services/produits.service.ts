@@ -100,6 +100,20 @@ export class ProduitsService {
         });
     });
   }
+  getCategoryById(id: string): Promise<CATEGORY> {
+    return new Promise<CATEGORY>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/category/find-by-id/${id}`)
+        .subscribe({
+          next: (res: any) => {
+            resolve(res);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
   createProduct(product: PRODUCT, productOwnerId: string): Promise<PRODUCT> {
     return new Promise<PRODUCT>((resolve) => {
       this.httpClient
@@ -107,6 +121,20 @@ export class ProduitsService {
           product,
           productOwnerId,
         })
+        .subscribe({
+          next: (res: any) => {
+            resolve(res);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
+  uploadImages(images: any): Promise<PRODUCT> {
+    return new Promise<PRODUCT>((resolve) => {
+      this.httpClient
+        .post(`${environment.BACKEND_API_URL}/image/upload`, {images})
         .subscribe({
           next: (res: any) => {
             resolve(res);

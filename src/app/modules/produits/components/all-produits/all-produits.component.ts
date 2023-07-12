@@ -87,8 +87,8 @@ export class AllProduitsComponent implements OnInit {
       this.produitsService
         .getProductsByCategoriesSlug(category.categorySlug)
         .then((res) => {
-          this.products = res;
           this.activeCategory = category;
+          this.products = res;
           this.isProductsLoaded = true;
         });
   }

@@ -13,7 +13,7 @@
                         </div>
                         <div class="row g-4 mt-3">
                             <div class="col col-6" [hidden]="stepPercent!==25">
-                                <mat-card class="">
+                                <mat-card>
                                     <mat-card-content>
                                         <!-- Step 1 -->
                                         <div class="col details-part">
@@ -86,7 +86,8 @@
                                         </div>
                                         <div class="input-group attr-group" *ngFor="let attr of attributsProduct; let i = index">
                                             <button class="remove-btn position-absolute btn btn-sm btn-outline-danger" (click)="removeAttribut(i)">Retirer</button>
-                                            <input [(ngModel)]="attr.key" placeholder="Ex : Couleur" type="text" class="form-control">
+                                            <input [(ngModel)]="attr.key" placeholder="Ex : Couleur" type="text" class="form-control" 
+                                            style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;">
                                             <input [(ngModel)]="attr.value" placeholder="Rouge" type="text" class="form-control">
                                         </div>
                                     </mat-card-content>
@@ -105,13 +106,38 @@
                                                 <p>
                                                     Une annonce avec des images de qualité obtient plus de visibilité, augmente vos chances de vendre plus rapidement.<br>
                                                 </p>
-                                                <div *ngIf="isFileInputVisible">
-                                                    <file-pond #myPond
-                                                        [options]="pondOptions" 
-                                                        [files]="pondFiles"
-                                                        (onreorderfiles)="fileReordered()">
-                                                    </file-pond>
-                                                </div>
+                                                <form
+                                                class="input-files" id="input-files" 
+                                                enctype="multipart/form-data" 
+                                                method="post">
+                                                    <div class="principal position-relative">
+                                                        <label for="principal">
+                                                            <img class="img-thumbnail w-100" alt="image principale du produit" id="displayPrincipal"
+                                                            src="../../../../../assets/images/products/product-placeholder.png" crossorigin="anonymous">
+                                                        </label>
+                                                        <input type="file" name="images" id="principal" class="d-none" accept="image/*" name="images"
+                                                        (change)="displayAndUploadMainFile($event)">
+                                                        <button class="position-absolute rm-img-btn" mat-mini-fab
+                                                        matTooltip="Supprimer">
+                                                            <mat-icon>close</mat-icon>
+                                                        </button>
+                                                    </div>
+                                                    <div class="others row row-cols-3 g-2 mt-1">
+                                                        <div class="other col position-relative" *ngFor="let img of otherImages; let index = index">
+                                                            <label for="{{'other'+index}}">
+                                                                <img class="img-thumbnail w-100" alt="image principale du produit" id="{{'displayOther'+index}}"
+                                                                src="../../../../../assets/images/products/product-placeholder.png" crossorigin="anonymous">
+                                                            </label>
+                                                            <input type="file" name="images" class="input-file" id="{{'other'+index}}" class="d-none" accept="image/*"
+                                                            (change)="displayAndUploadFile($event, index)"
+                                                            >
+                                                            <button class="position-absolute rm-img-btn" mat-mini-fab
+                                                            matTooltip="Supprimer">
+                                                                <mat-icon>close</mat-icon>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </mat-card-content>
@@ -137,7 +163,7 @@
                                                     </li>
                                                     <li class="list-group-item">
                                                         <i class="fa-solid fa-images"></i>
-                                                        <span> Les types de fichiers pris en charge sont .heic, .heif, .jpeg, .jpg, .png</span>
+                                                        <span> Les types de fichiers pris en charge sont .jpeg, .jpg, .png</span>
                                                     </li>
                                                     <li class="list-group-item">
                                                         <i class="fa-solid fa-sd-card"></i>

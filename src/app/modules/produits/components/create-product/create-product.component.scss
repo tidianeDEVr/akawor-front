@@ -12,13 +12,13 @@
                 }
                 input:focus {
                     box-shadow: none;
-                    border: 1px solid var(--black);
+                    border: 1.5px solid var(--black);
                 }
                 .remove-btn {
                     right: 4px;
                     top: 4px;
                     scale: .9;
-                    border-radius: 0;
+                    border-radius: 5px !important;
                 }
             }
         }
@@ -44,9 +44,6 @@
             color: var(--red);
             margin-right: 7px;
         }
-        .filepond--image-preview-wrapper {
-            z-index: 99 !important;
-        }
         .step-down-btn {
             background-color: var(--red);
             color: var(--white);
@@ -54,6 +51,20 @@
         .disabled {
             opacity: .75;
             pointer-events: none;
+        }
+        .input-files {
+            margin: 0 auto;
+            img {
+                cursor: pointer;
+                aspect-ratio: 1;
+                object-fit: cover;
+            }
+            .rm-img-btn {
+                top: 8px;
+                right: 10px;
+                scale: .8;
+                background-color: var(--green-400);
+            }
         }
         h1 {
             font-family: 'Playfair Display', serif;

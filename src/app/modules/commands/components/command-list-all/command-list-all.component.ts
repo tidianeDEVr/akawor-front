@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { DATATABLE_LANGAGE_FR } from 'src/app/data/interfaces';
 
 declare let DataTable: any;
 @Component({
@@ -7,9 +8,9 @@ declare let DataTable: any;
   styleUrls: ['./command-list-all.component.scss'],
 })
 export class CommandListAllComponent {
-  ngAfterViewInit() {
+  constructor(){
     setTimeout(() => {
-      new DataTable('#myCommands');
-    }, 200);
+      new DataTable('#myCommands', DATATABLE_LANGAGE_FR);
+    }, 1);
   }
 }

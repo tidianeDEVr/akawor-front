@@ -18,18 +18,23 @@
                                                     <span>Logo de votre entreprise</span> 
                                                 </mat-card-title>
                                                 <div class="mb-4">
-                                                    <div class="mx-auto mt-4" style="max-width: 220px;">
-                                                        <file-pond #myPond *ngIf="isPondActive"
-                                                            [options]="pondOptions" 
-                                                            [files]="pondFiles">
-                                                        </file-pond>
-                                                    </div>
-                                                    <div class="d-flex justify-content-center" *ngIf="this.shop.shopLogoImage">
-                                                        <button class="btn btn-outline-danger" (click)="removeLogo()">
-                                                            Supprimer la photo
-                                                        </button>
-                                                    </div>
-                                                    <p class="advise text-center mt-4">
+                                                    <form class="mx-auto mt-4 position-relative" 
+                                                    id="input-file" style="max-width: 220px;"
+                                                    enctype="multipart/form-data">
+                                                        <label for="logo-input">
+                                                            <img alt="shop" class="img-thumbnail display-logo" crossorigin="anonymous"
+                                                            src="../../../../../assets/images/shops/logo-placeholder.jpeg" id="displayLogo">
+                                                        </label>
+                                                        <input type="file" accept="img/*" id="logo-input" name="images" class="d-none"
+                                                        (change)="displayAndUploadLogoFile($event)">
+                                                        <div class="d-flex justify-content-center" *ngIf="this.shop.shopLogoImage">
+                                                            <button class="btn btn-sm btn-outline-danger rm-btn" 
+                                                            (click)="removeLogo()" matTooltip="Supprimer logo">
+                                                                <i class="fa-solid fa-trash"></i>
+                                                            </button>
+                                                        </div>
+                                                    </form>
+                                                    <p class="advise text-end mt-4">
                                                         - Taille d'image conseillée: 200x200px.<br>
                                                         - Taille maximale: 5mb.
                                                     </p>

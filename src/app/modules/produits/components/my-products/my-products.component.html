@@ -13,7 +13,7 @@
                     <div class="title-divider"></div>
                     <mat-card>
                         <mat-card-content>
-                            <div class="container">
+                            <div class="container" style="min-height: 500px;">
                                 <div *ngIf="myProducts && myProducts.length===0">
                                     <div class="container pt-5">
                                         <div class="d-flex flex-column align-items-center justify-content-center">
@@ -24,8 +24,8 @@
                                 </div>
                                 <div class="my-products row row-cols-4 g-4" *ngIf="myProducts && myProducts.length>0">
                                     <div class="col single-prod" *ngFor="let product of myProducts">
-                                        <mat-card>
-                                            <mat-card-content class="position-relative">
+                                        <div class="card">
+                                            <div class="position-relative card-body">
                                                 <div class="position-absolute">
                                                     <span class="badge text-bg-success m-1" *ngIf="product.productState==='ONLINE'">En ligne</span>
                                                     <span class="badge text-bg-info m-1" *ngIf="product.productState==='DRAFT'">Brouillon</span>
@@ -49,8 +49,8 @@
                                                         </mat-menu>
                                                     </div>
                                                 </div>
-                                            </mat-card-content>
-                                        </mat-card>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

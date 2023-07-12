@@ -54,6 +54,154 @@
         </div>
       </div>
     </div>
-
+    <div class="row pt-4 g-4">
+      <div class="col col-8">
+        <div class="card h-100 position-relative">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h4 class="card-label">DERNIERS ANNONCES</h4>
+              <a routerLink="/dashboard/announcements" class="btn btn-sm btn-dark label-btn">GÉRER ANNONCES</a>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="mt-3 latest-products">
+              <div class="latest-product" *ngFor="let product of latestProducts">
+                <div class="row">
+                  <div class="col col-2">
+                    <div class="d-flex align-items-center">
+                      <img src="http://localhost:3001/images/1688468624518.jpg" 
+                      class="img-thumbnail" crossorigin="anonymous">
+                    </div>
+                  </div>
+                  <div class="col col-8">
+                    <div>
+                      <h4 class="text-ellip">Titre du produit</h4>
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis totam est ipsum. Reiciendis ut recusandae quae vero id eaque placeat et ipsa sint consectetur molestias perspiciatis modi, officia sapiente dicta!
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis totam est ipsum. Reiciendis ut recusandae quae vero id eaque placeat et ipsa sint consectetur molestias perspiciatis modi, officia sapiente dicta!
+                      </p>
+                    </div>
+                  </div>
+                  <div class="col col-2">
+                    <div class="text-center pt-3">
+                      <span>3000$</span>
+                      <p><del>4200$</del></p>
+                      <h5>15 ventes</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-gradient"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-4">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h4 class="card-label">MEILLEURES BOUTIQUES</h4>
+              <a routerLink="/dashboard/shops" class="btn btn-sm btn-dark label-btn" disabled>GÉRER BOUTIQUES</a>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="canvas-holder mt-3">
+              <canvas id="chartCanvas" aria-label="chart" role="img"></canvas>
+              <h5 class="fw-bold text-center mt-2">NOMBRE DE VENTES</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-4">
+        <div class="card h-100 position-relative">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h4 class="card-label">DERNIERS CLIENTS</h4>
+              <a routerLink="/dashboard/customers" class="btn btn-sm btn-dark label-btn">GÉRER CLIENTS</a>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="new-customers mt-3">
+              <div class="new-customer" *ngFor="let customer of latestProducts">
+                <div class="row">
+                  <div class="col col-4">
+                    <div class="d-flex align-items-center">
+                      <img src="../../../../../assets/images/users/user-placeholder.png" 
+                      class="img-thumbnail" crossorigin="anonymous">
+                    </div>
+                  </div>
+                  <div class="col col-8">
+                    <div>
+                      <h4 class="text-ellip fw-bold">Cheikh Tidiane Ndiaye</h4>
+                      <p class="text-ellip my-1">cheikhtiindiaye@gmail.com</p>
+                      <span class="badge text-bg-info">2 commandes</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-gradient"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-8">
+        <div class="card h-100">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h4 class="card-label">DERNIÈRES COMMANDES</h4>
+              <a routerLink="/dashboard/commands" class="btn btn-sm btn-dark label-btn">GÉRER COMMANDES</a>
+            </div>
+            <mat-divider></mat-divider>
+            <div class="mt-3">
+              <table id="latestCommands" class="display" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>N° produits</th>
+                    <th>Date</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let command of latestCommands; let index = index">
+                    <td>{{index+1}}</td>
+                    <td>Modou Dieng</td>
+                    <td>15</td>
+                    <td>2011-04-25</td>
+                    <td>6100$</td>
+                    <td>
+                      <span class="badge text-bg-warning">En attente</span>
+                    </td>
+                    <td>
+                      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <button type="button" class="btn btn-sm btn-outline-dark">Plus d'infos</button>
+                        <div class="btn-group" role="group">
+                          <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                          <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action #1</a></li>
+                            <li><a class="dropdown-item" href="#">Action #2</a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>ID</th>
+                    <th>Client</th>
+                    <th>N° produits</th>
+                    <th>Date</th>
+                    <th>Montant</th>
+                    <th>Statut</th>
+                    <th>Actions</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </main>

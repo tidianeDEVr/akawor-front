@@ -1,27 +1,23 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { FilePond, FilePondOptions } from 'filepond';
 import { ProduitsService } from '../../services/produits.service';
 import { CATEGORY, PRODUCT } from 'src/app/data/interfaces';
-import { environment } from 'src/environments/environment.development';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { Router } from '@angular/router';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
+import { environment } from 'src/environments/environment.development';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-create-product',
   templateUrl: './create-product.component.html',
   styleUrls: ['./create-product.component.scss'],
 })
-export class CreateProductComponent {
-  public attributsProduct: any[] = [
-    {
-      key: '',
-      value: ''
-    },
-  ];
+export class CreateProductComponent implements OnInit {
+  public isOnDraftMode: boolean = false;
+  public urlToSendImages:string = `${environment.BACKEND_API_URL}/image/upload`
+  public urlToGetImages:string = `${environment.BACKEND_IMAGES_FOLDER}`
+  public attributsProduct: any[] = [{ key: '', value: '' }];
   public stepPercent: number = 25;
-  public isFileInputVisible: boolean = false;
   public titleControl = new FormControl('', [
     Validators.required,
     Validators.minLength(5),
@@ -46,58 +42,14 @@ export class CreateProductComponent {
     productDescription: '',
     productIsOutOfStock: false,
   };
+  public otherImages: string[] = ['', '', '', '', '', ''];
   public productOwnerId!: string;
-
-  @ViewChild('myPond')
-  public myPond!: FilePond;
-
-  public pondOptions: FilePondOptions = {
-    allowMultiple: true,
-    allowRevert: false,
-    allowReorder: true,
-    allowFileMetadata: true,
-    fileMetadataObject: null,
-    maxParallelUploads: 10,
-    labelInvalidField: 'Le champ contient des fichiers invalides',
-    labelIdle: 'Cliquez ou déposez vos images...',
-    labelFileWaitingForSize: 'En attente de la taille',
-    labelFileSizeNotAvailable: 'Taille non disponible',
-    labelFileLoading: 'Chargement',
-    labelFileLoadError: 'Erreur lors du chargement',
-    labelFileProcessingError: 'Erreur lors du téléchargement',
-    labelFileProcessing: 'Téléchargement',
-    labelFileProcessingComplete: 'Téléchargement complet',
-    labelFileProcessingAborted: 'Téléchargement annulé',
-    labelTapToRetry: 'Cliquer pour réessayer',
-    labelTapToCancel: 'Cliquer pour annuler',
-    labelTapToUndo: 'Cliquer pour annuler',
-    labelButtonRemoveItem: 'Supprimer',
-    acceptedFileTypes: ['image/*'],
-    imagePreviewMaxFileSize: '10MB',
-    maxFiles: 10,
-    name: 'images',
-    credits: false,
-    server: {
-      url: environment.BACKEND_API_URL,
-      process: {
-        url: '/image/upload',
-        method: 'POST',
-        withCredentials: true,
-        timeout: 7000,
-      },
-      headers: {
-        product : this.productObject.id ? this.productObject.id : '0',
-      },
-    },
-  };
-
-  public pondFiles: FilePondOptions['files'] = [];
 
   constructor(
     private produitService: ProduitsService,
     private toastService: ToastService,
     private securityService: SecurityService,
-    private router: Router
+    private route: ActivatedRoute
   ) {
     this.produitService.getCategoriesProducts().then((cats) => {
       this.mainProductsCategories = cats;
@@ -111,9 +63,54 @@ export class CreateProductComponent {
       if (user.id) this.productOwnerId = user.id;
     });
   }
-
+  ngOnInit(): void {
+    this.route.queryParams
+      .subscribe(params => {
+        if(params['edit_product']) {
+          this.produitService.getProductBySlug(params['edit_product'])
+          .then((res:any)=>{
+            if(!res.message) {
+              this.productObject = res;
+              this.isOnDraftMode = true;
+              this.hydrateFields(res);
+            }
+          })
+        }
+      }
+    );
+  }
+  hydrateImages(name:string){
+    var image: any = document.querySelector('#displayPrincipal');
+    if(image)
+    image.src = `${this.urlToGetImages}/${name}`
+  }
+  hydrateFields(object: any){
+    if(object.productTitle) this.titleControl.setValue(object.productTitle);
+    if(object.productMainImage) this.hydrateImages(object.productMainImage);
+    if(object.productPrice) this.priceControl.setValue(object.productPrice)
+    if(object.productDescription) this.descriptionControl.setValue(object.productDescription);
+    if(object.productFeatures) this.attributsProduct = JSON.parse(object.productFeatures);
+    if(object.CategoryId) {
+      this.produitService.getCategoryById(object.CategoryId)
+      .then((res:any)=>{
+        if(res.categoryParentId!=null) {
+          console.log('CHILD '+JSON.stringify(res));
+          this.subCategoryControl.setValue(res);
+          this.produitService.getCategoryById(res.categoryParentId)
+          .then(parent=>{
+            console.log('PARENT '+JSON.stringify(parent));
+            this.mainCategoryControl.setValue(parent)
+          })
+        } else {
+          console.log('PARENT '+JSON.stringify(res));
+          this.mainCategoryControl.setValue(res)
+        }
+      })
+    }
+  }
   stepUp() {
-    if (this.stepPercent === 25) this.saveProduct();
+    if (this.stepPercent === 25 && !this.isOnDraftMode) this.saveProduct();
+    // if (this.stepPercent === 50) this.saveImages();
     if (this.stepPercent < 100) {
       this.stepPercent += 25;
       this.changeProgressbarWidth();
@@ -131,8 +128,44 @@ export class CreateProductComponent {
     let bar: HTMLElement | null = document.querySelector('.progress-bar');
     if (bar) bar.style.width = `${this.stepPercent}%`;
   }
-
-  saveProduct() {
+  displayAndUploadMainFile(e: any) {
+    let display: any = document.querySelector(`#displayPrincipal`);
+    if (e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event: any) => {
+        if (display) display.src = event.target.result;
+      };
+      // UPLOAD SINGLE FILE
+      this.uploadFile(e.target.files[0], true);
+    }
+  }
+  displayAndUploadFile(e: any, index: number) {
+    let display: any = document.querySelector(`#displayOther${index}`);
+    if (e.target.files) {
+      var reader = new FileReader();
+      reader.readAsDataURL(e.target.files[0]);
+      reader.onload = (event: any) => {
+        if (display) display.src = event.target.result;
+      };
+      // UPLOAD SINGLE FILE
+      this.uploadFile(e.target.files[0], false);
+    }
+  }
+  uploadFile(file:any, isMainImage:boolean) {
+      const API_ENDPOINT = `${environment.BACKEND_API_URL}/image/upload?product=${this.productObject.id}&mainImage=${isMainImage}`;
+      const request = new XMLHttpRequest();
+      const formData = new FormData();
+      request.open("POST", API_ENDPOINT, true);
+      request.onreadystatechange = () => {
+        if (request.readyState === 4 && request.status === 200) {
+          console.log(request.responseText);
+        }
+      };
+      formData.append("images", file);
+      request.send(formData);
+  }
+  updateProduct() {
     if (this.titleControl.value)
       this.productObject.productTitle = this.titleControl.value;
     if (this.descriptionControl.value)
@@ -143,12 +176,18 @@ export class CreateProductComponent {
       this.productObject.productCategory = this.mainCategoryControl.value;
     if (this.subCategoryControl.value)
       this.productObject.productCategory = this.subCategoryControl.value;
-    if(this.attributsProduct.length>0){
-      if(this.attributsProduct[0].key!=='' && this.attributsProduct[0].value!==''){
-        this.productObject.productFeatures =  JSON.stringify(this.attributsProduct);
+    if (this.attributsProduct.length > 0) {
+      if (
+        this.attributsProduct[0].key !== '' &&
+        this.attributsProduct[0].value !== ''
+      ) {
+        this.productObject.productFeatures = JSON.stringify(
+          this.attributsProduct
+        );
       }
     }
-
+  }
+  saveProduct(){
     this.produitService
       .createProduct(this.productObject, this.productOwnerId)
       .then((prod) => {
@@ -157,39 +196,19 @@ export class CreateProductComponent {
           body: "L'annonce est enregistré dans vos brouillons.",
           isSuccess: true,
         });
-        if (prod) {
-          this.productObject = prod;
-          this.pondOptions['server'] = {
-            url: environment.BACKEND_API_URL,
-            process: {
-              url: '/image/upload',
-              method: 'POST',
-              withCredentials: true,
-              timeout: 7000,
-            },
-            headers: {
-              product : this.productObject.id ? this.productObject.id : '0',
-            },
-          }
-          this.isFileInputVisible = true;
-          console.log(this.pondOptions['server']);
-        }
+        if (prod) this.productObject = prod;
       })
       .catch((err) => {
         this.toastService.show({
           header: "Message d'erreur",
-          body: 'Error',
+          body: 'Une erreur s\'est produite lors de la création du produit ! Veuillez réessayer plus tard.',
         });
       });
   }
-  addNewAttribut(){
-    this.attributsProduct.push({key: '', value: ''})
+  addNewAttribut() {
+    this.attributsProduct.push({ key: '', value: '' });
   }
-  removeAttribut(id:number){
-    alert(id)
-    // if(this.attributsProduct[id]) this.attributsProduct = this.attributsProduct.splice(id, 1);
-  }
-  fileReordered(){
-    alert('reordered');
+  removeAttribut(index: number) {
+    this.attributsProduct.splice(index, 1);
   }
 }

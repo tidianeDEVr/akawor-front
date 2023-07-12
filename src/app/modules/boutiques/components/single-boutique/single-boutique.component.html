@@ -52,23 +52,23 @@
                         <div class="socials">
                             <h2>Réseaux sociaux :</h2> 
                             <div class="d-flex align-items-center">
-                                <div class="row row-cols-4">
-                                    <div class="col">
-                                        <div *ngIf="social.facebookLink">
+                                <div class="row">
+                                    <div class="col col-3" *ngIf="social.facebookLink">
+                                        <div>
                                             <a target="_blank" href="{{social.facebookLink}}" matTooltip="Facebook">
                                                 <i class="fa-xl fa-brands fa-facebook-f"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div *ngIf="social.instagramLink">
+                                    <div class="col col-3" *ngIf="social.instagramLink">
+                                        <div>
                                             <a target="_blank" href="{{social.instagramLink}}" matTooltip="Instagram">
                                                 <i class="fa-xl fa-brands fa-instagram"></i>
                                             </a>
                                         </div>
                                     </div>
-                                    <div class="col">
-                                        <div *ngIf="social.tiktokLink">
+                                    <div class="col col-3" *ngIf="social.tiktokLink">
+                                        <div>
                                             <a target="_blank" href="{{social.tiktokLink}}" matTooltip="Tiktok">
                                                 <i class="fa-xl fa-brands fa-tiktok"></i>
                                             </a>
