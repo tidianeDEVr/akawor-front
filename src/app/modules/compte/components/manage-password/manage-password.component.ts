@@ -18,11 +18,9 @@ export class ManagePasswordComponent {
   public changePassword(){
     if(this.newPasswordControl.value !== this.confirmNewPasswordControl.value) 
       return this.toastService.show({
-        header: 'Message d\'erreur',
         body: 'Les mots de passe ne correspondent pas !'
       })
       this.toastService.show({
-        header: 'Message d\'alerte',
         body: 'Le mot de passe a été changer !',
         isSuccess: true,
       })

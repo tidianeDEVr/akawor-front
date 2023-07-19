@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { DATATABLE_LANGAGE_FR } from 'src/app/data/interfaces';
+import { DATATABLE_LANGAGE_FR, PRODUCT } from 'src/app/data/interfaces';
 import {registerables, Chart} from 'chart.js';
+import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
+import { environment } from 'src/environments/environment.development';
 declare let DataTable: any;
 @Component({
   selector: 'app-dashboard',
@@ -8,13 +10,21 @@ declare let DataTable: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
+  public imgPath: string = environment.BACKEND_IMAGES_FOLDER;
+  public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   public latestCommands: any[] = [
     '','','','','','','','','','','','','','',
     '','','','','','','','','','','','','','',
     '','','','','','','','','','','','',
   ]
-  public latestProducts: any[] = ['','','','','']
-  constructor(){
+  public latestProducts !: PRODUCT[];
+  constructor(
+    private produitsService: ProduitsService
+  ){
+    this.produitsService.getLatestProductsDashboard()
+    .then((prods)=>{
+      this.latestProducts = prods;
+    })
     setTimeout(() => {
       new DataTable('#latestCommands', DATATABLE_LANGAGE_FR);
       Chart.register(...registerables);

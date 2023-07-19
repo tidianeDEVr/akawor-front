@@ -4,6 +4,7 @@ import { SingleProduitComponent } from './components/single-produit/single-produ
 import { AllProduitsComponent } from './components/all-produits/all-produits.component';
 import { CreateProductComponent } from './components/create-product/create-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
+import { isVendor } from 'src/app/core/guards/security.guard';
 
 const routes: Routes = [
   { 
@@ -14,12 +15,13 @@ const routes: Routes = [
   { 
     path: 'nouvelle-annonce',
     component: CreateProductComponent, 
-    title: 'Ajout d\'un nouveau produit',
+    title: 'Ajout d\'un nouveau produit | Akawor',
   },
   { 
     path: 'mes-annonces',
     component: MyProductsComponent,
-    title: 'Gérer mes annonces',
+    title: 'Mes annonces | Akawor',
+    canActivate: [isVendor],
   },
   {
     path: 'categorie/:slug',

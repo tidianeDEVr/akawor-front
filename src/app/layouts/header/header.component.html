@@ -104,9 +104,6 @@
               aria-labelledby="offcanvasExampleLabel"
             >
               <div class="offcanvas-header">
-                <!-- <h5 class="offcanvas-title" id="offcanvasExampleLabel">
-                    Menu
-                  </h5> -->
                 <h2>Menu</h2>
                 <button
                   type="button"
@@ -187,7 +184,7 @@
                   <span>Compte</span>
                 </a>
                 <mat-menu #menuCompte="matMenu">
-                  <div [hidden]="(user | json) != '{}'">
+                  <div [hidden]="user">
                     <a
                       routerLink="/security/connexion"
                       class="btn"
@@ -204,7 +201,7 @@
                       <span>Se connecter</span> </a
                     ><br />
                   </div>
-                  <div [hidden]="(user | json) != '{}'">
+                  <div [hidden]="user">
                     <a
                       routerLink="/security/inscription"
                       class="btn"
@@ -221,7 +218,7 @@
                       <span>S'inscire</span> </a
                     ><br />
                   </div>
-                  <div [hidden]="(user | json) === '{}'">
+                  <div [hidden]="!user">
                     <a
                       routerLink="/compte"
                       class="btn"
@@ -238,7 +235,7 @@
                       <span>Tableau de bord</span> </a
                     ><br />
                   </div>
-                  <div [hidden]="(user | json) === '{}'">
+                  <div [hidden]="!user">
                     <a
                       (click)="logout()"
                       class="btn"
@@ -271,7 +268,7 @@
               class="fa-solid fa-cart-shopping"
               style="margin-right: 5px; z-index: 99999"
             ></i>
-            <span class="amount-cart">Panier - {{ totalPrice }}</span>
+            <span class="amount-cart">Panier</span>
           </a>
         </div>
       </div>

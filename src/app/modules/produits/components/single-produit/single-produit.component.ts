@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { IMAGE, PRODUCT, SHOP } from 'src/app/data/interfaces';
+import { IMAGE, PRODUCT, SHOP, USER } from 'src/app/data/interfaces';
 import { ProduitsService } from '../../services/produits.service';
 import { Router } from '@angular/router';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
 import { environment } from 'src/environments/environment.development';
 import { FormControl } from '@angular/forms';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { SecurityService } from 'src/app/modules/security/services/security.service';
 
 @Component({
   selector: 'app-single-produit',
@@ -13,6 +14,10 @@ import { ToastService } from 'src/app/core/services/toast.service';
   styleUrls: ['./single-produit.component.scss']
 })
 export class SingleProduitComponent implements OnInit {
+  public actualUser !: USER;
+  public rateValue: number = 0;
+  public rateComment: string = '';
+  public recentProducts !: PRODUCT[];
   public productFeatures: any[] = [];
   public product!: PRODUCT;
   public shop!: SHOP;
@@ -44,6 +49,7 @@ export class SingleProduitComponent implements OnInit {
     private produitService: ProduitsService,
     private boutiqueService: BoutiquesService,
     private toastService: ToastService,
+    private securityService: SecurityService,
     private router: Router
     ){ }
   
@@ -64,15 +70,22 @@ export class SingleProduitComponent implements OnInit {
       }
     })
     .catch((err)=>{
-      console.log(err);
       this.router.navigate(['/produits']);
     })
     if(this.product.shopId) {
       this.boutiqueService.getShopById(this.product.shopId)
       .then((res)=>{
-        this.shop = res
+        this.shop = res;
       })
     }
+    this.securityService.getAuthenticatedUser()
+    .then((user)=>{
+      if(user.userEmail) this.actualUser = user;
+    })
+    this.produitService.getRecentsProducts()
+    .then((res)=>{
+      this.recentProducts = res;
+    })
   }
   changeImage(imageTitle:string|undefined){
     if(!imageTitle) return;
@@ -89,10 +102,10 @@ export class SingleProduitComponent implements OnInit {
   addToCart() {
     if(this.valueControl.value)
     this.produitService.addToCart(this.product, this.valueControl.value).then((res)=>{
-      if (res) this.toastService.show({header:'Message d\'alerte', body:`"${this.product.productTitle}" ajouter à votre panier.`, isSuccess:true})
-      if (!res) this.toastService.show({header:'Message d\'erreur', body:`Une erreur s'est produite ! Veuillez réessayer.`})
+      if (res) this.toastService.show({body:`"${this.product.productTitle}" ajouter à votre panier.`, isSuccess:true})
+      if (!res) this.toastService.show({body:`Une erreur s'est produite ! Veuillez réessayer.`})
     }).catch(()=>{
-      this.toastService.show({header:'Message d\'erreur', body:`Une erreur s'est produite ! Veuillez réessayer.`})
+      this.toastService.show({body:`Une erreur s'est produite ! Veuillez réessayer.`})
     })
   }
   increment() {
@@ -102,5 +115,12 @@ export class SingleProduitComponent implements OnInit {
   decrement() {
     if (this.valueControl.value && this.valueControl.value - 1 > 0)
       this.valueControl.setValue(this.valueControl.value - 1);
+    }
+  changeRateValue(value:number){
+    if(value>5 || value<0) return;
+    this.rateValue = value;
+  }
+  createReview(){
+    alert('coming soon !')
   }
 }

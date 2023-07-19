@@ -58,7 +58,7 @@
               </li>
               <li>
                 <a routerLink="/dashboard/shops" routerLinkActive="active">
-                  <i class="fa-solid fa-shop"></i>
+                  <i class="fa-solid fa-home"></i>
                   <span>Boutiques</span>
                 </a>
               </li>
@@ -126,7 +126,7 @@
                     <i class="fa-solid fa-gear fa-spin" style="margin-right: 10px;"></i>
                     <span>Paramétres</span>
                   </button>
-                  <button mat-menu-item>
+                  <button mat-menu-item (click)="logout()">
                     <i class="fa-solid fa-right-from-bracket fa-shake" style="margin-right: 10px;"></i>
                     <span>Déconnexion</span>
                   </button>

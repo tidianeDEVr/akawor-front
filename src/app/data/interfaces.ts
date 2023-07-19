@@ -1,5 +1,4 @@
 export interface ToastInfo {
-  header: string;
   body: string;
   delay?: number;
   isSuccess?: boolean;
@@ -46,10 +45,16 @@ export interface CATEGORY {
   categoryType?: string;
   categoryParent?: CATEGORY;
   categoryIconClass?: string;
+  createdAt?: any;
+  updatedAt?: any;
+  parentId?: string;
 }
 
 export interface SHOP {
+  createdAt?: any;
+  updatedAt?: any;
   id?: string;
+  UserId?: string;
   shopLibelle?: string;
   shopSlug?: string;
   shopDescription?: string;
@@ -58,6 +63,7 @@ export interface SHOP {
   shopWorkingHours?: string;
   shopAddedAt?: string;
   shopAddress?: string;
+  shopState?: string;
   shopLogoImage?: IMAGE;
   shopCoverImage?: IMAGE;
   shopIsDeleted?: boolean;
@@ -66,6 +72,7 @@ export interface SHOP {
   shopSubscriptions?: SUBSCRIPTION[];
   shopProducts?: PRODUCT[];
   Social?: SOCIAL;
+  User?: USER;
 }
 export interface SOCIAL {
   id?: string;
@@ -103,8 +110,8 @@ export interface PRODUCT {
   productTitle: string;
   productSlug?: string;
   productMainImage?: string;
-  productAddedAt?: string;
   productPrice: number;
+  productPricePromo?: number;
   productDescription: string;
   productState?: string;
   productIsOutOfStock: boolean;
@@ -115,6 +122,9 @@ export interface PRODUCT {
   productBoosts?: BOOST[];
   shopId?: string;
   productFeatures?: string;
+  createdAt?: any;
+  Category?: CATEGORY;
+  Shop?: SHOP;
 }
 
 export interface WISHLIST {
@@ -142,6 +152,13 @@ export interface IMAGE {
   imageTitle?: string;
 }
 
+export interface NOTIFICATON {
+  id?: string;
+  offersPromitionsMail?: boolean ;
+  ordesMail?: boolean ;
+  shopAlertsMail?: boolean;
+  shopDraftsMail?: boolean;
+}
 
 export const DATATABLE_LANGAGE_FR  = {
   language: {

@@ -69,7 +69,7 @@
     .latest-products {
         max-height: 380px;
         overflow: scroll;
-        padding-bottom: 50px;
+        // padding-bottom: 50px;
         .bottom-gradient {
             position: absolute;
             width: 100%;
@@ -84,11 +84,19 @@
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 7px;
-            img {
-                width: 100%;
-                max-width: 85px;
+            .img-holder {
+                min-width: 85px;
                 aspect-ratio: 1;
-                object-fit: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 5px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    scale:1.008;
+                    object-fit: cover;
+                }
             }
             h4 {
                 margin: 0;

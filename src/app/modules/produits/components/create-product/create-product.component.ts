@@ -6,6 +6,7 @@ import { ToastService } from 'src/app/core/services/toast.service';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
 import { environment } from 'src/environments/environment.development';
 import { ActivatedRoute } from '@angular/router';
+import { CategoriesService } from 'src/app/core/services/categories.service';
 
 @Component({
   selector: 'app-create-product',
@@ -14,6 +15,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class CreateProductComponent implements OnInit {
   public isOnDraftMode: boolean = false;
+  public selectedVisibility: number = 1;
   public urlToSendImages:string = `${environment.BACKEND_API_URL}/image/upload`
   public urlToGetImages:string = `${environment.BACKEND_IMAGES_FOLDER}`
   public attributsProduct: any[] = [{ key: '', value: '' }];
@@ -49,13 +51,15 @@ export class CreateProductComponent implements OnInit {
     private produitService: ProduitsService,
     private toastService: ToastService,
     private securityService: SecurityService,
+    private categoriesService: CategoriesService,
     private route: ActivatedRoute
   ) {
-    this.produitService.getCategoriesProducts().then((cats) => {
+    this.categoriesService.getCategoriesProducts().then((cats) => {
       this.mainProductsCategories = cats;
     });
     this.mainCategoryControl.valueChanges.subscribe((value: any) => {
-      this.produitService.getSubCategoriesProducts(value.id).then((res) => {
+      this.categoriesService.getSubCategoriesProducts(value.id).then((res) => {
+        if(res)
         this.subCategories = res;
       });
     });
@@ -73,11 +77,15 @@ export class CreateProductComponent implements OnInit {
               this.productObject = res;
               this.isOnDraftMode = true;
               this.hydrateFields(res);
+              document.title = 'Modification d\'une annonce | Akawor'
             }
           })
         }
       }
     );
+  }
+  setVisibility(numb: number){
+    this.selectedVisibility = numb;
   }
   hydrateImages(name:string){
     var image: any = document.querySelector('#displayPrincipal');
@@ -91,25 +99,25 @@ export class CreateProductComponent implements OnInit {
     if(object.productDescription) this.descriptionControl.setValue(object.productDescription);
     if(object.productFeatures) this.attributsProduct = JSON.parse(object.productFeatures);
     if(object.CategoryId) {
-      this.produitService.getCategoryById(object.CategoryId)
+      this.categoriesService.getCategoryById(object.CategoryId)
       .then((res:any)=>{
         if(res.categoryParentId!=null) {
-          console.log('CHILD '+JSON.stringify(res));
           this.subCategoryControl.setValue(res);
-          this.produitService.getCategoryById(res.categoryParentId)
+          this.categoriesService.getCategoryById(res.categoryParentId)
           .then(parent=>{
-            console.log('PARENT '+JSON.stringify(parent));
             this.mainCategoryControl.setValue(parent)
           })
         } else {
-          console.log('PARENT '+JSON.stringify(res));
           this.mainCategoryControl.setValue(res)
         }
       })
     }
   }
   stepUp() {
-    if (this.stepPercent === 25 && !this.isOnDraftMode) this.saveProduct();
+    if (this.stepPercent === 25 && !this.isOnDraftMode) {
+      this.updateProductObject();
+      this.saveProduct();
+    }
     // if (this.stepPercent === 50) this.saveImages();
     if (this.stepPercent < 100) {
       this.stepPercent += 25;
@@ -165,7 +173,7 @@ export class CreateProductComponent implements OnInit {
       formData.append("images", file);
       request.send(formData);
   }
-  updateProduct() {
+  updateProductObject() {
     if (this.titleControl.value)
       this.productObject.productTitle = this.titleControl.value;
     if (this.descriptionControl.value)
@@ -192,7 +200,6 @@ export class CreateProductComponent implements OnInit {
       .createProduct(this.productObject, this.productOwnerId)
       .then((prod) => {
         this.toastService.show({
-          header: "Message d'alerte",
           body: "L'annonce est enregistré dans vos brouillons.",
           isSuccess: true,
         });
@@ -200,7 +207,6 @@ export class CreateProductComponent implements OnInit {
       })
       .catch((err) => {
         this.toastService.show({
-          header: "Message d'erreur",
           body: 'Une erreur s\'est produite lors de la création du produit ! Veuillez réessayer plus tard.',
         });
       });

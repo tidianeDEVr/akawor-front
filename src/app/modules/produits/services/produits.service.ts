@@ -9,6 +9,21 @@ import { environment } from 'src/environments/environment.development';
 export class ProduitsService {
   constructor(private httpClient: HttpClient) {}
 
+  getRecentsProducts(): Promise<PRODUCT[]>{
+    return new Promise<PRODUCT[]>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/product/find-recents`)
+        .subscribe({
+          next: (produits: any) => {
+            resolve(produits);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
+
   getProducts(): Promise<PRODUCT[]> {
     return new Promise<PRODUCT[]>((resolve) => {
       this.httpClient
@@ -23,6 +38,35 @@ export class ProduitsService {
         });
     });
   }
+  getProductsDashboard(): Promise<PRODUCT[]> {
+    return new Promise<PRODUCT[]>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/product/find-all/dashboard`)
+        .subscribe({
+          next: (produits: any) => {
+            resolve(produits);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
+  getLatestProductsDashboard(): Promise<PRODUCT[]> {
+    return new Promise<PRODUCT[]>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/product/find-latests/dashboard`)
+        .subscribe({
+          next: (produits: any) => {
+            resolve(produits);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
+
   getProductBySlug(slug: string): Promise<PRODUCT[]> {
     return new Promise<PRODUCT[]>((resolve) => {
       this.httpClient
@@ -59,54 +103,7 @@ export class ProduitsService {
         .subscribe({
           next: (res: any) => {
             products = res;
-            console.log(res);
             resolve(products);
-          },
-          error: (err) => {
-            resolve(err);
-          },
-        });
-    });
-  }
-  getCategoriesProducts(): Promise<CATEGORY[]> {
-    let categories: CATEGORY[] = [];
-    return new Promise<CATEGORY[]>((resolve) => {
-      this.httpClient
-        .get(`${environment.BACKEND_API_URL}/category/find-all/product`)
-        .subscribe({
-          next: (res: any) => {
-            categories = res;
-            resolve(categories);
-          },
-          error: (err) => {
-            resolve(err);
-          },
-        });
-    });
-  }
-  getSubCategoriesProducts(parentId: number): Promise<CATEGORY[]> {
-    let categories: CATEGORY[] = [];
-    return new Promise<CATEGORY[]>((resolve) => {
-      this.httpClient
-        .get(`${environment.BACKEND_API_URL}/category/find-subs/${parentId}`)
-        .subscribe({
-          next: (res: any) => {
-            categories = res;
-            resolve(categories);
-          },
-          error: (err) => {
-            resolve(categories);
-          },
-        });
-    });
-  }
-  getCategoryById(id: string): Promise<CATEGORY> {
-    return new Promise<CATEGORY>((resolve) => {
-      this.httpClient
-        .get(`${environment.BACKEND_API_URL}/category/find-by-id/${id}`)
-        .subscribe({
-          next: (res: any) => {
-            resolve(res);
           },
           error: (err) => {
             resolve(err);
@@ -231,9 +228,9 @@ export class ProduitsService {
     }
     if (cartBtn) {
       let badge = cartBtn.querySelector('.badge-cart');
-      let amount = cartBtn.querySelector('.amount-cart');
+      // let amount = cartBtn.querySelector('.amount-cart');
       if (badge) badge.textContent = cartJson.length
-      if(amount) amount.textContent = `Panier - €${total}`
+      // if(amount) amount.textContent = `Panier - €${total}`
     }
   }
   getWishlist(id_client:string): Promise<WISHLIST> {

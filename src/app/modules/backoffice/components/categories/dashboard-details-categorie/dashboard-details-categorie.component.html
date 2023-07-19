@@ -1,0 +1,62 @@
+
+<div class="card">
+    <h5 class="card-header">{{data.category.categoryLibelle}}</h5>
+    <div class="card-body">
+        <table class="table table-striped-columns">
+            <thead>
+              <tr>
+                <th scope="col" matTooltip="Nombre de commande(s)">N° commande(s)</th>
+                <th scope="col">Catégorie(s) enfant(s)</th>
+                <th scope="col">Icon</th>
+                <th scope="col">
+                    <span *ngIf="data.category.categoryType==='shop'">N° boutique(s)</span>
+                    <span *ngIf="data.category.categoryType==='product'">N° produit(s)</span>
+                </th>
+                <th>Ajoutée le</th>
+                <th>Modifiée le</th>
+              </tr>
+            </thead>
+            <tbody class="text-center">
+              <tr>
+                <th>
+                    <span class="badge text-bg-info"
+                    *ngIf="orders && orders.length>0">
+                        {{orders.length}} commande(s)
+                    </span>
+                    <span class="badge text-bg-danger"
+                    *ngIf="!orders || orders.length===0">
+                        Néant
+                    </span>
+                </th>
+                <td>
+                    <span class="badge text-bg-danger" 
+                    *ngIf="!subCategories || subCategories.length===0"
+                    >Néant</span>
+                    <div style="max-width: 200px;" *ngIf="subCategories">
+                        <span style="margin-right: 5px;" class="badge text-bg-dark" *ngFor="let sub of subCategories">
+                            {{sub.categoryLibelle}}
+                        </span>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="data.category.categoryIconClass">
+                        <i class="{{data.category.categoryIconClass}}"></i>
+                    </div>
+                    <span class="badge text-bg-danger" 
+                    *ngIf="!data.category.categoryIconClass">Néant</span>
+                </td>
+                <td>
+                    <span class="badge text-bg-danger" 
+                    *ngIf="!products || products.length===0">Néant</span>
+                    <span class="badge text-bg-info" 
+                    *ngIf="products && products.length>0">
+                        {{products.length}} produit(s)
+                    </span>
+                </td>
+                <td>{{data.category.createdAt|date:'short'}}</td>
+                <td>{{data.category.updatedAt|date:'short'}}</td>
+              </tr>
+            </tbody>
+          </table>
+    </div>
+</div>

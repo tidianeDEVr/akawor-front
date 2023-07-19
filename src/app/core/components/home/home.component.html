@@ -62,7 +62,7 @@
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
                                     <img src="../../../../assets/images/online_shop.svg" alt="Produits made in Senegal" loading="lazy">
-                                    <h5>Produits made in Senegal </h5>
+                                    <h5>Produits made in Sénégal </h5>
                                     <p>
                                         Les meilleurs artisans sénégalais pour vous.
                                     </p>
@@ -119,11 +119,11 @@
                         <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
                             <div class="container">
                                 <div class="row" *ngIf="isProductsLoaded">
-                                    <div class="col" *ngFor="let bestseller of bestsellersProducts">
-                                        <app-product-card></app-product-card>
+                                    <div class="col" *ngFor="let recent of recentProducts">
+                                        <app-product-card [product]="recent"></app-product-card>
                                     </div>
                                 </div>
-                                <div class="row" *ngIf="!isProductsLoaded">
+                                <div class="row" *ngIf="!recentProducts">
                                     <div class="col">
                                         <app-product-card-loader></app-product-card-loader>
                                     </div>

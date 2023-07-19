@@ -11,51 +11,56 @@
                         <span *ngIf="myProducts" class="count-label">{{myProducts.length}} annonce(s) trouvée(s)</span>
                     </div>
                     <div class="title-divider"></div>
-                    <mat-card>
-                        <mat-card-content>
-                            <div class="container" style="min-height: 500px;">
-                                <div *ngIf="myProducts && myProducts.length===0">
-                                    <div class="container pt-5">
-                                        <div class="d-flex flex-column align-items-center justify-content-center">
-                                            <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
-                                            <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
-                                        </div>
+                    <div *ngIf="myProducts && myProducts.length===0">
+                        <div class="container pt-5">
+                            <div class="d-flex flex-column align-items-center justify-content-center">
+                                <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
+                                <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="my-products row row-cols-4 g-4" *ngIf="myProducts && myProducts.length>0">
+                        <div class="col single-prod" *ngFor="let product of myProducts">
+                            <div class="card">
+                                <div class="position-relative card-body"
+                                style="background-image: url({{imageThumbnailUrl+product.productMainImage}});">
+                                    <div class="position-absolute">
+                                        <span class="badge text-bg-success m-1" *ngIf="product.productState==='ONLINE'">En ligne</span>
+                                        <span class="badge text-bg-info m-1" *ngIf="product.productState==='DRAFT'">Brouillon</span>
+                                        <span class="badge text-bg-warning m-1" *ngIf="product.productState==='AWAITING'">En attente de validation</span>
+                                        <span class="badge text-bg-danger m-1" *ngIf="product.productState==='REVOKED'">Annonce révoquée</span>
                                     </div>
-                                </div>
-                                <div class="my-products row row-cols-4 g-4" *ngIf="myProducts && myProducts.length>0">
-                                    <div class="col single-prod" *ngFor="let product of myProducts">
-                                        <div class="card">
-                                            <div class="position-relative card-body">
-                                                <div class="position-absolute">
-                                                    <span class="badge text-bg-success m-1" *ngIf="product.productState==='ONLINE'">En ligne</span>
-                                                    <span class="badge text-bg-info m-1" *ngIf="product.productState==='DRAFT'">Brouillon</span>
-                                                    <span class="badge text-bg-warning m-1" *ngIf="product.productState==='AWAITING'">En attente de validation</span>
-                                                    <span class="badge text-bg-danger m-1" *ngIf="product.productState==='REVOKED'">Annonce révoquée</span>
-                                                </div>
-                                                <img src="{{imageBaseUrl+product.productMainImage}}" alt="produit" loading="lazy" *ngIf="product.productMainImage" crossorigin="anonymous">
-                                                <img src="../../../../../../assets/images/products/product-placeholder.png" 
-                                                alt="produit" loading="lazy" 
-                                                *ngIf="!product.productMainImage" crossorigin="anonymous">
-                                                <div class="infos">
-                                                    <p class="text-ellip label-prod">{{product.productTitle}}</p>
-                                                    <div class="position-absolute menu">
-                                                        <button mat-mini-fab color="warn" class="mt-4" [matMenuTriggerFor]="menu">
-                                                            <mat-icon>edit</mat-icon>
-                                                        </button>
-                                                        <mat-menu #menu="matMenu">
-                                                            <button mat-menu-item (click)="editProduct(product)">Modifier l'annonce</button>
-                                                            <button mat-menu-item (click)="displayProduct(product)">Aperçu de l'annonce</button>
-                                                            <button mat-menu-item (click)="deleteProduct(product)">Supprimer l'annonce</button>
-                                                        </mat-menu>
-                                                    </div>
-                                                </div>
+                                    <img src="{{imageBaseUrl+product.productMainImage}}" alt="produit" loading="lazy" *ngIf="product.productMainImage" crossorigin="anonymous">
+                                    <img src="../../../../../../assets/images/products/product-placeholder.png" 
+                                    alt="produit" loading="lazy" 
+                                    *ngIf="!product.productMainImage" crossorigin="anonymous">
+                                    <div class="infos">
+                                        <p class="text-ellip label-prod">{{product.productTitle}}</p>
+                                        <div class="position-absolute menu">
+                                            <!-- <button mat-mini-fab color="warn" class="mt-4" [matMenuTriggerFor]="menu">
+                                                <mat-icon>edit</mat-icon>
+                                            </button>
+                                            <mat-menu #menu="matMenu">
+                                                <button mat-menu-item (click)="editProduct(product)">Modifier l'annonce</button>
+                                                <button mat-menu-item (click)="displayProduct(product)">Aperçu de l'annonce</button>
+                                                <button mat-menu-item (click)="deleteProduct(product)">Supprimer l'annonce</button>
+                                            </mat-menu> -->
+                                            <div class="dropdown">
+                                                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="menu-btn">
+                                                    <i class="fa-solid fa-pen-to-square"></i>
+                                                </button>
+                                                <ul class="dropdown-menu">
+                                                  <li><a (click)="displayProduct(product)" class="dropdown-item">Aperçu de l'annonce</a></li>
+                                                  <li><a (click)="editProduct(product)" class="dropdown-item">Modifier l'annonce</a></li>
+                                                  <li><a (click)="deleteProduct(product)" class="dropdown-item">Supprimer l'annonce</a></li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </mat-card-content>
-                    </mat-card>
+                        </div>
+                    </div>
                 </main>
             </div>
         </div>

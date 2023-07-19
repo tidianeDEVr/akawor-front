@@ -14,6 +14,7 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 export class ProductCardComponent {
   @Input() product!: PRODUCT;
   public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`;
+  public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   public valueControl = new FormControl(1);
 
   constructor(
@@ -24,10 +25,10 @@ export class ProductCardComponent {
   addToCart() {
     if(this.valueControl.value)
     this.productService.addToCart(this.product, this.valueControl.value).then((res)=>{
-      if (res) this.toastService.show({header:'Message d\'alerte', body:`"${this.product.productTitle}" ajouter à votre panier.`, isSuccess:true})
-      if (!res) this.toastService.show({header:'Message d\'erreur', body:`Une erreur s'est produite ! Veuillez réessayer.`})
+      if (res) this.toastService.show({body:`"${this.product.productTitle}" ajouter à votre panier.`, isSuccess:true})
+      if (!res) this.toastService.show({body:`Une erreur s'est produite ! Veuillez réessayer.`})
     }).catch(()=>{
-      this.toastService.show({header:'Message d\'erreur', body:`Une erreur s'est produite ! Veuillez réessayer.`})
+      this.toastService.show({body:`Une erreur s'est produite ! Veuillez réessayer.`})
     })
   }
   addToWishlist() {
@@ -37,7 +38,6 @@ export class ProductCardComponent {
       this.productService.addToWishlist(this.product, user.id)
       .then((res)=>{
         this.toastService.show({
-          header: "Message d'alerte",
           body: `"${this.product.productTitle}" ajouter à votre liste de souhaits.`,
           isSuccess: true,
         });
@@ -47,7 +47,7 @@ export class ProductCardComponent {
           if(badge && wishlist.Products) badge.textContent = wishlist.Products?.length.toString();
         })
       }).catch(()=>{
-        this.toastService.show({header:'Message d\'erreur', body:`Une erreur s'est produite ! Veuillez réessayer.`})
+        this.toastService.show({body:`Une erreur s'est produite ! Veuillez réessayer.`})
       })
     })
   }

@@ -1,11 +1,17 @@
 <article class="product-card" *ngIf="product">
-    <a routerLink="/produits/{{product.productSlug}}" style="text-decoration: none;">
-        <div class="img-holder position-relative">
+    <a href="/produits/{{product.productSlug}}" style="text-decoration: none;">
+        <div class="img-holder position-relative" *ngIf="product.productMainImage"
+        style="background-image: url({{imageThumbnailUrl+product.productMainImage}});">
             <img src="{{imageBaseUrl+product.productMainImage}}" 
-            alt="{{product.productTitle}}" *ngIf="product.productMainImage"
+            alt="{{product.productTitle}}"
             loading="lazy" crossorigin="anonymous">
+            <div class="position-absolute zoom-icon">
+                <i class="fa-solid fa-magnifying-glass-plus"></i>
+            </div>
+        </div>
+        <div class="img-holder position-relative" *ngIf="!product.productMainImage">
             <img src="../../../../../../assets/images/products/product-placeholder.png" 
-            alt="product placeholder" *ngIf="!product.productMainImage"
+            alt="product placeholder" 
             loading="lazy">
             <div class="position-absolute zoom-icon">
                 <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -20,7 +26,7 @@
         <div class="text-center">
             <span class="text-ellip category w-100">chaussure</span>
             <div class="price-actions position-relative">
-                <span class="text-ellip price">{{product.productPrice|currency: 'EUR'}}</span>
+                <span class="text-ellip price">{{product.productPrice|currency}}</span>
                 <div class="actions position-absolute">
                     <div class="input-cont d-flex align-items-center h-100">
                         <i class="fa-solid fa-chevron-left" (click)="decrement()"></i><br>

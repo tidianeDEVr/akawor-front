@@ -7,7 +7,8 @@
             <div class="col col-9">
                 <main class="create-product">
                     <div class="container">
-                        <h1>Ajout d'un nouveau produit</h1>
+                        <h1 *ngIf="isOnDraftMode">Modification d'une annonce</h1>
+                        <h1 *ngIf="!isOnDraftMode">Création d'une nouvelle annonce</h1>
                         <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
                             <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%"></div>
                         </div>
@@ -31,7 +32,7 @@
                                                         <input [formControl]="titleControl" matInput>
                                                     </mat-form-field>
                                                     <mat-form-field class="w-100" appearance="outline">
-                                                        <mat-label>Prix du produit (€)</mat-label>
+                                                        <mat-label>Prix du produit ($)</mat-label>
                                                         <input [formControl]="priceControl" matInput type="number">
                                                     </mat-form-field>
                                                     <mat-form-field class="w-100" appearance="outline">
@@ -81,7 +82,7 @@
                                             <span>Attributs du produit</span>
                                         </h2>
                                         <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <p>Ajoutez des attributs à ce produit. (optionnel)</p>
+                                            <p>Ajoutez des détails à ce produit. (optionnel)</p>
                                             <button class="btn btn-outline-dark btn-sm" (click)="addNewAttribut()">Ajouter</button>
                                         </div>
                                         <div class="input-group attr-group" *ngFor="let attr of attributsProduct; let i = index">
@@ -191,6 +192,38 @@
                                             <i class="fa-solid fa-5 step-number"></i>
                                             <span>Options de visibilité</span>
                                         </h2>
+                                        <div class="row mt-2">
+                                            <div class="col">
+                                                <mat-card class="visibility-card" 
+                                                [ngClass]="{'selected-visibility': selectedVisibility === 1}" 
+                                                (click)="setVisibility(1)">
+                                                    <mat-card-content>
+                                                        Par défaut
+                                                        <i class="fa-lg fa-solid fa-circle-check position-absolute"></i>
+                                                    </mat-card-content>
+                                                </mat-card>
+                                            </div>
+                                            <div class="col">
+                                                <mat-card class="visibility-card" 
+                                                [ngClass]="{'selected-visibility': selectedVisibility === 2}" 
+                                                (click)="setVisibility(2)">
+                                                    <mat-card-content>
+                                                        Offre 1
+                                                        <i class="fa-lg fa-solid fa-circle-check position-absolute"></i>
+                                                    </mat-card-content>
+                                                </mat-card>
+                                            </div>
+                                            <div class="col">
+                                                <mat-card class="visibility-card"
+                                                [ngClass]="{'selected-visibility': selectedVisibility === 3}" 
+                                                (click)="setVisibility(3)">
+                                                    <mat-card-content>
+                                                        Offre 2
+                                                        <i class="fa-lg fa-solid fa-circle-check position-absolute"></i>
+                                                    </mat-card-content>
+                                                </mat-card>
+                                            </div>
+                                        </div>
                                     </mat-card-content>
                                 </mat-card>
                             </div>

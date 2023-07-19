@@ -27,9 +27,9 @@
                                         <i class="fa-solid fa-truck-fast fa-2x" style="opacity:.95;"></i>
                                     </div>
                                     <div>
-                                        <h5 class="text-ellip">THIS PRODUCT QUALIFIES FOR FREE SHIPPING</h5>
+                                        <h5 class="text-ellip">LIVRAISON DISPONIBLE POUR CE PRODUIT</h5>
                                         <p class="mt-1">
-                                            This block is set to appear automatically on products above a certain price, which may qualify for free shipping or other perks.
+                                            Ce bloc est configuré pour apparaître automatiquement sur les produits au-dessus d'un certain prix, qui peuvent bénéficier de la livraison gratuite ou d'autres avantages.
                                         </p>
                                     </div>
                                 </div>
@@ -59,19 +59,52 @@
                                             </thead>
                                             <tbody>
                                               <tr *ngFor="let feature of productFeatures">
-                                                <td>{{feature['key']}}</td>
-                                                <td>{{feature['value']}}</td>
+                                                <td class="text-capitalize">{{feature['key']}}</td>
+                                                <td class="text-capitalize">{{feature['value']}}</td>
                                               </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-                                        <div>
+                                        <div *ngIf="!actualUser">
                                             <p class="m-0">Il n'y a aucun avis sur ce produit.</p>
                                             <h5 class="my-2 fw-bold text-uppercase">DONNER VOTRE AVIS</h5>
                                             <p>
-                                                Veuillez vous <a href="">connecter</a> ou vous <a href="">inscrire</a> pour évaluer ce produit.
+                                                Veuillez vous <a routerLink="/security/connexion">connecter</a> ou vous <a routerLink="/security/inscription">inscrire</a> pour évaluer ce produit.
                                             </p>
+                                        </div>
+                                        <div *ngIf="actualUser" class="mb-2">
+                                            <div class="d-flex justify-content-between align-items-center pt-2">
+                                                <h5 class="my-2 fw-bold text-uppercase">DONNER VOTRE AVIS</h5>
+                                                <div class="rating">
+                                                    <input value="5" name="rating" id="star5" type="radio">
+                                                    <label for="star5" (click)="changeRateValue(5)"></label>
+                                                    <input value="4" name="rating" id="star4" type="radio">
+                                                    <label for="star4" (click)="changeRateValue(4)"></label>
+                                                    <input value="3" name="rating" id="star3" type="radio">
+                                                    <label for="star3" (click)="changeRateValue(3)"></label>
+                                                    <input value="2" name="rating" id="star2" type="radio">
+                                                    <label for="star2" (click)="changeRateValue(2)"></label>
+                                                    <input value="1" name="rating" id="star1" type="radio">
+                                                    <label for="star1" (click)="changeRateValue(1)"></label>
+                                                </div>
+                                            </div>
+                                            <textarea row="5" class="w-100"
+                                            [(ngModel)]="rateComment"
+                                            placeholder="Entrez votre commentaire ici"></textarea>
+                                            <div class="d-flex justify-content-end">
+                                                <button class="btn btn-sm btn-dark"
+                                                [ngClass]="{'disabled': rateValue===0 || rateComment===''}"
+                                                (click)="createReview()">Soumettre</button>
+                                            </div>
+                                        </div>
+                                        <div class="mb-2">
+                                            <mat-divider></mat-divider>
+                                        </div>
+                                        <div class="all-products-rates">
+                                            <div class="product-rate">
+                                                rate 1
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -119,7 +152,7 @@
                                 </div>
                                 <mat-divider></mat-divider>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h2 class="price">{{product.productPrice|currency: 'EUR'}}</h2>
+                                    <h2 class="price">{{product.productPrice|currency}}</h2>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="actions h-100">
                                             <div class="input-cont d-flex align-items-center">
@@ -191,8 +224,8 @@
                         
                         <h4 class="mt-3 text-ellip fw-bold" matTooltip="Produit de la même catégorie">Produit de la même catégorie</h4>
                         <div class="title-divider" style="margin-top: -12px;"></div>
-                        <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameCategoryProductsConfig" >
-                            <div ngxSlickItem *ngFor="let product of sameCategoryProducts">
+                        <ngx-slick-carousel *ngIf="recentProducts" class="carousel" #slickModal="slick-carousel" [config]="sameCategoryProductsConfig" >
+                            <div ngxSlickItem *ngFor="let product of recentProducts">
                                 <app-product-card [product]="product"></app-product-card>
                             </div>
                         </ngx-slick-carousel>
@@ -206,8 +239,8 @@
                         <div>
                             <h4 class="fw-bold text-ellip">Produits de la même boutique</h4>
                             <div class="title-divider" style="margin-top: -12px;"></div>
-                            <ngx-slick-carousel *ngIf="sameCategoryProducts" class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
-                                <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
+                            <ngx-slick-carousel *ngIf="recentProducts" class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
+                                <div ngxSlickItem *ngFor="let product of recentProducts" class="p-1">
                                     <app-product-card [product]="product"></app-product-card>
                                 </div>
                             </ngx-slick-carousel>
@@ -217,8 +250,8 @@
                         <div>
                             <h4 class="fw-bold text-ellip">Produits similaires</h4>
                             <div class="title-divider" style="margin-top: -12px;"></div>
-                            <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
-                                <div ngxSlickItem *ngFor="let product of sameCategoryProducts" class="p-1">
+                            <ngx-slick-carousel *ngIf="recentProducts" class="carousel" #slickModal="slick-carousel" [config]="sameShopProductsConfig" >
+                                <div ngxSlickItem *ngFor="let product of recentProducts" class="p-1">
                                     <app-product-card [product]="product"></app-product-card>
                                 </div>
                             </ngx-slick-carousel>

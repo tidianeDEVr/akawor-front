@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CATEGORY, PRODUCT } from 'src/app/data/interfaces';
 import { ProduitsService } from '../../services/produits.service';
-import * as _ from 'lodash';
+import { CategoriesService } from 'src/app/core/services/categories.service';
 @Component({
   selector: 'app-all-produits',
   templateUrl: './all-produits.component.html',
@@ -34,7 +34,10 @@ export class AllProduitsComponent implements OnInit {
   public selectedPriceRangeMin = 0;
   public isProductsLoaded: boolean = false;
   public activeCategory: CATEGORY | undefined;
-  constructor(private produitsService: ProduitsService) {}
+  constructor(
+    private produitsService: ProduitsService,
+    private categoriesService: CategoriesService
+    ) {}
 
   ngOnInit(): void {
     const path = window.location.href.split('/');
@@ -48,7 +51,7 @@ export class AllProduitsComponent implements OnInit {
         this.populateProducts(res);
       });
     }
-    this.produitsService.getCategoriesProducts().then((res) => {
+    this.categoriesService.getCategoriesProducts().then((res) => {
       this.productCategories = res;
       if(slug) res.forEach((elt)=>{
         if (slug===elt.categorySlug) this.activeCategory = elt;
@@ -66,7 +69,6 @@ export class AllProduitsComponent implements OnInit {
     if(topFilter)
     var selected:any = topFilter.options[topFilter.selectedIndex].value;
     if(!selected && selected==0) return;
-    if (selected==1) console.log(_.orderBy(this.products, ['productTitle'],['asc']));
     
   }
   public getPriceRangeMax() {

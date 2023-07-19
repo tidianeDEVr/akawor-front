@@ -14,6 +14,7 @@ export class MyProductsComponent {
   public seller!: USER;
   public myProducts!: PRODUCT[];
   public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   constructor(
     private produitsService: ProduitsService, 
     private securityService: SecurityService,

@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-settings.component.scss']
 })
 export class AccountSettingsComponent {
+  public checked = false;
   public countries: any[] = [
     {
       libelle: "Sénégal"

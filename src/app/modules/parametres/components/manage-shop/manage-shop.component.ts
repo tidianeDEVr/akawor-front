@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { CategoriesService } from 'src/app/core/services/categories.service';
 import { ToastService } from 'src/app/core/services/toast.service';
 import { CATEGORY, SHOP, SOCIAL, USER } from 'src/app/data/interfaces';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
@@ -45,6 +46,7 @@ export class ManageShopComponent implements OnInit {
     private boutiquesServices: BoutiquesService,
     private toastService: ToastService,
     private securityService: SecurityService,
+    private categoriesService: CategoriesService,
     private sanitizer: DomSanitizer
   ){}
   ngOnInit(): void {
@@ -84,14 +86,14 @@ export class ManageShopComponent implements OnInit {
           }
 
         }).catch((err)=>{
-          console.log(err);
+
         })
       }
     })
-    this.boutiquesServices.getCategoriesShops().then((res)=>{
+    this.categoriesService.getCategoriesShops().then((res)=>{
       this.shopCatgories = res
     }).catch((err)=>{
-      this.toastService.show({header:'Message d\'erreur', body: 'Une erreur s\'est produite lors de la récupération des catégories ! Veuillez réessayer.'})
+      this.toastService.show({body: 'Une erreur s\'est produite lors de la récupération des catégories ! Veuillez réessayer.'})
     })
     this.corpNameControl.valueChanges.subscribe((newValue) => {
       if(newValue){
@@ -108,7 +110,7 @@ export class ManageShopComponent implements OnInit {
     if(this.corpNameControl.value) {
       if(this.excludedNames.includes(this.corpNameControl.value.toLowerCase())) {
         this.isUpdating = false;
-        return this.toastService.show({header:'Message d\'alerte', body: 'Veuillez revoir le nom de votre boutique !'})
+        return this.toastService.show({body: 'Veuillez revoir le nom de votre boutique !'})
       }
       this.shop.shopLibelle = this.corpNameControl.value
       this.shop.shopSlug = this.corpNameControl.value.replaceAll(' ','-').normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase();
@@ -130,14 +132,13 @@ export class ManageShopComponent implements OnInit {
     .then((res)=>{
       this.isUpdating = false;
       if(res) {
-        this.toastService.show({header: 'Message d\'alerte', body:'Vos modifications ont été enregistrés !', isSuccess:true})
+        this.toastService.show({body:'Vos modifications ont été enregistrés !', isSuccess:true})
       } else {
-        this.toastService.show({header: 'Message d\'erreur', body:'Une erreur s\'est produite. Réessayez plus tard !', isSuccess: false})
+        this.toastService.show({body:'Une erreur s\'est produite. Réessayez plus tard !', isSuccess: false})
       }
     }).catch((err)=>{
-      console.log(err);
       this.isUpdating = false;
-      this.toastService.show({header: 'Message d\'erreur', body:'Une erreur s\'est produite. Réessayez plus tard !', isSuccess: false,})
+      this.toastService.show({body:'Une erreur s\'est produite. Réessayez plus tard !', isSuccess: false,})
     })
   }
   removeLogo(){
@@ -163,7 +164,6 @@ export class ManageShopComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(
         // Success callback function
         (position) => {
-          console.log(position);
           // Get the user's latitude and longitude coordinates
           const lat = position.coords.latitude;
           const lng = position.coords.longitude;
@@ -172,18 +172,18 @@ export class ManageShopComponent implements OnInit {
           this.url = this.getIframeUrl();
           // Do something with the location data, e.g. display on a map
           this.toastService.clear();
-          this.toastService.show({header:'Message d\'alerte', body:'Hooray 🎉 Votre position a été récupérer.', isSuccess:true})
+          this.toastService.show({body:'Hooray 🎉 Votre position a été récupérer.', isSuccess:true})
           this.isGettingPosition = false;
         },
         // Error callback function
         (error) => {
           // Handle errors, e.g. user denied location sharing permissions
-          this.toastService.show({header: 'Message d\'erreur', body: 'Impossible de retrouver votre position ! Veuillez autoriser la demande.'})
+          this.toastService.show({body: 'Impossible de retrouver votre position ! Veuillez autoriser la demande.'})
           this.isGettingPosition = false;
         }
       );
     } else {
-      this.toastService.show({header: 'Message d\'erreur', body: 'Impossible de retrouver votre position ! Votre navigateur ne dispose pas de cette fonctionnalité.'})
+      this.toastService.show({body: 'Impossible de retrouver votre position ! Votre navigateur ne dispose pas de cette fonctionnalité.'})
       this.isGettingPosition = false;
     }
   }

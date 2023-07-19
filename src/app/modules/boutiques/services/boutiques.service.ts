@@ -10,21 +10,21 @@ export class BoutiquesService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getCategoriesShops():Promise<CATEGORY[]>{
-    let categories:CATEGORY[] = [] 
-    return new Promise<CATEGORY[]>(resolve =>{
-      this.httpClient.get(`${environment.BACKEND_API_URL}/category/find-all/shop`)
+
+  getShops():Promise<SHOP[]>{
+    return new Promise<SHOP[]>(resolve => {
+      this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-all`,)
       .subscribe({
-        next: (res:any)=>{
-          categories = res
-          resolve(categories)
+        next:(shop:any)=>{
+          resolve(shop)
         },
-        error: (err)=>{
-          resolve(categories)
-        }, 
+        error:(err)=>{
+          resolve(err)
+        }
       })
     })
   }
+
   getShopById(id:string):Promise<SHOP>{
     return new Promise<SHOP>(resolve => {
       this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-by-id?id=${id}`,)
@@ -33,7 +33,7 @@ export class BoutiquesService {
           resolve(shop)
         },
         error:(err)=>{
-          console.log(err);
+          resolve(err)
         }
       })
     })
@@ -46,7 +46,7 @@ export class BoutiquesService {
           resolve(shop);
         },
         error:(err)=>{
-          console.log(err);
+          resolve(err);
         }
       })
     })

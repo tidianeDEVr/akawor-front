@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { CATEGORY } from 'src/app/data/interfaces';
+import { CATEGORY, PRODUCT, SHOP } from 'src/app/data/interfaces';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
 import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
+import { CategoriesService } from '../../services/categories.service';
 
 @Component({
   selector: 'app-home',
@@ -144,6 +145,8 @@ export class HomeComponent {
       img: 'zimlam.png',
     },
   ];
+  
+  public recentProducts!: PRODUCT[];
   public isShopsLoaded: boolean = false;
   public slideShopsConfig = {
     slidesToShow: 6,
@@ -300,15 +303,20 @@ export class HomeComponent {
   constructor(
     private produitsService: ProduitsService,
     private boutiquesService: BoutiquesService,
+    private categoriesService: CategoriesService
   ) {
     this.isProductsLoaded = true;
-    this.produitsService.getCategoriesProducts()
+    this.categoriesService.getCategoriesProducts()
     .then((categories)=>{
       this.productCategories = categories;
     })
-    this.boutiquesService.getCategoriesShops()
+    this.categoriesService.getCategoriesShops()
     .then((categories)=>{
       this.shopCategories = categories
+    })
+    this.produitsService.getRecentsProducts()
+    .then((res)=>{
+      this.recentProducts = res;
     })
   }
 }

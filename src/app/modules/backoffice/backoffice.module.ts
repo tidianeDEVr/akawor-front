@@ -15,6 +15,8 @@ import { DashboardMessagingComponent } from './components/notifications/dashboar
 import { DashboardNewAnnouncementComponent } from './components/announcements/dashboard-new-announcement/dashboard-new-announcement.component';
 import { DashboardBannersComponent } from './components/banners/dashboard-banners/dashboard-banners.component';
 import { DashboardStatsComponent } from './components/stats/dashboard-stats/dashboard-stats.component';
+import { DashboardDetailsCategorieComponent } from './components/categories/dashboard-details-categorie/dashboard-details-categorie.component';
+import { DashboardDetailsShopComponent } from './components/shops/dashboard-details-shop/dashboard-details-shop.component';
 
 
 
@@ -26,7 +28,9 @@ import { DashboardStatsComponent } from './components/stats/dashboard-stats/dash
     DashboardVendorsComponent,
     DashboardCustomersComponent,
     DashboardCategoriesComponent,
+    DashboardDetailsCategorieComponent,
     DashboardShopsComponent,
+    DashboardDetailsShopComponent,
     DashboardCommandsComponent,
     DashboardReviewsComponent,
     DashboardMessagingComponent,

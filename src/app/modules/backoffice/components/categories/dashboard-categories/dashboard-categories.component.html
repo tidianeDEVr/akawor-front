@@ -1,6 +1,191 @@
 <main>
-    <div class="container">
-        <p>dashboard-categories works!</p>
-  
+  <div class="container">
+    <div class="row pt-4">
+      <div class="col col-3">
+        <div class="card toolbar-card">
+          <div class="card-body">
+            <h4>Gestion des catégories</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col col-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5 *ngIf="allCategories">{{ allCategories.length | number }}</h5>
+              <span matTooltip="Catégories disponibles">C. Disponible(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-check-to-slot fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>{{ countShopCategories | number }}</h5>
+              <span matTooltip="Catégories boutiques">C. Boutique(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-shop fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>{{ countProdCategories | number }}</h5>
+              <span matTooltip="Catégories produits">C. Produit(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-mobile-screen-button fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+    <div class="row mt-3">
+      <div class="col col-4">
+        <div class="card" style="position:sticky;top: 20px;">
+          <div class="card-body">
+            <h4 *ngIf="!isOnEditMode">Ajouter une nouvelle catégorie</h4>
+            <h4 *ngIf="isOnEditMode">Modifier une catégorie</h4>
+            <div>
+              <p>
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Libelle</mat-label>
+                  <input matInput [formControl]="libelleControl">
+                </mat-form-field>
+              </p>
+              <p class="mt-2">
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Type</mat-label>
+                  <mat-select [formControl]="typeControl">
+                    <mat-option value="shop">Boutique</mat-option>
+                    <mat-option value="product">Produit</mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+              <p class="mt-2">
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Icon (facultatif)</mat-label>
+                  <input matInput [formControl]="iconControl">
+                  <mat-hint>Exemple: fa-solid fa-user (<a href="https://fontawesome.com/icons" target="_blank">Font Awesome</a> - V6)</mat-hint>
+                </mat-form-field>
+              </p>
+              <p class="mt-2" *ngIf="typeControl.value==='product'">
+                <mat-form-field class="w-100" appearance="outline">
+                  <mat-label>Catégorie Parent Produit (facultatif)</mat-label>
+                  <mat-select [formControl]="parentControl">
+                    <div *ngFor="let cat of allCategories">
+                      <mat-option value="{{cat.id}}" *ngIf="cat.categoryType === 'product'">
+                        {{cat.categoryLibelle}}
+                      </mat-option>
+                    </div>
+                  </mat-select>
+                </mat-form-field>
+              </p>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-dark fw-bold" *ngIf="!isOnEditMode"
+                [ngClass]="{'disabled': libelleControl.invalid || typeControl.invalid }"
+                (click)="createCategory()"
+                >Ajouter</button>
+                <button class="btn btn-dark fw-bold" *ngIf="isOnEditMode"
+                [ngClass]="{'disabled': libelleControl.invalid || typeControl.invalid }"
+                >Modifier</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-8">
+        <div class="card">
+          <div class="card-body">
+            <table
+              id="allCategories"
+              class="display"
+              style="width: 100%"
+              *ngIf="allCategories"
+            >
+              <thead>
+                <tr>
+                  <th>N°</th>
+                  <th>Libelle</th>
+                  <th>Type</th>
+                  <th>Date d'ajout</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let cat of allCategories; let index = index"
+                  (click)="addToSelected(cat)"
+                >
+                  <td>{{ index + 1 }}</td>
+                  <td>{{ cat.categoryLibelle }}</td>
+                  <td>
+                    <span
+                      class="badge text-bg-success"
+                      *ngIf="cat.categoryType == 'shop'"
+                      >Boutique</span
+                    >
+                    <span
+                      class="badge text-bg-warning"
+                      *ngIf="cat.categoryType == 'product'"
+                      >Produit</span
+                    >
+                  </td>
+                  <td>{{ cat.createdAt | date }}</td>
+                  <td>
+                    <div
+                      class="btn-group"
+                      role="group"
+                      aria-label="Button group with nested dropdown"
+                    >
+                      <button
+                        type="button"
+                        class="btn btn-sm btn-outline-dark"
+                        (click)="openDetailsDialog(cat)"
+                      >
+                        Plus d'infos
+                      </button>
+                      <div class="btn-group" role="group">
+                        <button
+                          type="button"
+                          class="btn btn-sm btn-outline-dark dropdown-toggle"
+                          data-bs-toggle="dropdown"
+                          aria-expanded="false"
+                        ></button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <button (click)="editCategory(cat)" class="dropdown-item">Modifier</button>
+                          </li>
+                          <li>
+                            <button (click)="removeCategory(cat)" class="dropdown-item">Supprimer</button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <th>N°</th>
+                  <th>Libelle</th>
+                  <th>Type</th>
+                  <th>Date d'ajout</th>
+                  <th>Actions</th>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

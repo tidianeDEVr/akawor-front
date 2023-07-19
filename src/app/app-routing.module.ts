@@ -6,7 +6,7 @@ import { WishlistComponent } from './core/components/wishlist/wishlist.component
 import { CartComponent } from './core/components/cart/cart.component';
 import { ContactComponent } from './core/components/contact/contact.component';
 import { FaqComponent } from './core/components/faq/faq.component';
-import { IsConnectedGuard } from './modules/security/guards/is-connected.guard';
+import { isLoggedIn, isModerator } from './core/guards/security.guard';
 
 const routes: Routes = [
   {
@@ -49,16 +49,17 @@ const routes: Routes = [
       { 
         path: 'compte', 
         loadChildren: () => import('./modules/compte/compte.module').then(m => m.CompteModule),
-        // canActivate: [IsConnectedGuard],
+        canActivate: [isLoggedIn],
       },
       { 
         path: 'commandes', 
-        loadChildren: () => import('./modules/commands/commands.module').then(m => m.CommandsModule) 
+        loadChildren: () => import('./modules/commands/commands.module').then(m => m.CommandsModule),
+        canActivate: [isLoggedIn], 
       },
       { 
         path: 'parametres', 
         loadChildren: () => import('./modules/parametres/parametres.module').then(m => m.ParametresModule),
-        // canActivate: [IsConnectedGuard], 
+        canActivate: [isLoggedIn],
       },
       { 
         path: 'blog', 
@@ -67,7 +68,7 @@ const routes: Routes = [
       { 
         path: 'livraisons', 
         loadChildren: () => import('./modules/deliveries/deliveries.module').then(m => m.DeliveriesModule),
-        // canActivate: [IsConnectedGuard], 
+        canActivate: [isLoggedIn],
       },
    ],
   },
@@ -77,12 +78,14 @@ const routes: Routes = [
   },
   { 
     path: 'dashboard',
-    loadChildren: () => import('./modules/backoffice/backoffice.module').then(m => m.BackofficeModule) 
+    loadChildren: () => import('./modules/backoffice/backoffice.module').then(m => m.BackofficeModule),
+    canActivate: [isModerator],
   },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {enableTracing: true,})],
+  // imports: [RouterModule.forRoot(routes, {enableTracing: true,})],
+  imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

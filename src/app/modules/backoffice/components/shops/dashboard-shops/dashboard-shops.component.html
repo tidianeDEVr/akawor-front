@@ -1,6 +1,145 @@
 <main>
-    <div class="container">
-        <p>dashboard-shops works!</p>
-  
+  <div class="container">
+    <div class="row pt-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>12,000</h5>
+              <span matTooltip="Boutiques enregistrées">B. Enregistrée(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-users-gear fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>12,000</h5>
+              <span>En ligne(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-users fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+    <div class="card mt-3">
+      <div
+        class="card-body d-flex align-items-center justify-content-between toolbar-card py-1"
+      >
+        <h4>Gestion des boutiques</h4>
+        <div class="actions d-flex align-items-center">
+          <a class="btn btn-sm btn-dark mx-2" routerLink="/">Ajouter vendeur</a>
+          <button
+            class="btn btn-sm btn-danger rm-btn"
+            [ngClass]="{
+              disabled: !selectedShops || selectedShops.length === 0
+            }"
+          >
+            Supprimer boutique(s)
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-body">
+        <table id="allShops" style="width: 100%" *ngIf="allShops">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Libelle</th>
+              <th>Catégorie</th>
+              <th>Statut</th>
+              <th>Date d'ajout</th>
+              <th>Vendeur</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let shop of allShops; let index = index">
+              <td>
+                <div class="d-flex align-items-center">
+                  <img
+                    src="{{ imgPath + '/' + shop.shopLogoImage }}"
+                    alt="PRODUCT IMAGE"
+                    class="img-thumbnail"
+                    *ngIf="shop.shopLogoImage"
+                    crossorigin="anonymous"
+                  />
+                  <img src="../../../../../../assets/images/shops/logo-placeholder.jpeg" 
+                  alt="shop" *ngIf="!shop.shopLogoImage" class="img-thumbnail">
+                </div>
+              </td>
+              <td>{{ shop.shopLibelle }}</td>
+              <td>
+                <span class="badge text-bg-info"
+                *ngIf="shop.Category?.categoryLibelle">{{shop.Category?.categoryLibelle}}</span>
+                <span class="badge text-bg-danger"
+                *ngIf="!shop.Category?.categoryLibelle">Néant</span>
+              </td>
+              <td>
+                <span *ngIf="shop.shopState && shop.shopState==='ONLINE'"
+                class="badge text-bg-success">En ligne</span>
+                <span *ngIf="shop.shopState && shop.shopState==='DISABLED'"
+                class="badge text-bg-success">Desactivée</span>
+              </td>
+              <td>
+                {{shop.createdAt |date}}
+              </td>
+              <td>
+                <span class="text-ellip" *ngIf="shop.User">
+                    <span class="fw-bold">{{shop.User.userLastName}} </span>    
+                    {{shop.User.userFirstName}}
+                </span>
+                <span class="badge text-bg-danger" *ngIf="!shop.User">Néant</span>
+              </td>
+              <td>
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Button group with nested dropdown"
+                >
+                  <button
+                    type="button"
+                    class="text-nowrap btn btn-sm btn-outline-dark"
+                    (click)="openDetailsDialog(shop)"
+                  >
+                    Plus d'infos
+                  </button>
+                  <div class="btn-group" role="group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Modifier</a></li>
+                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+                <th>Image</th>
+                <th>Libelle</th>
+                <th>Catégorie</th>
+                <th>Statut</th>
+                <th>Date d'ajout</th>
+                <th>Vendeur</th>
+                <th>Actions</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

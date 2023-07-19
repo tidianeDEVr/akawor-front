@@ -46,13 +46,13 @@
                             <div class="col">
                                 <mat-form-field hintLabel="Nom & prénom" appearance="outline" class="w-100">
                                     <mat-label>Votre nom au complet</mat-label>
-                                    <input matInput placeholder="Ex: Cheikh Tidiane Ndiaye">
+                                    <input matInput placeholder="Ex: Cheikh Tidiane Ndiaye" [formControl]="fullNameControl">
                                 </mat-form-field>
                             </div>
                             <div class="col">
                                 <mat-form-field hintLabel="Adresse e-mail" appearance="outline" class="w-100">
                                     <mat-label>Votre adresse e-mail</mat-label>
-                                    <input matInput placeholder="Ex: tidiane@xyz.com">
+                                    <input matInput placeholder="Ex: tidiane@xyz.com" [formControl]="mailControl">
                                 </mat-form-field>
                             </div>
                         </div>

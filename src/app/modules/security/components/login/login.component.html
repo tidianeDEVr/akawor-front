@@ -23,7 +23,7 @@
                         </mat-form-field>
                         <mat-form-field appearance="outline" class="w-100 mt-3">
                             <mat-label>Mot de passe</mat-label>
-                            <input matInput placeholder="password" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl" />
+                            <input matInput placeholder="xxxxxxxxx" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl" />
                             <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-pressed]="hidePassword">
                                 <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
                             </button>
@@ -47,7 +47,7 @@
                             </button>
                         </div>
                         <p class="footer-text text-center mt-2">Vous avez pas de compte ? <a routerLink="/security/inscription" class="fw-bold">Inscrivrez-vous</a></p>
-                        <p class="footer-text text-center">Vous rencontrez des soucis techniques ? <a href="#" class="fw-bold" target="_blank">Contactez-nous</a></p>
+                        <p class="footer-text text-center">Vous rencontrez des soucis techniques ? <a routerLink="/contact" class="fw-bold">Contactez-nous</a></p>
                     </div>
                 </div>
             </div>

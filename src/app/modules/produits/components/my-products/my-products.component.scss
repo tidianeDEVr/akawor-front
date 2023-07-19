@@ -9,6 +9,10 @@
     .my-products {
         .single-prod {
             .card-body {
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                min-height: 200px;
                 padding: 0;
                 position:  relative !important;
                 .infos {
@@ -32,6 +36,21 @@
                     right: 5px;
                     button {
                         background-color: var(--green-400) !important;
+                        width: 30px;
+                        aspect-ratio: 1;
+                        color: var(--white);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: none;
+                        border-radius: 4px;
+                        transition: scale ease-in-out .3s;
+                    }
+                    button:hover {
+                        scale: 1.1;
+                    }
+                    a {
+                        cursor: pointer;
                     }
                 }
             }
@@ -41,11 +60,6 @@
                 object-fit: cover;
                 border-radius: 4px;
             }
-            // .position-absolute {
-            //     bottom: 0;
-            //     height: 100%;
-            //     background: var(--white);
-            // }
         }
     }
 }

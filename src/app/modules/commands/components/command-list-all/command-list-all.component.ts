@@ -8,6 +8,8 @@ declare let DataTable: any;
   styleUrls: ['./command-list-all.component.scss'],
 })
 export class CommandListAllComponent {
+  public orders = ['','','','','']
+  // public orders = []
   constructor(){
     setTimeout(() => {
       new DataTable('#myCommands', DATATABLE_LANGAGE_FR);
