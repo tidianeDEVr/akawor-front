@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { CATEGORY, PRODUCT, SHOP } from 'src/app/data/interfaces';
+import { BANNER, CATEGORY, PRODUCT, SHOP } from 'src/app/data/interfaces';
 import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.service';
 import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
 import { CategoriesService } from '../../services/categories.service';
+import { BannerService } from '../../services/banner.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-home',
@@ -10,71 +12,8 @@ import { CategoriesService } from '../../services/categories.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  public imagePath: string = '../../../../assets/images/products/';
-  public heroBanners = [
-    {
-      imgPath: '../../../../assets/images/backgrounds/demo1760x880.jpg',
-    },
-    {
-      imgPath: '../../../../assets/images/backgrounds/leap-design-1760x880.jpg',
-    },
-    {
-      imgPath:
-        '../../../../assets/images/backgrounds/pepi-stojanovski-610838-unsplash-1760x880w.jpg',
-    },
-  ];
-  public dealsProducts = [
-    {
-      libelle: 'Nom du produit 1',
-      price: '5.000 F CFA',
-      img: 'product1.jpg',
-    },
-    {
-      libelle: 'Nom du produit 2',
-      price: '5.000 F CFA',
-      img: 'product2.jpg',
-    },
-    {
-      libelle: 'Nom du produit 3',
-      price: '5.000 F CFA',
-      img: 'product3.jpg',
-    },
-    {
-      libelle: 'Nom du produit 4',
-      price: '5.000 F CFA',
-      img: 'product4.jpg',
-    },
-    {
-      libelle: 'Nom du produit 5',
-      price: '5.000 F CFA',
-      img: 'product5.jpg',
-    },
-    {
-      libelle: 'Nom du produit 6',
-      price: '5.000 F CFA',
-      img: 'product6.jpg',
-    },
-    {
-      libelle: 'Nom du produit 7',
-      price: '5.000 F CFA',
-      img: 'product7.jpg',
-    },
-    {
-      libelle: 'Nom du produit 8',
-      price: '5.000 F CFA',
-      img: 'product8.jpg',
-    },
-    {
-      libelle: 'Nom du produit 9',
-      price: '5.000 F CFA',
-      img: 'product9.jpg',
-    },
-    {
-      libelle: 'Nom du produit 10',
-      price: '5.000 F CFA',
-      img: 'product10.jpg',
-    },
-  ];
+  public imgBannerPath = `${environment.BACKEND_IMAGES_FOLDER}/banners/`
+  public heroBanners!: BANNER[];
   public isProductsLoaded: boolean = false;
   public slideDealsConfig = {
     slidesToShow: 6,
@@ -111,41 +50,6 @@ export class HomeComponent {
       },
     ],
   };
-  public topShops = [
-    {
-      libelle: 'Adaa ada',
-      img: 'adaa-ada.png',
-    },
-    {
-      libelle: 'Baawaan',
-      img: 'baawaan.png',
-    },
-    {
-      libelle: 'Malado',
-      img: 'malado.png',
-    },
-    {
-      libelle: "nefertiti's code",
-      img: 'nefertitis.jpeg',
-    },
-    {
-      libelle: 'Nilaja',
-      img: 'nilaja.jpeg',
-    },
-    {
-      libelle: 'Outalma xam xam',
-      img: 'outalma.png',
-    },
-    {
-      libelle: "Senteurs d'exquises by touty",
-      img: 'senteursdexq.png',
-    },
-    {
-      libelle: 'Zimlam',
-      img: 'zimlam.png',
-    },
-  ];
-  
   public recentProducts!: PRODUCT[];
   public isShopsLoaded: boolean = false;
   public slideShopsConfig = {
@@ -183,32 +87,7 @@ export class HomeComponent {
       },
     ],
   };
-  public testimonials: any = [
-    {
-      author: 'Cheikh Tidiane Ndiaye',
-      message:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-    },
-    {
-      author: 'Cheikh Tidiane Ndiaye',
-      message:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-    },
-    {
-      author: 'Cheikh Tidiane Ndiaye',
-      message:
-        'Lorem ipsum dolor sit amet, consectetur adipisicing elit, Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
-    },
-  ];
-  public slideTestimonialsConfig = {
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    arrows: false,
-    infinite: true,
-    autoplay: true,
-    autoplaySpeed: 3000,
-    speed: 300,
-  };
+  
   public categories: any = [
     {
       libelle: 'Fashion',
@@ -275,6 +154,15 @@ export class HomeComponent {
     autoplay: true,
     autoplaySpeed: 3000,
     speed: 300,
+    responsive: [
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+        }
+      },
+    ]
   };
   public bestsellersProducts = [
     {
@@ -303,6 +191,7 @@ export class HomeComponent {
   constructor(
     private produitsService: ProduitsService,
     private boutiquesService: BoutiquesService,
+    private bannerService: BannerService,
     private categoriesService: CategoriesService
   ) {
     this.isProductsLoaded = true;
@@ -317,6 +206,10 @@ export class HomeComponent {
     this.produitsService.getRecentsProducts()
     .then((res)=>{
       this.recentProducts = res;
+    })
+    this.bannerService.getHeroBanners()
+    .then((res)=>{
+      this.heroBanners = res;
     })
   }
 }

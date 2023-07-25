@@ -6,7 +6,10 @@ import { WishlistComponent } from './core/components/wishlist/wishlist.component
 import { CartComponent } from './core/components/cart/cart.component';
 import { ContactComponent } from './core/components/contact/contact.component';
 import { FaqComponent } from './core/components/faq/faq.component';
-import { isLoggedIn, isModerator } from './core/guards/security.guard';
+import { isLoggedIn, authorizeDashboard } from './core/guards/security.guard';
+import { SingleProduitComponent } from './modules/produits/components/single-produit/single-produit.component';
+import { SingleBoutiqueComponent } from './modules/boutiques/components/single-boutique/single-boutique.component';
+import { CommandCheckoutComponent } from './modules/commands/components/command-checkout/command-checkout.component';
 
 const routes: Routes = [
   {
@@ -42,9 +45,17 @@ const routes: Routes = [
         path: 'boutiques', 
         loadChildren: () => import('./modules/boutiques/boutiques.module').then(m => m.BoutiquesModule) 
       },
+      {
+        path: 'boutique/:slug',
+        component: SingleBoutiqueComponent,
+      },
       { 
         path: 'produits', 
         loadChildren: () => import('./modules/produits/produits.module').then(m => m.ProduitsModule) 
+      },
+      {
+        path: 'produit/:slug',
+        component: SingleProduitComponent,
       },
       { 
         path: 'compte', 
@@ -55,6 +66,11 @@ const routes: Routes = [
         path: 'commandes', 
         loadChildren: () => import('./modules/commands/commands.module').then(m => m.CommandsModule),
         canActivate: [isLoggedIn], 
+      },
+      {
+        path: 'commandes/passer-ma-commande',
+        component: CommandCheckoutComponent,
+        title: 'Passer ma commande | Akawor',
       },
       { 
         path: 'parametres', 
@@ -79,7 +95,7 @@ const routes: Routes = [
   { 
     path: 'dashboard',
     loadChildren: () => import('./modules/backoffice/backoffice.module').then(m => m.BackofficeModule),
-    canActivate: [isModerator],
+    canActivate: [authorizeDashboard],
   },
 ];
 

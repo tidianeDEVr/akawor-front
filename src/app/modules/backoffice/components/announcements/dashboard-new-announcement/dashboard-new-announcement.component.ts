@@ -31,6 +31,14 @@ export class DashboardNewAnnouncementComponent {
     Validators.required,
     Validators.minLength(5),
   ]);
+  public weightControl = new FormControl('', [
+    Validators.required,
+    Validators.min(0.1),
+  ]);
+  public stockControl = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+  ]);
   public priceControl = new FormControl('', [
     Validators.required,
     Validators.min(2),
@@ -123,8 +131,13 @@ export class DashboardNewAnnouncementComponent {
   updateProductObject() {
     if (this.titleControl.value)
       this.productObject.productTitle = this.titleControl.value;
+    if (this.weightControl.value)
+      this.productObject.productWeight = parseInt(this.weightControl.value);
+    if (this.stockControl.value)
+      this.productObject.productStock = parseInt(this.stockControl.value);
     if (this.descriptionControl.value)
-      this.productObject.productDescription = this.descriptionControl.value;
+      if (this.descriptionControl.value)
+        this.productObject.productDescription = this.descriptionControl.value;
     if (this.priceControl.value)
       this.productObject.productPrice = parseInt(this.priceControl.value);
     if (this.mainCategoryControl.value)
@@ -141,7 +154,7 @@ export class DashboardNewAnnouncementComponent {
         );
       }
     }
-    this.productObject.productState = 'ONLINE'
+    this.productObject.productState = 'ONLINE';
   }
   uploadFile(file: any, isMainImage: boolean) {
     const API_ENDPOINT = `${environment.BACKEND_API_URL}/image/upload?product=${this.productObject.id}&mainImage=${isMainImage}`;
@@ -153,6 +166,7 @@ export class DashboardNewAnnouncementComponent {
         console.log(request.responseText);
       }
     };
+    formData.append('folder', `products`);
     formData.append('images', file);
     request.send(formData);
   }

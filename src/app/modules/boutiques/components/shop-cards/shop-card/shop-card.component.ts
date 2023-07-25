@@ -9,6 +9,6 @@ import { environment } from 'src/environments/environment.development';
 })
 export class ShopCardComponent {
   @Input() shop!: SHOP;
-  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/shops/`
   constructor(){ }
 }

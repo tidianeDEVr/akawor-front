@@ -1,0 +1,242 @@
+<section class="manage-section">
+  <div class="container py-4">
+    <div class="row">
+      <div class="col col-8">
+        <h1>Validation de commande</h1>
+        <div class="stepper mb-3 py-4">
+          <div class="stepper-line">
+            <div class="stepper-line-percent"></div>
+          </div>
+          <div
+            class="single-stepper"
+            matTooltip="Informations personnelles"
+            [ngClass]="{ active: actualStep * 25 === 0 }"
+          >
+            <i class="fa-solid fa-lg fa-1"></i>
+          </div>
+          <div
+            class="single-stepper"
+            matTooltip="Adresses de la livraison"
+            [ngClass]="{ active: actualStep === 1 }"
+          >
+            <i class="fa-solid fa-lg fa-2"></i>
+          </div>
+          <div
+            class="single-stepper"
+            matTooltip="Méthode de la livraison"
+            [ngClass]="{ active: actualStep === 2 }"
+          >
+            <i class="fa-solid fa-lg fa-3"></i>
+          </div>
+          <div
+            class="single-stepper"
+            matTooltip="Paiement"
+            [ngClass]="{ active: actualStep === 3 }"
+          >
+            <i class="fa-solid fa-lg fa-4"></i>
+          </div>
+        </div>
+        <div class="card" *ngIf="actualStep === 0">
+          <div class="card-body h-100">
+            <h4>Informations personnelles</h4>
+            <p class="mb-3">Entrez vos infos pour passer votre commande.</p>
+            <div class="row row-cols-2">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Nom</mat-label>
+                  <input matInput [formControl]="lastnameControl" />
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Prénom</mat-label>
+                  <input matInput [formControl]="firstnameControl" />
+                  <mat-icon matSuffix>person</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100 mt-3">
+                  <mat-label>Adresse e-mail</mat-label>
+                  <input
+                    matInput
+                    placeholder="mail@xyz.com"
+                    [formControl]="emailControl"
+                  />
+                  <mat-icon matSuffix>alternate_email</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100 mt-3">
+                  <mat-label>Numéro de téléphone</mat-label>
+                  <input
+                    matInput
+                    placeholder="(+221) 77 123 45 67"
+                    [formControl]="phonenumberControl"
+                  />
+                  <mat-icon matSuffix>phone_iphone</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="actualStep === 1">
+          <div class="card-body">
+            <h4>Adresses de la livraison</h4>
+            <p class="mb-3">Choisissez votre adresse de livraison.</p>
+            <div class="row row-cols-2">
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Ville</mat-label>
+                  <input matInput [formControl]="cityControl" />
+                  <mat-icon matSuffix>location_city</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Pays</mat-label>
+                  <input matInput [formControl]="countryControl" />
+                  <mat-icon matSuffix>flag</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col col-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Adresse</mat-label>
+                  <input matInput [formControl]="addressControl" />
+                  <mat-icon matSuffix>location_on</mat-icon>
+                </mat-form-field>
+              </div>
+              <div class="col col-12">
+                <mat-form-field appearance="outline" class="w-100">
+                  <mat-label>Adresse supplémentaire (facultatif)</mat-label>
+                  <input matInput [formControl]="additionalAddressControl" />
+                  <mat-icon matSuffix>push_pin</mat-icon>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="actualStep === 2">
+          <div class="card-body">
+            <h4>Méthode de la livraison</h4>
+            <p class="mb-3">Sélectionnez une méthode de livraison.</p>
+            <div class="all-methods">
+              <div
+                class="method mb-3"
+                [ngClass]="{ active: activeDeliveryMethod === 'outalma-1' }"
+                (click)="changeDeliveryMethod('outalma-1')"
+              >
+                <a href="https://outalma.com/" target="_blank">
+                  <img
+                    src="../../../../../assets/images/shops/outalma.png"
+                    alt="Outalma"
+                  />
+                </a>
+                <span class="fw-bold mx-4">Livraison dans Dakar</span>
+                <span>Entre 08h et 24h</span>
+                <span class="fw-bold mx-4">Gratuit</span>
+              </div>
+              <div
+                class="method"
+                [ngClass]="{ active: activeDeliveryMethod === 'outalma-2' }"
+                (click)="changeDeliveryMethod('outalma-2')"
+              >
+                <a href="https://outalma.com/" target="_blank">
+                  <img
+                    src="../../../../../assets/images/shops/outalma.png"
+                    alt="Outalma"
+                  />
+                </a>
+                <span class="fw-bold mx-4">Livraison dans Dakar</span>
+                <span>Entre 08h et 24h</span>
+                <span class="fw-bold mx-4">2,30 €</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card" *ngIf="actualStep === 3">
+          <div class="card-body">
+            <h4>Paiement</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col col-4">
+        <div class="card position-relative">
+          <div class="card-body">
+            <h4>Récapitulatif de la commande</h4>
+            <div class="summaries">
+                <div class="summary d-flex align-items-center justify-content-between">
+                    <h5>Total des produits</h5>
+                    <span>{{totalProductAmount|my_currency}}</span>
+                </div>
+                <div class="summary d-flex align-items-center justify-content-between">
+                    <h5>Frais de livraison</h5>
+                    <span>{{totalDeliveryAmount|my_currency}}</span>
+                </div>
+                <div class="mb-3"><mat-divider></mat-divider></div>
+                <div class="summary d-flex align-items-center justify-content-between">
+                    <h3>Total à payer</h3>
+                    <span>{{totalOrderAmount|my_currency}}</span>
+                </div>
+            </div>
+            <div class="products" *ngIf="cart && cart.length>0">
+              <div class="row row-cols-1 g-3"> 
+                <div class="product col" *ngFor="let prod of cart">
+                  <div class="card">
+                    <div class="card-body">
+                      <div class="row">
+                        <div class="col col-3">
+                          <img src="{{imageBaseUrl+prod.product.productMainImage}}" class="w-100 img-thumbnail"
+                          alt="{{prod.product.productTitle}}" crossorigin="anonymous">
+                        </div>
+                        <div class="col col-9">
+                          <h5 class="m-0 p-0 text-ellip fw-bold">{{prod.product.productTitle}}</h5>
+                          <p class="m-0 p-0 text-ellip">{{prod.product.productDescription}}</p>
+                          <div class="d-flex">
+                            <div class="price" *ngIf="!prod.product.productPromoPrice"
+                            >{{prod.product.productPrice|my_currency}} X {{prod.quantity}}</div>
+                            <div class="price" *ngIf="prod.product.productPromoPrice"
+                            >{{prod.product.productPromoPrice|my_currency}} X {{prod.quantity}}</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="bottom-gradient" *ngIf="cart && cart.length>1"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="advice" *ngIf="!user">
+      <a routerLink="/security/connexion">Connectez-vous</a> ou 
+      <a routerLink="/security/inscription">inscrivez-vous</a> pour enregistrer 
+      vos commandes et suivre l'état de vos livraisons.
+    </p>
+    <div class="actions mt-3">
+      <button
+        class="btn btn-danger"
+        [ngClass]="{ disabled: actualStep === 0 }"
+        (click)="backStep()"
+      >
+        Précédent
+      </button>
+      <button
+        class="btn btn-dark mx-2"
+        (click)="nextStep()"
+        [hidden]="actualStep === 3"
+      >
+        Suivant
+      </button>
+      <button
+        class="btn btn-dark mx-2"
+        (click)="createCommand()"
+        [hidden]="actualStep !== 3"
+      >
+        Soumettre
+      </button>
+    </div>
+  </div>
+</section>

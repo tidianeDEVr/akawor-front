@@ -28,6 +28,14 @@ export class CreateProductComponent implements OnInit {
     Validators.required,
     Validators.min(2),
   ]);
+  public weightControl = new FormControl('', [
+    Validators.required,
+    Validators.min(0.1),
+  ]);
+  public stockControl = new FormControl('', [
+    Validators.required,
+    Validators.min(1),
+  ]);
   public descriptionControl = new FormControl('', [
     Validators.required,
     Validators.minLength(10),
@@ -170,12 +178,17 @@ export class CreateProductComponent implements OnInit {
           console.log(request.responseText);
         }
       };
+      formData.append("folder", `products`)
       formData.append("images", file);
       request.send(formData);
   }
   updateProductObject() {
     if (this.titleControl.value)
       this.productObject.productTitle = this.titleControl.value;
+    if (this.weightControl.value)
+      this.productObject.productWeight = parseInt(this.weightControl.value);
+    if (this.stockControl.value)
+      this.productObject.productStock = parseInt(this.stockControl.value);
     if (this.descriptionControl.value)
       this.productObject.productDescription = this.descriptionControl.value;
     if (this.priceControl.value)

@@ -10,10 +10,13 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 export class ManageAsideComponent {
   @Input() activePath?: string;
   public role?: string;
+  public user !: USER;
 
   constructor(private securityService: SecurityService){
     this.securityService.getAuthenticatedUser().then((res)=>{
-      this.role = res.userRole
+      this.role = res.userRole;
+      this.user = res;
+      console.log(res);
     })
    }
 

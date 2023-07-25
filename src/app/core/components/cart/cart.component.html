@@ -27,7 +27,7 @@
                                 <tbody>
                                   <tr *ngFor="let product of products">
                                     <td>
-                                        <a routerLink="/produits/{{product.product.productSlug}}">
+                                        <a routerLink="/produit/{{product.product.productSlug}}">
                                             <img src="{{imageBaseUrl+product.product.productMainImage}}" 
                                             alt="{{product.product.productTitle}}" crossorigin="anonymous"
                                             class="img-thumbnail">
@@ -38,22 +38,25 @@
                                         <p class="text-ellip" style="max-width:200px;font-weight: 400;color: var(--gray-600);">{{product.product.productDescription}}</p>
                                     </th>
                                     <td>
-                                        <div class="d-flex align-items-center mt-2">
+                                        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
                                             <button type="button" class="btn btn-dark" disabled>{{product.quantity}}</button>
-                                            <button matTooltip="Supprimer du panier" (click)="remove(product.product)"
-                                            class="mx-2 btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></button>
+                                            <button type="button" class="btn btn-danger" matTooltip="Supprimer du panier"
+                                            (click)="remove(product.product)">
+                                                <i class="fa-solid fa-trash"></i>
+                                            </button>
                                         </div>
                                     </td>
-                                    <td class="pt-4 fw-bold">{{product.product.productPrice|number}}</td>
-                                    <td class="pt-4 fw-bold">{{product.product.productPrice*product.quantity|number}}</td>
+                                    <td class="pt-4 fw-bold">{{product.product.productPrice|my_currency}}</td>
+                                    <td class="pt-4 fw-bold">{{product.product.productPrice*product.quantity|my_currency}}</td>
                                   </tr>
                                 </tbody>
                             </table>
                         </div>
                         <div class="d-flex justify-content-center">
                             <a class="btn btn-danger mx-2" routerLink="/produits">Continuer mes achats</a>
-                            <a class="btn btn-dark disabled" *ngIf="!products || products.length === 0">Passer ma commande</a>
-                            <a class="btn btn-dark" *ngIf="products && products.length > 0">Passer ma commande</a>
+                            <a class="btn btn-dark disabled"
+                            *ngIf="!products || products.length === 0">Passer ma commande</a>
+                            <a class="btn btn-dark" routerLink="/commandes/passer-ma-commande" *ngIf="products && products.length > 0">Passer ma commande</a>
                         </div>
                       </mat-card-content>
                     </mat-card>

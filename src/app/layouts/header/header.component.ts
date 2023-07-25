@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { USER } from 'src/app/data/interfaces';
-import { Emitters } from 'src/app/emitters/emitters';
+import { AfterContentInit, AfterViewChecked, Component, OnInit } from '@angular/core';
+import { BannerService } from 'src/app/core/services/banner.service';
+import { CurrencyService } from 'src/app/core/services/currency.service';
+import { BANNER, USER } from 'src/app/data/interfaces';
 import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +12,24 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
+  public imageBannerPath = `${environment.BACKEND_IMAGES_FOLDER}/banners/`
   public isAuthenticated: boolean = true;
   public user: USER | undefined;
   public cartLength: string = '0';
   public wishlistLength: string = '0';
-  constructor(private securityService: SecurityService, private productService: ProduitsService) {}
+  public topBanners!: BANNER[];
+  public selectedCurrency: string = '';
+  constructor(
+    private securityService: SecurityService, 
+    private productService: ProduitsService, 
+    private bannerService: BannerService,
+    private currencyService: CurrencyService) {
+      this.bannerService.getTopBanners()
+      .then((res)=>{
+        this.topBanners = res;
+      })
+      this.selectedCurrency = this.currencyService.getCurrency();
+    }
   ngOnInit(): void {
     this.securityService.getAuthenticatedUser().then((res) => {
       if(res.userEmail) this.user = res;
@@ -28,10 +42,11 @@ export class HeaderComponent implements OnInit {
       this.cartLength = res.length.toString();
       this.productService.updateCartBtn();
     })
-    
+  }
+  changeCurrency(){
+    this.currencyService.changeCurrency(this.selectedCurrency);
   }
   logout() {
-    // this.user = undefined;
     this.user = undefined;
     this.securityService.logout();
   }

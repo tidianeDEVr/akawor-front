@@ -17,6 +17,8 @@ export interface USER {
   userRole?: string;
   userShop?: SHOP;
   userOrders?: ORDER[];
+  userState?: boolean;
+  createdAt?: any;
 }
 
 export interface PACK {
@@ -51,8 +53,6 @@ export interface CATEGORY {
 }
 
 export interface SHOP {
-  createdAt?: any;
-  updatedAt?: any;
   id?: string;
   UserId?: string;
   shopLibelle?: string;
@@ -73,6 +73,8 @@ export interface SHOP {
   shopProducts?: PRODUCT[];
   Social?: SOCIAL;
   User?: USER;
+  createdAt?: any;
+  updatedAt?: any;
 }
 export interface SOCIAL {
   id?: string;
@@ -112,6 +114,8 @@ export interface PRODUCT {
   productMainImage?: string;
   productPrice: number;
   productPricePromo?: number;
+  productWeight ?: number;
+  productStock ?: number;
   productDescription: string;
   productState?: string;
   productIsOutOfStock: boolean;
@@ -152,35 +156,58 @@ export interface IMAGE {
   imageTitle?: string;
 }
 
-export interface NOTIFICATON {
+export interface NOTIFICATON_SETTING {
   id?: string;
-  offersPromitionsMail?: boolean ;
-  ordesMail?: boolean ;
+  offersPromitionsMail?: boolean;
+  ordesMail?: boolean;
   shopAlertsMail?: boolean;
   shopDraftsMail?: boolean;
+  createdAt?: any;
 }
 
-export const DATATABLE_LANGAGE_FR  = {
-  language: {
-      processing:     "Traitement en cours...",
-      search:         "Rechercher&nbsp;:",
-      lengthMenu:    "Afficher _MENU_ &eacute;l&eacute;ments",
-      info:           "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
-      infoEmpty:      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
-      infoFiltered:   "(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)",
-      infoPostFix:    "",
-      loadingRecords: "Chargement en cours...",
-      zeroRecords:    "Aucun &eacute;l&eacute;ment &agrave; afficher",
-      emptyTable:     "Aucune donnée disponible dans le tableau",
-      paginate: {
-          first:      "Premier",
-          previous:   "Pr&eacute;c&eacute;dent",
-          next:       "Suivant",
-          last:       "Dernier"
-      },
-      aria: {
-          sortAscending:  ": activer pour trier la colonne par ordre croissant",
-          sortDescending: ": activer pour trier la colonne par ordre décroissant"
-      }
-  }
+export interface REVIEW {
+  id?: string;
+  reviewAmount?: number;
+  reviewDescription?: string;
+  Product?: PRODUCT;
+  User?: USER;
+  createdAt?: any;
 }
+
+export interface BANNER {
+  id?: string;
+  bannerType?: string;
+  bannerStatut?: string;
+  bannerTitle?: string;
+  bannerSubTitle?: string;
+  bannerFilename?: string;
+  bannerStartAt?: any;
+  bannerFinishAt?: any;
+  bannerRedirectTo?: string;
+}
+
+export const DATATABLE_LANGAGE_FR = {
+  language: {
+    processing: 'Traitement en cours...',
+    search: 'Rechercher&nbsp;:',
+    lengthMenu: 'Afficher _MENU_ &eacute;l&eacute;ments',
+    info: "Affichage de l'&eacute;lement _START_ &agrave; _END_ sur _TOTAL_ &eacute;l&eacute;ments",
+    infoEmpty:
+      "Affichage de l'&eacute;lement 0 &agrave; 0 sur 0 &eacute;l&eacute;ments",
+    infoFiltered: '(filtr&eacute; de _MAX_ &eacute;l&eacute;ments au total)',
+    infoPostFix: '',
+    loadingRecords: 'Chargement en cours...',
+    zeroRecords: 'Aucun &eacute;l&eacute;ment &agrave; afficher',
+    emptyTable: 'Aucune donnée disponible dans le tableau',
+    paginate: {
+      first: 'Premier',
+      previous: 'Pr&eacute;c&eacute;dent',
+      next: 'Suivant',
+      last: 'Dernier',
+    },
+    aria: {
+      sortAscending: ': activer pour trier la colonne par ordre croissant',
+      sortDescending: ': activer pour trier la colonne par ordre décroissant',
+    },
+  },
+};

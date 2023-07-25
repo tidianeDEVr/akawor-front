@@ -4,11 +4,12 @@
         <mat-divider></mat-divider>
         <mat-card class="p-2">
             <div class="row">
-                <div class="col col-10">
+                <div class="col col-12 col-xl-10">
                     <div class="row">
-                        <div class="col col-7">
+                        <div class="col col-12 col-xl-7">
                             <div class="p-1 images" *ngIf="images && images.length>0">
-                                <div class="main-image-container">
+                                <div class="main-image-container"
+                                style="background-image: url({{imageThumbnailUrl+product.productMainImage}});">
                                     <img class="main-image" crossorigin="anonymous"
                                     src="{{imageBaseUrl+product.productMainImage}}" alt="{{product.productTitle}}">
                                 </div>
@@ -20,7 +21,7 @@
                                 </div> 
                             </div>
                         </div>
-                        <div class="col col-5">
+                        <div class="col col-12 col-xl-5">
                             <div class="p-1 middle-col">
                                 <div class="d-flex">
                                     <div class="d-flex pt-4 px-2">
@@ -67,15 +68,14 @@
                                     </div>
                                     <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
                                         <div *ngIf="!actualUser">
-                                            <p class="m-0">Il n'y a aucun avis sur ce produit.</p>
-                                            <h5 class="my-2 fw-bold text-uppercase">DONNER VOTRE AVIS</h5>
+                                            <h5 class="my-2 fw-bold text-uppercase">VOTRE AVIS</h5>
                                             <p>
                                                 Veuillez vous <a routerLink="/security/connexion">connecter</a> ou vous <a routerLink="/security/inscription">inscrire</a> pour évaluer ce produit.
                                             </p>
                                         </div>
-                                        <div *ngIf="actualUser" class="mb-2">
+                                        <div [hidden]="!actualUser || alreadyRate" class="mb-2">
                                             <div class="d-flex justify-content-between align-items-center pt-2">
-                                                <h5 class="my-2 fw-bold text-uppercase">DONNER VOTRE AVIS</h5>
+                                                <h5 class="my-2 fw-bold text-uppercase">VOTRE AVIS</h5>
                                                 <div class="rating">
                                                     <input value="5" name="rating" id="star5" type="radio">
                                                     <label for="star5" (click)="changeRateValue(5)"></label>
@@ -89,7 +89,7 @@
                                                     <label for="star1" (click)="changeRateValue(1)"></label>
                                                 </div>
                                             </div>
-                                            <textarea row="5" class="w-100"
+                                            <textarea row="5" class="w-100" maxlength="60"
                                             [(ngModel)]="rateComment"
                                             placeholder="Entrez votre commentaire ici"></textarea>
                                             <div class="d-flex justify-content-end">
@@ -98,12 +98,19 @@
                                                 (click)="createReview()">Soumettre</button>
                                             </div>
                                         </div>
-                                        <div class="mb-2">
-                                            <mat-divider></mat-divider>
-                                        </div>
-                                        <div class="all-products-rates">
-                                            <div class="product-rate">
-                                                rate 1
+                                        <div class="all-products-rates" *ngIf="reviews && reviews.length>0">
+                                            <div class="product-rate" *ngFor="let review of reviews">
+                                                <div class="stars" *ngIf="review.reviewAmount">
+                                                    <i class="fa-solid fa-star" [ngClass]="{'light': review.reviewAmount>=1}"></i>
+                                                    <i class="fa-solid fa-star" [ngClass]="{'light': review.reviewAmount>=2}"></i>
+                                                    <i class="fa-solid fa-star" [ngClass]="{'light': review.reviewAmount>=3}"></i>
+                                                    <i class="fa-solid fa-star" [ngClass]="{'light': review.reviewAmount>=4}"></i>
+                                                    <i class="fa-solid fa-star" [ngClass]="{'light': review.reviewAmount>=5}"></i>
+                                                </div>
+                                                <p>{{review.reviewDescription}}</p>
+                                                <h5 *ngIf="review.User" class="text-ellip">{{review.createdAt|date:'shortDate'}} par 
+                                                    <span class="fw-bold">{{review.User.userLastName}} {{review.User.userFirstName}}</span></h5>
+                                                <h5 *ngIf="!review.User" class="text-ellip">{{review.createdAt|date:'shortDate'}}</h5>
                                             </div>
                                         </div>
                                     </div>
@@ -111,23 +118,27 @@
                                 <div class="row">
                                     <div class="col col-9">
                                         <div>
-                                            <div class="d-flex align-items-center">
+                                            <div class="d-flex align-items-center" *ngIf="reviews && reviews.length>0">
                                                 <i class="fa-solid fa-cubes-stacked" style="color: var(--green-400);"></i>
-                                                <span class="mx-1">Ce produit a été consulter <span class="fw-bold">101</span> fois.</span>
+                                                <span class="mx-1">Ce produit a été noté <span class="fw-bold">{{reviews.length}}</span> fois.</span>
+                                            </div>
+                                            <div class="d-flex align-items-center" *ngIf="!reviews || reviews.length===0">
+                                                <i class="fa-solid fa-cubes-stacked" style="color: var(--green-400);"></i>
+                                                <span class="mx-1">Il n'y a aucun avis sur ce produit.</span>
                                             </div>
                                             <ul class="my-2">
                                                 <li class="mb-2">
-                                                    <div *ngIf="!product.productIsOutOfStock">
+                                                    <div *ngIf="product.productStock && product.productStock > 0">
                                                         <span class="fw-bold">Stock:</span> En Stock 
                                                         <i class="fa-solid fa-circle-check" style="color:#52b788;"></i>
                                                     </div>
-                                                    <div *ngIf="product.productIsOutOfStock">
+                                                    <div *ngIf="!product.productStock || product.productStock == 0">
                                                         <span class="fw-bold">Stock:</span> Rupture de stock 
                                                         <i class="fa-solid fa-circle-xmark" style="color:#ef233c;"></i>
                                                     </div>
                                                 </li>
                                                 <li class="mb-2">
-                                                    <span class="fw-bold">SKU:</span> Model 199
+                                                    <span class="fw-bold">SKU:</span> akawor_{{product.id}}
                                                 </li>
                                             </ul>
                                         </div>
@@ -135,7 +146,7 @@
                                     <div class="col col-3">
                                         <div class="logo-shop" *ngIf="shop">
                                             <img src="../../../../../assets/images/shops/logo-placeholder.jpeg" alt="{{shop.shopLibelle}}" class="img-thumbnail">
-                                            <a class="text-center text-ellip" routerLink="/boutiques/{{shop.shopSlug}}">{{shop.shopLibelle}}</a>
+                                            <a class="text-center text-ellip" routerLink="/boutique/{{shop.shopSlug}}">{{shop.shopLibelle}}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -152,15 +163,17 @@
                                 </div>
                                 <mat-divider></mat-divider>
                                 <div class="d-flex align-items-center justify-content-between">
-                                    <h2 class="price">{{product.productPrice|currency}}</h2>
+                                    <h2 class="price">{{product.productPrice|my_currency}}</h2>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="actions h-100">
-                                            <div class="input-cont d-flex align-items-center">
+                                            <div class="input-cont d-flex align-items-center" 
+                                            *ngIf="product.productStock && product.productStock > 1">
                                                 <i class="fa-solid fa-chevron-left" (click)="decrement()"></i><br>
                                                 <input type="number" [formControl]="valueControl" min="1" max="10">
                                                 <i class="fa-solid fa-chevron-right" (click)="increment()"></i>
                                             </div>
-                                            <button class="add-to-cart" matTooltip="Ajouter au panier" (click)="addToCart()">
+                                            <button class="add-to-cart" matTooltip="Ajouter au panier" (click)="addToCart()"
+                                            *ngIf="product.productStock && product.productStock > 1">
                                                 <i class="fa-lg fa-solid fa-cart-shopping"></i>
                                             </button>
                                             <button class="add-to-wishlist" matTooltip="Ajouter à la liste de souhaits">
@@ -190,7 +203,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col col-2 right-col">
+                <div class="col col-12 col-xl-2 right-col">
                     <div class="p-1">
                         <div class="advices">
                             <div class="d-flex advice">
@@ -235,7 +248,7 @@
             <mat-divider></mat-divider>
             <div class="my-2">
                 <div class="row">
-                    <div class="col col-6">
+                    <div class="col col-12 col-xl-6">
                         <div>
                             <h4 class="fw-bold text-ellip">Produits de la même boutique</h4>
                             <div class="title-divider" style="margin-top: -12px;"></div>
@@ -246,7 +259,7 @@
                             </ngx-slick-carousel>
                         </div>
                     </div>
-                    <div class="col col-6">
+                    <div class="col col-12 col-xl-6">
                         <div>
                             <h4 class="fw-bold text-ellip">Produits similaires</h4>
                             <div class="title-divider" style="margin-top: -12px;"></div>

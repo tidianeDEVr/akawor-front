@@ -20,16 +20,16 @@
             </div>
             <h6 class="aside-label">COMPTES & BOUTIQUES</h6>
             <ul>
-              <li> 
+              <!-- <li> 
                 <a routerLink="/dashboard/vendors" routerLinkActive="active">
                   <i class="fa-solid fa-users-gear"></i>
                   <span>Vendeurs</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                 <a routerLink="/dashboard/customers" routerLinkActive="active">
                   <i class="fa-solid fa-users"></i>
-                  <span>Clients</span>
+                  <span>Utilisateurs</span>
                 </a>
               </li>
               <li>
@@ -74,24 +74,24 @@
                   <span>Commandes</span>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a routerLink="/dashboard/statistics" routerLinkActive="active">
                   <i class="fa-solid fa-chart-pie"></i>
                   <span>Statistiques</span>
                 </a>
-              </li>
+              </li> -->
               <li>
                 <a routerLink="/dashboard/reviews" routerLinkActive="active">
                   <i class="fa-regular fa-star-half-stroke"></i>
                   <span>Commentaires</span>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a routerLink="/dashboard/messaging" routerLinkActive="active">
                   <i class="fa fa-inbox"></i>
                   <span>Messagerie</span>
                 </a>
-              </li>
+              </li> -->
             </ul>
           </div>
         </aside>
@@ -110,7 +110,7 @@
                 </button>
                 <mat-menu #notificationsMenu="matMenu">
                   <div class="p-4">
-                    <span class="alert alert-danger">Pas de notifications !</span>
+                    <span class="badge text-bg-danger">Pas de notifications !</span>
                   </div>
                 </mat-menu>
                 <button class="btn" [matMenuTriggerFor]="userMenu" style="color: var(--red);">

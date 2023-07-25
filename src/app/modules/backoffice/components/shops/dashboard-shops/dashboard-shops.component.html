@@ -34,7 +34,7 @@
       >
         <h4>Gestion des boutiques</h4>
         <div class="actions d-flex align-items-center">
-          <a class="btn btn-sm btn-dark mx-2" routerLink="/">Ajouter vendeur</a>
+          <a class="btn btn-sm btn-dark mx-2" routerLink="/dashboard/customers/create-vendor">Ajouter vendeur</a>
           <button
             class="btn btn-sm btn-danger rm-btn"
             [ngClass]="{
@@ -48,7 +48,7 @@
     </div>
     <div class="card mt-3">
       <div class="card-body">
-        <table id="allShops" style="width: 100%" *ngIf="allShops">
+        <table id="allShops" style="width: 100%" *ngIf="allShops" class="display">
           <thead>
             <tr>
               <th>Image</th>
@@ -66,7 +66,7 @@
                 <div class="d-flex align-items-center">
                   <img
                     src="{{ imgPath + '/' + shop.shopLogoImage }}"
-                    alt="PRODUCT IMAGE"
+                    alt="SHOP IMAGE"
                     class="img-thumbnail"
                     *ngIf="shop.shopLogoImage"
                     crossorigin="anonymous"

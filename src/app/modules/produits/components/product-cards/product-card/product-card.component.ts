@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { ToastService } from 'src/app/core/services/toast.service';
-import { IMAGE, PRODUCT, USER } from 'src/app/data/interfaces';
+import { PRODUCT } from 'src/app/data/interfaces';
 import { ProduitsService } from '../../../services/produits.service';
 import { environment } from 'src/environments/environment.development';
 import { FormControl } from '@angular/forms';
@@ -13,7 +13,7 @@ import { SecurityService } from 'src/app/modules/security/services/security.serv
 })
 export class ProductCardComponent {
   @Input() product!: PRODUCT;
-  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`;
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`;
   public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   public valueControl = new FormControl(1);
 

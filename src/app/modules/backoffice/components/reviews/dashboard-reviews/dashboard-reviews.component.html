@@ -1,6 +1,150 @@
 <main>
-    <div class="container">
-        <p>dashboard-reviews works!</p>
-  
+  <div class="container">
+    <div class="row pt-4">
+      <div class="col col-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5 *ngIf="reviews">{{ reviews.length | number }}</h5>
+              <span matTooltip="Commentaires enregistrés"
+                >Enregistré(s)</span
+              >
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-comments fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col col-3">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>0</h5>
+              <span matTooltip="Commentaires en ligne">En ligne</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-check-to-slot fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+    <div class="card mt-3">
+      <div
+        class="card-body d-flex align-items-center justify-content-between toolbar-card py-1"
+      >
+        <h4>Gestion des commentaires</h4>
+        <div class="actions d-flex align-items-center">
+          <button
+            class="btn btn-sm btn-danger rm-btn"
+            [ngClass]="{ disabled: selectedReviews.length === 0 }"
+          >
+            Supprimer commentaire(s)
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-body">
+        <table id="allReviews" class="display" style="width: 100%" *ngIf="reviews">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Produit</th>
+              <th>Utilisateur</th>
+              <th>Note</th>
+              <th>Date d'ajout</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr
+              *ngFor="let review of reviews; let index = index"
+              style="width: 100%"
+            >
+              <td>{{ index + 1 }}</td>
+              <td>
+                <div class="d-flex align-items-center" *ngIf="review.Product">
+                  <img
+                    src="{{ imgPath + '/' + review.Product.productMainImage }}"
+                    alt="PRODUCT IMAGE"
+                    class="img-thumbnail"
+                    *ngIf="review.Product.productMainImage"
+                    crossorigin="anonymous"
+                    matTooltip="{{review.Product.productTitle}}"
+                  />
+                </div>
+              </td>
+              <td>
+                <span class="fw-bold">{{ review.User?.userLastName }} </span
+                >{{ review.User?.userFirstName }}
+              </td>
+              <td>
+                <div class="stars" *ngIf="review.reviewAmount">
+                  <i
+                    class="fa-solid fa-star"
+                    [ngClass]="{ light: review.reviewAmount >= 1 }"
+                  ></i>
+                  <i
+                    class="fa-solid fa-star"
+                    [ngClass]="{ light: review.reviewAmount >= 2 }"
+                  ></i>
+                  <i
+                    class="fa-solid fa-star"
+                    [ngClass]="{ light: review.reviewAmount >= 3 }"
+                  ></i>
+                  <i
+                    class="fa-solid fa-star"
+                    [ngClass]="{ light: review.reviewAmount >= 4 }"
+                  ></i>
+                  <i
+                    class="fa-solid fa-star"
+                    [ngClass]="{ light: review.reviewAmount >= 5 }"
+                  ></i>
+                </div>
+              </td>
+              <td>{{ review.createdAt | date }}</td>
+              <td>
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Button group with nested dropdown"
+                >
+                  <button
+                    type="button"
+                    class="text-nowrap btn btn-sm btn-outline-dark"
+                  >
+                    Plus d'infos
+                  </button>
+                  <div class="btn-group" role="group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Modifier</a></li>
+                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>N°</th>
+              <th>Produit</th>
+              <th>Utilisateur</th>
+              <th>Note</th>
+              <th>Date d'ajout</th>
+              <th>Actions</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

@@ -14,10 +14,6 @@ const routes: Routes = [
     path: 'ma-boutique',
     component: ManageShopComponent,
     canActivate: [isVendor],
-  },
-  { 
-    path: '**', 
-    component: SingleBoutiqueComponent
   }
 ];
 

@@ -6,6 +6,7 @@
           <div class="card-content">
             <div class="cc-left">
               <h5 *ngIf="announcements">{{ announcements.length | number }}</h5>
+              <h5 *ngIf="!announcements">0</h5>
               <span>Enregistré(s)</span>
             </div>
             <div class="cc-right">
@@ -77,6 +78,7 @@
     <div class="card mt-3">
       <div class="card-body">
         <table
+          class="display"
           id="allAnnouncements"
           style="width: 100%"
           *ngIf="announcements"
@@ -135,9 +137,9 @@
                 >
               </td>
               <td>{{ prod.createdAt | date }}</td>
-              <td>{{ prod.productPrice | currency }}</td>
+              <td>{{ prod.productPrice | currency:'EUR' }}</td>
               <td>
-                <span *ngIf="prod.productPricePromo">{{ prod.productPricePromo | currency }}</span>
+                <span *ngIf="prod.productPricePromo">{{ prod.productPricePromo | currency:'EUR' }}</span>
                 <span *ngIf="!prod.productPricePromo">-</span>
               </td>
               <td>{{ prod.Shop?.shopLibelle }}</td>

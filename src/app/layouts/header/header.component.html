@@ -1,8 +1,37 @@
 <header>
-  <div class="top-header container">
-    <div class="slide">
-      <img src="../../../assets/images/banners/banner-test.png" alt="banner" />
-    </div>
+  <div class="currency-form">
+    <select class="form-select form-select-sm" style="border-radius: 0;" (change)="changeCurrency()" 
+    [(ngModel)]="selectedCurrency">
+      <option value="EUR">EUR</option>
+      <option value="XOF">XOF</option>
+    </select>
+  </div>
+  <div class="top-header" *ngIf="topBanners && topBanners.length > 0">
+    <ngb-carousel
+      [showNavigationArrows]="false"
+      [showNavigationIndicators]="false"
+    >
+      <ng-template ngbSlide *ngFor="let banner of topBanners">
+        <div class="slide">
+          <div
+            class="slide-blured-bg"
+            style="
+              background-image: linear-gradient(
+                  to bottom,
+                  rgba(0, 0, 0, 0.65),
+                  rgba(0, 0, 0, 0.65)
+                ),
+                url('{{ imageBannerPath + banner.bannerFilename }}');
+            "
+          ></div>
+          <img
+            crossorigin="anonymous"
+            src="{{ imageBannerPath + banner.bannerFilename }}"
+            alt="banner"
+          />
+        </div>
+      </ng-template>
+    </ngb-carousel>
   </div>
   <mat-divider></mat-divider>
   <div class="middle-header">
@@ -87,15 +116,31 @@
           </div>
           <div class="mobile-menu d-xl-none">
             <div class="d-flex justify-content-end">
-              <a
-                class="btn btn-dark"
-                data-bs-toggle="offcanvas"
-                href="#offcanvasExample"
-                role="button"
-                aria-controls="offcanvasExample"
+              <div
+                class="btn-group"
+                role="group"
+                aria-label="Default button group"
               >
-                <i class="fa-solid fa-ellipsis"></i>
-              </a>
+                <button
+                  type="button"
+                  class="btn"
+                  data-bs-toggle="offcanvas"
+                  href="#offcanvasExample"
+                  role="button"
+                  aria-controls="offcanvasExample"
+                >
+                  <i class="fa-solid fa-user fa-lg"></i>
+                </button>
+                <button
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"
+                  type="button"
+                  class="btn"
+                >
+                  <i class="fa-solid fa-bars fa-lg"></i>
+                </button>
+              </div>
             </div>
             <div
               class="offcanvas offcanvas-start"
@@ -104,7 +149,7 @@
               aria-labelledby="offcanvasExampleLabel"
             >
               <div class="offcanvas-header">
-                <h2>Menu</h2>
+                <h2>Mon compte</h2>
                 <button
                   type="button"
                   class="btn-close"
@@ -113,11 +158,26 @@
                 ></button>
               </div>
               <div class="offcanvas-body">
-                <div>
-                  Some text as placeholder. In real life you can have the
-                  elements you have chosen. Like, text, images, lists, etc.
-                </div>
+                <div>Offcanvas content account</div>
               </div>
+            </div>
+            <div
+              class="offcanvas offcanvas-end"
+              tabindex="-1"
+              id="offcanvasRight"
+              aria-labelledby="offcanvasRightLabel"
+            >
+              <div class="offcanvas-header">
+                <h2>Menu</h2>
+                <mat-divider></mat-divider>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="offcanvas"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="offcanvas-body">Offcanvas content menu</div>
             </div>
           </div>
         </div>
@@ -133,7 +193,7 @@
             routerLink="/ma-liste-de-souhaits"
             class="header-side-btn w-100 text-ellip"
           >
-            <span class="badge-wishlist">{{wishlistLength}}</span>
+            <span class="badge-wishlist">{{ wishlistLength }}</span>
             <i class="fa-solid fa-heart" style="margin-right: 5px"></i>
             <span>Liste de souhaits</span>
           </a>
@@ -220,6 +280,10 @@
                   </div>
                   <div [hidden]="!user">
                     <a
+                      *ngIf="
+                        user?.userRole === 'ROLE_CLIENT' ||
+                        user?.userRole === 'ROLE_VENDEUR'
+                      "
                       routerLink="/compte"
                       class="btn"
                       style="
@@ -232,8 +296,27 @@
                         style="margin-right: 10px"
                         class="fa-solid fa-qrcode"
                       ></i>
-                      <span>Tableau de bord</span> </a
-                    ><br />
+                      <span>Tableau de bord</span> <br
+                    /></a>
+                    <a
+                      *ngIf="
+                        user?.userRole === 'ROLE_ADMIN' ||
+                        user?.userRole === 'ROLE_MODERATEUR'
+                      "
+                      routerLink="/dashboard"
+                      class="btn"
+                      style="
+                        font-size: 15px;
+                        font-weight: bold;
+                        color: var(--gray-600);
+                      "
+                    >
+                      <i
+                        style="margin-right: 10px"
+                        class="fa-solid fa-qrcode"
+                      ></i>
+                      <span>Tableau de bord</span> <br
+                    /></a>
                   </div>
                   <div [hidden]="!user">
                     <a

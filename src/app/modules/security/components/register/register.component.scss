@@ -113,4 +113,10 @@
             pointer-events: none;
         }
     }
+
+    @media only screen and (max-width: 500px) {
+        mat-card {
+            width: 90% !important;
+        }
+    }
 }

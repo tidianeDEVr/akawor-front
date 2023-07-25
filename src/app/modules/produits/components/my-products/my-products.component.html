@@ -11,11 +11,13 @@
                         <span *ngIf="myProducts" class="count-label">{{myProducts.length}} annonce(s) trouvée(s)</span>
                     </div>
                     <div class="title-divider"></div>
-                    <div *ngIf="myProducts && myProducts.length===0">
-                        <div class="container pt-5">
-                            <div class="d-flex flex-column align-items-center justify-content-center">
-                                <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
-                                <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
+                    <div class="card">
+                        <div class="card-content" *ngIf="myProducts && myProducts.length===0">
+                            <div class="container pt-5">
+                                <div class="d-flex flex-column align-items-center justify-content-center">
+                                    <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
+                                    <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -37,14 +39,6 @@
                                     <div class="infos">
                                         <p class="text-ellip label-prod">{{product.productTitle}}</p>
                                         <div class="position-absolute menu">
-                                            <!-- <button mat-mini-fab color="warn" class="mt-4" [matMenuTriggerFor]="menu">
-                                                <mat-icon>edit</mat-icon>
-                                            </button>
-                                            <mat-menu #menu="matMenu">
-                                                <button mat-menu-item (click)="editProduct(product)">Modifier l'annonce</button>
-                                                <button mat-menu-item (click)="displayProduct(product)">Aperçu de l'annonce</button>
-                                                <button mat-menu-item (click)="deleteProduct(product)">Supprimer l'annonce</button>
-                                            </mat-menu> -->
                                             <div class="dropdown">
                                                 <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="menu-btn">
                                                     <i class="fa-solid fa-pen-to-square"></i>

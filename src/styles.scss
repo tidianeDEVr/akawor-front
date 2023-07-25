@@ -37,6 +37,9 @@ $akawor-front-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+img {
+  background-image: var(--white) !important;
+}
 .text-ellip {
   width: 95%;
   text-overflow: ellipsis;

@@ -1,5 +1,5 @@
 <div *ngIf="shop">
-    <a routerLink="/boutiques/{{shop.shopSlug}}" matTooltip="{{shop.shopLibelle}}">
+    <a routerLink="/boutique/{{shop.shopSlug}}" matTooltip="{{shop.shopLibelle}}">
         <article class="shop-card">
             <div class="img-holder">
                 <img *ngIf="!shop.shopLogoImage" alt="{{shop.shopLibelle}}" loading="lazy"

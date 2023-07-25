@@ -1,8 +1,16 @@
-<main class="d-flex align-items-center justify-content-center">
+<main class="d-flex align-items-center justify-content-center position-relative">
+    <div class="position-absolute d-block d-xl-none" style="top: 50px;">
+        <div class="d-flex align-items-center align-items-center">
+            <a routerLink="/">
+                <img src="../../../../assets/images/identities/akawor-nobg.png"
+                 alt="akawor logo" style="max-width: 150px;">
+            </a>
+        </div>
+    </div>
     <mat-card class="bg-white">
         <mat-card-content class="p-0">
             <div class="d-flex">
-                <div class="col left-part">
+                <div class="col left-part d-none d-xl-flex">
                     <div class="glass">
                         <a routerLink="/">
                             <img src="../../../../assets/images/identities/akawor-nobg.png" alt="logo akawor" class="">
@@ -39,9 +47,26 @@
                             <mat-divider></mat-divider>
                         </div>
                         <div class="socials-login pt-2">
-                            <button class="gg-btn social-btn">
+                            <!-- <button class="gg-btn social-btn">
                                 <img src="../../../../assets/images/google.svg" width="20" alt="google login">
-                            </button>
+                            </button> -->
+                            <div id="g_id_onload"
+                                data-client_id="312282810078-o0u3srclijh0hc6gqpe14ihtoehgh8bo.apps.googleusercontent.com"
+                                data-context="signin"
+                                data-ux_mode="popup"
+                                data-login_uri="http://localhost:3001/v1/api/security/login/google"
+                                data-auto_select="true"
+                                data-itp_support="true">
+                            </div>
+
+                            <div class="g_id_signin"
+                                data-type="standard"
+                                data-shape="pill"
+                                data-theme="filled_blue"
+                                data-text="signin_with"
+                                data-size="large"
+                                data-logo_alignment="left">
+                            </div>
                             <button class="fb-btn social-btn">
                                 <img src="../../../../assets/images/facebook.svg" width="20" alt="facebook login">
                             </button>

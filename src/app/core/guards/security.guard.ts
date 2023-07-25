@@ -43,13 +43,14 @@ export const isVendor = async () => {
     })
 }
 
-export const isModerator = async () => {
+export const authorizeDashboard = async () => {
     const securityService = inject(SecurityService);
+    const dashboardRoles: string[] = ['ROLE_ADMIN','ROLE_MODERATEUR']
     const router = inject(Router);
     const toastService = inject(ToastService);
     return securityService.getAuthenticatedUser()
     .then((res)=>{
-        if(!res.userRole || res.userRole != 'ROLE_MODERATEUR') {
+        if(!res.userRole || !dashboardRoles.includes(res.userRole)) {
             toastService.show({
                 body: 'Vous n\'avez pas l\'autorisation d\'accéder à cette page !'
             });

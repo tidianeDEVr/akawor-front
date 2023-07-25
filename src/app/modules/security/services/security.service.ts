@@ -29,6 +29,12 @@ export class SecurityService {
       )
       .subscribe({
         next: (res: any) => {
+          if (res.message === 'Missing data !' || 
+          res.message === 'Email or password does not match !') {
+            this.toastService.show({
+              body: "L'identifiant ou le mot de passe est incorrect ! Veuillez réessayer.",
+            });
+          }
           if (res.message === 'success') {
             if (this.dashboardRoles.includes(res.role)) {
               this.router.navigate(['/dashboard']);
@@ -102,8 +108,6 @@ export class SecurityService {
             resolve(authenticatedUser);
           },
           error: (err) => {
-            // resolve(authenticatedUser);
-            console.log(err)
             resolve(err)
           },
         });

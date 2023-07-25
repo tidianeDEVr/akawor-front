@@ -22,6 +22,7 @@
                     width: 100%;
                     max-width: 200px;
                     max-height: 150px;
+                    height: 100%;
                     padding: 20px;
                     object-fit: contain;
                     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -160,6 +161,24 @@
                 .mat-slider__right-input {
                     display: none !important;
                 }
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .profile {
+            img {
+                margin-bottom: 20px !important;
+            }
+        }
+        .shop-description {
+            p {
+                max-height: 300px !important;
+            }
+        }
+        .shop-infos {
+            .contacts {
+                margin-bottom: 50px !important;
             }
         }
     }

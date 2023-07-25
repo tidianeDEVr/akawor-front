@@ -1,24 +1,30 @@
 :host {
     header {
-        
         box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+        .currency-form {
+            position: fixed;
+            z-index: 99999;
+            top: 0;
+            right: 0;
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        }
         .top-header {
             .slide {
-                height: 100px;
-                background-position: center;
-                background-repeat: no-repeat;
-                background-size: cover;
+                position: relative;
+                .slide-blured-bg {
+                    height: 100px;
+                    background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: cover;
+                }
                 img {
+                    top: 0;
+                    position: absolute;
                     width: 100%;
-                    height: 100%;
-                    object-fit: cover;
+                    height: 100px;
+                    object-fit: contain;
                     margin: 0 auto;
                 }
-            }
-            .container {
-                padding-top: 0 !important;
-                padding-bottom: 0 !important;
-                
             }
         }
         .middle-header {
@@ -183,10 +189,22 @@
         }
     }
     @media only screen and (max-width: 500px) {
-        .top-header {
-          .slide {
-            height: 50px !important;
-          }
+        // .top-header {
+        //     .slide {
+        //         img {
+        //             height: 90px !important;
+        //         }
+        //         .slide-blured-bg {
+        //             height: 90px !important;
+        //         }
+        //   }
+        // }
+    .middle-header {
+        .logo-holder {
+            img {
+                    width: 100px !important;
+                }
+            }
         }
     }
 }

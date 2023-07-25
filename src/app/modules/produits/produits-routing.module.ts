@@ -25,12 +25,12 @@ const routes: Routes = [
   },
   {
     path: 'categorie/:slug',
-    component: AllProduitsComponent
+    component: AllProduitsComponent,
   },
-  { 
-    path: '**', 
-    component: SingleProduitComponent, 
-  }
+  // { 
+  //   path: '**',
+  //   component: SingleProduitComponent, 
+  // }
 ];
 
 @NgModule({

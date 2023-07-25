@@ -11,7 +11,7 @@ import { ToastService } from '../../services/toast.service';
 })
 export class CartComponent {
   public products!: any[];
-  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`;
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`;
   constructor(private productService: ProduitsService, private toastService: ToastService){
     this.populateProducts();
   }

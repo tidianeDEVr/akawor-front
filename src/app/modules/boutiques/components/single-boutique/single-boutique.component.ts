@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { PRODUCT, SHOP, SOCIAL } from 'src/app/data/interfaces';
+import { CATEGORY, PRODUCT, SHOP, SOCIAL } from 'src/app/data/interfaces';
 import { BoutiquesService } from '../../services/boutiques.service';
 import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { environment } from 'src/environments/environment.development';
+import { CategoriesService } from 'src/app/core/services/categories.service';
 
 @Component({
   selector: 'app-single-boutique',
@@ -13,6 +14,7 @@ import { environment } from 'src/environments/environment.development';
 })
 export class SingleBoutiqueComponent implements OnInit {
   public products!: PRODUCT[];
+  public shopCategories !: CATEGORY[];
   public shop!: SHOP;
   public social!: SOCIAL;
   public latitude: string = '0';
@@ -36,14 +38,20 @@ export class SingleBoutiqueComponent implements OnInit {
   ];
   public url:any;
   public isProductsLoaded: boolean = false;
-  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/shops/`
 
   constructor(
     private router: Router,
     private boutiqueService: BoutiquesService,
+    private categorieService: CategoriesService,
     private produitService: ProduitsService,
     private sanitizer: DomSanitizer
-  ) {}
+  ) {
+    this.categorieService.getCategoriesShops()
+    .then((res)=>{
+      this.shopCategories = res;
+    })
+  }
   ngOnInit(): void {
     const path = window.location.href;
     const slug = path.split('/')[4];

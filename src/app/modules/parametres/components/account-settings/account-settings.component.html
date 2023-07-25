@@ -18,12 +18,12 @@
                   <li class="nav-item" role="presentation">
                     <button
                       class="nav-link active"
-                      id="home-tab"
+                      id="account-profile-tab"
                       data-bs-toggle="tab"
-                      data-bs-target="#home-tab-pane"
+                      data-bs-target="#account-profile-tab-pane"
                       type="button"
                       role="tab"
-                      aria-controls="home-tab-pane"
+                      aria-controls="account-profile-tab-pane"
                       aria-selected="true"
                     >
                       Compte et profile
@@ -32,12 +32,12 @@
                   <li class="nav-item" role="presentation">
                     <button
                       class="nav-link"
-                      id="profile-tab"
+                      id="notifications-tab"
                       data-bs-toggle="tab"
-                      data-bs-target="#profile-tab-pane"
+                      data-bs-target="#notifications-tab-pane"
                       type="button"
                       role="tab"
-                      aria-controls="profile-tab-pane"
+                      aria-controls="notifications-tab-pane"
                       aria-selected="false"
                     >
                       Notifications
@@ -47,9 +47,9 @@
                 <div class="tab-content" id="myTabContent">
                   <div
                     class="tab-pane fade show active"
-                    id="home-tab-pane"
+                    id="account-profile-tab-pane"
                     role="tabpanel"
-                    aria-labelledby="home-tab"
+                    aria-labelledby="account-profile-tab"
                     tabindex="0"
                   >
                     <div class="row row-cols-2">
@@ -111,21 +111,6 @@
                             <input matInput placeholder="Placeholder" />
                             <mat-icon matSuffix>phone</mat-icon>
                           </mat-form-field>
-                          <div class="form-check form-switch">
-                            <input
-                              class="form-check-input"
-                              [(ngModel)]="isChecked"
-                              type="checkbox"
-                              role="switch"
-                              id="flexSwitchCheckChecked"
-                              checked
-                            />
-                            <label
-                              class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Me contacter via Whatsapp</label
-                            >
-                          </div>
                         </div>
                       </div>
                       <div class="col">
@@ -182,9 +167,9 @@
                   </div>
                   <div
                     class="tab-pane fade"
-                    id="profile-tab-pane"
+                    id="notifications-tab-pane"
                     role="tabpanel"
-                    aria-labelledby="profile-tab"
+                    aria-labelledby="notifications-tab"
                     tabindex="0"
                   >
                     <h4>
@@ -293,7 +278,7 @@
                       </div>
                       <div class="col col-4">
                         <div class="d-flex flex-column">
-                          <span class="fw-bold">Ma boutique</span>
+                          <span class="fw-bold">Via Whatsapp</span>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
@@ -306,7 +291,7 @@
                             <label
                               class="form-check-label"
                               for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              >Mes commandes</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">

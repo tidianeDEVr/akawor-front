@@ -1,5 +1,5 @@
 <article class="product-card" *ngIf="product">
-    <a href="/produits/{{product.productSlug}}" style="text-decoration: none;">
+    <a href="/produit/{{product.productSlug}}" style="text-decoration: none;">
         <div class="img-holder position-relative" *ngIf="product.productMainImage"
         style="background-image: url({{imageThumbnailUrl+product.productMainImage}});">
             <img src="{{imageBaseUrl+product.productMainImage}}" 
@@ -26,7 +26,7 @@
         <div class="text-center">
             <span class="text-ellip category w-100">chaussure</span>
             <div class="price-actions position-relative">
-                <span class="text-ellip price">{{product.productPrice|currency}}</span>
+                <span class="text-ellip price">{{product.productPrice|my_currency}}</span>
                 <div class="actions position-absolute">
                     <div class="input-cont d-flex align-items-center h-100">
                         <i class="fa-solid fa-chevron-left" (click)="decrement()"></i><br>

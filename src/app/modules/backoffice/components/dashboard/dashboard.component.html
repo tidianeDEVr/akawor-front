@@ -81,9 +81,9 @@
                   </div>
                   <div class="col col-3">
                     <div class="text-center pt-3">
-                      <span *ngIf="!product.productPricePromo">{{product.productPrice|currency}}</span>
-                      <span *ngIf="product.productPricePromo">{{product.productPricePromo|currency}}</span>
-                      <p *ngIf="product.productPricePromo"><del>{{product.productPrice|currency}}</del></p>
+                      <span *ngIf="!product.productPricePromo">{{product.productPrice|my_currency}}</span>
+                      <span *ngIf="product.productPricePromo">{{product.productPricePromo|my_currency}}</span>
+                      <p *ngIf="product.productPricePromo"><del>{{product.productPrice|my_currency}}</del></p>
                       <h5>0 vente(s)</h5>
                     </div>
                   </div>

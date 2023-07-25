@@ -1,18 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { environment } from 'src/environments/environment.development';
+import { CurrencyService } from '../services/currency.service';
 
 @Pipe({
-  name: 'mycurrency'
+  name: 'my_currency',
 })
 export class MycurrencyPipe implements PipeTransform {
-  public selectedCurrency: string = 'EUR';
-  public validCurrencies: string[] = ['EUR', 'XOF'];
+  constructor(private currencyService: CurrencyService){}
   transform(value: unknown, ...args: unknown[]): unknown {
-    const actualCurrency = localStorage.getItem('akawor_currency');
-    if (actualCurrency && this.validCurrencies.includes(actualCurrency)) {
-      this.selectedCurrency = actualCurrency;
-    } else {
-      localStorage.setItem('akawor_currency', 'EUR');
-    }
-    return value + this.selectedCurrency;
+    // this.getActualCurrency();
+    return this.currencyService.getActualValue(value);
   }
 }

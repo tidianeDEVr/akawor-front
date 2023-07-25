@@ -8,17 +8,17 @@ const routes: Routes = [
   { 
     path: '', 
     component: MyAccountComponent,
-    title: 'Mon compte'
+    title: 'Mon compte | Akawor'
   },
   { 
     path: 'changer-mot-de-passe', 
     component: ManagePasswordComponent,
-    title: 'Changer mon mot de passe'
+    title: 'Changer mon mot de passe | Akawor'
   },
   { 
     path: 'adresses-de-livraison', 
     component: ManageDeliveryAddressesComponent,
-    title: 'Mes adresses de livraison'
+    title: 'Mes adresses de livraison | Akawor'
   },
 ];
 

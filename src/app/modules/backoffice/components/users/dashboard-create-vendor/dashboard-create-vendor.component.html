@@ -1,0 +1,79 @@
+<main>
+  <div class="container">
+    <h4 class="pt-3">Création compte vendeur</h4>
+    <div class="row mt-3">
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5>Compte utilisateur</h5>
+            <p class="mb-3">
+                Entrez les infos pour vous créer le compte !
+            </p>
+            <div class="row row-cols-2">
+                <div class="col">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Nom</mat-label>
+                        <input matInput placeholder="Doe" [formControl]="lastnameControl" />
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-hint>Votre nom</mat-hint>
+                    </mat-form-field>        
+                </div>
+                <div class="col">
+                    <mat-form-field appearance="outline" class="w-100">
+                        <mat-label>Prénom</mat-label>
+                        <input matInput placeholder="Doe" [formControl]="firstnameControl" />
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-hint>Votre prénom</mat-hint>
+                    </mat-form-field>        
+                </div>
+            </div>
+            <mat-form-field appearance="outline" class="w-100 mt-3">
+                <mat-label>Adresse e-mail</mat-label>
+                <input matInput placeholder="mail@xyz.com" [formControl]="emailControl" />
+                <mat-icon matSuffix>alternate_email</mat-icon>
+                <mat-hint>Identifiant</mat-hint>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="w-100 mt-3">
+                <mat-label>Mot de passe</mat-label>
+                <input matInput placeholder="xxxxxxxxx" [type]="hidePassword ? 'password' : 'text'" [formControl]="passwordControl" />
+                <button mat-icon-button matSuffix (click)="hidePassword = !hidePassword" [attr.aria-pressed]="hidePassword">
+                    <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button>
+                <mat-hint>Mot de passe</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5>Boutique</h5>
+            <p class="mb-3">
+                Entrez les infos pour créer la boutique !
+            </p>
+            <mat-form-field class="w-100 mb-3" appearance="outline">
+                <mat-label>Nom de l'entreprise</mat-label>
+                <input matInput [formControl]="corpNameControl">
+                <mat-hint align="end">URL: https://akawor.com/boutique/{{corpNameUrl|lowercase}}</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="w-100 mb-3" appearance="outline">
+                <mat-label>Catégorie de l'entreprise</mat-label>
+                <mat-select [formControl]="categoryControl" name="category">
+                    <mat-option *ngFor="let element of shopCatgories" [value]="element.categoryLibelle">
+                    {{element.categoryLibelle}}
+                    </mat-option>
+                </mat-select>
+                <mat-hint align="end">Catégorie</mat-hint>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Description de la boutique</mat-label>
+                <textarea matInput rows="4" [formControl]="descriptionControl"></textarea>
+                <mat-hint align="end">Description de la boutique.</mat-hint>
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="w-100 mt-3 btn btn-dark">Soumettre</button>
+  </div>
+</main>

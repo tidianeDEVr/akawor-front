@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 export class MyProductsComponent {
   public seller!: USER;
   public myProducts!: PRODUCT[];
-  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`
   public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   constructor(
     private produitsService: ProduitsService, 

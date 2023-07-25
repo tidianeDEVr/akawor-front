@@ -15,9 +15,7 @@ export class LoginComponent implements OnInit {
   passwordControl = new FormControl('', [Validators.required]);
   checkedRemember: boolean = false;
   hidePassword: boolean = true;
-  constructor(private securityService: SecurityService, private route: ActivatedRoute, private toastService: ToastService){
-    // this.toastService.clear()
-  }
+  constructor(private securityService: SecurityService, private route: ActivatedRoute, private toastService: ToastService){ }
   ngOnInit(): void {
     this.route.queryParams
       .subscribe(params => {

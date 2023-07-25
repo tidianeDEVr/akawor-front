@@ -7,13 +7,6 @@
                 <span class="text-ellip">Compte & profile</span>
             </a>
         </li>
-        <li>
-            <a [ngClass]="{'active': activePath === 'manage-notifs'}" 
-            class="w-100 text-ellip text-start" routerLink="/parametres/notifications">
-                <i class="fa-solid fa-bell"></i>
-                <span class="text-ellip">Gérer mes notifications</span>
-            </a>
-        </li>
         <li *ngIf="role && role === 'ROLE_CLIENT'">
             <a [ngClass]="{'active': activePath === 'manage-panier'}" 
             class="w-100 text-ellip text-start" routerLink="/mon-panier">
@@ -47,13 +40,6 @@
                 <span class="text-ellip">Publier une annonce</span>
             </a>
         </li>
-        <li>
-            <a [ngClass]="{'active': activePath === 'manage-announces'}" class="w-100 text-ellip text-start"
-            routerLink="/produits/mes-annonces">
-                <i class="fa-solid fa-gears"></i>
-                <span class="text-ellip">Gérer mes annonces</span>
-            </a>
-        </li>
     </ul>
     <label class="form-label">Mes livraisons</label>
     <ul>
@@ -74,12 +60,6 @@
     </ul>
     <label class="form-label" *ngIf="role && role === 'ROLE_VENDEUR'">Ma boutique</label>
     <ul *ngIf="role && role === 'ROLE_VENDEUR'">
-        <li>
-            <a class="w-100 text-ellip text-start" routerLink="/boutiques/dynamic">
-                <i class="fa-solid fa-eye"></i>
-                <span class="text-ellip">Aperçu de ma boutique</span>
-            </a>
-        </li>
         <li>
             <a [ngClass]="{'active': activePath === 'manage-shop'}" class="w-100 text-ellip text-start"
             routerLink="/parametres/ma-boutique">

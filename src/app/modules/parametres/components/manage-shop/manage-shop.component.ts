@@ -21,7 +21,7 @@ export class ManageShopComponent implements OnInit {
   public shopCatgories!: CATEGORY[];
   public isUpdating: boolean = false;
   public excludedNames: string[] = ['ma boutique'];
-  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/`
+  public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/shops/`
   
   public categoryControl = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(600)]);
   public descriptionControl = new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(600)]);
@@ -56,7 +56,8 @@ export class ManageShopComponent implements OnInit {
         this.boutiquesServices.getShopBySeller(res.userEmail)
         .then((rs)=>{
           this.shop = rs;
-          if(this.shop.shopLogoImage) this.displayLogo(`${environment.BACKEND_IMAGES_FOLDER}/${this.shop.shopLogoImage}`);
+          if(this.shop.shopLogoImage)
+            this.displayLogo(`${this.imageBaseUrl}/${this.shop.shopLogoImage}`);
           document.title = `Ma boutique - ${this.shop.shopLibelle}`;
           // HYDRATE CHAMPS CATEGORY
           if (rs.Category && rs.Category.categoryLibelle) {
@@ -172,7 +173,7 @@ export class ManageShopComponent implements OnInit {
           this.url = this.getIframeUrl();
           // Do something with the location data, e.g. display on a map
           this.toastService.clear();
-          this.toastService.show({body:'Hooray 🎉 Votre position a été récupérer.', isSuccess:true})
+          this.toastService.show({body:'Hooray 🎉 Votre position a été récupérée.', isSuccess:true})
           this.isGettingPosition = false;
         },
         // Error callback function
@@ -216,6 +217,7 @@ export class ManageShopComponent implements OnInit {
           console.log(request.responseText);
         }
       };
+      formData.append("folder", `shops`)
       formData.append("images", file);
       request.send(formData);
   }

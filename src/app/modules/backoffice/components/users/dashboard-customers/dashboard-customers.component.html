@@ -1,6 +1,194 @@
 <main>
-    <div class="container">
-        dashboard-customers works!
-  
+  <div class="container">
+    <div class="row pt-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5 *ngIf="allUsers">{{ allUsers.length | number }}</h5>
+              <h5 *ngIf="!allUsers">0</h5>
+              <span>Enregistré(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-floppy-disk fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>{{ countClients }}</h5>
+              <span>Client(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-users fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>{{ countVendors }}</h5>
+              <span>Vendeur(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-users-gear fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>{{ countModerators }}</h5>
+              <span>Modérateur(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-person-digging fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <div class="card mt-3">
+      <div
+        class="card-body d-flex align-items-center justify-content-between toolbar-card py-1"
+      >
+        <h4 class="pt-2">Gestion des utilisateurs</h4>
+        <div class="actions d-flex align-items-center">
+          <a
+            class="btn btn-sm btn-dark mx-2"
+            routerLink="/dashboard/customers/create-vendor"
+            >Ajouter vendeur</a
+          >
+          <button
+            class="btn btn-sm btn-danger rm-btn"
+            [ngClass]="{ disabled: selectedUsers.length === 0 }"
+          >
+            Supprimer utilisateur(s)
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-body">
+        <table
+          class="display"
+          id="allUsers"
+          style="width: 100%"
+          *ngIf="allUsers"
+        >
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Date d'inscription</th>
+              <th>État</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of allUsers; let index = index">
+              <td>{{ index + 1 }}</td>
+              <td>
+                <span
+                  class="badge text-bg-success"
+                  *ngIf="user.userRole === 'ROLE_CLIENT'"
+                  >Client</span
+                >
+                <span
+                  class="badge text-bg-primary"
+                  *ngIf="user.userRole === 'ROLE_VENDEUR'"
+                  >Vendeur</span
+                >
+                <span
+                  class="badge text-bg-warning"
+                  *ngIf="user.userRole === 'ROLE_MODERATEUR'"
+                  >Modérateur</span
+                >
+                <span
+                  class="badge text-bg-danger"
+                  *ngIf="user.userRole === 'ROLE_ADMINISTRATEUR'"
+                  >Modérateur</span
+                >
+              </td>
+              <td>{{ user.userEmail }}</td>
+              <td>
+                <span *ngIf="user.userPhonenumber">{{
+                  user.userPhonenumber
+                }}</span>
+                <span *ngIf="!user.userPhonenumber" class="badge text-bg-danger"
+                  >Néant</span
+                >
+              </td>
+              <td>{{ user.userLastName }}</td>
+              <td>{{ user.userFirstName }}</td>
+              <td>{{ user.createdAt | date }}</td>
+              <td>
+                <span
+                  *ngIf="user.userState === true"
+                  class="badge text-bg-success"
+                  >Activé</span
+                >
+                <span
+                  *ngIf="user.userState === false"
+                  class="badge text-bg-danger"
+                  >Désactivé</span
+                >
+              </td>
+              <td>
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Button group with nested dropdown"
+                >
+                  <button
+                    type="button"
+                    class="text-nowrap btn btn-sm btn-outline-dark"
+                    (click)="openDetailsDialog(user)"
+                  >
+                    Plus d'infos
+                  </button>
+                  <div class="btn-group" role="group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Modifier</a></li>
+                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>N°</th>
+              <th>Role</th>
+              <th>Email</th>
+              <th>Téléphone</th>
+              <th>Nom</th>
+              <th>Prénom</th>
+              <th>Date d'inscription</th>
+              <th>État</th>
+              <th>Actions</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
 </main>

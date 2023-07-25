@@ -12,7 +12,7 @@ declare let DataTable: any;
 export class DashboardAnnouncesComponent {
   public announcements!: PRODUCT[];
   public selectedAnnouncements : PRODUCT[] = []; 
-  public imgPath: string = environment.BACKEND_IMAGES_FOLDER;
+  public imgPath: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`;
   constructor(private produitService: ProduitsService){
     this.produitService.getProductsDashboard().then((res)=>{
       this.announcements = res;

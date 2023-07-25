@@ -37,7 +37,6 @@
                             font-weight: bold;
                             font-size: 16px;
                             margin-bottom: 2px;
-                            font-family: 'Playfair Display', serif;
                         }
                         .contact-info {
                             opacity: .85;
@@ -62,17 +61,11 @@
                 mat-form-field {
                     margin-bottom: 20px;
                 }
-                button {
-                    background-color: var(--black);
-                    color: var(--white);
-                    padding-left: 20px;
-                    padding-right: 20px;
-                }
             }
         }
         .spacer {
             min-height: 500px;
-            background-color: #f8f8f8;
+            background-color: var(--gray-400);
         }
     }
 }

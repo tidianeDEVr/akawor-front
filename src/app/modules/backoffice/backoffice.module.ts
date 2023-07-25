@@ -6,7 +6,6 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardCustomersComponent } from './components/users/dashboard-customers/dashboard-customers.component';
 import { CoreModule } from 'src/app/core/core.module';
 import { DashboardAnnouncesComponent } from './components/announcements/dashboard-announces/dashboard-announces.component';
-import { DashboardVendorsComponent } from './components/users/dashboard-vendors/dashboard-vendors.component';
 import { DashboardCategoriesComponent } from './components/categories/dashboard-categories/dashboard-categories.component';
 import { DashboardShopsComponent } from './components/shops/dashboard-shops/dashboard-shops.component';
 import { DashboardCommandsComponent } from './components/commands/dashboard-commands/dashboard-commands.component';
@@ -17,7 +16,7 @@ import { DashboardBannersComponent } from './components/banners/dashboard-banner
 import { DashboardStatsComponent } from './components/stats/dashboard-stats/dashboard-stats.component';
 import { DashboardDetailsCategorieComponent } from './components/categories/dashboard-details-categorie/dashboard-details-categorie.component';
 import { DashboardDetailsShopComponent } from './components/shops/dashboard-details-shop/dashboard-details-shop.component';
-
+import { DashboardCreateVendorComponent } from './components/users/dashboard-create-vendor/dashboard-create-vendor.component';
 
 
 @NgModule({
@@ -25,8 +24,8 @@ import { DashboardDetailsShopComponent } from './components/shops/dashboard-deta
     DashboardComponent,
     DashboardAnnouncesComponent,
     DashboardNewAnnouncementComponent,
-    DashboardVendorsComponent,
     DashboardCustomersComponent,
+    DashboardCreateVendorComponent,
     DashboardCategoriesComponent,
     DashboardDetailsCategorieComponent,
     DashboardShopsComponent,

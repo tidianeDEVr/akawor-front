@@ -10,7 +10,7 @@ declare let DataTable: any;
   styleUrls: ['./dashboard.component.scss']
 })
 export class DashboardComponent {
-  public imgPath: string = environment.BACKEND_IMAGES_FOLDER;
+  public imgPath: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`;
   public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   public latestCommands: any[] = [
     '','','','','','','','','','','','','','',

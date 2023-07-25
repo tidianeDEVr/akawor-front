@@ -3,5 +3,137 @@
         min-height: calc(100vh - 64px);
         height:100%;
         background-color: var(--gray-400);
+        .card {
+            .file-input {
+                .hint {
+                    font-size: 12px;
+                    margin-left: 15px;
+                }
+            }
+            h4 {
+                font-family: 'Playfair Display', serif;
+                font-weight: 800;
+                font-size: 16px;
+            }
+            .help-button {
+                background-color: transparent;
+                border: none;
+                margin-top: -11px;
+            }
+            .file-input-hint {
+                margin-left: 5px;
+                font-size: 12px;
+            }
+            .input-file-label {
+                cursor: pointer;
+                background-color: var(--gray-400);
+                border-radius: 5px;
+                height: 54px;
+                box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+                display: flex;
+                align-items: center;
+                padding: 0 16px;
+                justify-content: space-between;
+                span {
+                    font-size: 16px;
+                    color: var(--gray-600);
+                }
+                i {
+                    opacity: .75;
+                }
+            }
+            .card-content {
+                min-height: 70px;
+                padding: 10px 20px;
+                display: flex;
+                .cc-left, .cc-right {
+                    width: 50%;
+                }
+                .cc-left {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    padding-left: 10px;
+                    h5, span {
+                        margin: 0;
+                        padding: 0;
+                    }
+                    h5 {
+                        font-size: 20px;
+                        white-space: nowrap;
+                        font-weight: 500;
+                    }
+                    span {
+                        color: var(--gray-600);
+                        margin-top: 5px;
+                        font-weight: 700;
+                        font-family: 'Playfair Display', serif;
+                    }
+                }
+                .cc-right {
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-end;
+                    i {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        height: 40px;
+                        width: 40px;
+                        margin-right: 10px;
+                        border-radius: 4px;
+                        background-color: var(--red);
+                        color: var(--white);
+                    }
+                }
+            }
+            .top-header-banners {
+                position: relative;
+                border-radius: 7px;
+                overflow: hidden;
+                .slide {
+                    position: relative;
+                    .slide-blured-bg {
+                        height: 100px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: cover;
+                    }
+                    img {
+                        top: 0;
+                        position: absolute;
+                        width: 100%;
+                        height: 100px;
+                        object-fit: contain;
+                        margin: 0 auto;
+                    }
+                }
+            }
+            .hero-banners {
+                border-radius: 7px;
+                overflow: hidden;
+                position: relative;
+                ngb-carousel {
+                    .picsum-img-wrapper {
+                        img {
+                            width: 100%;
+                            max-height: 375px;
+                            object-fit: cover;
+                        }
+                    }
+                    h3 {
+                        font-family: 'Playfair Display', serif;
+                        font-size: 22px;
+                        font-weight: 600;
+                    }
+                }
+            }
+            .badge {
+                position: absolute;
+                right: 10px;
+                top: 10px;
+                z-index: 999;
+            }
+        }
     }
 }

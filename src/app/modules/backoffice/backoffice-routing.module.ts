@@ -4,7 +4,6 @@ import { DashboardCustomersComponent } from './components/users/dashboard-custom
 import { DashboardLayoutComponent } from 'src/app/layouts/dashboard-layout/dashboard-layout.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { DashboardAnnouncesComponent } from './components/announcements/dashboard-announces/dashboard-announces.component';
-import { DashboardVendorsComponent } from './components/users/dashboard-vendors/dashboard-vendors.component';
 import { DashboardCategoriesComponent } from './components/categories/dashboard-categories/dashboard-categories.component';
 import { DashboardShopsComponent } from './components/shops/dashboard-shops/dashboard-shops.component';
 import { DashboardCommandsComponent } from './components/commands/dashboard-commands/dashboard-commands.component';
@@ -13,6 +12,7 @@ import { DashboardMessagingComponent } from './components/notifications/dashboar
 import { DashboardNewAnnouncementComponent } from './components/announcements/dashboard-new-announcement/dashboard-new-announcement.component';
 import { DashboardBannersComponent } from './components/banners/dashboard-banners/dashboard-banners.component';
 import { DashboardStatsComponent } from './components/stats/dashboard-stats/dashboard-stats.component';
+import { DashboardCreateVendorComponent } from './components/users/dashboard-create-vendor/dashboard-create-vendor.component';
 
 
 const routes: Routes = [
@@ -38,8 +38,8 @@ const routes: Routes = [
         component: DashboardCustomersComponent
       },
       {
-        path: 'vendors',
-        component: DashboardVendorsComponent
+        path: 'customers/create-vendor',
+        component: DashboardCreateVendorComponent
       },
       {
         path: 'categories',

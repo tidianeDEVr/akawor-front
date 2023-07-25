@@ -9,13 +9,13 @@
         </div>
         <div class="container py-4">
             <div class="row">
-                <div class="col-2">
-                    <div class="profile">
+                <div class="col col-12 col-xl-2">
+                    <div class="profile h-100">
                         <img src="../../../../assets/images/shops/logo-placeholder.jpeg" alt="shop" class="img-thumbnail" loading="lazy" *ngIf="!shop.shopLogoImage">
-                        <img src="{{imageBaseUrl+'/'+shop.shopLogoImage}}" alt="{{shop.shopLibelle}}" class="img-thumbnail" loading="lazy" *ngIf="shop.shopLogoImage" crossorigin="anonymous">
+                        <img src="{{imageBaseUrl+shop.shopLogoImage}}" alt="{{shop.shopLibelle}}" class="img-thumbnail" loading="lazy" *ngIf="shop.shopLogoImage" crossorigin="anonymous">
                     </div>
                 </div>
-                <div class="col-5" *ngIf="shop">
+                <div class="col col-12 col-xl-5" *ngIf="shop">
                     <div class="shop-description">
                         <h1 class="text-ellip text-capitalize">{{shop.shopLibelle}}</h1>
                         <div class="position-relative">
@@ -24,8 +24,8 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-5">
-                    <div class="shop-infos d-flex justify-content-between">
+                <div class="col col-12 col-xl-5">
+                    <div class="shop-infos d-xl-flex justify-content-xl-between">
                         <div class="contacts">
                             <h2 class="m-0">Informations :</h2>
                             <a *ngIf="social.shopEmailAddress" href="mailto:{{social.shopEmailAddress}}">
@@ -52,28 +52,20 @@
                         <div class="socials">
                             <h2>Réseaux sociaux :</h2> 
                             <div class="d-flex align-items-center">
-                                <div class="row">
-                                    <div class="col col-3" *ngIf="social.facebookLink">
-                                        <div>
-                                            <a target="_blank" href="{{social.facebookLink}}" matTooltip="Facebook">
-                                                <i class="fa-xl fa-brands fa-facebook-f"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col col-3" *ngIf="social.instagramLink">
-                                        <div>
-                                            <a target="_blank" href="{{social.instagramLink}}" matTooltip="Instagram">
-                                                <i class="fa-xl fa-brands fa-instagram"></i>
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="col col-3" *ngIf="social.tiktokLink">
-                                        <div>
-                                            <a target="_blank" href="{{social.tiktokLink}}" matTooltip="Tiktok">
-                                                <i class="fa-xl fa-brands fa-tiktok"></i>
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="social" *ngIf="social.facebookLink">
+                                    <a target="_blank" href="{{social.facebookLink}}" matTooltip="Facebook">
+                                        <i class="fa-xl fa-brands fa-facebook-f"></i>
+                                    </a>
+                                </div>
+                                <div class="social mx-2" *ngIf="social.instagramLink">
+                                    <a target="_blank" href="{{social.instagramLink}}" matTooltip="Instagram">
+                                        <i class="fa-xl fa-brands fa-instagram"></i>
+                                    </a>
+                                </div>
+                                <div class="social" *ngIf="social.tiktokLink">
+                                    <a target="_blank" href="{{social.tiktokLink}}" matTooltip="Tiktok">
+                                        <i class="fa-xl fa-brands fa-tiktok"></i>
+                                    </a>
                                 </div>
                             </div>                            
                         </div>
@@ -85,28 +77,22 @@
     <main>
         <div class="container">
             <div class="row">
-                <div class="col col-2">
+                <div class="col col-2 d-none d-xl-block">
                     <aside class="container h-100">
                         <img src="../../../../assets/images/banners/banner-420x420.jpeg" alt="banner" loading="lazy">
-                        <h4 class="text-ellip pt-3 fw-bold">Catégories</h4>
+                        <h4 class="text-ellip pt-3 fw-bold">Nos Boutiques</h4>
                         <div class="title-divider" style="margin-top: -12px;"></div>
                         <ul>
-                            <li>
-                                <a class="text-ellip" href="" matTooltip="Cosmétique, Santé et Bien-être">
-                                    <i class="fa-solid fa-heart"></i>
-                                    <span>Cosmétique, Santé et Bien-être</span>
-                                </a>
-                            </li>
-                            <li class="active">
-                                <a class="text-ellip" href="" matTooltip="Mode & Accessoires">
-                                    <i class="fa-solid fa-person-half-dress"></i>
-                                    <span>Mode & Accessoires</span>
+                            <li *ngFor="let categorie of shopCategories" [ngClass]="{'active': shop.Category?.categoryLibelle===categorie.categoryLibelle}">
+                                <a class="text-ellip" routerLink="/boutiques/categorie/{{categorie.categorySlug}}" matTooltip="{{categorie.categoryLibelle}}">
+                                    <i class="{{categorie.categoryIconClass}}"></i>
+                                    <span>{{categorie.categoryLibelle}}</span>
                                 </a>
                             </li>
                         </ul>
                     </aside>
                 </div>
-                <div class="col col-10">
+                <div class="col col-12 col-xl-10">
                     <div class="container all-products">
                         <mat-toolbar class="mb-3">
                             <div class="d-flex align-items-center justify-content-between w-100">
@@ -122,8 +108,8 @@
                                     <p>Trier par:</p>
                                     <select class="form-select form-select-sm" aria-label="Default select example">
                                         <option selected>Sélectionnez</option>
-                                        <option value="1">Ventes, ordre décroissant</option>
-                                        <option value="2">Pertinence</option>
+                                        <!-- <option value="1">Ventes, ordre décroissant</option>
+                                        <option value="2">Pertinence</option> -->
                                         <option value="3">Nom,  A à Z</option>
                                         <option value="4">Nom, Z à A</option>
                                         <option value="5">Prix, croissant</option>
@@ -133,7 +119,7 @@
                                 </div>
                             </div>
                         </mat-toolbar>
-                        <div class="row row-cols-4" *ngIf="!isProductsLoaded">
+                        <div class="row row-cols-1 row-cols-xl-4" *ngIf="!isProductsLoaded">
                             <div class="col" *ngFor="let card of loaderCards">
                                 <app-product-card-loader></app-product-card-loader>
                             </div>
@@ -142,7 +128,7 @@
                         class="empty-result d-flex flex-column align-items-center" *ngIf="!products || products.length === 0">
                             <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5" loading="lazy">
                         </div>
-                        <div class="row row-cols-4 g-3 mb-4" *ngIf="isProductsLoaded">
+                        <div class="row row-cols-1 row-cols-xl-4 g-4 mb-4" *ngIf="isProductsLoaded">
                             <div class="col" *ngFor="let product of products">
                                 <app-product-card [product]="product"></app-product-card>
                             </div>

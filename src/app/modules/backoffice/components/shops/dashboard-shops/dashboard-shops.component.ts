@@ -14,15 +14,13 @@ declare let DataTable: any;
 export class DashboardShopsComponent {
   public allShops!: SHOP[];
   public selectedShops!: SHOP[];
-  public imgPath: string = environment.BACKEND_IMAGES_FOLDER;
+  public imgPath: string = `${environment.BACKEND_IMAGES_FOLDER}/shops/`;
   constructor(
     private boutiquesService: BoutiquesService,
     private dialog: MatDialog
   ) {
     this.boutiquesService.getShops().then((res) => {
       this.allShops = res;
-      console.log(res);
-
       setTimeout(() => {
         new DataTable('#allShops', DATATABLE_LANGAGE_FR);
       }, 1);

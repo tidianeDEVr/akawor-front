@@ -104,9 +104,10 @@
     }  
 
     .tabs-section {
-        // background-color: var(--gray-500);
         button {
             color: var(--gray-600);
+            padding-left: 0;
+            margin-right: 10px;
             font-weight: 700;
         }
         button.active {
@@ -245,6 +246,29 @@
                 width: 100%;
                 aspect-ratio: 1;
                 object-fit: cover;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 500px) {
+        .hero-section {
+            .hero-banner {
+                ngb-carousel {
+                    img {
+                        height: 350px !important;
+                    }
+                }
+            }
+        }
+
+        .catalog-section {
+            .catalog-single {
+                ul li a {
+                    font-size: 20px !important;
+                }
+                ul li {
+                    margin-bottom: 15px !important;
+                }
             }
         }
     }

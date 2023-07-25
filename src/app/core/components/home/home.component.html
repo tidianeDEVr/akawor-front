@@ -2,7 +2,7 @@
 <section class="hero-section">
     <div class="container">
         <div class="row">
-            <div class="col col-2">
+            <div class="col col-xl-2 d-none d-xl-block">
                 <div class="hero-aside container h-100">
                     <h4 class="text-ellip">Nos produits</h4>
                     <div class="title-divider"></div>
@@ -17,21 +17,21 @@
                     </ul>
                 </div>
             </div>
-            <div class="col col-10 hero-banner">
-                <ngb-carousel *ngIf="heroBanners">
+            <div class="col-12 col-xl-10 hero-banner p-0">
+                <ngb-carousel *ngIf="heroBanners && heroBanners.length>0">
                     <ng-template ngbSlide *ngFor="let banner of heroBanners">
                         <div class="picsum-img-wrapper">
-                            <img [src]="banner.imgPath" alt="Random first slide" loading="lazy"/>
+                            <img [src]="imgBannerPath+banner.bannerFilename" alt="Random first slide" loading="lazy"/>
                         </div>
                         <div class="carousel-caption">
-                            <h3>First slide label</h3>
-                            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                            <h3 *ngIf="banner.bannerTitle">{{banner.bannerTitle}}</h3>
+                            <p *ngIf="banner.bannerSubTitle">{{banner.bannerSubTitle}}</p>
                         </div>
                     </ng-template>
                 </ngb-carousel>
                 <mat-card>
                     <mat-card-content>
-                        <div class="row">
+                        <div class="row row-cols-2 row-cols-xl-4 p-3 p-xl-0">
                             <div class="col">
                                 <div class="d-flex flex-column justify-content-center">
                                     <img src="../../../../assets/images/delivery.svg" alt="Livraison rapide et securisée" loading="lazy">
@@ -81,7 +81,7 @@
 <section class="tabs-section">
     <div class="container">
         <div class="row">
-            <div class="col col-2">
+            <div class="col col-2 d-none d-xl-block">
                 <div class="position-relative">
                     <div class="tabs-aside h-100">
                         <h4 class="text-ellip">Nos boutiques</h4>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col col-10 tabs-main">
+            <div class="col col-12 col-xl-10 tabs-main">
                 <div class="container py-5">
                     <ul class="nav" id="myTab" role="tablist">
                         <li class="nav-item" role="presentation">
@@ -118,7 +118,7 @@
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="news-tab-pane" role="tabpanel" aria-labelledby="news-tab" tabindex="0">
                             <div class="container">
-                                <div class="row" *ngIf="isProductsLoaded">
+                                <div class="row row-cols-1 row-cols-xl-4 g-4 pt-3 pt-xl-4" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let recent of recentProducts">
                                         <app-product-card [product]="recent"></app-product-card>
                                     </div>
@@ -141,7 +141,7 @@
                         </div>
                         <div class="tab-pane fade" id="bestsellers-tab-pane" role="tabpanel" aria-labelledby="bestsellers-tab" tabindex="0">
                             <div class="container">
-                                <div class="row" *ngIf="isProductsLoaded">
+                                <div class="row row-cols-4" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
                                         <app-product-card></app-product-card>
                                     </div>
@@ -164,7 +164,7 @@
                         </div>
                         <div class="tab-pane fade" id="rated-tab-pane" role="tabpanel" aria-labelledby="rated-tab" tabindex="0">
                             <div class="container">
-                                <div class="row" *ngIf="isProductsLoaded">
+                                <div class="row row-cols-4" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
                                         <app-product-card></app-product-card>
                                     </div>
@@ -187,7 +187,7 @@
                         </div>
                         <div class="tab-pane fade" id="specials-tab-pane" role="tabpanel" aria-labelledby="specials-tab" tabindex="0">
                             <div class="container">
-                                <div class="row" *ngIf="isProductsLoaded">
+                                <div class="row row-cols-4" *ngIf="isProductsLoaded">
                                     <div class="col" *ngFor="let bestseller of bestsellersProducts">
                                         <app-product-card></app-product-card>
                                     </div>
