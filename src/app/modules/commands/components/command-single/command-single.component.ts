@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./command-single.component.scss']
 })
 export class CommandSingleComponent {
-
+  public actualStep: number = 0;
 }

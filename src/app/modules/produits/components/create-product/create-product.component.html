@@ -1,260 +1,420 @@
 <section class="manage-section">
-    <div class="container">
-        <div class="row">
-            <div class="col col-3">
-                <app-manage-aside activePath="publish-announce"></app-manage-aside>
+  <div class="container">
+    <div class="row">
+      <div class="col col-3">
+        <app-manage-aside activePath="publish-announce"></app-manage-aside>
+      </div>
+      <div class="col col-9">
+        <main class="create-product">
+          <div class="container">
+            <h1 *ngIf="isOnDraftMode">Modification d'une annonce</h1>
+            <h1 *ngIf="!isOnDraftMode">Création d'une nouvelle annonce</h1>
+            <div
+              class="progress"
+              role="progressbar"
+              aria-label="Basic example"
+              aria-valuenow="50"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div
+                class="progress-bar progress-bar-striped progress-bar-animated"
+                style="width: 25%"
+              ></div>
             </div>
-            <div class="col col-9">
-                <main class="create-product">
-                    <div class="container">
-                        <h1 *ngIf="isOnDraftMode">Modification d'une annonce</h1>
-                        <h1 *ngIf="!isOnDraftMode">Création d'une nouvelle annonce</h1>
-                        <div class="progress" role="progressbar" aria-label="Basic example" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">
-                            <div class="progress-bar progress-bar-striped progress-bar-animated" style="width: 25%"></div>
+            <div class="row g-4 mt-3">
+              <div class="col col-6" [hidden]="stepPercent !== 25">
+                <mat-card>
+                  <mat-card-content>
+                    <!-- Step 1 -->
+                    <div class="col details-part">
+                      <div class="h-100">
+                        <h2>
+                          <i class="fa-solid fa-1 step-number"></i>
+                          <span>Détails du produit</span>
+                        </h2>
+                        <p>Remplissez toutes les informations nécessaires.</p>
+                        <div class="mt-3">
+                          <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Titre du produit</mat-label>
+                            <input [formControl]="titleControl" matInput />
+                          </mat-form-field>
+                          <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Prix (€)</mat-label>
+                            <input
+                              [formControl]="priceControl"
+                              matInput
+                              type="number"
+                            />
+                          </mat-form-field>
+                          <div class="row row-cols-2">
+                            <div class="col">
+                              <mat-form-field
+                                class="w-100"
+                                appearance="outline"
+                              >
+                                <mat-label>Poids (KG)</mat-label>
+                                <input
+                                  [formControl]="weightControl"
+                                  matInput
+                                  type="number"
+                                />
+                              </mat-form-field>
+                            </div>
+                            <div class="col">
+                              <mat-form-field
+                                class="w-100"
+                                appearance="outline"
+                              >
+                                <mat-label>N° en stock</mat-label>
+                                <input
+                                  [formControl]="stockControl"
+                                  matInput
+                                  type="number"
+                                />
+                              </mat-form-field>
+                            </div>
+                          </div>
+                          <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Description du produit</mat-label>
+                            <textarea
+                              [formControl]="descriptionControl"
+                              matInput
+                            ></textarea>
+                          </mat-form-field>
                         </div>
-                        <div class="row g-4 mt-3">
-                            <div class="col col-6" [hidden]="stepPercent!==25">
-                                <mat-card>
-                                    <mat-card-content>
-                                        <!-- Step 1 -->
-                                        <div class="col details-part">
-                                            <div class="h-100">
-                                                <h2>
-                                                    <i class="fa-solid fa-1 step-number"></i>
-                                                    <span>Détails du produit</span>
-                                                </h2>
-                                                <p>
-                                                    Remplissez toutes les informations nécessaires.
-                                                </p>
-                                                <div class="mt-3">
-                                                    <mat-form-field class="w-100" appearance="outline">
-                                                        <mat-label>Titre du produit</mat-label>
-                                                        <input [formControl]="titleControl" matInput>
-                                                    </mat-form-field>
-                                                    <mat-form-field class="w-100" appearance="outline">
-                                                        <mat-label>Prix (€)</mat-label>
-                                                        <input [formControl]="priceControl" matInput type="number">
-                                                    </mat-form-field>
-                                                    <div class="row row-cols-2">
-                                                        <div class="col">
-                                                            <mat-form-field class="w-100" appearance="outline">
-                                                                <mat-label>Poids (KG)</mat-label>
-                                                                <input [formControl]="weightControl" matInput type="number">
-                                                            </mat-form-field>
-                                                        </div>
-                                                        <div class="col">
-                                                            <mat-form-field class="w-100" appearance="outline">
-                                                                <mat-label>N° en stock</mat-label>
-                                                                <input [formControl]="stockControl" matInput type="number">
-                                                            </mat-form-field>
-                                                        </div>
-                                                    </div>
-                                                    <mat-form-field class="w-100" appearance="outline">
-                                                        <mat-label>Description du produit</mat-label>
-                                                        <textarea [formControl]="descriptionControl" matInput></textarea>
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <div class="col col-6" [hidden]="stepPercent!==25">
-                                <mat-card>
-                                    <mat-card-content>
-                                        <h2>
-                                            <i class="fa-solid fa-2 step-number"></i>
-                                            <span>Choisissez une catégorie</span>
-                                        </h2>
-                                        <p>
-                                            Choisissez une catégorie à ce produit.
-                                        </p>
-                                        <div class="mt-3">
-                                            <mat-form-field class="w-100" appearance="outline">
-                                                <mat-label>Catégorie principale</mat-label>
-                                                <mat-select [formControl]="mainCategoryControl">
-                                                    <mat-option *ngFor="let category of mainProductsCategories" [value]="category">
-                                                      {{category.categoryLibelle}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                            <mat-form-field class="w-100" appearance="outline" [hidden]="subCategories.length === 0">
-                                                <mat-label>Sous-catégorie</mat-label>
-                                                <mat-select [formControl]="subCategoryControl">
-                                                    <mat-option *ngFor="let category of subCategories" [value]="category">
-                                                      {{category.categoryLibelle}}
-                                                    </mat-option>
-                                                </mat-select>
-                                            </mat-form-field>
-                                        </div>
-                                    </mat-card-content>
-                                </mat-card>
-                                <mat-card class="mt-3">
-                                    <mat-card-content>
-                                        <h2>
-                                            <i class="fa-solid fa-3 step-number"></i>
-                                            <span>Attributs du produit</span>
-                                        </h2>
-                                        <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <p>Ajoutez des détails à ce produit. (optionnel)</p>
-                                            <button class="btn btn-outline-dark btn-sm" (click)="addNewAttribut()">Ajouter</button>
-                                        </div>
-                                        <div class="input-group attr-group" *ngFor="let attr of attributsProduct; let i = index">
-                                            <button class="remove-btn position-absolute btn btn-sm btn-outline-danger" (click)="removeAttribut(i)">Retirer</button>
-                                            <input [(ngModel)]="attr.key" placeholder="Ex : Couleur" type="text" class="form-control" 
-                                            style="border-top-left-radius: 5px; border-bottom-left-radius: 5px;" maxlength="20">
-                                            <input [(ngModel)]="attr.value" placeholder="Rouge" type="text" class="form-control" maxlength="20">
-                                        </div>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <div class="col col-6" [hidden]="stepPercent!==50">
-                                <mat-card>
-                                    <mat-card-content>
-                                        <!-- Step 2 -->
-                                        <div class="images-part">
-                                            <div class="h-100">
-                                                <h2>
-                                                    <i class="fa-solid fa-3 step-number"></i>
-                                                    <span>Téléverser des images de votre annonces</span>
-                                                </h2>
-                                                <p>
-                                                    Une annonce avec des images de qualité obtient plus de visibilité, augmente vos chances de vendre plus rapidement.<br>
-                                                </p>
-                                                <form
-                                                class="input-files" id="input-files" 
-                                                enctype="multipart/form-data" 
-                                                method="post">
-                                                    <div class="principal position-relative">
-                                                        <label for="principal">
-                                                            <img class="img-thumbnail w-100" alt="image principale du produit" id="displayPrincipal"
-                                                            src="../../../../../assets/images/products/product-placeholder.png" crossorigin="anonymous">
-                                                        </label>
-                                                        <input type="file" name="images" id="principal" class="d-none" accept="image/*" name="images"
-                                                        (change)="displayAndUploadMainFile($event)">
-                                                        <button class="position-absolute rm-img-btn" mat-mini-fab
-                                                        matTooltip="Supprimer">
-                                                            <mat-icon>close</mat-icon>
-                                                        </button>
-                                                    </div>
-                                                    <div class="others row row-cols-3 g-2 mt-1">
-                                                        <div class="other col position-relative" *ngFor="let img of otherImages; let index = index">
-                                                            <label for="{{'other'+index}}">
-                                                                <img class="img-thumbnail w-100" alt="image principale du produit" id="{{'displayOther'+index}}"
-                                                                src="../../../../../assets/images/products/product-placeholder.png" crossorigin="anonymous">
-                                                            </label>
-                                                            <input type="file" name="images" class="input-file" id="{{'other'+index}}" class="d-none" accept="image/*"
-                                                            (change)="displayAndUploadFile($event, index)"
-                                                            >
-                                                            <button class="position-absolute rm-img-btn" mat-mini-fab
-                                                            matTooltip="Supprimer">
-                                                                <mat-icon>close</mat-icon>
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <div class="col col-6" [hidden]="stepPercent!==50">
-                                <mat-card>
-                                    <mat-card-content>
-                                        <div class="h-100">
-                                            <h2>
-                                                <i class="fa-solid fa-4 step-number"></i>
-                                                <span>Quelques astuces</span>
-                                            </h2>
-                                            <div class="images-advices">
-                                                <ul class="list-group list-group-flush">
-                                                    <li class="list-group-item">
-                                                        <i class="fa-solid fa-image"></i>
-                                                        <span> La première image importée sera l'image principale du produit.</span>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <i class="fa-solid fa-camera"></i>
-                                                        <span> Privilégiez les images sous fond blanc.</span>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <i class="fa-solid fa-images"></i>
-                                                        <span> Les types de fichiers pris en charge sont .jpeg, .jpg, .png</span>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <i class="fa-solid fa-sd-card"></i>
-                                                        <span>La taille max d'une image autorisée est 10MB. (Max 10 images)</span>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <i class="fa-solid fa-file-image"></i>
-                                                        <span> Les produits avec photos se vendent plus rapidement.</span>
-                                                    </li>
-                                                    <li class="list-group-item">
-                                                        <i class="fa-solid fa-cube"></i>
-                                                        <span> Choisissez des photos avec plusieurs angles.</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                            <div class="col col-6" [hidden]="stepPercent!==75">
-                                <mat-card>
-                                    <mat-card-content>
-                                        <!-- Step 3 -->
-                                        <h2>
-                                            <i class="fa-solid fa-5 step-number"></i>
-                                            <span>Options de visibilité</span>
-                                        </h2>
-                                        <div class="row mt-2">
-                                            <div class="col">
-                                                <mat-card class="visibility-card" 
-                                                [ngClass]="{'selected-visibility': selectedVisibility === 1}" 
-                                                (click)="setVisibility(1)">
-                                                    <mat-card-content>
-                                                        Par défaut
-                                                        <i class="fa-lg fa-solid fa-circle-check position-absolute"></i>
-                                                    </mat-card-content>
-                                                </mat-card>
-                                            </div>
-                                            <div class="col">
-                                                <mat-card class="visibility-card" 
-                                                [ngClass]="{'selected-visibility': selectedVisibility === 2}" 
-                                                (click)="setVisibility(2)">
-                                                    <mat-card-content>
-                                                        Offre 1
-                                                        <i class="fa-lg fa-solid fa-circle-check position-absolute"></i>
-                                                    </mat-card-content>
-                                                </mat-card>
-                                            </div>
-                                            <div class="col">
-                                                <mat-card class="visibility-card"
-                                                [ngClass]="{'selected-visibility': selectedVisibility === 3}" 
-                                                (click)="setVisibility(3)">
-                                                    <mat-card-content>
-                                                        Offre 2
-                                                        <i class="fa-lg fa-solid fa-circle-check position-absolute"></i>
-                                                    </mat-card-content>
-                                                </mat-card>
-                                            </div>
-                                        </div>
-                                    </mat-card-content>
-                                </mat-card>
-                            </div>
-                        </div>
-                        <div class="mt-3 d-flex justify-content-start align-items-center">
-                            <button [ngClass]="{'disabled': stepPercent === 25}" class="btn step-down-btn" (click)="stepDown()" style="margin-right: 10px;">Précédent</button>
-                            <button [hidden]="stepPercent===100" class="btn btn-dark" (click)="stepUp()"
-                            [ngClass]="{'disabled':
-                                titleControl.invalid || priceControl.invalid || weightControl.invalid ||
-                                descriptionControl.invalid || mainCategoryControl.invalid 
-                            }"
-                            >Suivant</button>
-                            <button [hidden]="stepPercent!==100" class="btn btn-dark" (click)="saveProduct()">Publier l'annonce</button>
-                        </div>
+                      </div>
                     </div>
-                </main>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col col-6" [hidden]="stepPercent !== 25">
+                <mat-card>
+                  <mat-card-content>
+                    <h2>
+                      <i class="fa-solid fa-2 step-number"></i>
+                      <span>Choisissez une catégorie</span>
+                    </h2>
+                    <p>Choisissez une catégorie à ce produit.</p>
+                    <div class="mt-3">
+                      <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Catégorie principale</mat-label>
+                        <mat-select [formControl]="mainCategoryControl">
+                          <mat-option
+                            *ngFor="let category of mainProductsCategories"
+                            [value]="category"
+                          >
+                            {{ category.categoryLibelle }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                      <mat-form-field
+                        class="w-100"
+                        appearance="outline"
+                        [hidden]="subCategories.length === 0"
+                      >
+                        <mat-label>Sous-catégorie</mat-label>
+                        <mat-select [formControl]="subCategoryControl">
+                          <mat-option
+                            *ngFor="let category of subCategories"
+                            [value]="category"
+                          >
+                            {{ category.categoryLibelle }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+                <mat-card class="mt-3">
+                  <mat-card-content>
+                    <h2>
+                      <i class="fa-solid fa-3 step-number"></i>
+                      <span>Attributs du produit</span>
+                    </h2>
+                    <div
+                      class="d-flex justify-content-between align-items-center mb-3"
+                    >
+                      <p>Ajoutez des détails à ce produit. (optionnel)</p>
+                      <button
+                        class="btn btn-outline-dark btn-sm"
+                        (click)="addNewAttribut()"
+                      >
+                        Ajouter
+                      </button>
+                    </div>
+                    <div
+                      class="input-group attr-group"
+                      *ngFor="let attr of attributsProduct; let i = index"
+                    >
+                      <button
+                        class="remove-btn position-absolute btn btn-sm btn-outline-danger"
+                        (click)="removeAttribut(i)"
+                      >
+                        Retirer
+                      </button>
+                      <input
+                        [(ngModel)]="attr.key"
+                        placeholder="Ex : Couleur"
+                        type="text"
+                        class="form-control"
+                        style="
+                          border-top-left-radius: 5px;
+                          border-bottom-left-radius: 5px;
+                        "
+                        maxlength="20"
+                      />
+                      <input
+                        [(ngModel)]="attr.value"
+                        placeholder="Rouge"
+                        type="text"
+                        class="form-control"
+                        maxlength="20"
+                      />
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col col-6" [hidden]="stepPercent !== 50">
+                <mat-card>
+                  <mat-card-content>
+                    <!-- Step 2 -->
+                    <div class="images-part">
+                      <div class="h-100">
+                        <h2>
+                          <i class="fa-solid fa-3 step-number"></i>
+                          <span>Téléverser des images de votre annonces</span>
+                        </h2>
+                        <p>
+                          Une annonce avec des images de qualité obtient plus de
+                          visibilité, augmente vos chances de vendre plus
+                          rapidement.<br />
+                        </p>
+                        <form
+                          class="input-files"
+                          id="input-files"
+                          enctype="multipart/form-data"
+                          method="post"
+                        >
+                          <div class="principal position-relative">
+                            <label for="principal">
+                              <img
+                                class="img-thumbnail w-100"
+                                alt="image principale du produit"
+                                id="displayPrincipal"
+                                src="../../../../../assets/images/products/product-placeholder.png"
+                                crossorigin="anonymous"
+                              />
+                            </label>
+                            <input
+                              type="file"
+                              name="images"
+                              id="principal"
+                              class="d-none"
+                              accept="image/*"
+                              name="images"
+                              (change)="displayAndUploadMainFile($event)"
+                            />
+                            <button
+                              class="position-absolute rm-img-btn"
+                              mat-mini-fab
+                              matTooltip="Supprimer"
+                            >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </div>
+                          <div class="others row row-cols-3 g-2 mt-1">
+                            <div
+                              class="other col position-relative"
+                              *ngFor="let img of otherImages; let index = index"
+                            >
+                              <label for="{{ 'other' + index }}">
+                                <img
+                                  class="img-thumbnail w-100"
+                                  alt="image principale du produit"
+                                  id="{{ 'displayOther' + index }}"
+                                  src="../../../../../assets/images/products/product-placeholder.png"
+                                  crossorigin="anonymous"
+                                />
+                              </label>
+                              <input
+                                type="file"
+                                name="images"
+                                class="input-file"
+                                id="{{ 'other' + index }}"
+                                class="d-none"
+                                accept="image/*"
+                                (change)="displayAndUploadFile($event, index)"
+                              />
+                              <button
+                                class="position-absolute rm-img-btn"
+                                mat-mini-fab
+                                matTooltip="Supprimer"
+                              >
+                                <mat-icon>close</mat-icon>
+                              </button>
+                            </div>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col col-6" [hidden]="stepPercent !== 50">
+                <mat-card>
+                  <mat-card-content>
+                    <div class="h-100">
+                      <h2>
+                        <i class="fa-solid fa-4 step-number"></i>
+                        <span>Quelques astuces</span>
+                      </h2>
+                      <div class="images-advices">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <i class="fa-solid fa-image"></i>
+                            <span>
+                              La première image importée sera l'image principale
+                              du produit.</span
+                            >
+                          </li>
+                          <li class="list-group-item">
+                            <i class="fa-solid fa-camera"></i>
+                            <span>
+                              Privilégiez les images sous fond blanc.</span
+                            >
+                          </li>
+                          <li class="list-group-item">
+                            <i class="fa-solid fa-images"></i>
+                            <span>
+                              Les types de fichiers pris en charge sont .jpeg,
+                              .jpg, .png</span
+                            >
+                          </li>
+                          <li class="list-group-item">
+                            <i class="fa-solid fa-sd-card"></i>
+                            <span
+                              >La taille max d'une image autorisée est 10MB.
+                              (Max 10 images)</span
+                            >
+                          </li>
+                          <li class="list-group-item">
+                            <i class="fa-solid fa-file-image"></i>
+                            <span>
+                              Les produits avec photos se vendent plus
+                              rapidement.</span
+                            >
+                          </li>
+                          <li class="list-group-item">
+                            <i class="fa-solid fa-cube"></i>
+                            <span>
+                              Choisissez des photos avec plusieurs angles.</span
+                            >
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
+              <div class="col col-6" [hidden]="stepPercent !== 75">
+                <mat-card>
+                  <mat-card-content>
+                    <!-- Step 3 -->
+                    <h2>
+                      <i class="fa-solid fa-5 step-number"></i>
+                      <span>Options de visibilité</span>
+                    </h2>
+                    <div class="row mt-2">
+                      <div class="col">
+                        <mat-card
+                          class="visibility-card"
+                          [ngClass]="{
+                            'selected-visibility': selectedVisibility === 1
+                          }"
+                          (click)="setVisibility(1)"
+                        >
+                          <mat-card-content>
+                            Par défaut
+                            <i
+                              class="fa-lg fa-solid fa-circle-check position-absolute"
+                            ></i>
+                          </mat-card-content>
+                        </mat-card>
+                      </div>
+                      <div class="col">
+                        <mat-card
+                          class="visibility-card"
+                          [ngClass]="{
+                            'selected-visibility': selectedVisibility === 2
+                          }"
+                          (click)="setVisibility(2)"
+                        >
+                          <mat-card-content>
+                            Offre 1
+                            <i
+                              class="fa-lg fa-solid fa-circle-check position-absolute"
+                            ></i>
+                          </mat-card-content>
+                        </mat-card>
+                      </div>
+                      <div class="col">
+                        <mat-card
+                          class="visibility-card"
+                          [ngClass]="{
+                            'selected-visibility': selectedVisibility === 3
+                          }"
+                          (click)="setVisibility(3)"
+                        >
+                          <mat-card-content>
+                            Offre 2
+                            <i
+                              class="fa-lg fa-solid fa-circle-check position-absolute"
+                            ></i>
+                          </mat-card-content>
+                        </mat-card>
+                      </div>
+                    </div>
+                  </mat-card-content>
+                </mat-card>
+              </div>
             </div>
-        </div>
+            <div class="mt-3 d-flex justify-content-start align-items-center">
+              <button
+                [ngClass]="{ disabled: stepPercent === 25 }"
+                class="btn step-down-btn"
+                (click)="stepDown()"
+                style="margin-right: 10px"
+              >
+                Précédent
+              </button>
+              <button
+                [hidden]="stepPercent === 100"
+                class="btn btn-dark"
+                (click)="stepUp()"
+                [ngClass]="{
+                  disabled:
+                    titleControl.invalid ||
+                    priceControl.invalid ||
+                    weightControl.invalid ||
+                    stockControl.invalid ||
+                    descriptionControl.invalid ||
+                    mainCategoryControl.invalid
+                }"
+              >
+                Suivant
+              </button>
+              <button
+                [hidden]="stepPercent !== 100"
+                class="btn btn-dark"
+                (click)="saveProduct()"
+              >
+                Publier l'annonce
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
     </div>
+  </div>
 </section>

@@ -4,8 +4,15 @@ import { CommandListAllComponent } from './components/command-list-all/command-l
 import { CommandSingleComponent } from './components/command-single/command-single.component';
 
 const routes: Routes = [
-  { path: '', component: CommandListAllComponent },
-  { path: 'dynamic', component: CommandSingleComponent }
+  { 
+    path: '', 
+    component: CommandListAllComponent,
+    title: 'Mes commandes | Akawor' 
+  },
+  { 
+    path: ':dynamic', 
+    component: CommandSingleComponent 
+  }
 ];
 
 @NgModule({

@@ -62,15 +62,15 @@ const routes: Routes = [
         loadChildren: () => import('./modules/compte/compte.module').then(m => m.CompteModule),
         canActivate: [isLoggedIn],
       },
-      { 
-        path: 'commandes', 
-        loadChildren: () => import('./modules/commands/commands.module').then(m => m.CommandsModule),
-        canActivate: [isLoggedIn], 
-      },
       {
         path: 'commandes/passer-ma-commande',
         component: CommandCheckoutComponent,
         title: 'Passer ma commande | Akawor',
+      },
+      { 
+        path: 'commandes', 
+        loadChildren: () => import('./modules/commands/commands.module').then(m => m.CommandsModule),
+        canActivate: [isLoggedIn], 
       },
       { 
         path: 'parametres', 

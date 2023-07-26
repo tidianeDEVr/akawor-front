@@ -134,7 +134,7 @@ export class SingleProduitComponent implements OnInit {
         .then((res) => {
           if (res)
             this.toastService.show({
-              body: `"${this.product.productTitle}" ajouter à votre panier.`,
+              body: `"${this.product.productTitle}" X ${this.valueControl.value} ajouté à votre panier.`,
               isSuccess: true,
             });
           if (!res)
@@ -148,7 +148,17 @@ export class SingleProduitComponent implements OnInit {
           });
         });
   }
+  checkProductAvalaibility(): boolean{
+    if (this.product.productStock && this.valueControl.value) {
+      if(this.product.productStock > this.valueControl.value) {
+        return true;
+      }
+    }
+    return false;
+  }
   increment() {
+    if(!this.checkProductAvalaibility()) 
+      return this.toastService.show({body:`Ce produit n'a que ${this.product.productStock} disponibles !`})
     if (this.valueControl.value && this.valueControl.value + 1 < 11)
       this.valueControl.setValue(this.valueControl.value + 1);
   }

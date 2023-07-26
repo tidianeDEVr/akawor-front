@@ -5,35 +5,38 @@
         <h1>Validation de commande</h1>
         <div class="stepper mb-3 py-4">
           <div class="stepper-line">
-            <div class="stepper-line-percent"></div>
+            <div
+              class="stepper-line-percent"
+              [style.width]="widthStepperLinePercent"
+            ></div>
           </div>
           <div
             class="single-stepper"
             matTooltip="Informations personnelles"
-            [ngClass]="{ active: actualStep * 25 === 0 }"
+            [ngClass]="{ active: actualStep >= 0 }"
           >
-            <i class="fa-solid fa-lg fa-1"></i>
+            <i class="fa-lg fa-solid fa-user-pen"></i>
           </div>
           <div
             class="single-stepper"
             matTooltip="Adresses de la livraison"
-            [ngClass]="{ active: actualStep === 1 }"
+            [ngClass]="{ active: actualStep >= 1 }"
           >
-            <i class="fa-solid fa-lg fa-2"></i>
+            <i class="fa-lg fa-solid fa-map-location-dot"></i>
           </div>
           <div
             class="single-stepper"
             matTooltip="Méthode de la livraison"
-            [ngClass]="{ active: actualStep === 2 }"
+            [ngClass]="{ active: actualStep >= 2 }"
           >
-            <i class="fa-solid fa-lg fa-3"></i>
+            <i class="fa-lg fa-solid fa-truck-plane"></i>
           </div>
           <div
             class="single-stepper"
             matTooltip="Paiement"
-            [ngClass]="{ active: actualStep === 3 }"
+            [ngClass]="{ active: actualStep >= 3 }"
           >
-            <i class="fa-solid fa-lg fa-4"></i>
+            <i class="fa-lg fa-solid fa-cart-shopping"></i>
           </div>
         </div>
         <div class="card" *ngIf="actualStep === 0">
@@ -78,6 +81,22 @@
                 </mat-form-field>
               </div>
             </div>
+            <div class="actions my-2">
+              <button class="btn btn-danger disabled">Précédent</button>
+              <button
+                class="btn btn-dark mx-2"
+                [ngClass]="{
+                  disabled:
+                    this.firstnameControl.invalid ||
+                    this.lastnameControl.invalid ||
+                    this.emailControl.invalid ||
+                    this.phonenumberControl.invalid
+                }"
+                (click)="nextStep()"
+              >
+                Suivant
+              </button>
+            </div>
           </div>
         </div>
         <div class="card" *ngIf="actualStep === 1">
@@ -88,7 +107,7 @@
               <div class="col">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Ville</mat-label>
-                  <input matInput [formControl]="cityControl" />
+                  <input matInput [formControl]="cityControl"/>
                   <mat-icon matSuffix>location_city</mat-icon>
                 </mat-form-field>
               </div>
@@ -113,6 +132,15 @@
                   <mat-icon matSuffix>push_pin</mat-icon>
                 </mat-form-field>
               </div>
+            </div>
+            <div class="actions my-2">
+              <button class="btn btn-danger" (click)="backStep()">
+                Précédent
+              </button>
+              <button class="btn btn-dark mx-2" (click)="nextStep()"
+              [ngClass]="{'disabled': cityControl.invalid || countryControl.invalid || addressControl.invalid}">
+                Suivant
+              </button>
             </div>
           </div>
         </div>
@@ -152,11 +180,29 @@
                 <span class="fw-bold mx-4">2,30 €</span>
               </div>
             </div>
+            <div class="actions mt-4 mb-2">
+              <button class="btn btn-danger" (click)="backStep()">
+                Précédent
+              </button>
+              <button class="btn btn-dark mx-2" (click)="nextStep()" 
+              [ngClass]="{'disabled': activeDeliveryMethod === '' || !activeDeliveryMethod}">
+                Suivant
+              </button>
+            </div>
           </div>
         </div>
         <div class="card" *ngIf="actualStep === 3">
           <div class="card-body">
             <h4>Paiement</h4>
+            <p class="my-5">Mode de paiements...</p>
+            <div class="actions my-2">
+              <button class="btn btn-danger" (click)="backStep()">
+                Précédent
+              </button>
+              <button class="btn btn-dark mx-2" (click)="createCommand()">
+                Soumettre
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -165,38 +211,64 @@
           <div class="card-body">
             <h4>Récapitulatif de la commande</h4>
             <div class="summaries">
-                <div class="summary d-flex align-items-center justify-content-between">
-                    <h5>Total des produits</h5>
-                    <span>{{totalProductAmount|my_currency}}</span>
-                </div>
-                <div class="summary d-flex align-items-center justify-content-between">
-                    <h5>Frais de livraison</h5>
-                    <span>{{totalDeliveryAmount|my_currency}}</span>
-                </div>
-                <div class="mb-3"><mat-divider></mat-divider></div>
-                <div class="summary d-flex align-items-center justify-content-between">
-                    <h3>Total à payer</h3>
-                    <span>{{totalOrderAmount|my_currency}}</span>
-                </div>
+              <div
+                class="summary d-flex align-items-center justify-content-between"
+              >
+                <h5>Total des produits</h5>
+                <span>{{ totalProductAmount | my_currency }}</span>
+              </div>
+              <div
+                class="summary d-flex align-items-center justify-content-between"
+              >
+                <h5>Frais de livraison</h5>
+                <span>{{ totalDeliveryAmount | my_currency }}</span>
+              </div>
+              <div class="mb-3"><mat-divider></mat-divider></div>
+              <div
+                class="summary d-flex align-items-center justify-content-between"
+              >
+                <h3>Total à payer</h3>
+                <span>{{ totalOrderAmount | my_currency }}</span>
+              </div>
             </div>
-            <div class="products" *ngIf="cart && cart.length>0">
-              <div class="row row-cols-1 g-3"> 
+            <div class="products" *ngIf="cart && cart.length > 0">
+              <div class="row row-cols-1 g-3">
                 <div class="product col" *ngFor="let prod of cart">
                   <div class="card">
                     <div class="card-body">
                       <div class="row">
                         <div class="col col-3">
-                          <img src="{{imageBaseUrl+prod.product.productMainImage}}" class="w-100 img-thumbnail"
-                          alt="{{prod.product.productTitle}}" crossorigin="anonymous">
+                          <img
+                            src="{{
+                              imageBaseUrl + prod.product.productMainImage
+                            }}"
+                            class="w-100 img-thumbnail"
+                            alt="{{ prod.product.productTitle }}"
+                            crossorigin="anonymous"
+                          />
                         </div>
                         <div class="col col-9">
-                          <h5 class="m-0 p-0 text-ellip fw-bold">{{prod.product.productTitle}}</h5>
-                          <p class="m-0 p-0 text-ellip">{{prod.product.productDescription}}</p>
+                          <h5 class="m-0 p-0 text-ellip fw-bold">
+                            {{ prod.product.productTitle }}
+                          </h5>
+                          <p class="m-0 p-0 text-ellip">
+                            {{ prod.product.productDescription }}
+                          </p>
                           <div class="d-flex">
-                            <div class="price" *ngIf="!prod.product.productPromoPrice"
-                            >{{prod.product.productPrice|my_currency}} X {{prod.quantity}}</div>
-                            <div class="price" *ngIf="prod.product.productPromoPrice"
-                            >{{prod.product.productPromoPrice|my_currency}} X {{prod.quantity}}</div>
+                            <div
+                              class="price"
+                              *ngIf="!prod.product.productPromoPrice"
+                            >
+                              {{ prod.product.productPrice | my_currency }} X
+                              {{ prod.quantity }}
+                            </div>
+                            <div
+                              class="price"
+                              *ngIf="prod.product.productPromoPrice"
+                            >
+                              {{ prod.product.productPromoPrice | my_currency }}
+                              X {{ prod.quantity }}
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -204,39 +276,19 @@
                   </div>
                 </div>
               </div>
-              <div class="bottom-gradient" *ngIf="cart && cart.length>1"></div>
+              <div
+                class="bottom-gradient"
+                *ngIf="cart && cart.length > 1"
+              ></div>
             </div>
           </div>
         </div>
       </div>
     </div>
     <p class="advice" *ngIf="!user">
-      <a routerLink="/security/connexion">Connectez-vous</a> ou 
-      <a routerLink="/security/inscription">inscrivez-vous</a> pour enregistrer 
+      <a routerLink="/security/connexion">Connectez-vous</a> ou
+      <a routerLink="/security/inscription">inscrivez-vous</a> pour enregistrer
       vos commandes et suivre l'état de vos livraisons.
     </p>
-    <div class="actions mt-3">
-      <button
-        class="btn btn-danger"
-        [ngClass]="{ disabled: actualStep === 0 }"
-        (click)="backStep()"
-      >
-        Précédent
-      </button>
-      <button
-        class="btn btn-dark mx-2"
-        (click)="nextStep()"
-        [hidden]="actualStep === 3"
-      >
-        Suivant
-      </button>
-      <button
-        class="btn btn-dark mx-2"
-        (click)="createCommand()"
-        [hidden]="actualStep !== 3"
-      >
-        Soumettre
-      </button>
-    </div>
   </div>
 </section>

@@ -42,7 +42,7 @@ export class SecurityService {
               this.router.navigate(['/']);
             }
             this.toastService.show({
-              body: 'Connexion reussi ! Heureux de vous retrouver 😊',
+              body: 'Connexion reussie ! Heureux de vous retrouver 😊',
               isSuccess: true,
             });
           }
@@ -79,7 +79,7 @@ export class SecurityService {
         .subscribe({
           next: (res: any) => {
             this.toastService.show({
-              body: 'Inscription reussi ! Utilisez votre identifiant et mot de passe pour vous authentifier.',
+              body: 'Inscription reussie ! Utilisez votre identifiant et mot de passe pour vous authentifier.',
               isSuccess: true,
             });
             this.router.navigate(['/security/connexion'], {

@@ -16,7 +16,6 @@ export class ManageAsideComponent {
     this.securityService.getAuthenticatedUser().then((res)=>{
       this.role = res.userRole;
       this.user = res;
-      console.log(res);
     })
    }
 

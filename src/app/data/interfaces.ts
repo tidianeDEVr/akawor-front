@@ -87,16 +87,28 @@ export interface SOCIAL {
 }
 export interface ORDER {
   id?: string;
+  createdAt?: any;
   orderAddedAt?: string;
   orderStatus?: string;
+  orderReference?: string;
   orderOwner?: USER;
-  orderLine?: ORDER_LINE;
+  OrderLine?: ORDER_LINE;
+  orderIsPayed?: boolean;
+  orderDescription?: string;
+  orderClientPhoneNumber?: string;
+  orderClientEmail?: string;
+  orderClientFirstName?: string;
+  orderClientLastName?: string;
+  orderClientCity?: string;
+  orderClientCountry?: string;
+  orderClientAddress?: string;
 }
 
 export interface ORDER_LINE {
   id?: string;
-  orderLineProducts?: PRODUCT[];
-  orderLinePrice?: string;
+  orderLineProducts?: any;
+  orderLineJsonCart?: any;
+  orderLineTotalPrice?: string;
 }
 
 export interface TRANSACTION {

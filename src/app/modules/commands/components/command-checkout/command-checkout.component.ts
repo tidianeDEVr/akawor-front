@@ -20,13 +20,14 @@ export class CommandCheckoutComponent {
   public totalProductAmount: number = 0;
   public totalDeliveryAmount: number = 2;
   public totalOrderAmount: number = 0;
-  firstnameControl = new FormControl('', [Validators.required, Validators.min(2)]);
-  lastnameControl = new FormControl('', [Validators.required, Validators.min(2)]);
+  public widthStepperLinePercent: string = '0%'
+  firstnameControl = new FormControl('', [Validators.required, Validators.minLength(2)]);
+  lastnameControl = new FormControl('', [Validators.required, Validators.minLength(2)]);
   emailControl = new FormControl('', [Validators.required, Validators.email]);
-  phonenumberControl = new FormControl('', [Validators.required]);
-  cityControl = new FormControl('', [Validators.required]);
-  countryControl = new FormControl('', [Validators.required ]);
-  addressControl = new FormControl('', [Validators.required]);
+  phonenumberControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
+  cityControl = new FormControl('', [Validators.required, Validators.minLength(3)]);
+  countryControl = new FormControl('', [Validators.required, Validators.minLength(4) ]);
+  addressControl = new FormControl('', [Validators.required, Validators.minLength(5)]);
   additionalAddressControl = new FormControl('');
   
   constructor(
@@ -66,16 +67,36 @@ export class CommandCheckoutComponent {
   nextStep(){
     if(this.actualStep+1 > 3) return;
     this.actualStep =  this.actualStep+1;
+    this.refreshLinePercent();
   }
   backStep(){
     if(this.actualStep-1 < 0) return;
     this.actualStep = this.actualStep - 1;
+    this.refreshLinePercent();
   }
   createCommand(){
+    this.orderService.createOrder(this.hydrateNewOrderObject(), this.cart);
+  }
+  refreshLinePercent(){
+    if(this.actualStep==0) return this.widthStepperLinePercent =  `0%`;
+    return this.widthStepperLinePercent =  `${this.actualStep * 33}%`
+  }
+  hydrateNewOrderObject():ORDER {
     var orderToAdd: ORDER = {};
-    this.orderService.createOrder(orderToAdd)
-    .then((res)=>{
-      console.log(res);
-    })
+    if(this.firstnameControl.value && this.firstnameControl.valid)
+      orderToAdd.orderClientFirstName = this.firstnameControl.value;
+    if(this.lastnameControl.value && this.lastnameControl.valid)
+      orderToAdd.orderClientLastName = this.lastnameControl.value;
+    if(this.phonenumberControl.value && this.phonenumberControl.valid)
+      orderToAdd.orderClientPhoneNumber = this.phonenumberControl.value;
+    if(this.emailControl.value && this.emailControl.valid)
+      orderToAdd.orderClientEmail = this.emailControl.value;
+    if(this.cityControl.value && this.cityControl.valid)
+      orderToAdd.orderClientCity = this.cityControl.value;
+    if(this.countryControl.value && this.countryControl.valid)
+      orderToAdd.orderClientCountry = this.countryControl.value;
+    if(this.addressControl.value && this.addressControl.valid)
+      orderToAdd.orderClientAddress = this.addressControl.value;
+    return orderToAdd;
   }
 }

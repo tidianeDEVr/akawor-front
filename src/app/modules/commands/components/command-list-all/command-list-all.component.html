@@ -16,7 +16,7 @@
               <table id="myCommands" class="display" style="width: 100%" *ngIf="orders && orders.length>0">
                 <thead>
                   <tr>
-                    <th>N°</th>
+                    <th>Référence</th>
                     <th>Produits</th>
                     <th>Date</th>
                     <th>Etat</th>
@@ -25,24 +25,35 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <!-- <tr *ngFor="let order of orders; let index = index">
-                    <td>{{index+1}}</td>
+                  <tr *ngFor="let order of orders; let index = index">
+                    <td class="fw-bold">#{{order.orderReference}}</td>
                     <td>
-                      <span class="badge text-bg-info">10 produit(s)</span>
+                      <span class="badge text-bg-info">
+                        {{order.OrderLine?.orderLineProducts.length}} produit(s)
+                      </span>
                     </td>
-                    <td>Edinburgh</td>
-                    <td>2011-04-25</td>
-                    <td>$320,800</td>
+                    <td>{{order.createdAt|date}}</td>
+                    <td>
+                      <span class="badge text-bg-warning"
+                      *ngIf="order.orderStatus==='AWAITING'">Traitement en cours</span>
+                      <span class="badge text-bg-warning"
+                      *ngIf="order.orderStatus==='ENROUTE'">Colis en route</span>
+                      <span class="badge text-bg-success"
+                      *ngIf="order.orderStatus==='DELIVERED'">Livraison effectuée</span>
+                    </td>
+                    <td>
+                      {{order.OrderLine?.orderLineTotalPrice|my_currency}}
+                    </td>
                     <td>
                       <button class="btn btn-sm btn-outline-dark">
                         Plus d'infos
                       </button>
                     </td>
-                  </tr> -->
+                  </tr>
                 </tbody>
                 <tfoot>
                   <tr>
-                    <th>N°</th>
+                    <th>Référence</th>
                     <th>Produits</th>
                     <th>Date</th>
                     <th>Etat</th>

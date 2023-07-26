@@ -1,1 +1,61 @@
-<p>command-single works!</p>
+<section class="manage-section">
+    <div class="container">
+      <div class="row">
+        <div class="col col-3">
+          <app-manage-aside activePath="manage-commands"></app-manage-aside>
+        </div>
+        <div class="col col-9">
+          <main>
+            <h1>Détails d'une commande</h1>
+            <mat-card class="py-4">
+              <mat-card-content>
+                <div class="card">
+                    <div class="card-header">COMMANDE #1</div>
+                    <div class="card-body px-5">
+                        <div class="stepper mt-2 mb-5">
+                            <div class="stepper-line">
+                              <div class="stepper-line-percent"></div>
+                            </div>
+                            <div
+                              class="single-stepper"
+                              matTooltip="Informations personnelles"
+                              [ngClass]="{ active: actualStep === 0 }"
+                            >
+                                <i class="fa-lg fa-solid fa-box"></i>
+                              <span class="fw-bold" [ngClass]="{'text-decoration-underline':actualStep===0}">Commande Traitée</span>
+                            </div>
+                            <div
+                              class="single-stepper"
+                              matTooltip="Adresses de la livraison"
+                              [ngClass]="{ active: actualStep === 1 }"
+                            >
+                                <i class="fa-lg fa-solid fa-plane-departure"></i>
+                                <span class="fw-bold" [ngClass]="{'text-decoration-underline':actualStep===1}">Commande expédiée</span>
+                            </div>
+                            <div
+                              class="single-stepper"
+                              matTooltip="Méthode de la livraison"
+                              [ngClass]="{ active: actualStep === 2 }"
+                            >
+                                <i class="fa-lg fa-solid fa-truck-ramp-box"></i>
+                                <span class="fw-bold" [ngClass]="{'text-decoration-underline':actualStep===2}">Commande en route</span>
+                            </div>
+                            <div
+                              class="single-stepper"
+                              matTooltip="Paiement"
+                              [ngClass]="{ active: actualStep === 3 }"
+                            >
+                                <i class="fa-lg fa-solid fa-clipboard-check"></i>
+                                <span class="fw-bold" [ngClass]="{'text-decoration-underline':actualStep===3}">Commande livrée</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </main>
+        </div>
+      </div>
+    </div>
+  </section>
+  
