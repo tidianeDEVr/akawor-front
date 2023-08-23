@@ -9,6 +9,36 @@ import { environment } from 'src/environments/environment.development';
 export class ProduitsService {
   constructor(private httpClient: HttpClient) {}
 
+  getProductsSameCategory(idCategory:string): Promise<PRODUCT[]>{
+    return new Promise<PRODUCT[]>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/product/find-same-category/${idCategory}`)
+        .subscribe({
+          next: (produits: any) => {
+            resolve(produits);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
+
+  getProductsSameShop(idShop:string): Promise<PRODUCT[]>{
+    return new Promise<PRODUCT[]>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/product/find-same-shop/${idShop}`)
+        .subscribe({
+          next: (produits: any) => {
+            resolve(produits);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
+  }
+
   getRecentsProducts(): Promise<PRODUCT[]>{
     return new Promise<PRODUCT[]>((resolve) => {
       this.httpClient
@@ -96,14 +126,12 @@ export class ProduitsService {
     });
   }
   getProductsByCategoriesSlug(slug: string): Promise<PRODUCT[]> {
-    let products: PRODUCT[] = [];
     return new Promise<PRODUCT[]>((resolve) => {
       this.httpClient
         .get(`${environment.BACKEND_API_URL}/product/find-by-category/${slug}`)
         .subscribe({
           next: (res: any) => {
-            products = res;
-            resolve(products);
+            resolve(res);
           },
           error: (err) => {
             resolve(err);

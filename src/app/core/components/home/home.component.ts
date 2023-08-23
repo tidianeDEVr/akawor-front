@@ -190,7 +190,6 @@ export class HomeComponent {
   public productCategories: CATEGORY[] = []
   constructor(
     private produitsService: ProduitsService,
-    private boutiquesService: BoutiquesService,
     private bannerService: BannerService,
     private categoriesService: CategoriesService
   ) {

@@ -20,12 +20,6 @@
             </div>
             <h6 class="aside-label">COMPTES & BOUTIQUES</h6>
             <ul>
-              <!-- <li> 
-                <a routerLink="/dashboard/vendors" routerLinkActive="active">
-                  <i class="fa-solid fa-users-gear"></i>
-                  <span>Vendeurs</span>
-                </a>
-              </li> -->
               <li>
                 <a routerLink="/dashboard/customers" routerLinkActive="active">
                   <i class="fa-solid fa-users"></i>
@@ -118,16 +112,15 @@
                 </button>
                 <mat-menu #userMenu="matMenu">
                   <button mat-menu-item>
-                    <i class="fa-solid "></i>
-                    <i class="fa-solid fa-user" style="margin-right: 10px;"></i>
+                    <i class="fa-solid fa-user" style="margin-right: 10px;color: var(--gray-600);"></i>
                     <span>Mon profile</span>
                   </button>
                   <button mat-menu-item>
-                    <i class="fa-solid fa-gear fa-spin" style="margin-right: 10px;"></i>
+                    <i class="fa-solid fa-gear fa-spin" style="margin-right: 10px;color: var(--gray-600);"></i>
                     <span>Paramétres</span>
                   </button>
                   <button mat-menu-item (click)="logout()">
-                    <i class="fa-solid fa-right-from-bracket fa-shake" style="margin-right: 10px;"></i>
+                    <i class="fa-solid fa-right-from-bracket fa-shake" style="margin-right: 10px;color: var(--gray-600);"></i>
                     <span>Déconnexion</span>
                   </button>
                 </mat-menu>

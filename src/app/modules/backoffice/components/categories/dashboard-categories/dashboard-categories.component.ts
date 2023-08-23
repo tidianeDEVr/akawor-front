@@ -5,8 +5,9 @@ import { CATEGORY, DATATABLE_LANGAGE_FR } from 'src/app/data/interfaces';
 import { DashboardDetailsCategorieComponent } from '../dashboard-details-categorie/dashboard-details-categorie.component';
 import { FormControl, Validators } from '@angular/forms';
 import { ToastService } from 'src/app/core/services/toast.service';
+import { OrderService } from 'src/app/core/services/order.service';
 
-declare let DataTable: any;
+declare const DataTable: any;
 @Component({
   selector: 'app-dashboard-categories',
   templateUrl: './dashboard-categories.component.html',
@@ -26,6 +27,7 @@ export class DashboardCategoriesComponent {
   constructor(
     private categoriesService: CategoriesService,
     private matDialog: MatDialog,
+    private orderService: OrderService,
     private toastService: ToastService,
   ) {
     this.categoriesService.getAllCategories()
@@ -33,7 +35,10 @@ export class DashboardCategoriesComponent {
       this.allCategories = res;
       this.countCategoriesType();
       setTimeout(() => {
-        this.dataTableElt = new DataTable('#allCategories', DATATABLE_LANGAGE_FR);
+        this.dataTableElt = new DataTable('#allCategories', {
+          responsive: true,
+          language: DATATABLE_LANGAGE_FR
+        });
       }, 1);
     })
   }

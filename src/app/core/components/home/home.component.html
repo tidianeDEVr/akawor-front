@@ -8,7 +8,7 @@
                     <div class="title-divider"></div>
                     <ul>
                         <li *ngFor="let category of productCategories">
-                            <a class="text-ellip" routerLink="/produits/categorie/{{category.categorySlug}}"
+                            <a class="text-ellip" routerLink="/produits/{{category.categorySlug}}"
                             matTooltip="{{category.categoryLibelle}}">
                                 <i class="{{category.categoryIconClass}}"></i>
                                 <span>{{category.categoryLibelle}}</span>
@@ -88,7 +88,7 @@
                         <div class="title-divider"></div>
                         <ul>
                             <li *ngFor="let category of shopCategories">
-                                <a class="text-ellip" routerLink="/boutiques/categorie/{{category.categorySlug}}"
+                                <a class="text-ellip" routerLink="/boutiques/{{category.categorySlug}}"
                                 matTooltip="{{category.categoryLibelle}}">
                                     <i class="{{category.categoryIconClass}}"></i>
                                     <span>{{category.categoryLibelle}}</span>

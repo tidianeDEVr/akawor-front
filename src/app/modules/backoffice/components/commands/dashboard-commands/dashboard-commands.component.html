@@ -1,6 +1,167 @@
 <main>
-    <div class="container">
-        <p>dashboard-commands works!</p>
-  
+  <div class="container">
+    <div class="row pt-4">
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5 *ngIf="orders">{{ orders.length | number }}</h5>
+              <h5 *ngIf="!orders">0</h5>
+              <span>Enregistré(s)</span>
+            </div>
+            <div class="cc-right">
+              <i class="fa-solid fa-floppy-disk fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>12</h5>
+              <span>Livrée(s)</span>
+            </div>
+            <div class="cc-right">
+                <i class="fa-solid fa-clipboard-check fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>{{12|my_currency}}</h5>
+              <span>Vente(s)</span>
+            </div>
+            <div class="cc-right">
+                <i class="fa-solid fa-money-bill-trend-up fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-content">
+            <div class="cc-left">
+              <h5>12</h5>
+              <span>Annulée(s)</span>
+            </div>
+            <div class="cc-right">
+                <i class="fa-solid fa-ban fa-lg"></i>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </main>
+    <div class="card mt-3">
+      <div
+        class="card-body d-flex align-items-center justify-content-between toolbar-card py-1"
+      >
+        <h4>Gestion des commandes</h4>
+        <div class="actions d-flex align-items-center">
+          <a class="btn btn-sm btn-dark mx-2">Action #1</a>
+          <button class="btn btn-sm btn-danger">Action #2</button>
+        </div>
+      </div>
+    </div>
+    <div class="card mt-3">
+      <div class="card-body">
+        <table
+          class="display"
+          id="allOrders"
+          style="width: 100%"
+          *ngIf="orders"
+        >
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Référence</th>
+              <th>Montant</th>
+              <th>Client</th>
+              <th>Produit(s)</th>
+              <th>Destination</th>
+              <th>Statut</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of orders; let index = index">
+              <td>{{ index + 1 }}</td>
+              <td>#{{ order.orderReference }}</td>
+              <td>{{ order.OrderLine?.orderLineTotalPrice | my_currency }}</td>
+              <td>
+                <span class="fw-bold">{{ order.orderClientLastName }}</span>
+                {{ order.orderClientFirstName }}
+              </td>
+              <td>
+                <span class="badge text-bg-info">
+                  {{
+                    parseToJson(order.OrderLine?.orderLineJsonCart).length
+                  }}
+                  produit(s)
+                </span>
+              </td>
+              <td>
+                <span class="fw-bold">{{ order.orderClientCountry }}</span
+                >, {{ order.orderClientCity }}
+              </td>
+              <td>
+                <span
+                  class="badge text-bg-warning"
+                  *ngIf="order.orderStatus === 'AWAITING'"
+                  >En attente</span
+                >
+              </td>
+              <td>{{ order.createdAt | date }}</td>
+              <td>
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="Button group with nested dropdown"
+                >
+                  <button
+                    type="button"
+                    class="text-nowrap btn btn-sm btn-outline-dark"
+                    (click)="openDialogDetails(order)"
+                  >
+                    Plus d'infos
+                  </button>
+                  <div class="btn-group" role="group">
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-dark dropdown-toggle"
+                      data-bs-toggle="dropdown"
+                      aria-expanded="false"
+                    ></button>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <button class="dropdown-item" href="#">Modifier</button>
+                      </li>
+                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                    </ul>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th>N°</th>
+              <th>Référence</th>
+              <th>Montant</th>
+              <th>Client</th>
+              <th>Produit(s)</th>
+              <th>Destination</th>
+              <th>Statut</th>
+              <th>Date</th>
+              <th>Actions</th>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

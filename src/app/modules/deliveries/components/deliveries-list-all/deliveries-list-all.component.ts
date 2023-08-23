@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DATATABLE_LANGAGE_FR } from 'src/app/data/interfaces';
 
-declare let DataTable: any;
+declare const DataTable: any;
 @Component({
   selector: 'app-deliveries-list-all',
   templateUrl: './deliveries-list-all.component.html',
@@ -10,7 +10,10 @@ declare let DataTable: any;
 export class DeliveriesListAllComponent {
   constructor(){
     setTimeout(() => {
-      new DataTable('#myDeliveries', DATATABLE_LANGAGE_FR);
+      new DataTable('#myDeliveries', {
+        responsive: true,
+        language: DATATABLE_LANGAGE_FR,
+      });
     }, 1);
   }
 }

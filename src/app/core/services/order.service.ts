@@ -45,4 +45,32 @@ export class OrderService {
       })
     })
   }
+
+  getAllOrders(): Promise<ORDER[]> {
+    return new Promise<ORDER[]>( resolve=>{
+      this.httpClient.get(`${environment.BACKEND_API_URL}/order/find-all`)
+      .subscribe({
+        next: (res:any)=>{
+          resolve(res)
+        },
+        error: (err)=>{
+          resolve(err)
+        }
+      })
+    })
+  }
+  
+  getRecentsOrders(): Promise<ORDER[]> {
+    return new Promise<ORDER[]>( resolve=>{
+      this.httpClient.get(`${environment.BACKEND_API_URL}/order/find-recents`)
+      .subscribe({
+        next: (res:any)=>{
+          resolve(res)
+        },
+        error: (err)=>{
+          resolve(err)
+        }
+      })
+    })
+  }
 }

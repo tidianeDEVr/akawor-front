@@ -5,7 +5,7 @@ import { BoutiquesService } from 'src/app/modules/boutiques/services/boutiques.s
 import { environment } from 'src/environments/environment.development';
 import { DashboardDetailsShopComponent } from '../dashboard-details-shop/dashboard-details-shop.component';
 
-declare let DataTable: any;
+declare const DataTable: any;
 @Component({
   selector: 'app-dashboard-shops',
   templateUrl: './dashboard-shops.component.html',
@@ -22,7 +22,10 @@ export class DashboardShopsComponent {
     this.boutiquesService.getShops().then((res) => {
       this.allShops = res;
       setTimeout(() => {
-        new DataTable('#allShops', DATATABLE_LANGAGE_FR);
+        new DataTable('#allShops', {
+          responsive: true,
+          language: DATATABLE_LANGAGE_FR,
+        });
       }, 1);
     });
   }

@@ -24,13 +24,9 @@ const routes: Routes = [
     canActivate: [isVendor],
   },
   {
-    path: 'categorie/:slug',
+    path: ':slug',
     component: AllProduitsComponent,
   },
-  // { 
-  //   path: '**',
-  //   component: SingleProduitComponent, 
-  // }
 ];
 
 @NgModule({

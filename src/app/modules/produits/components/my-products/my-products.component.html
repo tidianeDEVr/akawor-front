@@ -1,18 +1,18 @@
 <section class="manage-section">
     <div class="container">
         <div class="row">
-            <div class="col col-3">
+            <div class="col col-3 d-none d-xl-block">
                 <app-manage-aside activePath="manage-announces"></app-manage-aside>
             </div>
-            <div class="col col-9">
+            <div class="col col-xl-9">
                 <main class="h-100 p-3">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h1>Gérer mes annonces</h1>
+                        <h1>Mes annonces</h1>
                         <span *ngIf="myProducts" class="count-label">{{myProducts.length}} annonce(s) trouvée(s)</span>
                     </div>
                     <div class="title-divider"></div>
-                    <div class="card">
-                        <div class="card-content" *ngIf="myProducts && myProducts.length===0">
+                    <div class="card" *ngIf="!myProducts || myProducts.length===0">
+                        <div class="card-content">
                             <div class="container pt-5">
                                 <div class="d-flex flex-column align-items-center justify-content-center">
                                     <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
@@ -21,7 +21,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="my-products row row-cols-4 g-4" *ngIf="myProducts && myProducts.length>0">
+                    <div class="my-products row row-cols-xl-4 g-xl-4 row-cols-2 g-3" *ngIf="myProducts && myProducts.length>0">
                         <div class="col single-prod" *ngFor="let product of myProducts">
                             <div class="card">
                                 <div class="position-relative card-body"
@@ -38,17 +38,16 @@
                                     *ngIf="!product.productMainImage" crossorigin="anonymous">
                                     <div class="infos">
                                         <p class="text-ellip label-prod">{{product.productTitle}}</p>
-                                        <div class="position-absolute menu">
-                                            <div class="dropdown">
-                                                <button type="button" data-bs-toggle="dropdown" aria-expanded="false" class="menu-btn">
-                                                    <i class="fa-solid fa-pen-to-square"></i>
-                                                </button>
-                                                <ul class="dropdown-menu">
-                                                  <li><a (click)="displayProduct(product)" class="dropdown-item">Aperçu de l'annonce</a></li>
-                                                  <li><a (click)="editProduct(product)" class="dropdown-item">Modifier l'annonce</a></li>
-                                                  <li><a (click)="deleteProduct(product)" class="dropdown-item">Supprimer l'annonce</a></li>
-                                                </ul>
-                                            </div>
+                                        <div class="menu">
+                                            <button type="button" class="menu-btn" [matMenuTriggerFor]="actions">
+                                                <i class="fa-solid fa-bars"></i>
+                                            </button>
+                                            <mat-menu #actions="matMenu">
+                                                <button mat-menu-item (click)="displayProduct(product)">Aperçu de l'annonce</button>
+                                                <button mat-menu-item (click)="editProduct(product)">Modifier l'annonce</button>
+                                                <button mat-menu-item (click)="deleteProduct(product)">Supprimer l'annonce</button>
+                                            </mat-menu>
+
                                         </div>
                                     </div>
                                 </div>

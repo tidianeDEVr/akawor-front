@@ -1,10 +1,10 @@
 <section class="manage-section">
   <div class="container">
     <div class="row">
-      <div class="col col-3">
+      <div class="col col-3 d-none d-xl-block">
         <app-manage-aside activePath="profile"></app-manage-aside>
       </div>
-      <div class="col col-9">
+      <div class="col col-xl-9 col-12">
         <main class="h-100 p-3">
           <h1>Compte et profile</h1>
           <div class="title-divider"></div>
@@ -52,7 +52,7 @@
                     aria-labelledby="account-profile-tab"
                     tabindex="0"
                   >
-                    <div class="row row-cols-2">
+                    <div class="row row-cols-xl-2 row-cols-1">
                       <div class="col">
                         <span class="fw-bold">Votre prénom</span>
                         <mat-form-field appearance="outline" class="w-100">
@@ -130,7 +130,7 @@
                     <div class="my-3">
                       <mat-divider></mat-divider>
                     </div>
-                    <div class="row">
+                    <div class="row row-cols-xl-2 row-cols-1">
                       <div class="col">
                         <button
                           class="w-100 mb-3 social-btn fb-btn disabled"
@@ -175,153 +175,153 @@
                     <h4>
                       Sélectionnez les notifications que vous souhaitez recevoir
                     </h4>
-                    <div class="row mt-5">
-                      <div class="col col-4">
+                    <div class="row row-cols-2 row-cols-xl-3 g-3 mt-xl-5 mt-2">
+                      <div class="col">
                         <div class="d-flex flex-column">
                           <span class="fw-bold">Via Email</span>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedEmailOffersPromos"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked1"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
+                              for="flexSwitchCheckChecked1"
                               >Offres et promos</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedEmailCommands"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked2"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              for="flexSwitchCheckChecked2"
+                              >Commandes</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedEmailDeliveries"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked3"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              for="flexSwitchCheckChecked3"
+                              >Livraisons</label
                             >
                           </div>
                         </div>
                       </div>
-                      <div class="col col-4">
+                      <div class="col">
                         <div class="d-flex flex-column">
                           <span class="fw-bold">Via SMS</span>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedSmsOffersPromos"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked4"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Mes commandes</label
+                              for="flexSwitchCheckChecked4"
+                              >Offres et promos</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedSmsCommands"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked5"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              for="flexSwitchCheckChecked5"
+                              >Commandes</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedSmsDeliveries"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked6"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              for="flexSwitchCheckChecked6"
+                              >Livraisons</label
                             >
                           </div>
                         </div>
                       </div>
-                      <div class="col col-4">
+                      <div class="col">
                         <div class="d-flex flex-column">
                           <span class="fw-bold">Via Whatsapp</span>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedWhatsappOffersPromos"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked7"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Mes commandes</label
+                              for="flexSwitchCheckChecked7"
+                              >Offres et promos</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedWhatsappCommands"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked8"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              for="flexSwitchCheckChecked8"
+                              >Commandes</label
                             >
                           </div>
                           <div class="form-check form-switch mt-3">
                             <input
                               class="form-check-input"
-                              [(ngModel)]="checked"
+                              [(ngModel)]="checkedWhatsappDeliveries"
                               type="checkbox"
                               role="switch"
-                              id="flexSwitchCheckChecked"
+                              id="flexSwitchCheckChecked9"
                               checked
                             />
                             <label
                               class="form-check-label"
-                              for="flexSwitchCheckChecked"
-                              >Via mail</label
+                              for="flexSwitchCheckChecked9"
+                              >Livraisons</label
                             >
                           </div>
                         </div>
@@ -331,7 +331,7 @@
                       class="w-100 btn mt-5 btn-dark"
                       style="color: var(--white)"
                     >
-                      Mettre à jour mes paramètres de notifications
+                      Mettre à jour
                     </button>
                   </div>
                 </div>

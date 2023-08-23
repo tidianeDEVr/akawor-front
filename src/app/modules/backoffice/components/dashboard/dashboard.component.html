@@ -122,7 +122,7 @@
             </div>
             <mat-divider></mat-divider>
             <div class="new-customers mt-3">
-              <div class="new-customer" *ngFor="let customer of latestProducts">
+              <div class="new-customer" *ngFor="let client of recentClients">
                 <div class="row">
                   <div class="col col-4">
                     <div class="d-flex align-items-center">
@@ -132,9 +132,9 @@
                   </div>
                   <div class="col col-8">
                     <div>
-                      <h4 class="text-ellip fw-bold">Cheikh Tidiane Ndiaye</h4>
-                      <p class="text-ellip my-1">cheikhtiindiaye@gmail.com</p>
-                      <span class="badge text-bg-info">2 commandes</span>
+                      <h4 class="text-ellip fw-bold">{{client.userFirstName}} {{client.userLastName}}</h4>
+                      <p class="text-ellip my-1">{{client.userEmail}}</p>
+                      <span class="badge text-bg-info">0 commande(s)</span>
                     </div>
                   </div>
                 </div>
@@ -162,30 +162,26 @@
                     <th>Date</th>
                     <th>Montant</th>
                     <th>Statut</th>
-                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let command of latestCommands; let index = index">
+                  <tr *ngFor="let order of recentOrders; let index = index">
                     <td>{{index+1}}</td>
-                    <td>Modou Dieng</td>
-                    <td>15</td>
-                    <td>2011-04-25</td>
-                    <td>6100$</td>
+                    <td><span class="fw-bold">{{ order.orderClientLastName }}</span>
+                      {{ order.orderClientFirstName }}</td>
                     <td>
-                      <span class="badge text-bg-warning">En attente</span>
+                      <span class="badge text-bg-info">
+                        {{
+                          parseToJson(order.OrderLine?.orderLineJsonCart).length
+                        }}
+                        produit(s)
+                      </span>
                     </td>
+                    <td>{{ order.createdAt | date }}</td>
+                    <td>{{ order.OrderLine?.orderLineTotalPrice | my_currency }}</td>
                     <td>
-                      <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                        <button type="button" class="btn btn-sm btn-outline-dark">Plus d'infos</button>
-                        <div class="btn-group" role="group">
-                          <button type="button" class="btn btn-sm btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                          <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action #1</a></li>
-                            <li><a class="dropdown-item" href="#">Action #2</a></li>
-                          </ul>
-                        </div>
-                      </div>
+                      <span class="badge text-bg-warning"
+                      *ngIf="order.orderStatus === 'AWAITING'">En attente</span>
                     </td>
                   </tr>
                 </tbody>
@@ -197,7 +193,6 @@
                     <th>Date</th>
                     <th>Montant</th>
                     <th>Statut</th>
-                    <th>Actions</th>
                   </tr>
                 </tfoot>
               </table>

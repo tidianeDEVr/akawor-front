@@ -17,6 +17,9 @@ import { DashboardStatsComponent } from './components/stats/dashboard-stats/dash
 import { DashboardDetailsCategorieComponent } from './components/categories/dashboard-details-categorie/dashboard-details-categorie.component';
 import { DashboardDetailsShopComponent } from './components/shops/dashboard-details-shop/dashboard-details-shop.component';
 import { DashboardCreateVendorComponent } from './components/users/dashboard-create-vendor/dashboard-create-vendor.component';
+import { DashboardDetailsCommandComponent } from './components/commands/dashboard-details-command/dashboard-details-command.component';
+import { DashboardDetailsUserComponent } from './components/users/dashboard-details-user/dashboard-details-user.component';
+import { DashboardDetailsAnnouncementComponent } from './components/announcements/dashboard-details-announcement/dashboard-details-announcement.component';
 
 
 @NgModule({
@@ -24,13 +27,16 @@ import { DashboardCreateVendorComponent } from './components/users/dashboard-cre
     DashboardComponent,
     DashboardAnnouncesComponent,
     DashboardNewAnnouncementComponent,
+    DashboardDetailsAnnouncementComponent,
     DashboardCustomersComponent,
+    DashboardDetailsUserComponent,
     DashboardCreateVendorComponent,
     DashboardCategoriesComponent,
     DashboardDetailsCategorieComponent,
     DashboardShopsComponent,
     DashboardDetailsShopComponent,
     DashboardCommandsComponent,
+    DashboardDetailsCommandComponent,
     DashboardReviewsComponent,
     DashboardMessagingComponent,
     DashboardBannersComponent,

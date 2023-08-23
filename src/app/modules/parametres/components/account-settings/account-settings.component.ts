@@ -6,7 +6,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-settings.component.scss']
 })
 export class AccountSettingsComponent {
-  public checked = false;
+  public checkedEmailOffersPromos = true;
+  public checkedEmailCommands = true;
+  public checkedEmailDeliveries = true;
+  public checkedSmsOffersPromos = true;
+  public checkedSmsCommands = true;
+  public checkedSmsDeliveries = true;
+  public checkedWhatsappOffersPromos = true;
+  public checkedWhatsappCommands = true;
+  public checkedWhatsappDeliveries = true;
   public countries: any[] = [
     {
       libelle: "Sénégal"

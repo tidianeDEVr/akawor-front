@@ -27,7 +27,7 @@ export class BoutiquesService {
 
   getShopById(id:string):Promise<SHOP>{
     return new Promise<SHOP>(resolve => {
-      this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-by-id?id=${id}`,)
+      this.httpClient.get(`${environment.BACKEND_API_URL}/shop/find-by-id/${id}`,)
       .subscribe({
         next:(shop:any)=>{
           resolve(shop)
@@ -63,6 +63,20 @@ export class BoutiquesService {
         },
       })
     })
+  }
+  getShopsByCategoriesSlug(slug: string): Promise<SHOP[]> {
+    return new Promise<SHOP[]>((resolve) => {
+      this.httpClient
+        .get(`${environment.BACKEND_API_URL}/shop/find-by-category/${slug}`)
+        .subscribe({
+          next: (res: any) => {
+            resolve(res);
+          },
+          error: (err) => {
+            resolve(err);
+          },
+        });
+    });
   }
   getActiveShop():Promise<SHOP[]>{
     return new Promise<SHOP[]>(resolve=>{

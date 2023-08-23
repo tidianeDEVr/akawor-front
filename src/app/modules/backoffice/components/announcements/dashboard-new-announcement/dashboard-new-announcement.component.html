@@ -12,18 +12,26 @@
                             <i class="fa-solid fa-1 step-number"></i>
                             <span>Détails du produit</span>
                         </h2>
-                        <p>
-                            Remplissez toutes les informations nécessaires.
-                        </p>
+                        <p>Remplissez toutes les informations nécessaires.</p>
                         <div class="mt-3">
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Titre du produit</mat-label>
                                 <input [formControl]="titleControl" matInput>
                             </mat-form-field>
-                            <mat-form-field class="w-100" appearance="outline">
-                                <mat-label>Prix du produit ($)</mat-label>
-                                <input [formControl]="priceControl" matInput type="number">
-                            </mat-form-field>
+                            <div class="row">
+                                <div class="col">
+                                    <mat-form-field class="w-100" appearance="outline">
+                                        <mat-label>Prix du produit (€)</mat-label>
+                                        <input [formControl]="priceControl" matInput type="number">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col">
+                                    <mat-form-field class="w-100" appearance="outline">
+                                        <mat-label>Prix promotionnel (€)</mat-label>
+                                        <input [formControl]="pricePromoControl" matInput type="number">
+                                    </mat-form-field>
+                                </div>
+                            </div>
                             <mat-form-field class="w-100" appearance="outline">
                                 <mat-label>Description du produit</mat-label>
                                 <textarea [formControl]="descriptionControl" matInput></textarea>
@@ -36,6 +44,34 @@
                                     </mat-option>
                                 </mat-select>
                             </mat-form-field>
+                            <div class="row row-cols-2">
+                                <div class="col">
+                                  <mat-form-field
+                                    class="w-100"
+                                    appearance="outline"
+                                  >
+                                    <mat-label>Poids (KG)</mat-label>
+                                    <input
+                                      [formControl]="weightControl"
+                                      matInput
+                                      type="number"
+                                    />
+                                  </mat-form-field>
+                                </div>
+                                <div class="col">
+                                  <mat-form-field
+                                    class="w-100"
+                                    appearance="outline"
+                                  >
+                                    <mat-label>N° en stock</mat-label>
+                                    <input
+                                      [formControl]="stockControl"
+                                      matInput
+                                      type="number"
+                                    />
+                                  </mat-form-field>
+                                </div>
+                            </div>
                         </div>
                         <hr>
                         <h2>
@@ -116,7 +152,7 @@
                 <div class="card card-images">
                     <div class="card-body">
                         <div class="disabled-card-images d-flex align-items-center justify-content-center"
-                        *ngIf="!isAlreadyPublished">
+                        *ngIf="!isOnDraftMode">
                             <span class="alert alert-danger">Validez les détails de l'annonce d'abord</span>
                         </div>
                         <h2>
@@ -125,17 +161,17 @@
                         </h2>
                         <form
                             class="input-files" id="input-files" 
-                            enctype="multipart/form-data" 
+                            enctype="multipart/form-data"
                             method="post">
                                 <div class="principal position-relative">
                                     <label for="principal">
                                         <img class="img-thumbnail w-100" alt="image principale du produit" id="displayPrincipalDashboard"
-                                        src="../../../../../assets/images/products/product-placeholder.png" crossorigin="anonymous">
+                                        src="{{defaultPlaceholderPath}}" crossorigin="anonymous">
                                     </label>
                                     <input type="file" name="images" id="principal" class="d-none" accept="image/*" name="images"
                                     (change)="displayAndUploadMainFile($event)">
                                     <button class="position-absolute rm-img-btn" mat-mini-fab
-                                    matTooltip="Supprimer">
+                                    matTooltip="Supprimer" [hidden]="displayDeleteBtn(true, 0)">
                                         <mat-icon>close</mat-icon>
                                     </button>
                                 </div>
@@ -143,13 +179,13 @@
                                     <div class="other col position-relative" *ngFor="let img of otherImages; let index = index">
                                         <label for="{{'other'+index}}">
                                             <img class="img-thumbnail w-100" alt="image principale du produit" id="{{'displayOtherDashboard'+index}}"
-                                            src="../../../../../assets/images/products/product-placeholder.png" crossorigin="anonymous">
+                                            src="{{defaultPlaceholderPath}}" crossorigin="anonymous">
                                         </label>
                                         <input type="file" name="images" class="input-file" id="{{'other'+index}}" class="d-none" accept="image/*"
                                         (change)="displayAndUploadFile($event, index)"
                                         >
                                         <button class="position-absolute rm-img-btn" mat-mini-fab
-                                        matTooltip="Supprimer">
+                                        matTooltip="Supprimer" [hidden]="displayDeleteBtn(false, index)">
                                             <mat-icon>close</mat-icon>
                                         </button>
                                     </div>
@@ -158,7 +194,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col col-12">
+            <div class="col col-12" *ngIf="!productObject.productSlug">
                 <button class="w-100 py-2 btn-dark btn" 
                 *ngIf="titleControl.valid && priceControl.valid && 
                 descriptionControl.valid && shopControl.valid &&
@@ -170,6 +206,11 @@
                 descriptionControl.invalid || shopControl.invalid ||
                 mainCategoryControl.invalid"
                 >Publier l'annonce</button>
+            </div>
+            <div class="col col-12">
+                <button class="w-100 btn btn-dark" *ngIf="productObject.productSlug">
+                    Mettre à jour
+                </button>
             </div>
         </div>
     </div>

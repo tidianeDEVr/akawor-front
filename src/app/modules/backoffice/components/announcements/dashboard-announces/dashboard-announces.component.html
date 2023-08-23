@@ -19,7 +19,7 @@
         <div class="card">
           <div class="card-content">
             <div class="cc-left">
-              <h5>12,000</h5>
+              <h5>{{amountOnlineAnnounces}}</h5>
               <span>En ligne</span>
             </div>
             <div class="cc-right">
@@ -32,7 +32,7 @@
         <div class="card">
           <div class="card-content">
             <div class="cc-left">
-              <h5>12,000</h5>
+              <h5>{{amountRuptureAnnounces}}</h5>
               <span>En rupture</span>
             </div>
             <div class="cc-right">
@@ -45,7 +45,7 @@
         <div class="card">
           <div class="card-content">
             <div class="cc-left">
-              <h5>12,000</h5>
+              <h5>{{amountBoostedAnnounces}}</h5>
               <span>Boostés</span>
             </div>
             <div class="cc-right">
@@ -137,9 +137,9 @@
                 >
               </td>
               <td>{{ prod.createdAt | date }}</td>
-              <td>{{ prod.productPrice | currency:'EUR' }}</td>
+              <td>{{ prod.productPrice | my_currency }}</td>
               <td>
-                <span *ngIf="prod.productPricePromo">{{ prod.productPricePromo | currency:'EUR' }}</span>
+                <span *ngIf="prod.productPricePromo">{{ prod.productPricePromo | my_currency }}</span>
                 <span *ngIf="!prod.productPricePromo">-</span>
               </td>
               <td>{{ prod.Shop?.shopLibelle }}</td>
@@ -149,7 +149,8 @@
                   role="group"
                   aria-label="Button group with nested dropdown"
                 >
-                  <button type="button" class="text-nowrap btn btn-sm btn-outline-dark">
+                  <button type="button" class="text-nowrap btn btn-sm btn-outline-dark"
+                  (click)="openDialogDetails(prod)">
                     Plus d'infos
                   </button>
                   <div class="btn-group" role="group">
@@ -160,8 +161,8 @@
                       aria-expanded="false"
                     ></button>
                     <ul class="dropdown-menu">
-                      <li><a class="dropdown-item" href="#">Modifier</a></li>
-                      <li><a class="dropdown-item" href="#">Supprimer</a></li>
+                      <li><button class="dropdown-item" (click)="editProduct(prod)">Modifier</button></li>
+                      <li><button class="dropdown-item" (click)="deleteProduct(prod)">Supprimer</button></li>
                     </ul>
                   </div>
                 </div>

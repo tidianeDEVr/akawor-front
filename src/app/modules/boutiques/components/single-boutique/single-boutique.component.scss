@@ -19,18 +19,20 @@
             }
             .profile {
                 img {
-                    width: 100%;
-                    max-width: 200px;
-                    max-height: 150px;
-                    height: 100%;
-                    padding: 20px;
+                    // width: 100%;
+                    // max-width: 200px;
+                    // max-height: 150px;
+                    // height: 100%;
+                    // padding: 20px;
+                    width: 200px;
+                    aspect-ratio: 1;
                     object-fit: contain;
                     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
                 }
             }
             .shop-description {
                 h1 {
-                    font-family: 'Playfair Display', serif;
+                    font-family: 'Jost', sans-serif;
                     font-weight: 700;
                     margin: 0;
                     margin-bottom: 10px;
@@ -55,7 +57,7 @@
             }
             .shop-infos {
                 h2 {
-                    font-family: 'Playfair Display', serif;
+                    font-family: 'Jost', sans-serif;
                     font-weight: 700;
                     margin: 0;
                     margin-bottom: 10px !important;
@@ -169,6 +171,8 @@
         .profile {
             img {
                 margin-bottom: 20px !important;
+                margin-top: -100px !important;
+                width: 150px !important;
             }
         }
         .shop-description {

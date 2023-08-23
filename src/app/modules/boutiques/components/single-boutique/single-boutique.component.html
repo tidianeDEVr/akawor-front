@@ -10,7 +10,7 @@
         <div class="container py-4">
             <div class="row">
                 <div class="col col-12 col-xl-2">
-                    <div class="profile h-100">
+                    <div class="profile h-100 d-flex justify-content-center">
                         <img src="../../../../assets/images/shops/logo-placeholder.jpeg" alt="shop" class="img-thumbnail" loading="lazy" *ngIf="!shop.shopLogoImage">
                         <img src="{{imageBaseUrl+shop.shopLogoImage}}" alt="{{shop.shopLibelle}}" class="img-thumbnail" loading="lazy" *ngIf="shop.shopLogoImage" crossorigin="anonymous">
                     </div>
@@ -84,7 +84,7 @@
                         <div class="title-divider" style="margin-top: -12px;"></div>
                         <ul>
                             <li *ngFor="let categorie of shopCategories" [ngClass]="{'active': shop.Category?.categoryLibelle===categorie.categoryLibelle}">
-                                <a class="text-ellip" routerLink="/boutiques/categorie/{{categorie.categorySlug}}" matTooltip="{{categorie.categoryLibelle}}">
+                                <a class="text-ellip" routerLink="/boutiques/{{categorie.categorySlug}}" matTooltip="{{categorie.categoryLibelle}}">
                                     <i class="{{categorie.categoryIconClass}}"></i>
                                     <span>{{categorie.categoryLibelle}}</span>
                                 </a>
@@ -106,20 +106,18 @@
                                 </div>
                                 <div class="d-flex align-items-center">
                                     <p>Trier par:</p>
-                                    <select class="form-select form-select-sm" aria-label="Default select example">
+                                    <select class="form-select form-select-sm">
                                         <option selected>Sélectionnez</option>
-                                        <!-- <option value="1">Ventes, ordre décroissant</option>
-                                        <option value="2">Pertinence</option> -->
-                                        <option value="3">Nom,  A à Z</option>
-                                        <option value="4">Nom, Z à A</option>
-                                        <option value="5">Prix, croissant</option>
-                                        <option value="6">Prix, décroissant</option>
+                                        <option value="1">Nom,  A à Z</option>
+                                        <option value="2">Nom, Z à A</option>
+                                        <option value="3">Prix, croissant</option>
+                                        <option value="4">Prix, décroissant</option>
                                     </select>
                                     
                                 </div>
                             </div>
                         </mat-toolbar>
-                        <div class="row row-cols-1 row-cols-xl-4" *ngIf="!isProductsLoaded">
+                        <div class="row row-cols-2 row-cols-xl-4" *ngIf="!isProductsLoaded">
                             <div class="col" *ngFor="let card of loaderCards">
                                 <app-product-card-loader></app-product-card-loader>
                             </div>
@@ -128,7 +126,7 @@
                         class="empty-result d-flex flex-column align-items-center" *ngIf="!products || products.length === 0">
                             <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5" loading="lazy">
                         </div>
-                        <div class="row row-cols-1 row-cols-xl-4 g-4 mb-4" *ngIf="isProductsLoaded">
+                        <div class="row row-cols-2 row-cols-xl-4 g-2 g-xl-4 mb-4" *ngIf="isProductsLoaded">
                             <div class="col" *ngFor="let product of products">
                                 <app-product-card [product]="product"></app-product-card>
                             </div>

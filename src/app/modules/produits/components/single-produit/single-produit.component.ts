@@ -20,6 +20,7 @@ export class SingleProduitComponent implements OnInit {
   public alreadyRate: boolean = false;
   public rateComment: string = '';
   public recentProducts!: PRODUCT[];
+  public sameShopProducts!: PRODUCT[];
   public productFeatures: any[] = [];
   public product!: PRODUCT;
   public reviews!: REVIEW[];
@@ -33,7 +34,15 @@ export class SingleProduitComponent implements OnInit {
     infinite: true,
     autoplay: true,
     autoplaySpeed: 3000,
-    speed: 300,
+    speed: 300,responsive: [
+      {
+        breakpoint: 500,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+        }
+      },
+    ]
   };
   public sameShopProductsConfig = {
     slidesToShow: 3,
@@ -56,6 +65,7 @@ export class SingleProduitComponent implements OnInit {
   };
   public images!: IMAGE[];
   public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`;
+  public imageShopUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/shops/`;
   public imageThumbnailUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/thumbnails/thumb`;
   public valueControl = new FormControl(1);
   constructor(
@@ -101,13 +111,24 @@ export class SingleProduitComponent implements OnInit {
               });
             });
         }
+        if(this.product.CategoryId)
+        this.produitService.getProductsSameCategory(this.product.CategoryId)
+        .then((res)=>{
+          this.sameCategoryProducts  = res;
+        })
+        
       })
       .catch((err) => {
         this.router.navigate(['/produits']);
       });
-    if (this.product.shopId) {
-      this.boutiqueService.getShopById(this.product.shopId).then((res) => {
+    if (this.product.ShopId) {
+      this.boutiqueService.getShopById(this.product.ShopId).then((res) => {
         this.shop = res;
+        if(res.id)
+        this.produitService.getProductsSameShop(res.id)
+        .then((res)=>{
+          this.sameShopProducts = res;
+        })
       });
     }
     this.produitService.getRecentsProducts().then((res) => {

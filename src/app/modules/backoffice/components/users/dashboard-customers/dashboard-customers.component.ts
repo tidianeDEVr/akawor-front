@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { UsersService } from 'src/app/core/services/users.service';
 import { DATATABLE_LANGAGE_FR, USER } from 'src/app/data/interfaces';
+import { DashboardDetailsUserComponent } from '../dashboard-details-user/dashboard-details-user.component';
 
-declare let DataTable: any;
+declare const DataTable: any;
 @Component({
   selector: 'app-dashboard-customers',
   templateUrl: './dashboard-customers.component.html',
@@ -14,12 +16,15 @@ export class DashboardCustomersComponent {
   public countClients:number = 0;
   public countVendors:number = 0;
   public countModerators:number = 0;
-  constructor(private userService: UsersService){
+  constructor(private userService: UsersService, private dialog: MatDialog){
     this.userService.getUsersDashboard()
     .then((res)=>{
       this.allUsers=res;
       setTimeout(() => {
-        new DataTable('#allUsers', DATATABLE_LANGAGE_FR);
+        new DataTable('#allUsers', {
+          responsive: true,
+          language: DATATABLE_LANGAGE_FR
+        });
       }, 1);
       res.forEach((elt)=>{
         if(elt.userRole==='ROLE_CLIENT') this.countClients++;
@@ -30,6 +35,6 @@ export class DashboardCustomersComponent {
   }
 
   openDetailsDialog(user: USER){
-    alert('open dialog user...')
+    this.dialog.open(DashboardDetailsUserComponent, {data: {user}})
   }
 }

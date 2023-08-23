@@ -1,10 +1,10 @@
 <section class="manage-section">
   <div class="container">
     <div class="row">
-      <div class="col col-3">
+      <div class="col col-3 d-none d-xl-block">
         <app-manage-aside activePath="publish-announce"></app-manage-aside>
       </div>
-      <div class="col col-9">
+      <div class="col col-xl-9">
         <main class="create-product">
           <div class="container">
             <h1 *ngIf="isOnDraftMode">Modification d'une annonce</h1>
@@ -23,7 +23,7 @@
               ></div>
             </div>
             <div class="row g-4 mt-3">
-              <div class="col col-6" [hidden]="stepPercent !== 25">
+              <div class="col col-xl-6" [hidden]="stepPercent !== 25">
                 <mat-card>
                   <mat-card-content>
                     <!-- Step 1 -->
@@ -88,7 +88,7 @@
                   </mat-card-content>
                 </mat-card>
               </div>
-              <div class="col col-6" [hidden]="stepPercent !== 25">
+              <div class="col col-xl-6" [hidden]="stepPercent !== 25">
                 <mat-card>
                   <mat-card-content>
                     <h2>
@@ -175,7 +175,7 @@
                   </mat-card-content>
                 </mat-card>
               </div>
-              <div class="col col-6" [hidden]="stepPercent !== 50">
+              <div class="col col-xl-6 col-12" [hidden]="stepPercent !== 50">
                 <mat-card>
                   <mat-card-content>
                     <!-- Step 2 -->
@@ -261,7 +261,7 @@
                   </mat-card-content>
                 </mat-card>
               </div>
-              <div class="col col-6" [hidden]="stepPercent !== 50">
+              <div class="col col-xl-6 col-12" [hidden]="stepPercent !== 50">
                 <mat-card>
                   <mat-card-content>
                     <div class="h-100">
@@ -317,7 +317,7 @@
                   </mat-card-content>
                 </mat-card>
               </div>
-              <div class="col col-6" [hidden]="stepPercent !== 75">
+              <div class="col col-xl-6" [hidden]="stepPercent !== 75">
                 <mat-card>
                   <mat-card-content>
                     <!-- Step 3 -->

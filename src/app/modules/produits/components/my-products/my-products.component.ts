@@ -35,7 +35,7 @@ export class MyProductsComponent {
     this.router.navigateByUrl(`/produits/nouvelle-annonce?edit_product=${product.productSlug}`);
   }
   displayProduct(product:PRODUCT){
-    this.router.navigate([`/produits/${product.productSlug}?edit_product=${product.productSlug}`]);
+    this.router.navigate([`/produit/${product.productSlug}`]);
   }
   deleteProduct(product:PRODUCT){
     alert(product.productTitle)

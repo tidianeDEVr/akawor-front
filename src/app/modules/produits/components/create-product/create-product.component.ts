@@ -102,6 +102,8 @@ export class CreateProductComponent implements OnInit {
   }
   hydrateFields(object: any){
     if(object.productTitle) this.titleControl.setValue(object.productTitle);
+    if(object.productStock) this.stockControl.setValue(object.productStock);
+    if(object.productWeight) this.weightControl.setValue(object.productWeight);
     if(object.productMainImage) this.hydrateImages(object.productMainImage);
     if(object.productPrice) this.priceControl.setValue(object.productPrice)
     if(object.productDescription) this.descriptionControl.setValue(object.productDescription);
@@ -175,7 +177,8 @@ export class CreateProductComponent implements OnInit {
       request.open("POST", API_ENDPOINT, true);
       request.onreadystatechange = () => {
         if (request.readyState === 4 && request.status === 200) {
-          console.log(request.responseText);
+          const message = JSON.parse(request.responseText);
+          if(message.message === 'uploaded successfully') this.toastService.show({body:'Image enregistrée !', isSuccess: true})
         }
       };
       formData.append("folder", `products`)

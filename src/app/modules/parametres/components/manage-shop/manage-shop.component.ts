@@ -214,7 +214,8 @@ export class ManageShopComponent implements OnInit {
       request.open("POST", API_ENDPOINT, true);
       request.onreadystatechange = () => {
         if (request.readyState === 4 && request.status === 200) {
-          console.log(request.responseText);
+          const message = JSON.parse(request.responseText);
+          if(message.message === 'uploaded successfully') this.toastService.show({body:'Image enregistrée !', isSuccess: true})
         }
       };
       formData.append("folder", `shops`)

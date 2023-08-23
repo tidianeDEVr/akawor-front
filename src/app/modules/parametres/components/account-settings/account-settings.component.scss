@@ -26,5 +26,16 @@
         .social-btn:hover {
             background-color: var(--gray-400);
         }
+        .nav-tabs button {
+            color: var(--black);
+            font-weight: 700;
+        }
+        .nav-tabs button.active {
+            color: var(--red);
+        }
+        .form-check-input:checked {
+            background-color: var(--green-400);
+            box-shadow: none;
+        }
     }
 }

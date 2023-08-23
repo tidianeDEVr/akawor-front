@@ -3,7 +3,7 @@ import { OrderService } from 'src/app/core/services/order.service';
 import { DATATABLE_LANGAGE_FR, ORDER } from 'src/app/data/interfaces';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
 
-declare let DataTable: any;
+declare const DataTable: any;
 @Component({
   selector: 'app-command-list-all',
   templateUrl: './command-list-all.component.html',
@@ -23,7 +23,10 @@ export class CommandListAllComponent {
             elt.OrderLine.orderLineProducts = JSON.parse(elt.OrderLine?.orderLineJsonCart);
           })
           setTimeout(() => {
-            new DataTable('#myCommands', DATATABLE_LANGAGE_FR);
+            new DataTable('#myCommands', {
+              responsive: true,
+              language: DATATABLE_LANGAGE_FR,
+            });
           }, 1);
         })
       }

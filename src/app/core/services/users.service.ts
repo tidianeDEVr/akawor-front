@@ -25,4 +25,20 @@ export class UsersService {
       })
     })
   }
+
+  getRecentsClients():Promise<USER[]>{
+    let users:USER[] = [];
+    return new Promise<USER[]>(resolve =>{
+      this.httpClient.get(`${environment.BACKEND_API_URL}/user/find-recent-clients`)
+      .subscribe({
+        next: (res:any)=>{
+          users = res
+          resolve(users)
+        },
+        error: (err)=>{
+          resolve(users)
+        }, 
+      })
+    })
+  }
 }

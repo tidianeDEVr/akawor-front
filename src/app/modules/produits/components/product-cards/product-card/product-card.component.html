@@ -33,7 +33,9 @@
                         <input type="number" min="1" max="10" style="pointer-events: none;" [formControl]="valueControl">
                         <i class="fa-solid fa-chevron-right" (click)="increment()"></i>
                     </div>
-                    <button matTooltip="Ajouter au panier" class="add-to-cart" (click)="addToCart()">
+                    <button matTooltip="Ajouter au panier" 
+                    [ngClass]="{'disabled': !product.productStock || product.productStock === 0}"
+                    class="add-to-cart" (click)="addToCart()">
                         <i class="fa-solid fa-cart-shopping"></i>
                     </button>
                     <button matTooltip="Ajouter à la liste de souhaits" class="add-to-wishlist" (click)="addToWishlist()">
