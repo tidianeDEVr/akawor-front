@@ -73,7 +73,8 @@ export class AllProduitsComponent implements OnInit {
     if(!selected && selected==0) return;
     
   }
-  changeCategory(category: CATEGORY) {
+  changeCategory(category: CATEGORY):any{
+    if(this.activeCategory === category) this.router.navigate(['/produits']);
     this.isProductsLoaded = false;
     if (category.categorySlug)
       this.produitsService

@@ -226,7 +226,7 @@
             d'Afrique avec une audience internationale, tout en facilitant le processus logistique 
             grâce à nos partenaires de confiance.
         </p>
-        <a routerLink="/">
+        <a routerLink="/produits">
             <span>ACHETER MAINTENANT</span>
             <i class="fa-solid fa-arrow-right"></i>
         </a>
@@ -239,7 +239,7 @@
         <h2>Parcourez notre catalogue</h2>
         <div class="title-divider"></div>
         <ngx-slick-carousel class="carousel" #slickModal="slick-carousel" [config]="slideCategoriesConfig" >
-            <div ngxSlickItem *ngFor="let category of categories">
+            <div ngxSlickItem *ngFor="let category of homeCategories">
                 <div class="container">
                     <div class="catalog-single">
                         <h4 class="fw-bold text-ellip">
@@ -248,14 +248,14 @@
                         <div class="title-divider text-center" style="margin-top: -10px;"></div>
                         <ul>
                             <li *ngFor="let sub of category.childs">
-                                <a href="">{{sub}}</a>
+                                <a routerLink='/produits/{{sub.path}}'>{{sub.libelle}}</a>
                             </li>
                         </ul>
-                        <a href="" class="d-flex align-items-center justify-content-center" style="text-decoration: none;">
+                        <a routerLink='/produits/{{category.path}}' class="d-flex align-items-center justify-content-center" style="text-decoration: none;">
                             <i class="fa-solid fa-circle-chevron-right"></i>
                             <span>Tous les produits</span>
                         </a>
-                        <a href="">
+                        <a routerLink='/produits/{{category.path}}'>
                             <img [src]="category.img" alt="">
                         </a>
                     </div>

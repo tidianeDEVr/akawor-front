@@ -54,7 +54,7 @@
                         </div>
                         <div class="row row-cols-2 row-cols-xl-4 g-3 pb-5" [hidden]="!isProductsLoaded">
                             <div *ngFor="let product of products">
-                                <div class="col" *ngIf="product.productState==='ONLINE'">
+                                <div class="col">
                                     <app-product-card [product]="product"></app-product-card>
                                 </div>
                             </div>
