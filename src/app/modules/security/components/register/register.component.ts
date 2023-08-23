@@ -33,7 +33,7 @@ export class RegisterComponent {
         userEmail: this.emailControl.value,
         userPassword: this.passwordControl.value,
       }
-      if (this.isSeller) newUser.userRole = 'ROLE_VENDEUR';
+      // if (this.isSeller) newUser.userRole = 'ROLE_VENDEUR';
       this.service.register(newUser)
     }
   }

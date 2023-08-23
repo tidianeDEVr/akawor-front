@@ -69,7 +69,9 @@
                   <div class="col col-2">
                     <div class="img-holder"
                     style="background-image: url({{imageThumbnailUrl+product.productMainImage}});">
-                      <img src="{{imgPath+'/'+product.productMainImage}}" 
+                      <img src="{{imgPath+'/'+product.productMainImage}}" *ngIf="product.productMainImage" 
+                      class="img-thumbnail" crossorigin="anonymous">
+                      <img src="../../../../../assets/images/products/product-placeholder.png" *ngIf="!product.productMainImage" 
                       class="img-thumbnail" crossorigin="anonymous">
                     </div>
                   </div>
