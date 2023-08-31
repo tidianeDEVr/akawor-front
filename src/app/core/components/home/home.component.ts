@@ -97,7 +97,7 @@ export class HomeComponent {
         { libelle: 'Pantalons', path: 'pantalons' },
         { libelle: 'T-Shirts', path: 't-shirts' },
       ],
-      img: '../../../../assets/images/catalogs/demo09-440x440.jpg',
+      img: 'assets/images/catalogs/demo09-440x440.jpg',
     },
     {
       libelle: 'Multimédia',
@@ -108,7 +108,7 @@ export class HomeComponent {
         { libelle: 'Ordinateurs portables', path: 'ordinateurs-portable' },
         { libelle: 'Téléphones', path: 'telephones' },
       ],
-      img: '../../../../assets/images/catalogs/bagcat-440x440.jpg',
+      img: 'assets/images/catalogs/bagcat-440x440.jpg',
     },
     {
       libelle: 'Articles de maison',
@@ -119,7 +119,7 @@ export class HomeComponent {
         { libelle: 'Décoration', path: 'decoration' },
         { libelle: 'Jardinage', path: 'jardinage' },
       ],
-      img: '../../../../assets/images/catalogs/beauty-440x440.jpg',
+      img: 'assets/images/catalogs/beauty-440x440.jpg',
     },
   ];
   public slideCategoriesConfig = {

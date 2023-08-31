@@ -15,7 +15,7 @@
                         <div class="card-content">
                             <div class="container pt-5">
                                 <div class="d-flex flex-column align-items-center justify-content-center">
-                                    <img class="empty-img" src="../../../../../assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
+                                    <img class="empty-img" src="assets/images/empty.svg" alt="Pas encore de produits" loading="lazy">
                                     <span class="mt-5 alert alert-danger">Pas d'annonces ! <a routerLink="/produits/nouvelle-annonce">Cliquez-ici</a> pour crée une annonce</span>
                                 </div>
                             </div>
@@ -33,7 +33,7 @@
                                         <span class="badge text-bg-danger m-1" *ngIf="product.productState==='REVOKED'">Annonce révoquée</span>
                                     </div>
                                     <img src="{{imageBaseUrl+product.productMainImage}}" alt="produit" loading="lazy" *ngIf="product.productMainImage" crossorigin="anonymous">
-                                    <img src="../../../../../../assets/images/products/product-placeholder.png" 
+                                    <img src="assets/images/products/product-placeholder.png" 
                                     alt="produit" loading="lazy" 
                                     *ngIf="!product.productMainImage" crossorigin="anonymous">
                                     <div class="infos">

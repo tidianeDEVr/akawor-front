@@ -3,7 +3,7 @@
         <article class="shop-card">
             <div class="img-holder">
                 <img *ngIf="!shop.shopLogoImage" alt="{{shop.shopLibelle}}" loading="lazy"
-                src="../../../../../../assets/images/shops/logo-placeholder.jpeg">
+                src="assets/images/shops/logo-placeholder.jpeg">
                 <img src="{{imageBaseUrl+shop.shopLogoImage}}" crossorigin="anonymous"
                 alt="{{shop.shopLibelle}}" loading="lazy" *ngIf="shop.shopLogoImage">
             </div>

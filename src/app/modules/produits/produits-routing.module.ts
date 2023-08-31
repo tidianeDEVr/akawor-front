@@ -16,6 +16,7 @@ const routes: Routes = [
     path: 'nouvelle-annonce',
     component: CreateProductComponent, 
     title: 'Ajout d\'un nouveau produit | Akawor',
+    canActivate: [isVendor],
   },
   { 
     path: 'mes-annonces',

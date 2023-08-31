@@ -14,7 +14,7 @@ import { environment } from 'src/environments/environment.development';
   styleUrls: ['./dashboard-new-announcement.component.scss'],
 })
 export class DashboardNewAnnouncementComponent implements OnInit {
-  public defaultPlaceholderPath: string = "../../../../../assets/images/products/product-placeholder.png";
+  public defaultPlaceholderPath: string = "assets/images/products/product-placeholder.png";
   public urlToGetImages:string = `${environment.BACKEND_IMAGES_FOLDER}`
   public isOnDraftMode: boolean = false;
   public selectedVisibility: number = 1;

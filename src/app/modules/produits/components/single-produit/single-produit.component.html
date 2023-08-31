@@ -146,7 +146,7 @@
                                     <div class="col col-3">
                                         <div class="logo-shop" *ngIf="shop" matTooltip="{{shop.shopLibelle}}">
                                             <a class="text-center text-ellip" routerLink="/boutique/{{shop.shopSlug}}">
-                                                <img src="../../../../../assets/images/shops/logo-placeholder.jpeg" *ngIf="!shop.shopLogoImage"
+                                                <img src="assets/images/shops/logo-placeholder.jpeg" *ngIf="!shop.shopLogoImage"
                                                 alt="{{shop.shopLibelle}}" class="img-thumbnail">
                                                 <img src="{{imageShopUrl+shop.shopLogoImage}}" *ngIf="shop.shopLogoImage"
                                                 alt="{{shop.shopLibelle}}" class="img-thumbnail">
@@ -155,7 +155,7 @@
                                     </div>
                                 </div>
                                 <mat-divider></mat-divider>
-                                <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex flex-column flex-xl-row align-items-end align-items-xl-center justify-content-between">
                                     <h2 class="price">{{product.productPrice|my_currency}}</h2>
                                     <div class="d-flex align-items-center justify-content-between">
                                         <div class="actions h-100">

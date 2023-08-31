@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { OrderService } from 'src/app/core/services/order.service';
+import { PaymentsService } from 'src/app/core/services/payments.service';
 import { ORDER, USER } from 'src/app/data/interfaces';
 import { ProduitsService } from 'src/app/modules/produits/services/produits.service';
 import { SecurityService } from 'src/app/modules/security/services/security.service';
@@ -13,8 +14,9 @@ import { environment } from 'src/environments/environment.development';
 })
 export class CommandCheckoutComponent {
   public user !: USER;
-  public actualStep: number = 0;
+  public actualStep: number = 3;
   public activeDeliveryMethod: string = 'outalma-1';
+  public activePaymentMethod: string = 'paytech';
   public cart !: any[];
   public imageBaseUrl: string = `${environment.BACKEND_IMAGES_FOLDER}/products/`;
   public totalProductAmount: number = 0;
@@ -33,7 +35,8 @@ export class CommandCheckoutComponent {
   constructor(
     private produitService: ProduitsService, 
     private securityService: SecurityService, 
-    private orderService: OrderService){
+    private orderService: OrderService,
+    private paymentsService : PaymentsService){
     this.produitService.getCart()
     .then((res)=>{
       this.cart = res;
@@ -62,7 +65,12 @@ export class CommandCheckoutComponent {
   }
 
   changeDeliveryMethod(method:string){
+    if(this.activeDeliveryMethod == method) return;
     this.activeDeliveryMethod = method;
+  }
+  changePaymentMethod(method:string){
+    if(this.activePaymentMethod == method) return;
+    this.activePaymentMethod = method;
   }
   nextStep(){
     if(this.actualStep+1 > 3) return;
@@ -75,7 +83,10 @@ export class CommandCheckoutComponent {
     this.refreshLinePercent();
   }
   createCommand(){
-    this.orderService.createOrder(this.hydrateNewOrderObject(), this.cart);
+    // this.orderService.createOrder(this.hydrateNewOrderObject(), this.cart);
+    if(this.activePaymentMethod=='paytech') return this.paymentsService.payWithPaytch(this.cart, this.totalOrderAmount);
+    if(this.activePaymentMethod=='stripe') return this.paymentsService.payWithStripe();
+    
   }
   refreshLinePercent(){
     if(this.actualStep==0) return this.widthStepperLinePercent =  `0%`;

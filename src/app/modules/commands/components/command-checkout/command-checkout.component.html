@@ -1,49 +1,49 @@
 <section class="manage-section">
   <div class="container py-4">
-    <div class="row">
-      <div class="col col-8">
-        <h1>Validation de commande</h1>
-        <div class="stepper mb-3 py-4">
-          <div class="stepper-line">
-            <div
-              class="stepper-line-percent"
-              [style.width]="widthStepperLinePercent"
-            ></div>
-          </div>
-          <div
-            class="single-stepper"
-            matTooltip="Informations personnelles"
-            [ngClass]="{ active: actualStep >= 0 }"
-          >
-            <i class="fa-lg fa-solid fa-user-pen"></i>
-          </div>
-          <div
-            class="single-stepper"
-            matTooltip="Adresses de la livraison"
-            [ngClass]="{ active: actualStep >= 1 }"
-          >
-            <i class="fa-lg fa-solid fa-map-location-dot"></i>
-          </div>
-          <div
-            class="single-stepper"
-            matTooltip="Méthode de la livraison"
-            [ngClass]="{ active: actualStep >= 2 }"
-          >
-            <i class="fa-lg fa-solid fa-truck-plane"></i>
-          </div>
-          <div
-            class="single-stepper"
-            matTooltip="Paiement"
-            [ngClass]="{ active: actualStep >= 3 }"
-          >
-            <i class="fa-lg fa-solid fa-cart-shopping"></i>
-          </div>
-        </div>
-        <div class="card" *ngIf="actualStep === 0">
+    <h1>Validation de commande</h1>
+    <div class="stepper mb-3 py-3">
+      <div class="stepper-line">
+        <div
+          class="stepper-line-percent"
+          [style.width]="widthStepperLinePercent"
+        ></div>
+      </div>
+      <div
+        class="single-stepper"
+        matTooltip="Informations personnelles"
+        [ngClass]="{ active: actualStep >= 0 }"
+      >
+        <i class="fa-lg fa-solid fa-user-pen"></i>
+      </div>
+      <div
+        class="single-stepper"
+        matTooltip="Adresses de la livraison"
+        [ngClass]="{ active: actualStep >= 1 }"
+      >
+        <i class="fa-lg fa-solid fa-map-location-dot"></i>
+      </div>
+      <div
+        class="single-stepper"
+        matTooltip="Méthode de la livraison"
+        [ngClass]="{ active: actualStep >= 2 }"
+      >
+        <i class="fa-lg fa-solid fa-truck-plane"></i>
+      </div>
+      <div
+        class="single-stepper"
+        matTooltip="Paiement"
+        [ngClass]="{ active: actualStep >= 3 }"
+      >
+        <i class="fa-lg fa-solid fa-cart-shopping"></i>
+      </div>
+    </div>
+    <div class="row g-2 g-xl-3">
+      <div class="col col-xl-8 col-12">
+        <div class="card h-100" *ngIf="actualStep === 0">
           <div class="card-body h-100">
             <h4>Informations personnelles</h4>
             <p class="mb-3">Entrez vos infos pour passer votre commande.</p>
-            <div class="row row-cols-2">
+            <div class="row row-cols-xl-2 row-cols-1">
               <div class="col">
                 <mat-form-field appearance="outline" class="w-100">
                   <mat-label>Nom</mat-label>
@@ -59,7 +59,7 @@
                 </mat-form-field>
               </div>
               <div class="col">
-                <mat-form-field appearance="outline" class="w-100 mt-3">
+                <mat-form-field appearance="outline" class="w-100 mt-xl-3">
                   <mat-label>Adresse e-mail</mat-label>
                   <input
                     matInput
@@ -70,7 +70,7 @@
                 </mat-form-field>
               </div>
               <div class="col">
-                <mat-form-field appearance="outline" class="w-100 mt-3">
+                <mat-form-field appearance="outline" class="w-100 mt-xl-3">
                   <mat-label>Numéro de téléphone</mat-label>
                   <input
                     matInput
@@ -99,7 +99,7 @@
             </div>
           </div>
         </div>
-        <div class="card" *ngIf="actualStep === 1">
+        <div class="card h-100" *ngIf="actualStep === 1">
           <div class="card-body">
             <h4>Adresses de la livraison</h4>
             <p class="mb-3">Choisissez votre adresse de livraison.</p>
@@ -144,7 +144,7 @@
             </div>
           </div>
         </div>
-        <div class="card" *ngIf="actualStep === 2">
+        <div class="card h-100" *ngIf="actualStep === 2">
           <div class="card-body">
             <h4>Méthode de la livraison</h4>
             <p class="mb-3">Sélectionnez une méthode de livraison.</p>
@@ -155,14 +155,18 @@
                 (click)="changeDeliveryMethod('outalma-1')"
               >
                 <a href="https://outalma.com/" target="_blank">
-                  <img
-                    src="../../../../../assets/images/shops/outalma.png"
-                    alt="Outalma"
-                  />
+                  <div class="d-flex align-items-center justify-content-center h-100">
+                    <img
+                      src="assets/images/shops/outalma.png"
+                      alt="Outalma"
+                    />
+                  </div>
                 </a>
-                <span class="fw-bold mx-4">Livraison dans Dakar</span>
-                <span>Entre 08h et 24h</span>
-                <span class="fw-bold mx-4">Gratuit</span>
+                <p class="p-0 my-0 mx-4">
+                  <span class="fw-bold">Livraison dans Dakar</span><br>
+                  <span>Entre 08h et 24h</span>
+                </p>
+                <span class="fw-bold price ms-4 mt-2">0,00 €</span>
               </div>
               <div
                 class="method"
@@ -170,14 +174,20 @@
                 (click)="changeDeliveryMethod('outalma-2')"
               >
                 <a href="https://outalma.com/" target="_blank">
+                  <div class="d-flex align-items-center justify-content-center h-100">
                   <img
-                    src="../../../../../assets/images/shops/outalma.png"
-                    alt="Outalma"
-                  />
+                      src="assets/images/shops/outalma.png"
+                      alt="Outalma"
+                    />
+                  </div>
                 </a>
-                <span class="fw-bold mx-4">Livraison dans Dakar</span>
-                <span>Entre 08h et 24h</span>
-                <span class="fw-bold mx-4">2,30 €</span>
+                <p class="p-0 my-0 mx-4">
+                  <span class="fw-bold">Livraison dans Dakar</span><br>
+                  <span>Entre 08h et 24h</span>
+                </p>
+                <div class="d-flex align-items-center justify-content-center h-100">
+                  <span class="fw-bold ms-4 mt-2 price">2,30 €</span>
+                </div>
               </div>
             </div>
             <div class="actions mt-4 mb-2">
@@ -191,11 +201,33 @@
             </div>
           </div>
         </div>
-        <div class="card" *ngIf="actualStep === 3">
+        <div class="card h-100" *ngIf="actualStep === 3">
           <div class="card-body">
-            <h4>Paiement</h4>
-            <p class="my-5">Mode de paiements...</p>
-            <div class="actions my-2">
+            <h4>Méthode de paiement</h4>
+            <div class="payment-methods">
+              <p class="mb-3">Choisissez une méthode de paiements</p>
+              <div class="method mb-3" (click)="changePaymentMethod('paytech')"
+              [ngClass]="{ active: activePaymentMethod === 'paytech' }">
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <img
+                    src="assets/images/logo_paytech.png"
+                    alt="Paytech"
+                  />
+                </div>
+                <span class="ms-4 fw-bold">Paytech (Orange Money, Wave ...)</span>
+              </div>
+              <div class="method" (click)="changePaymentMethod('stripe')"
+              [ngClass]="{ active: activePaymentMethod === 'stripe' }">
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <img
+                    src="assets/images/logo_stripe.png"
+                    alt="Stripe"
+                  />
+                </div>
+                <span class="ms-4 fw-bold">Stripe</span>
+              </div>
+            </div>
+            <div class="actions mt-4 mb-2">
               <button class="btn btn-danger" (click)="backStep()">
                 Précédent
               </button>
@@ -206,8 +238,8 @@
           </div>
         </div>
       </div>
-      <div class="col col-4">
-        <div class="card position-relative">
+      <div class="col col-xl-4 col-12">
+        <div class="card position-relative h-100">
           <div class="card-body">
             <h4>Récapitulatif de la commande</h4>
             <div class="summaries">
@@ -285,7 +317,7 @@
         </div>
       </div>
     </div>
-    <p class="advice" *ngIf="!user">
+    <p class="advice mt-3" *ngIf="!user">
       <a routerLink="/security/connexion">Connectez-vous</a> ou
       <a routerLink="/security/inscription">inscrivez-vous</a> pour enregistrer
       vos commandes et suivre l'état de vos livraisons.

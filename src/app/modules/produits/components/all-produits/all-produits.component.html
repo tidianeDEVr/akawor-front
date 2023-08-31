@@ -50,7 +50,7 @@
                         </div>
                         <div matTooltip="Pas d'annonces en ligne !"
                          class="empty-result d-flex flex-column align-items-center" *ngIf="!products || products.length === 0">
-                            <img src="../../../../../assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5">
+                            <img src="assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5">
                         </div>
                         <div class="row row-cols-2 row-cols-xl-4 g-3 pb-5" [hidden]="!isProductsLoaded">
                             <div *ngFor="let product of products">
