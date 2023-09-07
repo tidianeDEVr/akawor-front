@@ -7,6 +7,7 @@
     }    
     .stepper {
         position: relative;
+        max-width: 800px;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -86,6 +87,10 @@
             border: .5px solid var(--green-400);
             box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
         }
+        .method.disabled {
+            opacity: .6;
+            pointer-events: none;
+        }
     }
     .summaries {
         .summary {
@@ -100,6 +105,7 @@
     }
     .products {
         max-height: 250px;
+        overflow-x: hidden;
         overflow-y: scroll;
         .product {
             img {

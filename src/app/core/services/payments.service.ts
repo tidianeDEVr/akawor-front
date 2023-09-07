@@ -12,9 +12,9 @@ export class PaymentsService {
 
   constructor(private currencyService: CurrencyService) { }
 
-  public payWithPaytch(cart:any, amount: any){
+  public payWithPaytech(cart:any, amount: any, reference: any){
     const currency = this.currencyService.getCurrency();
-    const payTech = new PayTech({cart, amount, currency});
+    const payTech = new PayTech({cart, amount, currency, reference});
     payTech
       .withOption({
         requestTokenUrl: `${environment.BACKEND_API_URL}/payment/paytech`,
@@ -39,6 +39,6 @@ export class PaymentsService {
       .send();
   }
   payWithStripe(){
-    alert('stripe')
+    alert('coming soon')
   }
 }

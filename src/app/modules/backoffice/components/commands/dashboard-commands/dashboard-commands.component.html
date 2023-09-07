@@ -32,7 +32,7 @@
         <div class="card">
           <div class="card-content">
             <div class="cc-left">
-              <h5>{{12|my_currency}}</h5>
+              <h5>{{totalVentes|my_currency}}</h5>
               <span>Vente(s)</span>
             </div>
             <div class="cc-right">
@@ -82,7 +82,7 @@
               <th>Client</th>
               <th>Produit(s)</th>
               <th>Destination</th>
-              <th>Statut</th>
+              <th>Paiement</th>
               <th>Date</th>
               <th>Actions</th>
             </tr>
@@ -109,11 +109,10 @@
                 >, {{ order.orderClientCity }}
               </td>
               <td>
-                <span
-                  class="badge text-bg-warning"
-                  *ngIf="order.orderStatus === 'AWAITING'"
-                  >En attente</span
-                >
+                <span class="badge text-bg-success"
+                      *ngIf="order.orderIsPayed == true">Payé</span>
+                      <span class="badge text-bg-danger"
+                      *ngIf="order.orderIsPayed == false">Impayé</span>
               </td>
               <td>{{ order.createdAt | date }}</td>
               <td>
@@ -155,7 +154,7 @@
               <th>Client</th>
               <th>Produit(s)</th>
               <th>Destination</th>
-              <th>Statut</th>
+              <th>Paiement</th>
               <th>Date</th>
               <th>Actions</th>
             </tr>

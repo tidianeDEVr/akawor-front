@@ -163,7 +163,7 @@
                     <th>N° produits</th>
                     <th>Date</th>
                     <th>Montant</th>
-                    <th>Statut</th>
+                    <th>Paiement</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -182,8 +182,10 @@
                     <td>{{ order.createdAt | date }}</td>
                     <td>{{ order.OrderLine?.orderLineTotalPrice | my_currency }}</td>
                     <td>
-                      <span class="badge text-bg-warning"
-                      *ngIf="order.orderStatus === 'AWAITING'">En attente</span>
+                      <span class="badge text-bg-success"
+                      *ngIf="order.orderIsPayed == true">Payé</span>
+                      <span class="badge text-bg-danger"
+                      *ngIf="order.orderIsPayed == false">Impayé</span>
                     </td>
                   </tr>
                 </tbody>
@@ -194,7 +196,7 @@
                     <th>N° produits</th>
                     <th>Date</th>
                     <th>Montant</th>
-                    <th>Statut</th>
+                    <th>Paiement</th>
                   </tr>
                 </tfoot>
               </table>

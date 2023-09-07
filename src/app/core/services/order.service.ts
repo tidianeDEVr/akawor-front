@@ -17,16 +17,16 @@ export class OrderService {
       this.httpClient.post(`${environment.BACKEND_API_URL}/order/insert`, {order, cart})
       .subscribe({
         next: (res: any)=>{
-          if(res.order.id) {
-            this.toastService.show({body:'Commande effectuée avec succés ! Vous allez recevoir un email pour la confirmation.', isSuccess:true})
-            this.router.navigate(['/']);
-          } else {
-            this.toastService.show({body: 'Une erreur s\'est produite ! Veuillez réessayer ultérieurement.'})
-          }
-          resolve(res)
+          // if(res.order.id) {
+          //   this.toastService.show({body:'Commande effectuée avec succés ! Vous allez recevoir un email pour la confirmation.', isSuccess:true})
+          //   this.router.navigate(['/']);
+          // } else {
+          //   this.toastService.show({body: 'Une erreur s\'est produite ! Veuillez réessayer ultérieurement.'})
+          // }
+          resolve(res);
         },
         error: (err)=>{
-          resolve(err)
+          resolve(err);
         }
       })
     })

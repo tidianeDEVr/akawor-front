@@ -88,7 +88,6 @@ export interface SOCIAL {
 export interface ORDER {
   id?: string;
   createdAt?: any;
-  orderAddedAt?: string;
   orderStatus?: string;
   orderReference?: string;
   orderOwner?: USER;

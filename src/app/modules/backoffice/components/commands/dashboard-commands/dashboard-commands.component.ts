@@ -12,14 +12,18 @@ declare const DataTable: any;
 })
 export class DashboardCommandsComponent {
   public orders!: ORDER[];
+  public totalVentes:number = 0;
   constructor(private orderService: OrderService, private dialog: MatDialog) {
     this.orderService.getAllOrders().then((res) => {
       this.orders = res;
+      this.orders.forEach((elt)=>{
+        if(elt.orderIsPayed && elt.OrderLine?.orderLineTotalPrice) 
+        this.totalVentes+= parseInt(elt.OrderLine?.orderLineTotalPrice);
+      });
       setTimeout(() => {
         new DataTable('#allOrders', {
           language: DATATABLE_LANGAGE_FR,
           responsive: true,
-          select: true
         });
       }, 1);
     });
@@ -29,6 +33,6 @@ export class DashboardCommandsComponent {
     return JSON.parse(objects);
   }
   openDialogDetails(order: ORDER) {
-    this.dialog.open(DashboardDetailsCommandComponent, { data: { order } });
+    this.dialog.open(DashboardDetailsCommandComponent, { data: { order }, width:'800px' });
   }
 }

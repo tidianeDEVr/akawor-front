@@ -1,1 +1,101 @@
-<p>{{data.order|json}}</p>
+<div class="container p-3">
+    <h2 class="m-0 p-0">#{{data.order.orderReference}}</h2>
+    <p>
+        <span>{{data.order.createdAt | date }} | </span>
+        <span>{{
+            parseToJson(data.order.OrderLine?.orderLineJsonCart).length
+          }} article(s) | </span>
+        <span>Total <span class="fw-bold">{{data.order.OrderLine?.orderLineTotalPrice | my_currency}}</span> | </span>
+        <span class="badge text-bg-success"
+        *ngIf="data.order.orderIsPayed == true">Payé</span>
+        <span class="badge text-bg-danger"
+        *ngIf="data.order.orderIsPayed == false">Impayé</span>
+    </p>
+    <div class="row g-3 mt-3">
+        <div class="col col-xl-7">
+            <div class="card h-100">
+                <div class="card-header fw-bold">Articles</div>
+                <div class="card-body">
+                    <div class="products">
+                        <div class="row row-cols-1 g-3">
+                          <div class="product col" *ngFor="let prod of parseToJson(data.order.OrderLine?.orderLineJsonCart)">
+                            <div class="card">
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col col-3">
+                                    <img
+                                      src="{{
+                                        imageBaseUrl + prod.product.productMainImage
+                                      }}"
+                                      class="w-100 img-thumbnail"
+                                      alt="{{ prod.product.productTitle }}"
+                                      crossorigin="anonymous"
+                                    />
+                                  </div>
+                                  <div class="col col-9">
+                                    <h5 class="m-0 p-0 text-ellip fw-bold">
+                                      {{ prod.product.productTitle }}
+                                    </h5>
+                                    <p class="m-0 p-0 text-ellip">
+                                      {{ prod.product.productDescription }}
+                                    </p>
+                                    <div class="d-flex">
+                                      <div
+                                        class="price"
+                                        *ngIf="!prod.product.productPromoPrice"
+                                      >
+                                        {{ prod.product.productPrice | my_currency }} X
+                                        {{ prod.quantity }}
+                                      </div>
+                                      <div
+                                        class="price"
+                                        *ngIf="prod.product.productPromoPrice"
+                                      >
+                                        {{ prod.product.productPromoPrice | my_currency }}
+                                        X {{ prod.quantity }}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="bottom-gradient"
+                          *ngIf="parseToJson(data.order.OrderLine?.orderLineJsonCart).length > 4"
+                        ></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col col-xl-5">
+            <div class="card">
+                <div class="card-header fw-bold">Client</div>
+                <div class="card-body">
+                    <p>
+                        <span class="fw-bold">Nom complet: </span>{{data.order.orderClientFirstName}} {{data.order.orderClientLastName}}<br>
+                        <span class="fw-bold">Email: </span>{{data.order.orderClientEmail}}<br>
+                        <span class="fw-bold">Téléphone: </span>{{data.order.orderClientPhoneNumber}}<br>
+                    </p>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header fw-bold">Adresse de livraison</div>
+                <div class="card-body">
+                    <p>
+                        <span class="fw-bold">Pays: </span>{{data.order.orderClientCountry}}<br>
+                        <span class="fw-bold">Ville: </span>{{data.order.orderClientCity}}<br>
+                        <span class="fw-bold">Adresse: </span>{{data.order.orderClientAddress}}<br>
+                    </p>
+                </div>
+            </div>
+            <div class="card mt-3">
+                <div class="card-header fw-bold">Note du client</div>
+                <div class="card-body">
+                    <p>{{data.order.orderDescription}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
