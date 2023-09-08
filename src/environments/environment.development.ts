@@ -1,7 +1,7 @@
 export const environment = {
-    BACKEND_API_URL: "http://localhost:3001/v1/api",
-    BACKEND_BASE_URL: "http://localhost:3001/v1",
-    BACKEND_IMAGES_FOLDER: "http://localhost:3001/images",
+    BACKEND_API_URL: "https://api.akawor.com/v1/api",
+    BACKEND_BASE_URL: "https://api.akawor.com/v1",
+    BACKEND_IMAGES_FOLDER: "https://api.akawor.com/images",
     TOKEN_LABEL: 'bwuybggaeeuyotigcaeqr',
     EUR_TO_XOF: 660,
     DEFAULT_CURRENCY: 'XOF',
