@@ -5,6 +5,7 @@ export const environment = {
     TOKEN_LABEL: 'bwuybggaeeuyotigcaeqr',
     EUR_TO_XOF: 660,
     DEFAULT_CURRENCY: 'XOF',
+    GA_TRACKING_CODE:  'G-G7LJZKKXNK',
     CLIENT_OAUTH: {
         ID: "312282810078-o0u3srclijh0hc6gqpe14ihtoehgh8bo.apps.googleusercontent.com",
         SECRET: "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"
