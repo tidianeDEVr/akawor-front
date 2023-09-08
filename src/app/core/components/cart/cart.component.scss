@@ -10,4 +10,40 @@
         height: 50px;
         object-fit: cover;
     }
+    .products {
+        overflow-x: hidden;
+        overflow-y: scroll;
+        .product {
+            img {
+                aspect-ratio: 1;
+                object-fit: cover;
+                height: 110px;
+            }
+            h5 {
+                font-size: 17px;
+            }
+            p {
+                color: var(--gray-600);
+                overflow: hidden;
+                display: -webkit-box !important;
+                -webkit-line-clamp: 2 !important;
+                        line-clamp: 2 !important; 
+                -webkit-box-orient: vertical !important;
+            }
+            button {
+                top: 10px;
+                right: 20px;
+                z-index: 10;
+            }
+        }
+        .bottom-gradient {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 10px;
+            height: 50px;
+            background: rgb(0,0,0);
+            background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(255,255,255,1) 100%);
+        }
+    }
 }

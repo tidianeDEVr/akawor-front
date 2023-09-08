@@ -16,6 +16,7 @@ export class CartComponent {
     this.populateProducts();
   }
   remove(product:PRODUCT){
+    if(!product || !this.products) return;
     this.productService.removeFromCart(product)
     this.populateProducts();
     this.toastService.show({body:`"${product.productTitle}" supprimé de votre panier`, isSuccess:true})

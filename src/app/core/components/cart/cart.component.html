@@ -9,7 +9,7 @@
                     <img src="assets/images/empty.svg" alt="pas de resultats" class="mt-3 mb-5" loading="lazy">
                 </div>
                 <div style="min-height: 300px;" *ngIf="products && products.length > 0"> 
-                    <table class="table">
+                    <!-- <table class="table">
                         <thead>
                           <tr>
                             <th scope="col">IMAGE</th>
@@ -45,9 +45,59 @@
                             <td class="pt-4 fw-bold">{{product.product.productPrice*product.quantity|my_currency}}</td>
                           </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                    <div class="products" *ngIf="products && products.length > 0">
+                        <div class="row row-cols-1 g-3">
+                          <div class="product col position-relative" *ngFor="let prod of products">
+                            <button type="button" class="position-absolute btn btn-danger" matTooltip="Supprimer du panier"
+                            (click)="remove(prod.product)">
+                                <i class="fa-solid fa-trash"></i>           
+                            </button>
+                            <div class="card">
+                              <div class="card-body">
+                                <div class="row">
+                                  <div class="col col-4 col-xl-2">
+                                    <img
+                                      src="{{
+                                        imageBaseUrl + prod.product.productMainImage
+                                      }}"
+                                      class="w-100 img-thumbnail"
+                                      alt="{{ prod.product.productTitle }}"
+                                      crossorigin="anonymous"
+                                    />
+                                  </div>
+                                  <div class="col col-8 col-xl-10">
+                                    <h5 class="m-0 p-0 text-ellip fw-bold">
+                                      {{ prod.product.productTitle }}
+                                    </h5>
+                                    <p class="m-0 p-0 my-2">
+                                      {{ prod.product.productDescription }}
+                                    </p>
+                                    <div class="d-flex fw-bold">
+                                      <div
+                                        class="price"
+                                        *ngIf="!prod.product.productPromoPrice"
+                                      >
+                                        {{ prod.product.productPrice | my_currency }} X
+                                        {{ prod.quantity }}
+                                      </div>
+                                      <div
+                                        class="price"
+                                        *ngIf="prod.product.productPromoPrice"
+                                      >
+                                        {{ prod.product.productPromoPrice | my_currency }}
+                                        X {{ prod.quantity }}
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                 </div>
-                <div class="row row-cols-1 g-2 row-cols-xl-2">
+                <div class="row row-cols-1 g-2 row-cols-xl-2 mt-3">
                     <div class="col">
                         <a class="w-100 btn btn-danger fw-bold" routerLink="/produits">Continuer mes achats</a>
                     </div>

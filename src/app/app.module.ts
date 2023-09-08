@@ -12,13 +12,16 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
-import { DashboardDetailsAnnouncementComponent } from './modules/backoffice/components/announcements/dashboard-details-announcement/dashboard-details-announcement.component';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from 'ngx-google-analytics';
+import { environment } from 'src/environments/environment.development';
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
+    NgxGoogleAnalyticsModule.forRoot(environment.GA_TRACKING_CODE),
+    NgxGoogleAnalyticsRouterModule,
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
